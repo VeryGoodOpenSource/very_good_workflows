@@ -5,6 +5,9 @@
 
 Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
+[![ci][ci_badge]][ci_link]
+[![License: MIT][license_badge]][license_link]
+
 ---
 
 Reusable [GitHub Workflows][github_workflows_link] used at [Very Good Ventures][very_good_ventures_link] 🦄
@@ -109,7 +112,11 @@ jobs:
       coverage_excludes: "*.g.dart"
 ```
 
+[ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
+[ci_link]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions
 [github_workflows_link]: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[license_link]: https://opensource.org/licenses/MIT
 [logo_black]: https://raw.githubusercontent.com/VGVentures/very_good_brand/main/styles/README/vgv_logo_black.png#gh-light-mode-only
 [logo_white]: https://raw.githubusercontent.com/VGVentures/very_good_brand/main/styles/README/vgv_logo_white.png#gh-dark-mode-only
 [very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
