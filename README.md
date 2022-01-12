@@ -67,8 +67,9 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@main
     with:
-      working_directory: examples/my_dart_package
       coverage_excludes: "*.g.dart"
+      dart_sdk: "stable"
+      working_directory: "examples/my_dart_package"
 ```
 
 ## Flutter Package Workflow
@@ -91,6 +92,18 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `""`
 
+#### `flutter_channel`
+
+**Optional** The Flutter release channel to use (e.g. `stable`).
+
+**Default** `"stable"`
+
+#### `flutter_version`
+
+**Optional** The Flutter SDK version to use (e.g. `2.8.1`).
+
+**Default** `""`
+
 #### `working_directory`
 
 **Optional** The path to the root of the dart package.
@@ -108,8 +121,10 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
     with:
-      working_directory: examples/my_flutter_package
       coverage_excludes: "*.g.dart"
+      flutter_channel: "stable"
+      flutter_version: "2.8.1"
+      working_directory: "examples/my_flutter_package"
 ```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg

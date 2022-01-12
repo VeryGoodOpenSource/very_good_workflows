@@ -3,14 +3,22 @@ name: Flutter Package Workflow
 on:
   workflow_call:
     inputs:
-      working_directory:
-        required: false
-        type: string
-        default: "."
       coverage_excludes:
         required: false
         type: string
         default: ""
+      flutter_channel:
+        required: false
+        type: string
+        default: "stable"
+      flutter_version:
+        required: false
+        type: string
+        default: ""
+      working_directory:
+        required: false
+        type: string
+        default: "."
 
 jobs:
   build:
@@ -25,8 +33,8 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: 2.8.1
-          channel: stable
+          flutter-version: ${{inputs.flutter_version}}
+          channel: ${{inputs.flutter_channel}}
           cache: true
 
       - name: Install Dependencies
@@ -34,7 +42,7 @@ jobs:
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
-      
+
       - name: Format
         run: flutter format --set-exit-if-changed lib test
 
