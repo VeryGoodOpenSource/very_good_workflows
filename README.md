@@ -18,10 +18,10 @@ To get started add very good workflows to an existing GitHub workflow:
 
 ```yaml
 # A reusable workflow for Dart packages
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@main
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
 
 # A reusable workflow for Flutter packages
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
 ```
 
 ## Dart Package Workflow
@@ -65,7 +65,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@main
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
     with:
       coverage_excludes: "*.g.dart"
       dart_sdk: "stable"
@@ -119,7 +119,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       coverage_excludes: "*.g.dart"
       flutter_channel: "stable"
