@@ -1,0 +1,14 @@
+name: Verify Fluffter Package Workflow
+
+on:
+  pull_request:
+    paths:
+      - "examples/flutter_package/**"
+      - ".github/workflows/flutter_package.yml"
+      - ".github/workflows/verify_flutter_package.yml"
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
+    with:
+      working_directory: examples/flutter_package

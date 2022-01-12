@@ -1,0 +1,14 @@
+name: Verify Dart Package Workflow
+
+on:
+  pull_request:
+    paths:
+      - "examples/dart_package/**"
+      - ".github/workflows/dart_package.yml"
+      - ".github/workflows/verify_dart_package.yml"
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@main
+    with:
+      working_directory: examples/dart_package
