@@ -9,6 +9,6 @@ on:
 
 jobs:
   build:
-    uses: .github/workflows/dart_package.yml
+    uses: .github/workflows/dart_package.yml@$GITHUB_REF
     with:
       working_directory: examples/dart_package
