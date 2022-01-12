@@ -1,4 +1,4 @@
-name: Verify Fluffter Package Workflow
+name: Verify Flutter Package Workflow
 
 on:
   pull_request:
@@ -9,6 +9,6 @@ on:
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
+    uses: .github/workflows/flutter_package.yml
     with:
       working_directory: examples/flutter_package

@@ -9,6 +9,6 @@ on:
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@main
+    uses: .github/workflows/dart_package.yml
     with:
       working_directory: examples/dart_package
