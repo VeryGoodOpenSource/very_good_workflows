@@ -1,0 +1,11 @@
+name: dart_package
+description: An example Dart package created with very_good_cli
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dev_dependencies:
+  test: ^1.19.2
+  very_good_analysis: ^2.4.0
