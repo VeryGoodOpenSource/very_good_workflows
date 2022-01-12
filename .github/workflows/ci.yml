@@ -1,6 +1,10 @@
 name: ci
 
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   verify-dart:
@@ -15,6 +19,9 @@ jobs:
 
   build:
     needs: [verify-dart, verify-flutter]
+
+    runs-on: ubuntu-latest
+
     steps:
       - name: noop
         run: echo 'noop'
