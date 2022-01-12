@@ -3,14 +3,18 @@ name: Dart Package Workflow
 on:
   workflow_call:
     inputs:
-      working_directory:
-        required: false
-        type: string
-        default: "."
       coverage_excludes:
         required: false
         type: string
         default: ""
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
+      working_directory:
+        required: false
+        type: string
+        default: "."
 
 jobs:
   build:
@@ -24,6 +28,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: dart-lang/setup-dart@v1
+        with: ${{inputs.dart_sdk}}
 
       - name: Install Dependencies
         run: dart pub get

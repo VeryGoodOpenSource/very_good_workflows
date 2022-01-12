@@ -28,24 +28,30 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.y
 The Dart package workflow consists of the following steps:
 
 1. Install Dependencies
-2. Format        
+2. Format
 3. Analyze
 4. Run tests
 5. Check Code Coverage
 
 ### Inputs
 
-#### `working_directory`
-
-**Optional** The path to the root of the dart package.
-
-**Default** `"."`
-
 #### `coverage_excludes`
 
 **Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
 
 **Default** `""`
+
+#### `dart_sdk`
+
+**Optional** Which Dart SDK version to use. It can be a version (e.g. `2.12.0`) or a channel (e.g. `stable`):
+
+**Default** `"stable"`
+
+#### `working_directory`
+
+**Optional** The path to the root of the dart package.
+
+**Default** `"."`
 
 ### Example Usage
 
@@ -69,24 +75,24 @@ jobs:
 The Flutter package workflow consists of the following steps:
 
 1. Install Dependencies
-2. Format        
+2. Format
 3. Analyze
 4. Run tests
 5. Check Code Coverage
 
 ### Inputs
 
-#### `working_directory`
-
-**Optional** The path to the root of the dart package.
-
-**Default** `"."`
-
 #### `coverage_excludes`
 
 **Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
 
 **Default** `""`
+
+#### `working_directory`
+
+**Optional** The path to the root of the dart package.
+
+**Default** `"."`
 
 ### Example Usage
 
