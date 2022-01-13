@@ -52,7 +52,7 @@ The Dart package workflow consists of the following steps:
 
 #### `working_directory`
 
-**Optional** The path to the root of the dart package.
+**Optional** The path to the root of the Dart package.
 
 **Default** `"."`
 
@@ -106,7 +106,7 @@ The Flutter package workflow consists of the following steps:
 
 #### `working_directory`
 
-**Optional** The path to the root of the dart package.
+**Optional** The path to the root of the Flutter package.
 
 **Default** `"."`
 
