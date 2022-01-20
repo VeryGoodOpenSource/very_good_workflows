@@ -1,4 +1,10 @@
-# v1.0.0 (2022-01-12)
+# [1.0.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.0...v1.0.1) (2022-01-20)
+
+### Features
+
+- enhance workflow step names ([#9](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/9)) ([6429f08](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6429f0849fa0d6b9dc845d6f00d62e4a3d875ff1))
+
+# [1.0.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/07e989fcadd9f5a2250ad14b0fdb82e6c8bc6704...v1.0.0) (2022-01-12)
 
 ### Bug Fixes
 
