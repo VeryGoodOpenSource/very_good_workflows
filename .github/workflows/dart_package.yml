@@ -25,28 +25,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v2
 
-      - uses: dart-lang/setup-dart@v1
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{inputs.dart_sdk}}
 
-      - name: Install Dependencies
+      - name: 📦 Install Dependencies
         run: dart pub get
 
-      - name: Format
+      - name: ✨ Check Formatting
         run: dart format --set-exit-if-changed .
 
-      - name: Analyze
+      - name: 🕵️ Analyze
         run: dart analyze --fatal-infos --fatal-warnings lib
 
-      - name: Run Tests
+      - name: 🧪 Run Tests
         run: |
           pub global activate test_coverage
           export PATH=$PATH:$HOME/.pub-cache/bin
           test_coverage
 
-      - name: Check Code Coverage
+      - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
         with:
           path: ${{inputs.working_directory}}/coverage/lcov.info

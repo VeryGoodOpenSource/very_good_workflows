@@ -29,30 +29,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v2
 
-      - uses: subosito/flutter-action@v2
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{inputs.flutter_version}}
           channel: ${{inputs.flutter_channel}}
           cache: true
 
-      - name: Install Dependencies
+      - name: 📦 Install Dependencies
         run: |
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
 
-      - name: Format
+      - name: ✨ Check Formatting
         run: flutter format --set-exit-if-changed lib test
 
-      - name: Analyze
+      - name: 🕵️ Analyze
         run: flutter analyze lib test
 
-      - name: Run tests
+      - name: 🧪 Run Tests
         run: flutter test --no-pub --coverage --test-randomize-ordering-seed random
 
-      - name: Check Code Coverage
+      - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
         with:
           path: ${{inputs.working_directory}}/coverage/lcov.info
