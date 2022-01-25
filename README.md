@@ -24,6 +24,8 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
 ```
 
+For a more detailed guide, including tips and tricks, check out [our blog][very_good_workflows_blog_link].
+
 ## Dart Package Workflow
 
 ### Steps
@@ -137,3 +139,4 @@ jobs:
 [very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
 [very_good_ventures_link_light]: https://verygood.ventures#gh-light-mode-only
 [very_good_ventures_link]: https://verygood.ventures
+[very_good_workflows_blog_link]: https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects?utm_source=github&utm_medium=readme&utm_campaign=workflows_readme
