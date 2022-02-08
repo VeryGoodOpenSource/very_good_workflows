@@ -1,4 +1,10 @@
-# [1.0.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.0...v1.0.1) (2022-01-20)
+# [1.0.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.1...v1.0.2) (2022-02-08)
+
+### Features
+
+- upgrade to very_good_coverage@v1 ([#13](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/13)) ([6342fa5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6342fa5cb1a8eabfe5a1c2e57330aea37cedf5a2))
+
+## [1.0.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.0...v1.0.1) (2022-01-20)
 
 ### Features
 

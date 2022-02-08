@@ -53,7 +53,7 @@ jobs:
           test_coverage
 
       - name: 📊 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
+        uses: VeryGoodOpenSource/very_good_coverage@v1
         with:
           path: ${{inputs.working_directory}}/coverage/lcov.info
           exclude: ${{inputs.coverage_excludes}}
