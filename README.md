@@ -52,6 +52,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"stable"`
 
+#### `min_coverage`
+
+**Optional** The minimum coverage percentage allowed.
+
+**Default** 100
+
 #### `working_directory`
 
 **Optional** The path to the root of the Dart package.
@@ -105,6 +111,12 @@ The Flutter package workflow consists of the following steps:
 **Optional** The Flutter SDK version to use (e.g. `2.8.1`).
 
 **Default** `""`
+
+#### `min_coverage`
+
+**Optional** The minimum coverage percentage allowed.
+
+**Default** 100
 
 #### `working_directory`
 

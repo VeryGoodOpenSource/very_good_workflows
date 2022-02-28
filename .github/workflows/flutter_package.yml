@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: "."
+      min_coverage:
+        required: false
+        type: number
+        default: 100
 
 jobs:
   build:
@@ -59,3 +63,4 @@ jobs:
         with:
           path: ${{inputs.working_directory}}/coverage/lcov.info
           exclude: ${{inputs.coverage_excludes}}
+          min_coverage: ${{inputs.min_coverage}}
