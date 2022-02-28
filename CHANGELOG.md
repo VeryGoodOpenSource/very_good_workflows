@@ -1,4 +1,10 @@
-# [1.0.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.1...v1.0.2) (2022-02-08)
+# [1.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.2...v1.1.0) (2022-02-28)
+
+### Features
+
+- support min_coverage ([#11](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/11)) ([a89e8b1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a89e8b1d7687b769ae5f975fff5568156f282887))
+
+## [1.0.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.1...v1.0.2) (2022-02-08)
 
 ### Features
 
