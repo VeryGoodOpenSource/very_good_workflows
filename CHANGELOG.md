@@ -1,3 +1,9 @@
+# [1.1.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.0...v1.1.1) (2022-03-25)
+
+### Features
+
+- **flutter_package:** use very_good test runner ([#17](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/17)) ([37174b1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/37174b1cd607d13ad9f9f398d15a1725bccc95aa))
+
 # [1.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.2...v1.1.0) (2022-02-28)
 
 ### Features
