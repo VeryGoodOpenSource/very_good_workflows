@@ -23,6 +23,10 @@ on:
         required: false
         type: number
         default: 100
+      optimization:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   build:
@@ -56,7 +60,8 @@ jobs:
         run: flutter analyze lib test
 
       - name: 🧪 Run Tests
-        run: very_good test --coverage --test-randomize-ordering-seed random
+        run: |
+          very_good test ${{inputs.optimization == 'false' && '--no-optimization' || ''}} --coverage --test-randomize-ordering-seed random
 
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1
