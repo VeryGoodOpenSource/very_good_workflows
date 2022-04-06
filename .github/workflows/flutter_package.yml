@@ -60,12 +60,7 @@ jobs:
         run: flutter analyze lib test
 
       - name: 🧪 Run Tests
-        run: |
-          if [ ${{inputs.optimization}} == 'true' ]; then
-            very_good test --coverage --test-randomize-ordering-seed random
-          else
-            very_good test --no-optimization --coverage --test-randomize-ordering-seed random
-          fi
+        run: very_good test --no-optimization --coverage --test-randomize-ordering-seed random
 
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1
