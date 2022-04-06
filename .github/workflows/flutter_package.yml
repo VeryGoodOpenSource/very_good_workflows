@@ -61,7 +61,11 @@ jobs:
 
       - name: 🧪 Run Tests
         run: |
-          very_good test ${{inputs.optimization && '--no-optimization' || ''}} --coverage --test-randomize-ordering-seed random
+          if [ ${{inputs.optimization}} == 'true' ]; then
+            very_good test --coverage --test-randomize-ordering-seed random
+          else
+            very_good test --no-optimization --coverage --test-randomize-ordering-seed random
+          fi
 
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1
