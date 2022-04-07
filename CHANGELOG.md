@@ -1,4 +1,11 @@
-# [1.1.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.0...v1.1.1) (2022-03-25)
+# [1.2.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.1...v1.2.0) (2022-04-07)
+
+### Features
+
+- ability to disable test optimization ([#24](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/24)) ([d6dc6a6](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d6dc6a64bf7abd70ce42b1278001b65164bc7345))
+- ability to run test recursively ([#25](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/25)) ([a1c7235](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a1c7235cd71b479f6d44657c67afe8a22bbbec21))
+
+## [1.1.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.0...v1.1.1) (2022-03-25)
 
 ### Features
 
