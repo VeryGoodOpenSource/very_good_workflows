@@ -126,7 +126,7 @@ The Flutter package workflow consists of the following steps:
 
 #### `test_recursion`
 
-**Optional** If it should run the test recursively.
+**Optional** Whether to recursively run tests in nested directories.
 
 **Default** `false`
 
