@@ -130,7 +130,13 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `true`
 
-**Note**: since the optimization process groups tests into a single file, golden tests will not work properly, so consider disabling optimizations if you are using those kind of tests.
+**Note**: Since the optimization process groups tests into a single file, golden tests will not work properly. Consider disabling optimizations if you are using golden tests.
+
+#### `test_recursion`
+
+**Optional** Whether to recursively run tests in nested directories.
+
+**Default** `false`
 
 ### Example Usage
 
@@ -147,6 +153,7 @@ jobs:
       flutter_channel: "stable"
       flutter_version: "2.8.1"
       working_directory: "examples/my_flutter_package"
+      test_recursion: true
 ```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
