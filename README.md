@@ -124,6 +124,14 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"."`
 
+#### `test_optimization`
+
+**Optional** Enable the test optimization.
+
+**Default** `true`
+
+**Note**: Since the optimization process groups tests into a single file, golden tests will not work properly. Consider disabling optimizations if you are using golden tests.
+
 #### `test_recursion`
 
 **Optional** Whether to recursively run tests in nested directories.
