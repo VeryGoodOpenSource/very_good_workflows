@@ -124,7 +124,7 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"."`
 
-#### `test_recursive`
+#### `test_recursion`
 
 **Optional** If it should run the test recursively.
 
@@ -145,7 +145,7 @@ jobs:
       flutter_channel: "stable"
       flutter_version: "2.8.1"
       working_directory: "examples/my_flutter_package"
-      test_recursive: true
+      test_recursion: true
 ```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
