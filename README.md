@@ -124,6 +124,12 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"."`
 
+#### `test_optimization`
+
+**Optional** Enable the test optimization.
+
+**Default** `true`
+
 ### Example Usage
 
 ```yaml
