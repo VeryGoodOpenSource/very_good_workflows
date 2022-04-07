@@ -124,6 +124,14 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"."`
 
+#### `test_optimization`
+
+**Optional** Enable the test optimization.
+
+**Default** `true`
+
+**Note**: since the optimization process groups tests into a single file, golden tests will not work properly, so consider disabling optimizations if you are using those kind of tests.
+
 ### Example Usage
 
 ```yaml
