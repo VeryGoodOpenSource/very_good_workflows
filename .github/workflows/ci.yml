@@ -13,7 +13,7 @@ jobs:
       working_directory: examples/dart_package
 
   verify-flutter:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       working_directory: examples/flutter_package
 
