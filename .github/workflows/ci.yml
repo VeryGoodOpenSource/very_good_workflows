@@ -17,7 +17,6 @@ jobs:
     with:
       working_directory: examples/flutter_package
       flutter_channel: stable
-      flutter_version: 2.10.0
 
   build:
     needs: [verify-dart, verify-flutter]
