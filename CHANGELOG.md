@@ -1,3 +1,9 @@
+# [1.2.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.0...v1.2.1) (2022-05-02)
+
+### Bug Fixes
+
+- **dart_package:** use dart test instead of test_coverage ([#28](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/28)) ([b62ee03](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b62ee0393c6da47f8fe8d452406b80aa8d217a05))
+
 # [1.2.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.1...v1.2.0) (2022-04-07)
 
 ### Features
