@@ -1,4 +1,10 @@
-# [1.2.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.0...v1.2.1) (2022-05-02)
+# [1.2.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.1...v1.2.2) (2022-05-12)
+
+### Bug Fixes
+
+- **dart_package:** pin coverage to 1.2.0 ([#34](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/34)) ([d99c0ed](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d99c0ed52a4c12518e2cdc3ee5ff2c40e3532a02))
+
+## [1.2.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.0...v1.2.1) (2022-05-02)
 
 ### Bug Fixes
 
