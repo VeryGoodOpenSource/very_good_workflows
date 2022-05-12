@@ -47,7 +47,9 @@ jobs:
         run: dart analyze --fatal-infos --fatal-warnings lib
 
       - name: 🧪 Run Tests
-        run: dart test --coverage=coverage && dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+        run: |
+          dart pub global activate coverage 1.2.0
+          dart test --coverage=coverage && dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
 
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1
