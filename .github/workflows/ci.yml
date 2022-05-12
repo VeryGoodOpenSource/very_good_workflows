@@ -15,6 +15,8 @@ jobs:
   verify-flutter:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@main
     with:
+      flutter_channel: stable
+      flutter_version: 3.0.0
       working_directory: examples/flutter_package
 
   build:
