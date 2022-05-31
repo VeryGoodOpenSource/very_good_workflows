@@ -40,6 +40,12 @@ The Dart package workflow consists of the following steps:
 
 ### Inputs
 
+#### `concurrency`
+
+**Optional** The number of concurrent test suites run.
+
+**Default** `4`
+
 #### `coverage_excludes`
 
 **Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
