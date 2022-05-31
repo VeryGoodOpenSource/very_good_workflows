@@ -1,4 +1,11 @@
-# [1.2.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.1...v1.2.2) (2022-05-12)
+# [1.3.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.2...v1.3.0) (2022-05-31)
+
+### Features
+
+- **dart_package:** add optional concurrency input ([#38](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/38)) ([5b27fe7](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5b27fe769681de79d641c0907f9a1ea2106c7416))
+- **flutter_package:** add optional concurrency input ([#39](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/39)) ([8d89298](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/8d89298c7df0152e36934ce98f475f78a333963c))
+
+## [1.2.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.1...v1.2.2) (2022-05-12)
 
 ### Bug Fixes
 
