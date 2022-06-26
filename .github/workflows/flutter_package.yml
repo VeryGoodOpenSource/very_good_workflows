@@ -69,6 +69,7 @@ jobs:
         run: flutter format --set-exit-if-changed lib test
 
       - name: 🏗️ Generate files
+        if: ${{ inputs.enable.build_runner == true }}
         run: flutter pub run build_runner build
 
       - name: 🕵️ Analyze
