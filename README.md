@@ -70,6 +70,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"."`
 
+#### `build_runner`
+
+**Optional** Whether to run build_runner.
+
+**Default** `false`
+
 ### Example Usage
 
 ```yaml
@@ -147,6 +153,12 @@ The Flutter package workflow consists of the following steps:
 #### `test_recursion`
 
 **Optional** Whether to recursively run tests in nested directories.
+
+**Default** `false`
+
+#### `build_runner`
+
+**Optional** Whether to run build_runner.
 
 **Default** `false`
 
