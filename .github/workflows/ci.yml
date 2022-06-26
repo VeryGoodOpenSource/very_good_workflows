@@ -18,6 +18,7 @@ jobs:
       flutter_channel: stable
       flutter_version: 3.0.0
       working_directory: examples/flutter_package
+      build_runner: true
 
   build:
     needs: [verify-dart, verify-flutter]

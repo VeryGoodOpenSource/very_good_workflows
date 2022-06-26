@@ -23,6 +23,10 @@ on:
         required: false
         type: number
         default: 100
+      build_runner:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -46,6 +50,9 @@ jobs:
 
       - name: ✨ Check Formatting
         run: dart format --set-exit-if-changed .
+
+      - name: 🏗️ Generate files
+        run: flutter pub run build_runner build
 
       - name: 🕵️ Analyze
         run: dart analyze --fatal-infos --fatal-warnings lib
