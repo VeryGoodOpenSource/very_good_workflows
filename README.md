@@ -22,6 +22,9 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@
 
 # A reusable workflow for Flutter packages
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+
+# A reusable workflow for ensuring commits are semantic
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
 ```
 
 For a more detailed guide, including tips and tricks, check out [our blog][very_good_workflows_blog_link].
@@ -166,6 +169,26 @@ jobs:
       flutter_version: "2.8.1"
       working_directory: "examples/my_flutter_package"
       test_recursion: true
+```
+
+## Semantic Pull Request Workflow
+
+### Steps
+
+The semantic pull request package workflow consists of the following steps:
+
+1. Ensure Commit is Semantic
+
+### Example Usage
+
+```yaml
+name: My Workflow
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
 ```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
