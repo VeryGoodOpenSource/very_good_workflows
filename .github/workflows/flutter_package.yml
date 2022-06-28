@@ -38,7 +38,7 @@ on:
       build_runner:
         required: false
         type: boolean
-        default: true
+        default: false
 
 jobs:
   build:
