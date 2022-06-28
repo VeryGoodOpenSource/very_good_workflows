@@ -19,8 +19,11 @@ jobs:
       flutter_version: 3.0.0
       working_directory: examples/flutter_package
 
+  verify-semantic-pull-request:
+    uses: ./.github/workflows/semantic_pull_request.yml
+
   build:
-    needs: [verify-dart, verify-flutter]
+    needs: [verify-dart, verify-flutter, verify-semantic-pull-request]
 
     runs-on: ubuntu-latest
 
