@@ -32,11 +32,12 @@ For a more detailed guide, including tips and tricks, check out [our blog][very_
 
 The Dart package workflow consists of the following steps:
 
-1. Install Dependencies
-2. Format
-3. Analyze
-4. Run tests
-5. Check Code Coverage
+1. Ensure Commit is Semantic
+2. Install Dependencies
+3. Format
+4. Analyze
+5. Run tests
+6. Check Code Coverage
 
 ### Inputs
 
@@ -92,11 +93,12 @@ jobs:
 
 The Flutter package workflow consists of the following steps:
 
-1. Install Dependencies
-2. Format
-3. Analyze
-4. Run tests
-5. Check Code Coverage
+1. Ensure Commit is Semantic
+2. Install Dependencies
+3. Format
+4. Analyze
+5. Run tests
+6. Check Code Coverage
 
 ### Inputs
 
