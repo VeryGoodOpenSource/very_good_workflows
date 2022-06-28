@@ -33,6 +33,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 🤖 Ensure Commit is Semantic
+        uses: amannn/action-semantic-pull-request@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          validateSingleCommit: false
+          ignoreLabels: |
+            bot
+            ignore-semantic-pull-request
+          wip: true
+
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
 
