@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.3.0...v1.4.0) (2022-06-28)
+
+### Bug Fixes
+
+- only run semantic commit step on pull_request ([#46](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/46)) ([cdd60ea](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/cdd60ea9af5351ace83c20d1f87fa837f7492e44))
+
+### Features
+
+- **dart_package:** analyze test directory ([#47](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/47)) ([b4625e7](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b4625e7147c82651a901dd259ea28dafbef7a8c9))
+- **semantic_pull_request:** add semantic pull request workflow ([#48](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/48)) ([43beb8a](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/43beb8a0a20617ccf02a1a5e603ba2d90e45f00d))
+- add semantic commit check to workflows ([#45](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/45)) ([3afb04f](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3afb04feba5abf760b105c908d31b5033aaf6839))
+
 # [1.3.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.2...v1.3.0) (2022-05-31)
 
 ### Features
