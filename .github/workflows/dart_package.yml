@@ -23,6 +23,14 @@ on:
         required: false
         type: number
         default: 100
+      analyze_directories:
+        required: false
+        type: string
+        default: "lib test"
+      report_on:
+        required: false
+        type: string
+        default: "lib"
 
 jobs:
   build:
@@ -48,12 +56,12 @@ jobs:
         run: dart format --set-exit-if-changed .
 
       - name: 🕵️ Analyze
-        run: dart analyze --fatal-infos --fatal-warnings lib test
+        run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}
 
       - name: 🧪 Run Tests
         run: |
           dart pub global activate coverage 1.2.0
-          dart test -j ${{inputs.concurrency}} --coverage=coverage && dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+          dart test -j ${{inputs.concurrency}} --coverage=coverage && dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=${{inputs.report_on}}
 
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1

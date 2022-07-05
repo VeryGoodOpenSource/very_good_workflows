@@ -73,6 +73,18 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"."`
 
+#### `analyze_directories`
+
+**Optional** A space seperated list of folders that should be analyzed.
+
+**Default** `"lib test"`
+
+#### `report_on`
+
+**Optional** A comma seperated list of folders that should be checked in code coverage.
+
+**Default** `"lib"`
+
 ### Example Usage
 
 ```yaml
