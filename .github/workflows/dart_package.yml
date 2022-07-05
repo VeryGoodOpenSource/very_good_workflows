@@ -23,7 +23,7 @@ on:
         required: false
         type: number
         default: 100
-      analyze_on:
+      analyze_directories:
         required: false
         type: string
         default: "lib test"
@@ -56,7 +56,7 @@ jobs:
         run: dart format --set-exit-if-changed .
 
       - name: 🕵️ Analyze
-        run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_on}}
+        run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}
 
       - name: 🧪 Run Tests
         run: |

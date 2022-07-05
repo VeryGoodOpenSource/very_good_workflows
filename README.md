@@ -73,7 +73,7 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"."`
 
-#### `analyze_on`
+#### `analyze_directories`
 
 **Optional** A space seperated list of folders that should be analyzed.
 
