@@ -1,3 +1,9 @@
+# [1.5.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.4.0...v1.5.0) (2022-07-05)
+
+### Features
+
+- **dart_package:** `report_on` and `analyze_directories` inputs ([#52](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/52)) ([ab40b19](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ab40b190bc9e310a2994342498abfdb9384eeaa4))
+
 # [1.4.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.3.0...v1.4.0) (2022-06-28)
 
 ### Bug Fixes
