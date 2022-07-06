@@ -1,3 +1,9 @@
+# [1.5.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.0...v1.5.1) (2022-07-06)
+
+### Bug Fixes
+
+- **semantic_pull_request:** remove wip (write access) ([#54](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/54)) ([6eb0847](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6eb084735c27a2b8b7a710ee5c151a1a9246f1bd))
+
 # [1.5.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.4.0...v1.5.0) (2022-07-05)
 
 ### Features
