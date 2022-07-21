@@ -35,7 +35,7 @@ on:
         required: false
         type: string
         required: false
-        default: ubuntu-latest
+        default: "ubuntu-latest"
 
 jobs:
   build:
