@@ -31,7 +31,7 @@ on:
         required: false
         type: string
         default: "lib"
-      runs_on:
+      run_on:
         required: false
         type: string
         required: false
@@ -43,7 +43,7 @@ jobs:
       run:
         working-directory: ${{inputs.working_directory}}
 
-    runs-on: ${{inputs.runs_on}}
+    runs-on: ${{inputs.run_on}}
 
     steps:
       - name: 📚 Git Checkout
