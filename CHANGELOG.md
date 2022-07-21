@@ -1,4 +1,10 @@
-# [1.5.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.0...v1.5.1) (2022-07-06)
+# [1.5.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.1...v1.5.2) (2022-07-21)
+
+### Features
+
+- **dart_package:** add runs_on input ([#57](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/57)) ([6fdf826](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6fdf826f83e307b2aa080b9abd2b720329008804))
+
+## [1.5.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.0...v1.5.1) (2022-07-06)
 
 ### Bug Fixes
 
