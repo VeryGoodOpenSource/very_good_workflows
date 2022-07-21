@@ -31,10 +31,9 @@ on:
         required: false
         type: string
         default: "lib"
-      run_on:
+      runs_on:
         required: false
         type: string
-        required: false
         default: "ubuntu-latest"
 
 jobs:
@@ -43,7 +42,7 @@ jobs:
       run:
         working-directory: ${{inputs.working_directory}}
 
-    runs-on: ${{inputs.run_on}}
+    runs-on: ${{inputs.runs_on}}
 
     steps:
       - name: 📚 Git Checkout
