@@ -1,4 +1,10 @@
-# [1.5.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.1...v1.5.2) (2022-07-21)
+# [1.5.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.2...v1.5.3) (2022-07-22)
+
+### Features
+
+- **flutter_package:** add runs_on input ([#59](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/59)) ([5997890](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5997890627e530ac98d7af9f0850b92054dd10e7))
+
+## [1.5.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.1...v1.5.2) (2022-07-21)
 
 ### Features
 
