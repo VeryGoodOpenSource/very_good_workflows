@@ -171,6 +171,12 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `false`
 
+#### `runs_on`
+
+**Optional** An optional operating system on which to run the workflow.
+
+**Default** `"ubuntu-latest"`
+
 ### Example Usage
 
 ```yaml
