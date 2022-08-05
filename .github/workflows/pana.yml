@@ -33,8 +33,6 @@ jobs:
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1
-        with:
-          sdk: ${{inputs.dart_sdk}}
 
       - name: 📦 Install Pana
         run: dart pub global activate pana ${{inputs.pana_version}}
