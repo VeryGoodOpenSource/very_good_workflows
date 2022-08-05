@@ -6,7 +6,7 @@ on:
       min_score:
         required: false
         type: number
-        default: 130
+        default: 120
       pana_version:
         required: false
         type: string
@@ -31,11 +31,14 @@ jobs:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
 
-      - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
 
       - name: 📦 Install Pana
-        run: dart pub global activate pana ${{inputs.pana_version}}
+        run: flutter pub global activate pana ${{inputs.pana_version}}
 
       - name: 📊 Verify Pana Score
         run: |

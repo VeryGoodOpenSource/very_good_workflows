@@ -237,7 +237,7 @@ The pana workflow consists of the following steps:
 
 **Optional** The minimum score allowed.
 
-**Default** 130
+**Default** 120
 
 #### `working_directory`
 
@@ -262,7 +262,7 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
     with:
-      min_score: 100
+      min_score: 95
       working_directory: "examples/my_flutter_package"
 ```
 
