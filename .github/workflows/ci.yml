@@ -19,11 +19,28 @@ jobs:
       flutter_version: 3.0.0
       working_directory: examples/flutter_package
 
+  verify-pana-dart:
+    uses: ./.github/workflows/pana.yml
+    with:
+      working_directory: examples/dart_package
+
+  verify-pana-flutter:
+    uses: ./.github/workflows/pana.yml
+    with:
+      working_directory: examples/flutter_package
+
   verify-semantic-pull-request:
     uses: ./.github/workflows/semantic_pull_request.yml
 
   build:
-    needs: [verify-dart, verify-flutter, verify-semantic-pull-request]
+    needs:
+      [
+        verify-dart,
+        verify-flutter,
+        verify-pana-dart,
+        verify-pana-flutter,
+        verify-semantic-pull-request,
+      ]
 
     runs-on: ubuntu-latest
 

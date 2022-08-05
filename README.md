@@ -25,6 +25,9 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.y
 
 # A reusable workflow for ensuring commits are semantic
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+
+# A reusable workflow for verifying package scores on pub.dev
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
 ```
 
 For a more detailed guide, including tips and tricks, check out [our blog][very_good_workflows_blog_link].
@@ -213,6 +216,54 @@ on: pull_request
 jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+```
+
+## Pana Workflow
+
+### Steps
+
+The pana workflow consists of the following steps:
+
+1. Install Pana
+2. Verify Pana Score
+
+### Inputs
+
+#### `pana_version`
+
+**Optional** Which version of `package:pana` to use (e.g. `0.21.15`).
+
+#### `min_score`
+
+**Optional** The minimum score allowed.
+
+**Default** 130
+
+#### `working_directory`
+
+**Optional** The path to the root of the Dart package.
+
+**Default** `"."`
+
+#### `runs_on`
+
+**Optional** An optional operating system on which to run the workflow.
+
+**Default** `"ubuntu-latest"`
+
+### Example Usage
+
+```yaml
+name: My Workflow
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+    with:
+      min_score: 100
+      working_directory: "examples/my_flutter_package"
 ```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
