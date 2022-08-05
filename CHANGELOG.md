@@ -1,4 +1,10 @@
-# [1.5.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.2...v1.5.3) (2022-07-22)
+# [1.5.4](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.3...v1.5.4) (2022-08-05)
+
+### Features
+
+- add pana workflow ([#61](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/61)) ([9067dfa](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9067dfacc9d6e126a7159c172b9bc6fe94d8c836))
+
+## [1.5.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.2...v1.5.3) (2022-07-22)
 
 ### Features
 

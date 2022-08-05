@@ -237,7 +237,7 @@ The pana workflow consists of the following steps:
 
 **Optional** The minimum score allowed.
 
-**Default** 120
+**Default** `120`
 
 #### `working_directory`
 
