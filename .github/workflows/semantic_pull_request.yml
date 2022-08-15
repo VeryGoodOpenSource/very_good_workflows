@@ -1,6 +1,14 @@
 name: Semantic Pull Request Workflow
 
-on: workflow_call
+on:
+  workflow_call:
+    input:
+      types:
+        required: false
+        type: string
+      scopes:
+        required: false
+        type: string
 
 jobs:
   build:
@@ -13,6 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          types: ${{inputs.types}}
+          scopes: ${{inputs.scopes}}
           validateSingleCommit: false
           ignoreLabels: |
             bot

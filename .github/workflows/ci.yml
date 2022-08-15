@@ -33,6 +33,8 @@ jobs:
 
   verify-semantic-pull-request:
     uses: ./.github/workflows/semantic_pull_request.yml
+    with:
+      scopes: "dart_package, flutter_package, pana, semantic_pull_request"
 
   build:
     needs:
