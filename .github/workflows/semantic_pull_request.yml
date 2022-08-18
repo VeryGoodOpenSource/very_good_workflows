@@ -2,7 +2,7 @@ name: Semantic Pull Request Workflow
 
 on:
   workflow_call:
-    input:
+    inputs:
       types:
         required: false
         type: string
