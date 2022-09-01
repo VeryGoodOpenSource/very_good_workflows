@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/flutter_package.yml
     with:
       flutter_channel: stable
-      flutter_version: 3.0.0
+      flutter_version: 3.3.0
       working_directory: examples/flutter_package
 
   verify-pana-dart:
