@@ -1,4 +1,14 @@
-# [1.5.4](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.3...v1.5.4) (2022-08-05)
+# [1.6.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.4...v1.6.0) (2022-09-01)
+
+### Bug Fixes
+
+- **dart_package:** remove deprecated `.packages` ([#67](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/67)) ([49fb539](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/49fb539ed96fab3eafd8129fcde86d7d15141b44))
+
+### Features
+
+- upgrade to Flutter 3.3 and Dart 2.18 ([#68](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/68)) ([ca48fe4](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ca48fe4c4a2b7638ac26036a998cef2fb6985f93))
+
+## [1.5.4](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.3...v1.5.4) (2022-08-05)
 
 ### Features
 
