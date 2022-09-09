@@ -94,6 +94,13 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+#### `platform`
+
+**Optional** An optional, comma-separated list of platform(s) on which to run the tests.
+`[vm (default), chrome, firefox, safari, node]`
+
+**Default** `"vm"`
+
 ### Example Usage
 
 ```yaml
@@ -107,6 +114,7 @@ jobs:
     with:
       coverage_excludes: "*.g.dart"
       dart_sdk: "stable"
+      platform: "chrome,vm"
       working_directory: "examples/my_dart_package"
 ```
 
