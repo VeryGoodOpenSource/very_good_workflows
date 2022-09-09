@@ -1,3 +1,9 @@
+# [1.7.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.6.0...v1.7.0) (2022-09-09)
+
+### Features
+
+- **dart_package:** add platform input ([#70](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/70)) ([575c4f8](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/575c4f8928f91d46de82b132a8aa13664f811175))
+
 # [1.6.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.4...v1.6.0) (2022-09-01)
 
 ### Bug Fixes
