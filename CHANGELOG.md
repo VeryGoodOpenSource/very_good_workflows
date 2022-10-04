@@ -1,3 +1,9 @@
+# [v1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
+
+### Features
+
+- upgrade dart and flutter package to very_good_coverage@v2 ([#73](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/73)) ([3571d72](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3571d72c0ed2b8b8bc3fb1ad7699c8dc8975984e))
+
 # [1.7.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.6.0...v1.7.0) (2022-09-09)
 
 ### Features
