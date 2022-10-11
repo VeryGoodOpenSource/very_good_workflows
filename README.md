@@ -78,13 +78,13 @@ The Dart package workflow consists of the following steps:
 
 #### `analyze_directories`
 
-**Optional** A space seperated list of folders that should be analyzed.
+**Optional** A space separated list of folders that should be analyzed.
 
 **Default** `"lib test"`
 
 #### `report_on`
 
-**Optional** A comma seperated list of folders that should be checked in code coverage.
+**Optional** A comma separated list of folders that should be checked in code coverage.
 
 **Default** `"lib"`
 
@@ -93,6 +93,13 @@ The Dart package workflow consists of the following steps:
 **Optional** An optional operating system on which to run the workflow.
 
 **Default** `"ubuntu-latest"`
+
+#### `platform`
+
+**Optional** An optional, comma-separated list of platform(s) on which to run the tests.
+`[vm (default), chrome, firefox, safari, node]`
+
+**Default** `"vm"`
 
 ### Example Usage
 
@@ -107,6 +114,7 @@ jobs:
     with:
       coverage_excludes: "*.g.dart"
       dart_sdk: "stable"
+      platform: "chrome,vm"
       working_directory: "examples/my_dart_package"
 ```
 
@@ -276,6 +284,73 @@ jobs:
     with:
       min_score: 95
       working_directory: "examples/my_flutter_package"
+```
+
+## Spell Check Workflow
+
+### Steps
+
+The spell check workflow consists of the following steps:
+
+1. Git Checkout
+2. Run Spell Check
+
+### Inputs
+
+#### `config`
+
+**Optional** The location of the `cspell.json`.
+
+**Default** `".github/cspell.json"`
+
+#### `includes`
+
+**Optional** The glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
+
+**Default** `""`
+
+#### `working_directory`
+
+**Optional** The path to the root of the Dart package.
+
+**Default** `"."`
+
+#### `runs_on`
+
+**Optional** An optional operating system on which to run the workflow.
+
+**Default** `"ubuntu-latest"`
+
+#### `verbose`
+
+**Optional** An optional boolean which determines whether to log verbose output.
+
+**Default** `false`
+
+#### `modified_files_only`
+
+**Optional** An optional boolean which determines whether spell check is run on modified files.
+
+**Default** `true`
+
+### Example Usage
+
+```yaml
+name: My Workflow
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      includes: |
+        **/*.{dart,md,yaml}
+        !.dart_tool/**/*.{dart,yaml}
+        .*/**/*.yml
+      runs_on: macos-latest
+      modified_files_only: false
+      working_directory: examples/my_project
 ```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg

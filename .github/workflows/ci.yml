@@ -11,12 +11,13 @@ jobs:
     uses: ./.github/workflows/dart_package.yml
     with:
       working_directory: examples/dart_package
+      platform: "vm,chrome"
 
   verify-flutter:
     uses: ./.github/workflows/flutter_package.yml
     with:
       flutter_channel: stable
-      flutter_version: 3.0.0
+      flutter_version: 3.3.3
       working_directory: examples/flutter_package
 
   verify-pana-dart:
@@ -36,6 +37,11 @@ jobs:
     with:
       scopes: "dart_package, flutter_package, pana, semantic_pull_request"
 
+  verify-spell-check:
+    uses: ./.github/workflows/spell_check.yml
+    with:
+      modified_files_only: false
+
   build:
     needs:
       [
@@ -44,6 +50,7 @@ jobs:
         verify-pana-dart,
         verify-pana-flutter,
         verify-semantic-pull-request,
+        verify-spell-check,
       ]
 
     runs-on: ubuntu-latest

@@ -35,6 +35,10 @@ on:
         required: false
         type: string
         default: "ubuntu-latest"
+      platform:
+        required: false
+        type: string
+        default: "vm"
 
 jobs:
   build:
@@ -65,10 +69,10 @@ jobs:
       - name: 🧪 Run Tests
         run: |
           dart pub global activate coverage 1.2.0
-          dart test -j ${{inputs.concurrency}} --coverage=coverage && dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=${{inputs.report_on}}
+          dart test -j ${{inputs.concurrency}} --coverage=coverage --platform=${{inputs.platform}} && dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=${{inputs.report_on}}
 
       - name: 📊 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1
+        uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
           path: ${{inputs.working_directory}}/coverage/lcov.info
           exclude: ${{inputs.coverage_excludes}}
