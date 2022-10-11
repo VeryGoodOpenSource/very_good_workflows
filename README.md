@@ -208,6 +208,18 @@ jobs:
 
 ## Semantic Pull Request Workflow
 
+### Inputs
+
+#### `types`
+
+**Optional** Configure which types are allowed (e.g. `"feat, fix, docs"`).
+
+**Note**: If not set then the action uses the list of Conventional Commits type of the [commitizen][commitizen].
+
+#### `scopes`
+
+**Optional** Configure which scopes are allowed (e.g. `"dart_package, flutter_package"`).
+
 ### Steps
 
 The semantic pull request package workflow consists of the following steps:
@@ -352,3 +364,4 @@ jobs:
 [very_good_ventures_link_light]: https://verygood.ventures#gh-light-mode-only
 [very_good_ventures_link]: https://verygood.ventures
 [very_good_workflows_blog_link]: https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects?utm_source=github&utm_medium=readme&utm_campaign=workflows_readme
+[commitizen]: https://github.com/commitizen/conventional-commit-types
