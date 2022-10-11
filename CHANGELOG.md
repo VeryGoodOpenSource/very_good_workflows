@@ -1,4 +1,11 @@
-# [v1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
+# [1.9.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.8.0...v1.9.0) (2022-10-11)
+
+### Features
+
+- **semantic_pull_request:** add types and scopes inputs ([#65](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/65)) ([e54fbb1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/e54fbb1e853e28a883941d9cdbf649ec9def4faf))
+- spell check workflow ([#76](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/76)) ([9c12bb5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9c12bb5e67b3ce4949750c99e2e27ee137741473))
+
+# [1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
 
 ### Features
 

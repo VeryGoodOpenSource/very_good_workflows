@@ -35,7 +35,7 @@ jobs:
   verify-semantic-pull-request:
     uses: ./.github/workflows/semantic_pull_request.yml
     with:
-      scopes: "dart_package, flutter_package, pana, semantic_pull_request"
+      scopes: "dart_package, flutter_package, pana, semantic_pull_request, spell_check"
 
   verify-spell-check:
     uses: ./.github/workflows/spell_check.yml
