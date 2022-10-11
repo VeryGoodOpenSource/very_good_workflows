@@ -1,4 +1,10 @@
-# [v1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
+# [v1.9.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.8.0...v1.9.0) (2022-10-11)
+
+### Features
+
+- spell check workflow ([#76](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/76)) ([9c12bb5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9c12bb5e67b3ce4949750c99e2e27ee137741473))
+
+# [1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
 
 ### Features
 

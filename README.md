@@ -28,6 +28,9 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_req
 
 # A reusable workflow for verifying package scores on pub.dev
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+
+# A reusable workflow for running a spell check
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
 ```
 
 For a more detailed guide, including tips and tricks, check out [our blog][very_good_workflows_blog_link].
