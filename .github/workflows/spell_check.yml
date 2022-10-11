@@ -1,0 +1,50 @@
+name: Spell Check Workflow
+
+on:
+  workflow_call:
+    inputs:
+      config:
+        required: false
+        type: string
+        default: ".github/cspell.json"
+      includes:
+        required: false
+        type: string
+        default: ""
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      verbose:
+        required: false
+        type: boolean
+        default: false
+      modified_files_only:
+        required: false
+        type: boolean
+        default: true
+      working_directory:
+        required: false
+        type: string
+        default: "."
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+
+    runs-on: ${{inputs.runs_on}}
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: 🪄 Spell Check
+        uses: streetsidesoftware/cspell-action@v2
+        with:
+          config: ${{inputs.config}}
+          files: ${{inputs.includes}}
+          incremental_files_only: ${{inputs.modified_files_only}}
+          root: ${{inputs.working_directory}}
+          verbose: ${{inputs.verbose}}
