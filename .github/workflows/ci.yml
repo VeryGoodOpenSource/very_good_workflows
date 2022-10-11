@@ -35,6 +35,11 @@ jobs:
   verify-semantic-pull-request:
     uses: ./.github/workflows/semantic_pull_request.yml
 
+  verify-spell-check:
+    uses: ./.github/workflows/spell_check.yml
+    with:
+      modified_files_only: false
+
   build:
     needs:
       [
@@ -43,6 +48,7 @@ jobs:
         verify-pana-dart,
         verify-pana-flutter,
         verify-semantic-pull-request,
+        verify-spell-check,
       ]
 
     runs-on: ubuntu-latest
