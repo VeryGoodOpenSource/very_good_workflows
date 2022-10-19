@@ -22,7 +22,7 @@ on:
       min_coverage:
         required: false
         type: number
-        default: 100      
+        default: 100
       platform:
         required: false
         type: string
@@ -38,7 +38,7 @@ on:
       setup:
         required: false
         type: string
-        default: ""      
+        default: ""
       working_directory:
         required: false
         type: string
