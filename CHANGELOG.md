@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.9.0...v1.10.0) (2022-10-19)
+
+### Features
+
+- add dependabot ([#79](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/79)) ([bff6468](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/bff6468cc09c495bfd7a8a0d87cb775c502eb0fb))
+- add optional setup step to flutter and dart package workflows ([#85](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/85)) ([d6c97a4](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d6c97a412579a7fdda75de1f0f84634fcb6e0633))
+
 # [1.9.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.8.0...v1.9.0) (2022-10-11)
 
 ### Features
