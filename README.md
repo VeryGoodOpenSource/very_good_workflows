@@ -97,6 +97,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+#### `setup`
+
+**Optional** An optional command that should be executed immediately after dependencies are installed.
+
+**Default** `""`
+
 #### `platform`
 
 **Optional** An optional, comma-separated list of platform(s) on which to run the tests.
@@ -164,6 +170,12 @@ The Flutter package workflow consists of the following steps:
 **Optional** The minimum coverage percentage allowed.
 
 **Default** 100
+
+#### `setup`
+
+**Optional** An optional command that should be executed immediately after dependencies are installed.
+
+**Default** `""`
 
 #### `working_directory`
 
