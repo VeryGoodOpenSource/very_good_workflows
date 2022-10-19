@@ -3,6 +3,10 @@ name: Dart Package Workflow
 on:
   workflow_call:
     inputs:
+      analyze_directories:
+        required: false
+        type: string
+        default: "lib test"
       concurrency:
         required: false
         type: number
@@ -15,18 +19,14 @@ on:
         required: false
         type: string
         default: "stable"
-      working_directory:
-        required: false
-        type: string
-        default: "."
       min_coverage:
         required: false
         type: number
-        default: 100
-      analyze_directories:
+        default: 100      
+      platform:
         required: false
         type: string
-        default: "lib test"
+        default: "vm"
       report_on:
         required: false
         type: string
@@ -35,10 +35,14 @@ on:
         required: false
         type: string
         default: "ubuntu-latest"
-      platform:
+      setup:
         required: false
         type: string
-        default: "vm"
+        default: ""      
+      working_directory:
+        required: false
+        type: string
+        default: "."
 
 jobs:
   build:
@@ -59,6 +63,10 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: dart pub get
+
+      - name: ⚙️ Run Setup
+        if: "${{inputs.setup != ''}}"
+        run: ${{inputs.setup}}
 
       - name: ✨ Check Formatting
         run: dart format --set-exit-if-changed .
