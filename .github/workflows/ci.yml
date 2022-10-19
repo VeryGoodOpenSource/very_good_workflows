@@ -10,7 +10,7 @@ jobs:
   verify-dart:
     uses: ./.github/workflows/dart_package.yml
     with:
-      setup: dart --verion
+      setup: dart --version
       platform: "vm,chrome"
       working_directory: examples/dart_package
 
