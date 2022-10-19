@@ -19,14 +19,18 @@ on:
         required: false
         type: string
         default: ""
-      working_directory:
-        required: false
-        type: string
-        default: "."
       min_coverage:
         required: false
         type: number
         default: 100
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      setup:
+        required: false
+        type: string
+        default: ""
       test_optimization:
         required: false
         type: boolean
@@ -35,10 +39,10 @@ on:
         required: false
         type: boolean
         default: false
-      runs_on:
+      working_directory:
         required: false
         type: string
-        default: "ubuntu-latest"
+        default: "."
 
 jobs:
   build:
@@ -64,6 +68,10 @@ jobs:
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
+
+      - name: ⚙️ Run Setup
+        if: "${{inputs.setup != ''}}"
+        run: ${{inputs.setup}}
 
       - name: ✨ Check Formatting
         run: flutter format --set-exit-if-changed lib test
