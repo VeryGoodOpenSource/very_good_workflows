@@ -43,10 +43,6 @@ on:
         required: false
         type: string
         default: "."
-      cache_key:
-        required: false
-        type: string
-        default: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
 
 jobs:
   build:
@@ -63,10 +59,10 @@ jobs:
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.3.3
-          channel: stable
+          flutter-version: ${{inputs.flutter_version}}
+          channel: ${{inputs.flutter_channel}}
           cache: true
-          cache-key: ${{inputs.cache_key}}
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
 
       - name: 📦 Install Dependencies
         run: |
