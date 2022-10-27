@@ -1,3 +1,9 @@
+# [1.11.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.10.0...v1.11.0) (2022-10-27)
+
+### Features
+
+- add cache key options ([#87](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/87)) ([9aae3cb](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9aae3cb573a24e16374a0686e52ee08037bf9330))
+
 # [1.10.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.9.0...v1.10.0) (2022-10-19)
 
 ### Features
