@@ -1,3 +1,9 @@
+# [1.12.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.11.0...v1.13.0) (2023-01-26)
+
+### Features
+
+- replace flutter format with dart format ([#95](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/95)) ([d23279e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d23279ec9c5271ed441565df73240526b1eb5e98))
+
 # [1.11.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.10.0...v1.11.0) (2022-10-27)
 
 ### Features
