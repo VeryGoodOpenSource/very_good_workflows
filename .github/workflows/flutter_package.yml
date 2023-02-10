@@ -3,6 +3,10 @@ name: Flutter Package Workflow
 on:
   workflow_call:
     inputs:
+      analyze_directories:
+        required: false
+        type: string
+        default: "lib test"
       concurrency:
         required: false
         type: number
@@ -78,7 +82,7 @@ jobs:
         run: dart format --set-exit-if-changed lib test
 
       - name: 🕵️ Analyze
-        run: flutter analyze lib test
+        run: flutter analyze ${{inputs.analyze_directories}}
 
       - name: 🧪 Run Tests
         run: very_good test -j ${{inputs.concurrency}} ${{(inputs.test_recursion && '--recursive') || ''}} ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}} --coverage --test-randomize-ordering-seed random

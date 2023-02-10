@@ -141,6 +141,12 @@ The Flutter package workflow consists of the following steps:
 
 ### Inputs
 
+#### `analyze_directories`
+
+**Optional** A space separated list of folders that should be analyzed.
+
+**Default** `"lib test"`
+
 #### `concurrency`
 
 **Optional** The number of concurrent test suites run.
