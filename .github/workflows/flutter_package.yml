@@ -43,6 +43,10 @@ on:
         required: false
         type: boolean
         default: false
+      very_good_cli_version:
+        required: false
+        type: string
+        default: "0.11.0+1"
       working_directory:
         required: false
         type: string
@@ -70,7 +74,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          flutter pub global activate very_good_cli
+          flutter pub global activate very_good_cli ${{inputs.very_good_cli_version}}}
           very_good --analytics false
           very_good packages get --recursive
 
