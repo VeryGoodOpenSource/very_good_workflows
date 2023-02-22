@@ -46,7 +46,7 @@ on:
       very_good_cli_version:
         required: false
         type: string
-        default: "0.11.0+1"
+        default: ""
       working_directory:
         required: false
         type: string

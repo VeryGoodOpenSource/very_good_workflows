@@ -187,7 +187,7 @@ The Flutter package workflow consists of the following steps:
 
 **Optional** The version of [very_good_cli][very_good_cli_link] to use.
 
-**Default** `"0.11.0+1"`
+**Default** `""`
 
 #### `working_directory`
 
