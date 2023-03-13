@@ -85,6 +85,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"lib test"`
 
+#### `check_ignore`
+
+**Optional** Add the flag `--check-ignore` to ignore lines from coverage depending on the comments.
+
+**Default** `""`
+
 #### `report_on`
 
 **Optional** A comma separated list of folders that should be checked in code coverage.

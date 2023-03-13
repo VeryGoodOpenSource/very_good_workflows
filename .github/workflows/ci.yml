@@ -12,6 +12,7 @@ jobs:
     with:
       setup: dart --version
       platform: "vm,chrome"
+      check_ignore: "--check-ignore"
       working_directory: examples/dart_package
 
   verify-flutter:
