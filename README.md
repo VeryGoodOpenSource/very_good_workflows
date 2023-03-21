@@ -87,9 +87,9 @@ The Dart package workflow consists of the following steps:
 
 #### `check_ignore`
 
-**Optional** Add the flag `--check-ignore` to ignore lines from coverage depending on the comments.
+**Optional** Enable to ignore lines from coverage depending on the comments.
 
-**Default** `""`
+**Default** `true`
 
 #### `report_on`
 
