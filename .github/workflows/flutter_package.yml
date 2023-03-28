@@ -50,7 +50,7 @@ on:
       package_get_excludes:
         required: false
         type: string
-        default: " "
+        default: "!*"
 
 jobs:
   build:
@@ -76,7 +76,7 @@ jobs:
         run: |
           flutter pub global activate very_good_cli
           very_good --analytics false
-          very_good packages get --recursive --ignore=${{inputs.package_get_excludes}}
+          very_good packages get --recursive {{(inputs.check_ignore && '--ignore') || ''}}
 
       - name: ⚙️ Run Setup
         if: "${{inputs.setup != ''}}"
