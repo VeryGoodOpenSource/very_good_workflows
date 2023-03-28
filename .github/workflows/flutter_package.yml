@@ -50,7 +50,7 @@ on:
       package_get_excludes:
         required: false
         type: string
-        default: ""
+        default: " "
 
 jobs:
   build:
