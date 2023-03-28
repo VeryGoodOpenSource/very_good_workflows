@@ -213,7 +213,7 @@ The Flutter package workflow consists of the following steps:
 
 **Optional** List of paths to exclude from `packages get`. Supports `globs` to describe file patterns.
 
-**Default** `""`
+**Default** `"!*"`
 
 ### Example Usage
 
