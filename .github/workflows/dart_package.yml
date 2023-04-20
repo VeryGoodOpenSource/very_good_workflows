@@ -30,7 +30,7 @@ on:
       check_ignore:
         required: false
         type: boolean
-        default: true
+        default: false
       report_on:
         required: false
         type: string
