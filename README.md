@@ -89,7 +89,7 @@ The Dart package workflow consists of the following steps:
 
 **Optional** Allows ignoring lines from [coverage][coverage].
 
-**Default** `true`
+**Default** `false`
 
 #### `report_on`
 
