@@ -15,5 +15,5 @@
     }
   ],
   "useGitignore": true,
-  "words": ["endtemplate"]
+  "words": ["endtemplate", "APPDATA"]
 }
