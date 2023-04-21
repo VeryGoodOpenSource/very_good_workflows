@@ -459,7 +459,7 @@ jobs:
 
 The Dart Pub Publish workflow consists of the following steps:
 
-1. Install Dependencies
+1. Install dependencies
 2. Setup pub credentials
 3. Dry run
 4. Publish
