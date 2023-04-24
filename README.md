@@ -85,6 +85,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"lib test"`
 
+#### `check_ignore`
+
+**Optional** Allows ignoring lines from [coverage][coverage].
+
+**Default** `false`
+
 #### `report_on`
 
 **Optional** A comma separated list of folders that should be checked in code coverage.
@@ -392,3 +398,4 @@ jobs:
 [very_good_ventures_link]: https://verygood.ventures
 [very_good_workflows_blog_link]: https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects?utm_source=github&utm_medium=readme&utm_campaign=workflows_readme
 [commitizen]: https://github.com/commitizen/conventional-commit-types
+[coverage]: https://pub.dev/packages/coverage
