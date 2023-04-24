@@ -425,7 +425,7 @@ The Flutter Pub Publish workflow consists of the following steps:
 
 #### `pub_credentials`
 
-**Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `flutter pub login`, the location of the file is different per operating system:
+**Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `flutter pub login`. The location of the file is different per operating system:
 
 | OS      | Path                                                                                      |
 | ------- | ----------------------------------------------------------------------------------------- |
