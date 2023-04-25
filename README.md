@@ -221,6 +221,12 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+#### `package_get_excludes`
+
+**Optional** List of paths to exclude from `packages get`. Supports `globs` to describe file patterns.
+
+**Default** `"!*"`
+
 ### Example Usage
 
 ```yaml
