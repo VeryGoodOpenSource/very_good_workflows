@@ -1,4 +1,4 @@
-name: Brick Publish Workflow
+name: Mason Publish Workflow
 
 on:
   workflow_call:

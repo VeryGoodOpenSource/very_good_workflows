@@ -520,11 +520,11 @@ jobs:
       pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
 ```
 
-## Brick Publish Workflow
+## Mason Publish Workflow
 
 ### Steps
 
-The Brick Publish workflow consists of the following steps:
+The Mason Publish workflow consists of the following steps:
 
 1. Install Mason
 2. Setup Mason credentials
@@ -566,7 +566,7 @@ The Brick Publish workflow consists of the following steps:
 We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
 
 ```yaml
-name: My Brick Publish Workflow
+name: My Mason Brick Publish Workflow
 
 on: pull_request
 
