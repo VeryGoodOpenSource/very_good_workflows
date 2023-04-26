@@ -441,6 +441,8 @@ The Flutter Pub Publish workflow consists of the following steps:
 
 ### Example Usage
 
+We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
+
 ```yaml
 name: My Flutter Pub Publish Workflow
 
@@ -459,7 +461,7 @@ jobs:
       pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
 ```
 
-## Dart Package Workflow
+## Dart Pub Publish Workflow
 
 ### Steps
 
@@ -501,6 +503,8 @@ The Dart Pub Publish workflow consists of the following steps:
 | Windows | `%APPDATA%/dart/pub-credentials.json`                                                     |
 
 ### Example Usage
+
+We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
 
 ```yaml
 name: My Dart Pub Publish Workflow
