@@ -533,3 +533,4 @@ jobs:
 [very_good_workflows_blog_link]: https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects?utm_source=github&utm_medium=readme&utm_campaign=workflows_readme
 [commitizen]: https://github.com/commitizen/conventional-commit-types
 [coverage]: https://pub.dev/packages/coverage
+[github_actions_secrets_docs]: https://docs.github.com/en/rest/actions/secrets
