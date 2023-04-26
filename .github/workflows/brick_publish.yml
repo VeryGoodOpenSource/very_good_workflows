@@ -1,0 +1,51 @@
+name: Brick Publish Workflow
+
+on:
+  workflow_call:
+    inputs:
+      mason_version:
+        required: false
+        type: string
+        default: ""
+      working_directory:
+        required: false
+        type: string
+        default: "."
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      mason_credentials:
+        required: true
+        type: string
+
+jobs:
+  publish:
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+
+    runs-on: ${{inputs.runs_on}}
+    
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{inputs.dart_sdk}}
+
+      - name: 🧱 Install Mason
+        run: dart pub global activate mason_cli ${{inputs.mason_version}}
+
+      - name: 🔐 Setup Mason Credentials
+        run: |
+          mkdir -p $XDG_CONFIG_HOME/mason
+          echo '${{inputs.mason_credentials}}' > "$XDG_CONFIG_HOME/mason/mason-credentials.json"
+
+      - name: 🌵 Dry Run
+        run: mason publish --dry-run
+
+      - name: 📢 Publish
+        run: mason publish -f
