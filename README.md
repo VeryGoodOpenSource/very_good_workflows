@@ -31,6 +31,12 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
 
 # A reusable workflow for running a spell check
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+
+# A reusable workflow for publishing flutter packages
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
+
+# A reusable workflow for publishing dart packages
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
 ```
 
 For a more detailed guide, including tips and tricks, check out [our blog][very_good_workflows_blog_link].
@@ -386,6 +392,134 @@ jobs:
       working_directory: examples/my_project
 ```
 
+## Flutter Pub Publish Workflow
+
+### Steps
+
+The Flutter Pub Publish workflow consists of the following steps:
+
+1. Install dependencies
+2. Setup pub credentials
+3. Dry run
+4. Publish
+
+### Inputs
+
+#### `flutter_channel`
+
+**Optional** The Flutter release channel to use (e.g. `stable`).
+
+**Default** `"stable"`
+
+#### `flutter_version`
+
+**Optional** The Flutter SDK version to use (e.g. `2.8.1`).
+
+**Default** `""`
+
+#### `working_directory`
+
+**Optional** The path to the root of the Flutter package.
+
+**Default** `"."`
+
+#### `runs_on`
+
+**Optional** An optional operating system on which to run the workflow.
+
+**Default** `"ubuntu-latest"`
+
+#### `pub_credentials`
+
+**Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `flutter pub login`. The location of the file is different per operating system:
+
+| OS      | Path                                                                                      |
+| ------- | ----------------------------------------------------------------------------------------- |
+| Linux   | `$XDG_CONFIG_HOME/dart/pub-credentials.json` or `$HOME/.config/dart/pub-credentials.json` |
+| macOS   | `~/Library/Application\ Support/dart/pub-credentials.json`                                |
+| Windows | `%APPDATA%/dart/pub-credentials.json`                                                     |
+
+### Example Usage
+
+We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
+
+```yaml
+name: My Flutter Pub Publish Workflow
+
+on:
+  push:
+    tags:
+      - 'my_flutter_package-v*.*.*'
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
+    with:
+      flutter_channel: "stable"
+      flutter_version: "2.8.1"
+      working_directory: "packages/my_flutter_package"
+      pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
+```
+
+## Dart Pub Publish Workflow
+
+### Steps
+
+The Dart Pub Publish workflow consists of the following steps:
+
+1. Install dependencies
+2. Setup pub credentials
+3. Dry run
+4. Publish
+
+### Inputs
+
+#### `dart_sdk`
+
+**Optional** Which Dart SDK version to use. It can be a version (e.g. `2.12.0`) or a channel (e.g. `stable`):
+
+**Default** `"stable"`
+
+#### `working_directory`
+
+**Optional** The path to the root of the Dart package.
+
+**Default** `"."`
+
+#### `runs_on`
+
+**Optional** An optional operating system on which to run the workflow.
+
+**Default** `"ubuntu-latest"`
+
+#### `pub_credentials`
+
+**Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `dart pub login`, the location of the file is different per operating system:
+
+| OS      | Path                                                                                      |
+| ------- | ----------------------------------------------------------------------------------------- |
+| Linux   | `$XDG_CONFIG_HOME/dart/pub-credentials.json` or `$HOME/.config/dart/pub-credentials.json` |
+| macOS   | `~/Library/Application\ Support/dart/pub-credentials.json`                                |
+| Windows | `%APPDATA%/dart/pub-credentials.json`                                                     |
+
+### Example Usage
+
+We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
+
+```yaml
+name: My Dart Pub Publish Workflow
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
+    with:
+      dart_sdk: "stable"
+      working_directory: "packages/my_dart_package"
+      pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
+```
+
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
 [ci_link]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions
 [github_workflows_link]: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
@@ -399,3 +533,4 @@ jobs:
 [very_good_workflows_blog_link]: https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects?utm_source=github&utm_medium=readme&utm_campaign=workflows_readme
 [commitizen]: https://github.com/commitizen/conventional-commit-types
 [coverage]: https://pub.dev/packages/coverage
+[github_actions_secrets_docs]: https://docs.github.com/en/rest/actions/secrets
