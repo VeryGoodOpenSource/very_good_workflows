@@ -23,6 +23,10 @@ on:
         required: false
         type: string
         default: "."
+      format_line_length:
+        required: false
+        type: string
+        default: "80"
       min_coverage:
         required: false
         type: number
@@ -77,7 +81,7 @@ jobs:
         run: ${{inputs.setup}}
 
       - name: ✨ Check Formatting
-        run: dart format --set-exit-if-changed ${{inputs.format_directories}}
+        run: dart format --line-length ${{inputs.format_line_length}} --set-exit-if-changed ${{inputs.format_directories}}
 
       - name: 🕵️ Analyze
         run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}

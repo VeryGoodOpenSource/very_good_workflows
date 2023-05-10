@@ -73,6 +73,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"stable"`
 
+#### `format_line_length`
+
+**Optional** The line-length preferred to run the `dart format` command with. Be aware that this does not change the behavior of the analysis step and longer lines could still make the workflow fail if the rule `lines_longer_than_80_chars` is used.
+
+**Default** `"80"`
+
 #### `min_coverage`
 
 **Optional** The minimum coverage percentage allowed.
@@ -194,6 +200,12 @@ The Flutter package workflow consists of the following steps:
 **Optional** The Flutter SDK version to use (e.g. `2.8.1`).
 
 **Default** `""`
+
+#### `format_line_length`
+
+**Optional** The line-length preferred to run the `dart format` command with. Be aware that this does not change the behavior of the analysis step and longer lines could still make the workflow fail if the rule `lines_longer_than_80_chars` is used.
+
+**Default** `"80"`
 
 #### `min_coverage`
 
