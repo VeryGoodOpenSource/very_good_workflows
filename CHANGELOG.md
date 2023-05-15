@@ -1,4 +1,13 @@
-# [1.12.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.11.0...v1.13.0) (2023-01-26)
+# [1.13.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.12.0...v1.13.0) (2023-05-12)
+
+### Features
+
+- add analyze directories option to flutter package ([#100](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/100)) ([435204b](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/435204b99233623436cbb511c619480a1d743a76))
+- add mason publish workflow ([#112](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/112)) ([82ba85d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/82ba85df88682d3c1b5b68d3b340c9560064ae40))
+- add publish scripts ([#111](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/111)) ([9fce5d3](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9fce5d35e66685847e8e3df2c92eda6e0cafe540))
+- support excluding directories ([#110](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/110)) ([462b9d2](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/462b9d2f52da70f6adaf85a9275b340c79ff8002))
+
+# [1.12.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.11.0...v1.12.0) (2023-01-26)
 
 ### Features
 
