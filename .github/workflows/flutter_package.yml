@@ -23,6 +23,10 @@ on:
         required: false
         type: string
         default: ""
+      format_directories:
+        required: false
+        type: string
+        default: "lib test"
       min_coverage:
         required: false
         type: number
@@ -83,7 +87,7 @@ jobs:
         run: ${{inputs.setup}}
 
       - name: ✨ Check Formatting
-        run: dart format --set-exit-if-changed lib test
+        run: dart format --set-exit-if-changed ${{inputs.format_directories}}
 
       - name: 🕵️ Analyze
         run: flutter analyze ${{inputs.analyze_directories}}

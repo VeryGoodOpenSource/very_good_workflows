@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: "stable"
+      format_directories:
+        required: false
+        type: string
+        default: "."
       min_coverage:
         required: false
         type: number
@@ -73,7 +77,7 @@ jobs:
         run: ${{inputs.setup}}
 
       - name: ✨ Check Formatting
-        run: dart format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed ${{inputs.format_directories}}
 
       - name: 🕵️ Analyze
         run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}

@@ -91,6 +91,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"lib test"`
 
+#### `format_directories`
+
+**Optional** A space separated list of folders that should be formatted.
+
+**Default** `"."`
+
 #### `check_ignore`
 
 **Optional** Allows ignoring lines from [coverage][coverage].
@@ -156,6 +162,12 @@ The Flutter package workflow consists of the following steps:
 #### `analyze_directories`
 
 **Optional** A space separated list of folders that should be analyzed.
+
+**Default** `"lib test"`
+
+#### `format_directories`
+
+**Optional** A space separated list of folders that should be formatted.
 
 **Default** `"lib test"`
 
