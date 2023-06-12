@@ -34,7 +34,7 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      description={`The official documentation site for Very Good Workflows. ${siteConfig.tagline}.`}
+      description={`The official documentation site for Very Good Workflows. ${siteConfig.tagline}`}
     >
       <HomepageHeader />
       <main>
