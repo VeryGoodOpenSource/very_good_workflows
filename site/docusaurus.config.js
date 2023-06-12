@@ -18,7 +18,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'VeryGoodOpenSource', // Usually your GitHub org/user name.
-  projectName: ' very_good_workflows', // Usually your repo name.
+  projectName: 'very_good_workflows', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/VeryGoodOpenSource/ very_good_workflows/tree/main/',
+            'https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
