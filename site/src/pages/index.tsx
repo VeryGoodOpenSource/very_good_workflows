@@ -15,7 +15,11 @@ function HomepageHeader() {
       <div className="container">
         <img
           className={clsx(styles.heroLogo)}
-          src={colorMode == 'dark' ? 'img/workflows_logo_dark.svg' : 'img/workflows_logo.svg'}
+          src={
+            colorMode == 'dark'
+              ? 'img/workflows_logo_dark.svg'
+              : 'img/workflows_logo.svg'
+          }
           alt="Very Good Workflows Logo"
         />
         <p className="hero__subtitle">{siteConfig.tagline}</p>
@@ -55,7 +59,7 @@ function HomepageHeroImage() {
   return (
     <img
       className={clsx(styles.heroImage)}
-      src='img/workflows_hero.png'
+      src="img/workflows_hero.png"
       alt="Hero"
       width="720"
     />
@@ -78,9 +82,7 @@ function HomepageBlogs() {
         <div className={styles.column}>
           <div className={styles.content}>
             <h2>Configuring workflows for your Flutter projects</h2>
-            <p>
-            A guide for using Very Good Workflows in your projects.
-            </p>
+            <p>A guide for using Very Good Workflows in your projects.</p>
             <Link
               style={{ fontWeight: 'bold' }}
               to="https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects"
