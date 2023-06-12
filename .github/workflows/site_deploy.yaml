@@ -9,7 +9,7 @@ on:
       - main
 
 deploy:
-    needs: build
+    name: Deploy to GitHub Pages
 
     runs-on: ubuntu-latest
 
