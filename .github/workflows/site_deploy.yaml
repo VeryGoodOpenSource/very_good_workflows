@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/site_deploy.yaml"
-      - "deploy/**"
+      - "site/**"
     branches:
       - main
 

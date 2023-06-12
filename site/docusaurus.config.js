@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/',
+            'https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/site',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
