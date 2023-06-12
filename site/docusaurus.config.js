@@ -37,7 +37,8 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/VeryGoodOpenSource/ very_good_workflows/tree/main/',
+          editUrl:
+            'https://github.com/VeryGoodOpenSource/ very_good_workflows/tree/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
