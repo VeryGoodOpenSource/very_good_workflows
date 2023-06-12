@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const config = {
   title: 'Very Good Workflows',
   tagline: 'A collection of helpful, reusable GitHub workflows used by VGV.',
-  url: 'https://my-docs-site.com',
+  url: 'https://workflows.vgv.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
