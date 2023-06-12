@@ -6,7 +6,7 @@ sidebar_position: 1
 
 [GitHub workflows][github_workflows_link] are configurable, automated processes that can run at various points during the development process. For example, a workflow can run when a pull request is created or updated to perform various code quality checks before allowing the changes to be merged.
 
-Very Good Workflows is a collection of workflows that we use at VGV to run automated checks in our CI pipelines. While built for VGV projects, they can be used by anyone.
+Very Good Workflows is a collection of workflows that we use at VGV to run automated checks in our CI pipelines. While built by VGV to be used internally, they can be used by anyone.
 
 ## Quick Start 🚀
 
