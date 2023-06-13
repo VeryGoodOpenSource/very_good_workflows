@@ -50,6 +50,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: '/img/meta/open-graph.png',
       navbar: {
         logo: {
           alt: 'Very Good Workflows',
