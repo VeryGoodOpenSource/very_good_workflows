@@ -132,6 +132,7 @@ html[data-theme='dark'] .navbar-vgv-icon:before {
     font-weight: 300;
     padding: 4px 12px;
   }
+
   .nav-button:hover {
     color: var(--ifm-menu-color);
     background-color: var(--ifm-menu-color-background-hover);
