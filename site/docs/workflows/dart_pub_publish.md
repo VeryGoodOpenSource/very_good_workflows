@@ -60,5 +60,5 @@ jobs:
     with:
       dart_sdk: 'stable'
       working_directory: 'packages/my_dart_package'
-      pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
+      pub_credentials: secrets.PUB_CREDENTIALS
 ```
