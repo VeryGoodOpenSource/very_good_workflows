@@ -47,7 +47,7 @@ The Mason Publish workflow consists of the following steps:
 
 ## Example Usage
 
-We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
+We recommend using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for safely storing and reading the credentials.
 
 ```yaml
 name: My Mason Brick Publish Workflow
@@ -60,5 +60,5 @@ jobs:
     with:
       mason_version: '0.1.0-dev.50'
       working_directory: 'packages/my_mason_brick'
-      mason_credentials: ${{ secrets.MASON_CREDENTIALS }}
+      mason_credentials: secrets.MASON_CREDENTIALS
 ```

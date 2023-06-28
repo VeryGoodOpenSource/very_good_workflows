@@ -53,7 +53,7 @@ The Flutter Pub Publish workflow consists of the following steps:
 
 ## Example Usage
 
-We recommend using [GitHub Secrets][github_actions_secrets_docs] for safely storing and reading the credentials.
+We recommend using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for safely storing and reading the credentials.
 
 ```yaml
 name: My Flutter Pub Publish Workflow
@@ -70,5 +70,5 @@ jobs:
       flutter_channel: 'stable'
       flutter_version: '2.8.1'
       working_directory: 'packages/my_flutter_package'
-      pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
+      pub_credentials: secrets.PUB_CREDENTIALS
 ```
