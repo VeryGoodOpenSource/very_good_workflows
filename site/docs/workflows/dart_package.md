@@ -97,6 +97,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"vm"`
 
+## Secrets
+
+### `ssh_key`
+
+**Optional** A ssh key used to access private repositories when installing dependencies.
+
 ## Example Usage
 
 ```yaml
@@ -112,4 +118,6 @@ jobs:
       dart_sdk: 'stable'
       platform: 'chrome,vm'
       working_directory: 'examples/my_dart_package'
+    secrets:
+      ssh_key: ${{secrets.EXAMPLE_KEY}}
 ```

@@ -104,6 +104,12 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"!*"`
 
+## Secrets
+
+### `ssh_key`
+
+**Optional** A ssh key used to access private repositories when installing dependencies.
+
 ## Example Usage
 
 ```yaml
@@ -120,4 +126,6 @@ jobs:
       flutter_version: '2.8.1'
       working_directory: 'examples/my_flutter_package'
       test_recursion: true
+    secrets:
+      ssh_key: ${{secrets.EXAMPLE_KEY}}
 ```
