@@ -101,7 +101,7 @@ The Dart package workflow consists of the following steps:
 
 ### `ssh_key`
 
-**Optional** A ssh key used to access private repositories when installing dependencies.
+**Optional** An SSH key used to access private repositories when installing dependencies.
 
 ## Example Usage
 
