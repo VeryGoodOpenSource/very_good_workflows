@@ -75,6 +75,8 @@ jobs:
 
 More information can be found in [cspell docs](https://cspell.org/configuration/).
 
+Our custom dictionaries are available [here](https://github.com/verygoodopensource/very_good_dictionaries/) for everyone to use.
+
 ```json
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
