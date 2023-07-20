@@ -55,6 +55,9 @@ on:
         required: false
         type: string
         default: "."
+    secrets:
+      ssh_key:
+        required: false
 
 jobs:
   build:
@@ -72,6 +75,14 @@ jobs:
         uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{inputs.dart_sdk}}
+
+      - name: 🤫 Set SSH Key
+        env:
+          ssh_key: ${{secrets.ssh_key}}
+        if: env.ssh_key != null
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
         run: dart pub get

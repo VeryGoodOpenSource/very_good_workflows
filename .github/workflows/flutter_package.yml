@@ -59,6 +59,9 @@ on:
         required: false
         type: string
         default: "!*"
+    secrets:
+      ssh_key:
+        required: false
 
 jobs:
   build:
@@ -79,6 +82,14 @@ jobs:
           channel: ${{inputs.flutter_channel}}
           cache: true
           cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+
+      - name: 🤫 Set SSH Key
+        env:
+          ssh_key: ${{secrets.ssh_key}}
+        if: env.ssh_key != null
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
         run: |
