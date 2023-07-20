@@ -101,17 +101,9 @@ Our custom dictionaries are available [here](https://github.com/verygoodopensour
   // Ignores files found in .gitignore.
   "useGitignore": true,
   // List of allowed words that are not part of dictionaries.
-  "words": [
-    "Contador",
-    "localizable",
-    "mostrado",
-    "página",
-    "Texto"
-  ],
+  "words": ["Contador", "localizable", "mostrado", "página", "Texto"],
   // List of not-allowed words.
   // For example "hte" should be "the".
-  "flagWords": [
-    "hte"
-  ]
+  "flagWords": ["hte"]
 }
 ```
