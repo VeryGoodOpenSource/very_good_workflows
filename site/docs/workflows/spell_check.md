@@ -70,3 +70,46 @@ jobs:
       modified_files_only: false
       working_directory: examples/my_project
 ```
+
+## CSpell File Example
+
+More information can be found in [cspell docs](https://cspell.org/configuration/).
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  // List of the names of the dictionaries to use.
+  "dictionaries": ["vgv_allowed", "vgv_forbidden"],
+  // List of custom dictionary definitions.
+  "dictionaryDefinitions": [
+    // Remote dictionary example. URLs will be retrieved via HTTP GET.
+    {
+      "name": "vgv_allowed",
+      "path": "https://raw.githubusercontent.com/verygoodopensource/very_good_dictionaries/main/allowed.txt",
+      "description": "Allowed VGV Spellings"
+    },
+    // Local dictionary example. Relative paths are relative to the config file.
+    {
+      "name": "vgv_forbidden",
+      "path": "./vgv_forbidden.txt",
+      "addWords": true
+    }
+  ],
+  // Ignores files found in .gitignore.
+  "useGitignore": true,
+  // List of allowed words that are not part of dictionaries.
+  "words": [
+    "Contador",
+    "localizable",
+    "mostrado",
+    "página",
+    "Texto"
+  ],
+  // List of not-allowed words.
+  // For example "hte" should be "the".
+  "flagWords": [
+    "hte"
+  ]
+}
+```
