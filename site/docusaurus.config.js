@@ -83,7 +83,7 @@ const config = {
         ],
       },
       footer: {
-        copyright: `Copyright © ${new Date().getFullYear()} Very Good Ventures.<br/>Built with 💙 by <a target="_blank" rel="noopener" aria-label="Very Good Ventures" href="https://verygood.ventures">Very Good Ventures</a>.`,
+        copyright: `Built with 💙 by <a target="_blank" rel="noopener" aria-label="Very Good Ventures" href="https://verygood.ventures"><b>Very Good Ventures</b><br/>Copyright © ${new Date().getFullYear()} Very Good Ventures.</a>.`,
       },
       prism: {
         additionalLanguages: ['bash', 'dart', 'yaml'],
