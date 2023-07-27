@@ -28,8 +28,8 @@ The semantic pull request package workflow consists of the following step:
 
 When running this workflow, the `GITHUB_TOKEN` has to have the correct permissions to run successfully. On public repositories, the default settings grant the token enough permissions to run correctly. However, on private repositories, settings have to be updated. There are two ways of doing so:
 
-- **Repository wide update.** Inside your repository, go to *Settings > Actions > General*, scroll down to the *Workflow permissions* section and update it to allow *Read and write permissions*. Don't forget to save the changes.
-- **Workflow specific update.** In your workflow `yaml` file, you can modify the permissions for the `GITHUB_TOKEN`. For this workflow to work you have to enable write permissions for pull requests in your job as follows. 
+- **Repository wide update.** Inside your repository, go to _Settings > Actions > General_, scroll down to the _Workflow permissions_ section and update it to allow _Read and write permissions_. Don't forget to save the changes.
+- **Workflow specific update.** In your workflow `yaml` file, you can modify the permissions for the `GITHUB_TOKEN`. For this workflow to work you have to enable write permissions for pull requests in your job as follows.
 
   ```yaml
   jobs:
