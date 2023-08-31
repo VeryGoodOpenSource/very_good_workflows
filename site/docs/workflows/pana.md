@@ -17,7 +17,7 @@ The pana workflow consists of the following steps:
 
 ### `pana_version`
 
-**Optional** Which version of `package:pana` to use (e.g. `0.21.15`).
+**Optional** Which version of `package:pana` to use (See the available versions [here](https://pub.dev/packages/pana/changelog)).
 
 ### `min_score`
 
