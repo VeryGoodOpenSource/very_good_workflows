@@ -24,6 +24,23 @@ The semantic pull request package workflow consists of the following step:
 
 **Optional** Configure which scopes are allowed (e.g. `"dart_package, flutter_package"`).
 
+## GitHub Permissions
+
+When running this workflow, the `GITHUB_TOKEN` has to have the correct permissions to run successfully. On public repositories, the default settings grant the token enough permissions to run correctly. However, on private repositories, settings have to be updated. There are two ways of doing so:
+
+- **Repository wide update.** Inside your repository, go to _Settings > Actions > General_, scroll down to the _Workflow permissions_ section and update it to allow _Read and write permissions_. Don't forget to save the changes.
+- **Workflow specific update.** In your workflow `yaml` file, you can modify the permissions for the `GITHUB_TOKEN`. For this workflow to work you have to enable write permissions for pull requests in your job as follows.
+
+  ```yaml
+  jobs:
+    build:
+      permissions:
+        pull-requests: write
+      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+  ```
+
+  You can read more about this in the [github documentation](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token).
+
 ## Example Usage
 
 ```yaml
