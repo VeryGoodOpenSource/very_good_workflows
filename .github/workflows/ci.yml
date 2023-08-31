@@ -25,14 +25,14 @@ jobs:
   verify-pana-dart:
     uses: ./.github/workflows/pana.yml
     with:
-      pana_version: 0.21.32
+      pana_version: 0.21.36
       min_score: 95
       working_directory: examples/dart_package
 
   verify-pana-flutter:
     uses: ./.github/workflows/pana.yml
     with:
-      pana_version: 0.21.32
+      pana_version: 0.21.36
       min_score: 95
       working_directory: examples/flutter_package
 
