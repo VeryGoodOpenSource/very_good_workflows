@@ -8,10 +8,10 @@
 # `./release_ready.sh <version>
 
 currentBranch=$(git symbolic-ref --short -q HEAD)
-# if [[ ! $currentBranch == "main" ]]; then
-#  echo "Releasing is only supported on the main branch."
-#  exit 1
-# fi
+if [[ ! $currentBranch == "main" ]]; then
+ echo "Releasing is only supported on the main branch."
+ exit 1
+fi
 
 # Get information
 old_version=$(git for-each-ref  --count=2  --format "%(refname:short)" --sort=-creatordate  refs/tags | tail -n +2 | cut -c 2-)
