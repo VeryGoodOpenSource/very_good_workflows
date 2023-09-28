@@ -6,7 +6,7 @@
 
 currentBranch=$(git symbolic-ref --short -q HEAD)
 if [[ ! $currentBranch == "main" ]]; then
- echo "Retagging is only supported on the main branch."
+ echo "Re-tagging is only supported on the main branch."
  exit 1
 fi
 
