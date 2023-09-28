@@ -1,3 +1,13 @@
+# 1.14.0 
+
+- feat: Add `format_directories` option ([#113](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/113))
+- feat: add `format_line_length` input ([#114](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/114))
+- build: fix deploy workflow ([#122](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/122))
+- feat: add ssh key setup step ([#131](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/131))
+- docs: add cspell example ([#134](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/134))
+- docs: link to pana versions page ([#141](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/141))
+- fix: remove analytics due to cli update ([#143](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/143))
+
 # [1.13.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.12.0...v1.13.0) (2023-05-12)
 
 ### Features
