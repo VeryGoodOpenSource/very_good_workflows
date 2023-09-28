@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# Updates the "v1" tag to point to a newer release.
+# To be executed whenever a new 1.x tag is created.
+# Usage: ./retag_v1.sh <newer-existing-version>
 
 currentBranch=$(git symbolic-ref --short -q HEAD)
 if [[ ! $currentBranch == "main" ]]; then
- echo "Releasing is only supported on the main branch."
+ echo "Retagging is only supported on the main branch."
  exit 1
 fi
 
