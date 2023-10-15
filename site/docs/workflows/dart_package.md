@@ -97,6 +97,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"vm"`
 
+### `run_skipped`
+
+**Optional** Allows run skipped tests.
+
+**Default** `false`
+
 ## Secrets
 
 ### `ssh_key`
