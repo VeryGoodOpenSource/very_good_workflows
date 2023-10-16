@@ -99,7 +99,7 @@ The Dart package workflow consists of the following steps:
 
 ### `run_skipped`
 
-**Optional** Allows run skipped tests.
+**Optional** Run skipped tests instead of skipping them.
 
 **Default** `false`
 
