@@ -45,7 +45,7 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.
 # A reusable workflow for publishing Mason bricks
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v1
 
-# A reusable workflow for checking dependencies' licenses on Dart or Flutter projects
+# A reusable workflow to keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
 ```
 
