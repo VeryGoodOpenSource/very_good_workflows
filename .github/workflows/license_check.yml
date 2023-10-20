@@ -15,6 +15,14 @@ on:
         required: false
         type: string
         default: "stable"
+      allowed:
+        required: false
+        type: string
+        default: "MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0"
+      forbidden:
+        required: false
+        type: string
+        default: ""
       skip_packages:
         required: false
         type: string
@@ -27,14 +35,6 @@ on:
         required: false
         type: boolean
         default: false
-      allowed:
-        required: false
-        type: string
-        default: "MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0"
-      forbidden:
-        required: false
-        type: string
-        default: ""
     secrets:
       ssh_key:
         required: false
