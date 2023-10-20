@@ -51,6 +51,7 @@ jobs:
     with:
       working_directory: examples/dart_package
       dependency_type: "direct-dev"
+      allowed: ""
       forbidden: "unknown"
       skip_packages: "very_good_analysis"
 
