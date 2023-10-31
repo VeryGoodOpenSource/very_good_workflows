@@ -55,6 +55,10 @@ on:
         required: false
         type: string
         default: "."
+      run_skipped:
+        required: false
+        type: boolean
+        default: false
     secrets:
       ssh_key:
         required: false
@@ -100,7 +104,7 @@ jobs:
       - name: 🧪 Run Tests
         run: |
           dart pub global activate coverage 1.2.0
-          dart test -j ${{inputs.concurrency}} --coverage=coverage --platform=${{inputs.platform}} && dart pub global run coverage:format_coverage --lcov ${{(inputs.check_ignore && '--check-ignore') || ''}} --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=${{inputs.report_on}}
+          dart test -j ${{inputs.concurrency}} --coverage=coverage --platform=${{inputs.platform}} && dart pub global run coverage:format_coverage --lcov ${{(inputs.check_ignore && '--check-ignore') || ''}} --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=${{inputs.report_on}} ${{(inputs.run_skipped && '--run-skipped') || ''}}
 
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v2
