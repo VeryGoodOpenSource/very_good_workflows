@@ -70,4 +70,4 @@ jobs:
       - name: 👨‍⚖️ Check licenses
         run: |
           dart pub global activate very_good_cli
-          dart pub global run very_good_cli:very_good packages check licenses --skip-packages=${{inputs.skip_packages}} --dependency-type=${{inputs.dependency_type}} ${{(inputs.ignore_retrieval_failures && '--ignore-retrieval-failures') || ''}} ${{(inputs.allowed != '' && join('--allowed=', inputs.allowed)) || ''}}  ${{(inputs.forbidden != '' && join('--forbidden=', inputs.forbidden)) || ''}}
+          dart pub global run very_good_cli:very_good packages check licenses --skip-packages=${{inputs.skip_packages}} --dependency-type=${{inputs.dependency_type}} ${{(inputs.ignore_retrieval_failures && '--ignore-retrieval-failures') || ''}} --allowed=${{inputs.allowed}} --forbidden=${{inputs.forbidden}}
