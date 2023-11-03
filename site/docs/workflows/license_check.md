@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # License Check
 
-At VGV, we keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects. 
+At VGV, we keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects.
 
 :::info
 The License Check functionality is powered by [Very Good CLI's license checker](https://cli.vgv.dev/docs/commands/check_licenses), for a deeper understanding of some [inputs](#inputs) refer to its [documentation](https://cli.vgv.dev/docs/commands/check_licenses).
@@ -72,4 +72,3 @@ The allowed and forbidden options can't be used at the same time. If you want to
 **Optional** Disregard licenses that failed to be retrieved.
 
 **Default** `false`
-
