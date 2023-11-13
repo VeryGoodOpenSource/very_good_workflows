@@ -46,6 +46,15 @@ jobs:
     with:
       modified_files_only: false
 
+  verify-license-check:
+    uses: ./.github/workflows/license_check.yml
+    with:
+      working_directory: examples/dart_package
+      dependency_type: "direct-dev"
+      allowed: ""
+      forbidden: "unknown"
+      skip_packages: "very_good_analysis"
+
   build:
     needs:
       [
@@ -55,6 +64,7 @@ jobs:
         verify-pana-flutter,
         verify-semantic-pull-request,
         verify-spell-check,
+        verify-license-check,
       ]
 
     runs-on: ubuntu-latest
