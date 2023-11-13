@@ -23,7 +23,7 @@ The License Check workflow consists of the following steps:
 
 ### `working_directory`
 
-**Optional** The path to the root of the Mason brick.
+**Optional** The path to the root of the Dart or Flutter package.
 
 **Default** `"."`
 
