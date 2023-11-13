@@ -68,7 +68,7 @@ The Dart package workflow consists of the following steps:
 
 ### `check_ignore`
 
-**Optional** Allows ignoring lines from [coverage][coverage].
+**Optional** Allows ignoring lines from [coverage](https://pub.dev/packages/coverage).
 
 **Default** `false`
 
