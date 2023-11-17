@@ -1,3 +1,14 @@
+# 1.15.0
+
+- chore(deps): bump actions/setup-node from 3 to 4 ([#155](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/155))
+- chore(deps): bump streetsidesoftware/cspell-action from 2 to 4 ([#153](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/153))
+- chore(deps): bump amannn/action-semantic-pull-request ([#149](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/149))
+- feat: allow run skipped tests ([#152](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/152))
+- chore(deps): bump amannn/action-semantic-pull-request ([#158](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/158))
+- docs: included dart_package.md missing "coverage" URL ([#160](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/160))
+- feat: introduce license_check workflow ([#154](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/154))
+- chore(deps): bump streetsidesoftware/cspell-action from 4 to 5 ([#162](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/162))
+
 # 1.14.0 
 
 - feat: Add `format_directories` option ([#113](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/113))
