@@ -87,14 +87,14 @@ concurrency:
 on:
   pull_request:
     paths:
-      - "pubspec.yaml"
-      - ".github/workflows/license_check.yaml"
+      - 'pubspec.yaml'
+      - '.github/workflows/license_check.yaml'
   push:
     branches:
       - main
     paths:
-      - "pubspec.yaml"
-      - ".github/workflows/license_check.yaml"
+      - 'pubspec.yaml'
+      - '.github/workflows/license_check.yaml'
 
 jobs:
   license_check:
