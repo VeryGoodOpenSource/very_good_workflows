@@ -72,3 +72,33 @@ The allowed and forbidden options can't be used at the same time. If you want to
 **Optional** Disregard licenses that failed to be retrieved.
 
 **Default** `false`
+
+## Example Usage
+
+We recommend using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for safely storing and reading the credentials.
+
+```yaml
+name: license_check
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - "pubspec.yaml"
+      - ".github/workflows/license_check.yaml"
+  push:
+    branches:
+      - main
+    paths:
+      - "pubspec.yaml"
+      - ".github/workflows/license_check.yaml"
+
+jobs:
+  license_check:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
+    with:
+      allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0'
+```
