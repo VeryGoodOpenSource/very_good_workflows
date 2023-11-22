@@ -75,7 +75,6 @@ The allowed and forbidden options can't be used at the same time. If you want to
 
 ## Example Usage
 
-We recommend using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for safely storing and reading the credentials.
 
 ```yaml
 name: license_check
