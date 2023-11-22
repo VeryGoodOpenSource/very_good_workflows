@@ -75,7 +75,6 @@ The allowed and forbidden options can't be used at the same time. If you want to
 
 ## Example Usage
 
-
 ```yaml
 name: license_check
 
