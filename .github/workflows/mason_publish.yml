@@ -18,7 +18,7 @@ on:
       mason_credentials:
         required: true
         type: string
-      timeout_in_minutes:
+      timeout_minutes:
         required: false
         type: number
         default: 5
@@ -31,7 +31,7 @@ jobs:
 
     runs-on: ${{inputs.runs_on}}
 
-    timeout-minutes: ${{inputs.timeout_in_minutes}}
+    timeout-minutes: ${{inputs.timeout_minutes}}
     
     steps:
       - name: 📚 Git Checkout
