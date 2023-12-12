@@ -1,3 +1,8 @@
+# 1.16.0 
+
+- docs: add example usage to license_check ([#164](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/164))
+- feat: add timeout input to the publish workflows ([#166](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/166))
+
 # 1.15.0
 
 - chore(deps): bump actions/setup-node from 3 to 4 ([#155](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/155))
