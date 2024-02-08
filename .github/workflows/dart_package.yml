@@ -84,7 +84,7 @@ jobs:
         env:
           ssh_key: ${{secrets.ssh_key}}
         if: env.ssh_key != null
-        uses: webfactory/ssh-agent@v0.8.0
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{secrets.ssh_key}}
 
