@@ -26,8 +26,8 @@ The semantic pull request package workflow consists of the following step:
 
 ## Repository Configuration
 
-This workflow uses the action-semantic-pull-request action from [Github marketplace](https://github.com/marketplace/actions/semantic-pull-request). To verify that this workflow will properly evaluate your
-PR messages, configure Github repository to allow squash merging and set the default commit message to "Pull request title." 
+This workflow uses the action-semantic-pull-request action from [GitHub marketplace](https://github.com/marketplace/actions/semantic-pull-request). To verify that this workflow will properly evaluate your
+pull request messages, configure your GitHub repository to allow squash merging and set the default commit message to "Pull request title." 
 
 ## GitHub Permissions
 
