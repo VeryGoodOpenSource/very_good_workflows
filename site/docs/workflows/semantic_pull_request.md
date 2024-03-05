@@ -24,7 +24,13 @@ The semantic pull request package workflow consists of the following step:
 
 **Optional** Configure which scopes are allowed (e.g. `"dart_package, flutter_package"`).
 
-## GitHub Permissions
+## GitHub Repository Configuration
+
+### Squash Merging
+
+To verify that this workflow will properly evaluate your pull request messages, we recommend configuring your GitHub repository to [allow squash merging](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests) and setting the [default commit message](https://github.blog/changelog/2022-08-23-new-options-for-controlling-the-default-commit-message-when-merging-a-pull-request/) to "Pull request title."
+
+### GitHub Permissions
 
 When running this workflow, the `GITHUB_TOKEN` has to have the correct permissions to run successfully. On public repositories, the default settings grant the token enough permissions to run correctly. However, on private repositories, settings have to be updated. There are two ways of doing so:
 
