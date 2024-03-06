@@ -107,7 +107,7 @@ jobs:
           dart test -j ${{inputs.concurrency}} --coverage=coverage --platform=${{inputs.platform}} ${{(inputs.run_skipped && '--run-skipped') || ''}} && dart pub global run coverage:format_coverage --lcov ${{(inputs.check_ignore && '--check-ignore') || ''}} --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=${{inputs.report_on}}
 
       - name: 📊 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v2
+        uses: VeryGoodOpenSource/very_good_coverage@v3
         with:
           path: ${{inputs.working_directory}}/coverage/lcov.info
           exclude: ${{inputs.coverage_excludes}}
