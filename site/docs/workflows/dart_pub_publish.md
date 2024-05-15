@@ -35,6 +35,8 @@ The Dart Pub Publish workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+## Secrets
+
 ### `pub_credentials`
 
 **Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `dart pub login`, the location of the file is different per operating system:
@@ -60,5 +62,6 @@ jobs:
     with:
       dart_sdk: 'stable'
       working_directory: 'packages/my_dart_package'
+    secrets:
       pub_credentials: secrets.PUB_CREDENTIALS
 ```

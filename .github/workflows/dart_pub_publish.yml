@@ -15,13 +15,17 @@ on:
         required: false
         type: string
         default: "ubuntu-latest"
+      # Deprecated, use secrets.pub_credentials instead
       pub_credentials:
-        required: true
+        required: false
         type: string
       timeout_minutes:
         required: false
         type: number
         default: 5
+    secrets:
+      pub_credentials:
+        required: true
 
 jobs:
   publish:
@@ -48,7 +52,7 @@ jobs:
       - name: 🔐 Setup Pub Credentials
         run: |
           mkdir -p $XDG_CONFIG_HOME/dart
-          echo '${{inputs.pub_credentials}}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
+          echo '${{secrets.pub_credentials}}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
 
       - name: 🌵 Dry Run
         run: dart pub publish --dry-run
