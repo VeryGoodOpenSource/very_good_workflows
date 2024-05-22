@@ -41,6 +41,8 @@ The Flutter Pub Publish workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+## Secrets
+
 ### `pub_credentials`
 
 **Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `flutter pub login`. The location of the file is different per operating system:
@@ -70,5 +72,6 @@ jobs:
       flutter_channel: 'stable'
       flutter_version: '2.8.1'
       working_directory: 'packages/my_flutter_package'
+    secrets:
       pub_credentials: secrets.PUB_CREDENTIALS
 ```
