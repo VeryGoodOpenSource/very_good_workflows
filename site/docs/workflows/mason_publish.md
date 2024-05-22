@@ -35,6 +35,8 @@ The Mason Publish workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+## Secrets
+
 ### `mason_credentials`
 
 **Required** The mason credentials needed for publishing. This can be retrieved by reading out your `mason-credentials.json` on your system after you ran a `mason login`, the location of the file is different per operating system:
@@ -60,5 +62,6 @@ jobs:
     with:
       mason_version: '0.1.0-dev.50'
       working_directory: 'packages/my_mason_brick'
+    secrets:
       mason_credentials: secrets.MASON_CREDENTIALS
 ```

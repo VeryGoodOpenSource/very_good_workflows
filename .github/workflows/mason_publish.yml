@@ -15,13 +15,18 @@ on:
         required: false
         type: string
         default: "ubuntu-latest"
+      # Deprecated, use secrets.mason_credentials instead
       mason_credentials:
-        required: true
+        required: false
         type: string
       timeout_minutes:
         required: false
         type: number
         default: 5
+    secrets:
+      mason_credentials:
+        required: true
+
 
 jobs:
   publish:
@@ -48,7 +53,7 @@ jobs:
       - name: 🔐 Setup Mason Credentials
         run: |
           mkdir -p $XDG_CONFIG_HOME/mason
-          echo '${{inputs.mason_credentials}}' > "$XDG_CONFIG_HOME/mason/mason-credentials.json"
+          echo '${{secrets.mason_credentials}}' > "$XDG_CONFIG_HOME/mason/mason-credentials.json"
 
       - name: 🌵 Dry Run
         run: mason publish --dry-run
