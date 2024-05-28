@@ -12,3 +12,7 @@ updates:
     directory: "/examples/dart_package"
     schedule:
       interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/site"
+    schedule:
+      interval: "weekly"
