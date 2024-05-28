@@ -59,10 +59,10 @@ on:
         required: false
         type: boolean
         default: false
-      skip_example:
+      no_example:
         required: false
         type: boolean
-        default: true
+        default: false
     secrets:
       ssh_key:
         required: false
