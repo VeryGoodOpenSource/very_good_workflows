@@ -15,25 +15,30 @@
     "typecheck": "tsc",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint *.js"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.0",
-    "@docusaurus/preset-classic": "2.4.0",
-    "@mdx-js/react": "^1.6.22",
-    "clsx": "^2.1.1",
-    "prism-react-renderer": "^1.3.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@docusaurus/core": "3.3.2",
+    "@docusaurus/preset-classic": "3.3.2",
+    "@docusaurus/theme-common": "3.3.2",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^1.2.1",
+    "prism-react-renderer": "^2.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.6",
-    "@docusaurus/eslint-plugin": "^2.4.0",
-    "@docusaurus/module-type-aliases": "2.4.0",
-    "@tsconfig/docusaurus": "^1.0.7",
-    "eslint": "^8.36.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.0.4"
+    "@docusaurus/eslint-plugin": "^3.3.2",
+    "@docusaurus/module-type-aliases": "3.3.2",
+    "@docusaurus/tsconfig": "3.3.2",
+    "@docusaurus/types": "3.3.2",
+    "@eslint/js": "^9.3.0",
+    "eslint-plugin-jest": "^28.5.0",
+    "globals": "^15.3.0",
+    "jest": "^29.7.0",
+    "prettier": "^2.8.8",
+    "typescript": "~5.2.2"
   },
   "browserslist": {
     "production": [
@@ -48,6 +53,6 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.0"
   }
 }
