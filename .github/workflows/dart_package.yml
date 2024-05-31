@@ -93,7 +93,7 @@ jobs:
           ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
-        run: dart pub get ${{(inputs.skip_example && '--no-example') || ''}}
+        run: dart pub get ${{(inputs.no_example && '--no-example') || ''}}
 
       - name: ⚙️ Run Setup
         if: "${{inputs.setup != ''}}"
