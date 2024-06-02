@@ -105,7 +105,7 @@ The Dart package workflow consists of the following steps:
 
 ### `no_example`
 
-**Optional** To avoid getting packages on an `example/` when running `dart pub get`.
+**Optional** To avoid getting packages in `example/` when running `dart pub get` (if it exists).
 
 **Default** `false`
 
