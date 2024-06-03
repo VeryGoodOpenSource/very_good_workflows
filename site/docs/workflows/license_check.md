@@ -73,6 +73,12 @@ The allowed and forbidden options can't be used at the same time. If you want to
 
 **Default** `false`
 
+## Secrets
+
+### `ssh_key`
+
+**Optional** An SSH key to use for setting up the credentials for fetching dependencies that are not publicly available.
+
 ## Example Usage
 
 ```yaml
