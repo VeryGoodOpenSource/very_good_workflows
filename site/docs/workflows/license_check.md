@@ -73,6 +73,12 @@ The allowed and forbidden options can't be used at the same time. If you want to
 
 **Default** `false`
 
+## Secrets
+
+### `ssh_key`
+
+**Optional** An SSH key to use for setting up the credentials for fetching dependencies that are not publicly available.
+
 ## Example Usage
 
 ```yaml
@@ -100,3 +106,11 @@ jobs:
     with:
       allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0'
 ```
+
+The example [workflow file](https://docs.github.com/en/actions/quickstart#creating-your-first-workflow) will [trigger](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) the `license_check` job on every push to the `main` branch and on every pull request that modifies the `pubspec.yaml` or the `license_check.yaml` workflow file.
+
+If you are [committing the `pubspec.lock`](https://dart.dev/guides/libraries/private-files#pubspec-lock) file for an application package you may consider adding it to the list of paths to trigger the workflow.
+
+:::tip
+For repositories with multiple packages we recommend adding a workflow file per package to avoid triggering a license check for packages which dependencies haven't been modified.
+:::
