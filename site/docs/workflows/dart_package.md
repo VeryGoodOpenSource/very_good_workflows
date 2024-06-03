@@ -103,6 +103,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `false`
 
+### `no_example`
+
+**Optional** To avoid getting packages in `example/` when running `dart pub get` (if it exists).
+
+**Default** `false`
+
 ## Secrets
 
 ### `ssh_key`
