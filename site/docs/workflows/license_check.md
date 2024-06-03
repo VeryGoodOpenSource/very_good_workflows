@@ -101,7 +101,7 @@ jobs:
       allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0'
 ```
 
-The example [workflow file](https://docs.github.com/en/actions/quickstart#creating-your-first-workflow) will [trigger](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) the License Check workflow on every push to the `main` branch and on every pull request that modifies the `pubspec.yaml` or the `license_check.yaml` workflow file. 
+The example [workflow file](https://docs.github.com/en/actions/quickstart#creating-your-first-workflow) will [trigger](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) the `license_check` job on every push to the `main` branch and on every pull request that modifies the `pubspec.yaml` or the `license_check.yaml` workflow file. 
 
 If you are [committing the `pubspec.lock`](https://dart.dev/guides/libraries/private-files#pubspec-lock) file for an application package you may consider adding it to the list of paths to trigger the workflow. 
 
