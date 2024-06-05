@@ -1,3 +1,29 @@
+# 1.17.0
+
+- **dart_package:**
+  - chore(deps): bump webfactory/ssh-agent from 0.8.0 to 0.9.0 ([#175](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/175))
+  - chore(deps): bump VeryGoodOpenSource/very_good_coverage from 2 to 3 ([#178](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/178))
+  - feat: add "--no-example" flag in dart pub get ([#183](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/183))
+  - fix: change skip_example to no_example ([#196](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/196))
+  - docs: add no_example docs ([#197](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/197))
+- **flutter_package:**
+  - chore(deps): bump webfactory/ssh-agent from 0.8.0 to 0.9.0 ([#175](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/175))
+  - chore(deps): bump VeryGoodOpenSource/very_good_coverage from 2 to 3 ([#178](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/178))
+- **license_check:**
+  - chore(deps): bump webfactory/ssh-agent from 0.8.0 to 0.9.0 ([#175](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/175))
+  - docs: add ssh_key secret documentation ([#198](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/198))
+  - docs: add an explanation to the example usage ([#199](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/199))
+- **spell_check:**
+  - chore(deps): bump streetsidesoftware/cspell-action from 5 to 6 ([#177](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/177))
+- **dart_pub_publish:**
+  - fix: use `secrets` for credential information ([#182](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/182))
+- **flutter_pub_publish:**
+  - fix: use `secrets` for credential information ([#182](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/182))
+- **mason_publish:**
+  - fix: use `secrets` for credential information ([#182](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/182))
+- **semantic_pull_request:**
+  - docs: updating semantic pull request docs ([#174](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/174))
+
 # 1.16.1
 
 - fix(dart_package): runnable skipped tests in Dart packages ([#168](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/168))
