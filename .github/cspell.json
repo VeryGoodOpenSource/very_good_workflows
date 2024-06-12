@@ -1,8 +1,7 @@
 {
   "version": "0.2",
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "dictionaries": ["vgv_allowed", 
-    "vgv_forbidden"],
+  "dictionaries": ["vgv_allowed", "vgv_forbidden"],
   "dictionaryDefinitions": [
     {
       "name": "vgv_allowed",
@@ -18,23 +17,24 @@
   "useGitignore": true,
   "words": [
     "amannn",
-    "endtemplate", 
-    "APPDATA", 
-    "brickhub", 
-    "noopener", 
-    "typecheck", 
-    "clsx", 
-    "Infima", 
-    "Csvg", 
-    "clsx", 
-    "xlink", 
-    "linecap", 
-    "Contador", 
-    "localizable", 
-    "mostrado", 
-    "página", 
+    "endtemplate",
+    "APPDATA",
+    "brickhub",
+    "noopener",
+    "typecheck",
+    "clsx",
+    "Infima",
+    "Csvg",
+    "clsx",
+    "xlink",
+    "linecap",
+    "Contador",
+    "localizable",
+    "mostrado",
+    "página",
     "Texto",
     "creatordate",
-    "retag"
+    "retag",
+    "webfactory"
   ]
 }
