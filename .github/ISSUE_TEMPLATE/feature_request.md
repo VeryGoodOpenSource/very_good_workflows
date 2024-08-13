@@ -13,10 +13,6 @@ Clearly describe what you are looking to add. The more business/user context the
 
 - [ ] Checklist of requirements to be fulfilled
 
-**Designs**
-
-- [Screen Name](https://verygood.ventures)
-
 **Additional Context**
 
 Add any other context or screenshots about the feature request go here.
