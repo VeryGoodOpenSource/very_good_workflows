@@ -35,7 +35,7 @@ The License Check workflow consists of the following steps:
 
 ### `dart_sdk`
 
-**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5`) or a channel (e.g. `stable`):
+**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5.0`) or a channel (e.g. `stable`):
 
 **Default** `"stable"`
 
