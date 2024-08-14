@@ -25,7 +25,7 @@ The Flutter Pub Publish workflow consists of the following steps:
 
 ### `flutter_version`
 
-**Optional** The Flutter SDK version to use (e.g. `2.8.1`).
+**Optional** The Flutter SDK version to use (e.g. `3.24.0`).
 
 **Default** `""`
 
@@ -70,7 +70,7 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
     with:
       flutter_channel: 'stable'
-      flutter_version: '2.8.1'
+      flutter_version: '3.24.0'
       working_directory: 'packages/my_flutter_package'
     secrets:
       pub_credentials: secrets.PUB_CREDENTIALS

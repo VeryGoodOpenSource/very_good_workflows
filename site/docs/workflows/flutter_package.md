@@ -50,7 +50,7 @@ The Flutter package workflow consists of the following steps:
 
 ### `flutter_version`
 
-**Optional** The Flutter SDK version to use (e.g. `2.8.1`).
+**Optional** The Flutter SDK version to use (e.g. `3.24.0`).
 
 **Default** `""`
 
@@ -123,7 +123,7 @@ jobs:
     with:
       coverage_excludes: '*.g.dart'
       flutter_channel: 'stable'
-      flutter_version: '2.8.1'
+      flutter_version: '3.24.0'
       working_directory: 'examples/my_flutter_package'
       test_recursion: true
     secrets:
