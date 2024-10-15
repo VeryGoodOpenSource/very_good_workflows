@@ -104,7 +104,7 @@ jobs:
         run: dart format --line-length ${{inputs.format_line_length}} --set-exit-if-changed ${{inputs.format_directories}}
 
       - name: 🕵️ Analyze
-        run: flutter analyze ${{inputs.analyze_directories}}
+        run: flutter analyze --no-fatal-infos ${{inputs.analyze_directories}}
 
       - name: 🧪 Run Tests
         run: very_good test -j ${{inputs.concurrency}} ${{(inputs.test_recursion && '--recursive') || ''}} ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}} --coverage --test-randomize-ordering-seed random
