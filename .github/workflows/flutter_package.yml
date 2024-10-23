@@ -31,6 +31,10 @@ on:
         required: false
         type: string
         default: "80"
+      format_skip:
+        required: false
+        type: boolean
+        default: false
       min_coverage:
         required: false
         type: number
@@ -102,7 +106,9 @@ jobs:
 
       - name: ✨ Check Formatting
         run: dart format --line-length ${{inputs.format_line_length}} --set-exit-if-changed ${{inputs.format_directories}}
-
+        if: "${{inputs.format_skip}} != true}}"
+        run: dart format --line-length ${{inputs.format_line_length}} --set-exit-if-changed ${{inputs.format_directories}}
+        
       - name: 🕵️ Analyze
         run: flutter analyze ${{inputs.analyze_directories}}
 
