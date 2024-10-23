@@ -31,6 +31,10 @@ on:
         required: false
         type: string
         default: "80"
+      format_skip:
+        required: false
+        type: boolean
+        default: true
       min_coverage:
         required: false
         type: number
