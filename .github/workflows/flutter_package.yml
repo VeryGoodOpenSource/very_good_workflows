@@ -34,7 +34,7 @@ on:
       format_skip:
         required: false
         type: boolean
-        default: true
+        default: false
       min_coverage:
         required: false
         type: number
