@@ -63,5 +63,5 @@ jobs:
       mason_version: '0.1.0-dev.50'
       working_directory: 'packages/my_mason_brick'
     secrets:
-      mason_credentials: secrets.MASON_CREDENTIALS
+      mason_credentials: ${{ secrets.MASON_CREDENTIALS }}
 ```
