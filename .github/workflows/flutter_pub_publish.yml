@@ -19,14 +19,11 @@ on:
         required: false
         type: string
         default: "ubuntu-latest"
-      # Deprecated, use secrets.pub_credentials instead
-      pub_credentials:
-        required: false
-        type: string
       timeout_minutes:
         required: false
         type: number
         default: 5
+    # Deprecated, will be used if passed in but using the "Setup Dart" action is recommended
     secrets:
       pub_credentials:
         required: true
@@ -40,7 +37,7 @@ jobs:
     runs-on: ${{inputs.runs_on}}
 
     timeout-minutes: ${{inputs.timeout_minutes}}
-    
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
@@ -55,10 +52,17 @@ jobs:
       - name: 📦 Install Dependencies
         run: flutter pub get
 
-      - name: 🔐 Setup Pub Credentials
+      - name: 🔐 Setup Pub Credentials\
+        if: ${{ secrets.pub_credentials != '' }}
         run: |
           mkdir -p $XDG_CONFIG_HOME/dart
           echo '${{secrets.pub_credentials}}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
+
+      - name: 🎯 Setup Dart
+        if: ${{ secrets.pub_credentials == '' }}
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{inputs.dart_sdk}}
 
       - name: 🌵 Dry Run
         run: flutter pub publish --dry-run
