@@ -10,10 +10,12 @@ We use this workflow to publish a Dart package to [pub.dev](https://pub.dev).
 
 The Dart Pub Publish workflow consists of the following steps:
 
-1. Install dependencies
-2. Setup pub credentials
+1. Setup Dart, including pub.dev publish token
+2. Install dependencies
 3. Dry run
 4. Publish
+
+This workflow uses the automated publishing of packages to pub.dev which is part of the [Dart documentation](https://dart.dev/tools/pub/automated-publishing). Before using this workflow ensure that you have configured your package on pub.dev correctly to allow the publish process to complete.
 
 ## Inputs
 
@@ -35,21 +37,7 @@ The Dart Pub Publish workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
-## Secrets
-
-### `pub_credentials`
-
-**Required** The pub credentials needed for publishing. This can be retrieved by reading out your `pub-credentials.json` on your system after you ran a `dart pub login`, the location of the file is different per operating system:
-
-| OS      | Path                                                                                      |
-| ------- | ----------------------------------------------------------------------------------------- |
-| Linux   | `$XDG_CONFIG_HOME/dart/pub-credentials.json` or `$HOME/.config/dart/pub-credentials.json` |
-| macOS   | `~/Library/Application\ Support/dart/pub-credentials.json`                                |
-| Windows | `%APPDATA%/dart/pub-credentials.json`                                                     |
-
 ## Example Usage
-
-We recommend using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for safely storing and reading the credentials.
 
 ```yaml
 name: My Dart Pub Publish Workflow
@@ -62,6 +50,4 @@ jobs:
     with:
       dart_sdk: 'stable'
       working_directory: 'packages/my_dart_package'
-    secrets:
-      pub_credentials: secrets.PUB_CREDENTIALS
 ```
