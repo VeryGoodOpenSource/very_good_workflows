@@ -1,3 +1,22 @@
+# 1.18.0
+
+- fix: update mason creds example ([#263](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/263))
+- feat: update publish workflows to use Setup Dart action ([#272](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/272))
+- chore: update Flutter version in CI ([#241](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/241))
+- Dependency Updates
+  - chore(deps): bump peaceiris/actions-gh-pages from 3 to 4 ([#179](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/179))
+  - chore(deps): bump amannn/action-semantic-pull-request ([#180](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/180), [#181](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/181), [#218](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/218))
+  - chore: bump srealmoreno/label-sync-action from 1 to 2 ([#255](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/255))
+- Documentation Updates
+  - chore: update docs for new flutter version ([#243](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/243))
+  - docs: update vgv dev URL ([#293](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/293))
+  - chore: add dependabot for docs site ([#187](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/187))
+  - chore: Update site_deploy.yaml to use Node 18 ([#193](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/193))
+- Repo Management
+  - feat: add feature request template ([#239](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/239))
+  - chore: add label sync action ([#176](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/176))
+  - chore: update issue templates ([#247](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/247))
+
 # 1.17.0
 
 - **dart_package:**
