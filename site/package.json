@@ -31,7 +31,7 @@
     "@babel/eslint-parser": "^7.25.9",
     "@docusaurus/eslint-plugin": "^3.6.3",
     "@docusaurus/module-type-aliases": "3.6.3",
-    "@docusaurus/tsconfig": "3.6.3",
+    "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.6.3",
     "@eslint/js": "^9.17.0",
     "eslint-plugin-jest": "^28.10.0",
