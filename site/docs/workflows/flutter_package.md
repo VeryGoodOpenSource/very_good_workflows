@@ -121,7 +121,7 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
-      coverage_excludes: '*.g.dart'
+      coverage_excludes: '**/*.g.dart'
       flutter_channel: 'stable'
       flutter_version: '3.24.0'
       working_directory: 'examples/my_flutter_package'
