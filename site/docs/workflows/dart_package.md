@@ -40,8 +40,6 @@ The Dart package workflow consists of the following steps:
 
 **Optional** The preferred line length preferred for running the `dart format` command. Be aware that this does not change the behavior of the analysis step and longer lines could still make the workflow fail if the rule `lines_longer_than_80_chars` is used.
 
-**Default** `"80"`
-
 ### `min_coverage`
 
 **Optional** The minimum coverage percentage allowed.
