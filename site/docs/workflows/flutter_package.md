@@ -58,8 +58,6 @@ The Flutter package workflow consists of the following steps:
 
 **Optional** The preferred line length preferred for running the `dart format` command. Be aware that this does not change the behavior of the analysis step and longer lines could still make the workflow fail if the rule `lines_longer_than_80_chars` is used.
 
-**Default** `"80"`
-
 ### `min_coverage`
 
 **Optional** The minimum coverage percentage allowed.
@@ -121,7 +119,7 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
-      coverage_excludes: '*.g.dart'
+      coverage_excludes: '**/*.g.dart'
       flutter_channel: 'stable'
       flutter_version: '3.24.0'
       working_directory: 'examples/my_flutter_package'

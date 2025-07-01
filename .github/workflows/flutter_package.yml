@@ -30,7 +30,6 @@ on:
       format_line_length:
         required: false
         type: string
-        default: "80"
       min_coverage:
         required: false
         type: number
@@ -101,7 +100,7 @@ jobs:
         run: ${{inputs.setup}}
 
       - name: ✨ Check Formatting
-        run: dart format --line-length ${{inputs.format_line_length}} --set-exit-if-changed ${{inputs.format_directories}}
+        run: dart format ${{inputs.format_line_length && format('--line-length {0}', inputs.format_line_length) || ''}} --set-exit-if-changed ${{inputs.format_directories}}
 
       - name: 🕵️ Analyze
         run: flutter analyze ${{inputs.analyze_directories}}
