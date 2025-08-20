@@ -15,6 +15,10 @@ on:
         required: false
         type: string
         default: "stable"
+      flutter_version:
+        description: 'Flutter SDK version to use'
+        required: false
+        type: string
       allowed:
         required: false
         type: string
@@ -51,7 +55,18 @@ jobs:
       - name: 📚 Git Checkout
         uses: actions/checkout@v5
 
+      - name: Check for conflicting SDK inputs
+        if: ${{ inputs.flutter_version != '' && inputs.dart_sdk != '' }}
+        run: echo "::warning::Both 'flutter_version' and 'dart_sdk' were specified. The workflow will proceed with the Flutter SDK setup."
+
+      - name: Set up Flutter
+        if: ${{ inputs.flutter_version != '' }}
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{inputs.flutter_version}}
+
       - name: 🎯 Setup Dart
+        if: ${{ inputs.flutter_version == '' }}
         uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{inputs.dart_sdk}}
@@ -64,7 +79,12 @@ jobs:
         with:
           ssh-private-key: ${{secrets.ssh_key}}
 
-      - name: 📦 Install Dependencies
+      - name: 📦 Install Dependencies for Flutter
+        if: ${{ inputs.flutter_version != '' }}
+        run: flutter pub get --no-example
+
+      - name: 📦 Install Dependencies for Dart
+        if: ${{ inputs.flutter_version == '' }}
         run: dart pub get --no-example
 
       - name: 👨‍⚖️ Check licenses
