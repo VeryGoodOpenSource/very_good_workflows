@@ -12,9 +12,9 @@ on:
         type: string
         default: "ubuntu-latest"
       dart_sdk:
+        description: 'Dart SDK to use when no flutter_version is specified'
         required: false
         type: string
-        default: "stable"
       flutter_version:
         description: 'Flutter SDK version to use'
         required: false
@@ -57,19 +57,29 @@ jobs:
 
       - name: Check for conflicting SDK inputs
         if: ${{ inputs.flutter_version != '' && inputs.dart_sdk != '' }}
-        run: echo "::warning::Both 'flutter_version' and 'dart_sdk' were specified. The workflow will proceed with the Flutter SDK setup."
+        run: |
+          echo "::warning::Both 'flutter_version' and 'dart_sdk' were specified. The workflow will proceed with the Flutter SDK setup."
+          echo "  flutter_version = ${{ inputs.flutter_version }}"
+          echo "  dart_sdk = ${{ inputs.dart_sdk }}"
 
-      - name: Set up Flutter
+      - name: Set Dart SDK Version
+        id: set_dart_version
+        run: |
+          echo "dart_sdk_version=${{ inputs.dart_sdk || 'stable' }}" >> $GITHUB_OUTPUT          
+
+      - name: 🦋Set up Flutter
         if: ${{ inputs.flutter_version != '' }}
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{inputs.flutter_version}}
+          cache: true
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
 
-      - name: 🎯 Setup Dart
+      - name: 🎯 Set up Dart
         if: ${{ inputs.flutter_version == '' }}
         uses: dart-lang/setup-dart@v1
         with:
-          sdk: ${{inputs.dart_sdk}}
+          sdk: ${{steps.set_dart_version.outputs.dart_sdk_version}}
 
       - name: 🤫 Set SSH Key
         env:
