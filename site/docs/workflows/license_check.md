@@ -110,7 +110,7 @@ jobs:
   license_check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
     with:
-      flutter_version: "3.32.0"
+      flutter_version: '3.32.0'
       allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0,Zlib'
 ```
 
