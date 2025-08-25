@@ -12,9 +12,13 @@ on:
         type: string
         default: "ubuntu-latest"
       dart_sdk:
+        description: 'Dart SDK to use when no flutter_version is specified'
         required: false
         type: string
-        default: "stable"
+      flutter_version:
+        description: 'Flutter SDK version to use'
+        required: false
+        type: string
       allowed:
         required: false
         type: string
@@ -46,15 +50,39 @@ jobs:
         working-directory: ${{inputs.working_directory}}
 
     runs-on: ${{inputs.runs_on}}
+    env:
+      USE_FLUTTER: ${{ inputs.flutter_version != '' }}
+      USE_DART: ${{ inputs.flutter_version == '' }}
+      SHOW_DART_FLUTTER_WARNING: ${{ inputs.flutter_version != '' && inputs.dart_sdk != '' }}
 
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v5
 
-      - name: 🎯 Setup Dart
+      - name: Show warning if conflicting SDK inputs
+        if: ${{ env.SHOW_DART_FLUTTER_WARNING == 'true' }}
+        run: echo "::warning::Both 'flutter_version' and 'dart_sdk' were specified. The workflow will proceed with the Flutter SDK setup."
+
+      - name: Set Dart SDK Version
+        if: ${{ env.USE_DART == 'true' }}
+        id: set_dart_version
+        run: |
+          echo "dart_sdk_version=${{ inputs.dart_sdk || 'stable' }}" >> $GITHUB_OUTPUT          
+
+      - name: 🦋Set up Flutter
+        if: ${{ env.USE_FLUTTER == 'true' }}
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{inputs.flutter_version}}
+          cache: true
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+
+      - name: 🎯 Set up Dart
+        if: ${{ env.USE_DART == 'true' }}
         uses: dart-lang/setup-dart@v1
         with:
-          sdk: ${{inputs.dart_sdk}}
+          sdk: ${{steps.set_dart_version.outputs.dart_sdk_version}}
+
 
       - name: 🤫 Set SSH Key
         env:
@@ -64,7 +92,12 @@ jobs:
         with:
           ssh-private-key: ${{secrets.ssh_key}}
 
-      - name: 📦 Install Dependencies
+      - name: 📦 Install Dependencies for Flutter
+        if: ${{ env.USE_FLUTTER == 'true' }}
+        run: flutter pub get --no-example
+
+      - name: 📦 Install Dependencies for Dart
+        if: ${{ env.USE_DART == 'true' }}
         run: dart pub get --no-example
 
       - name: 👨‍⚖️ Check licenses
