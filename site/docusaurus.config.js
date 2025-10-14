@@ -11,15 +11,12 @@ const config = {
   url: 'https://workflows.vgv.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   trailingSlash: false,
-
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'VeryGoodOpenSource', // Usually your GitHub org/user name.
   projectName: 'very_good_workflows', // Usually your repo name.
-
+  organizationName: 'VeryGoodOpenSource', // Usually your GitHub org/user name.
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
@@ -27,7 +24,12 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownImages: 'throw',
+    },
+  },
   presets: [
     [
       'classic',
