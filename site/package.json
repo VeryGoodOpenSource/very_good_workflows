@@ -32,7 +32,7 @@
     "@docusaurus/eslint-plugin": "^3.9.1",
     "@docusaurus/module-type-aliases": "3.9.1",
     "@docusaurus/tsconfig": "3.9.1",
-    "@docusaurus/types": "3.8.1",
+    "@docusaurus/types": "3.9.1",
     "@eslint/js": "^9.36.0",
     "eslint-plugin-jest": "^29.0.1",
     "globals": "^16.4.0",
