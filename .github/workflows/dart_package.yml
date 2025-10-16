@@ -62,6 +62,10 @@ on:
         required: false
         type: boolean
         default: false
+      run_bloc_lint:
+        type: boolean
+        default: true
+        required: false
     secrets:
       ssh_key:
         required: false
@@ -103,6 +107,12 @@ jobs:
 
       - name: 🕵️ Analyze
         run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}
+
+      - name: ✅ Bloc Lint
+        if: ${{inputs.run_bloc_lint}}
+        run: |
+          dart pub global activate bloc_tools
+          bloc lint .
 
       - name: 🧪 Run Tests
         run: |
