@@ -112,7 +112,7 @@ jobs:
       - name: ✅ Bloc Lint
         if: ${{inputs.run_bloc_lint}}
         run: |
-          dart pub global activate bloc_tools
+          flutter pub global activate bloc_tools
           bloc lint .
 
       - name: 🧪 Run Tests
