@@ -14,7 +14,7 @@ Reusable [GitHub workflows][github_workflows_link] used internally at [Very Good
 
 ## Documentation 📝
 
-For official documentation, please visit https://workflows.vgv.dev.
+For official documentation, please visit <https://workflows.vgv.dev>.
 
 ## Quick Start 🚀
 
