@@ -60,6 +60,6 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
     with:
       flutter_channel: 'stable'
-      flutter_version: '3.24.0'
+      flutter_version: '3.32.0'
       working_directory: 'packages/my_flutter_package'
 ```

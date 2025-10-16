@@ -121,7 +121,7 @@ jobs:
     with:
       coverage_excludes: '**/*.g.dart'
       flutter_channel: 'stable'
-      flutter_version: '3.24.0'
+      flutter_version: '3.32.0'
       working_directory: 'examples/my_flutter_package'
       test_recursion: true
     secrets:
