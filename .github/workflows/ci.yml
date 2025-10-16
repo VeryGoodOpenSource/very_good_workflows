@@ -18,7 +18,7 @@ jobs:
     uses: ./.github/workflows/flutter_package.yml
     with:
       flutter_channel: stable
-      flutter_version: 3.32.0
+      flutter_version: 3.35.0
       setup: flutter doctor --verbose
       working_directory: examples/flutter_package
 
