@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: 🪄 Spell Check
-        uses: streetsidesoftware/cspell-action@v7
+        uses: streetsidesoftware/cspell-action@v8
         with:
           config: ${{inputs.config}}
           files: ${{inputs.includes}}
