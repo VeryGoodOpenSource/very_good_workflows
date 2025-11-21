@@ -1,4 +1,6 @@
-# 1.18.0
+# Changelog
+
+## 1.18.0
 
 - fix: update mason creds example ([#263](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/263))
 - feat: update publish workflows to use Setup Dart action ([#272](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/272))
@@ -17,7 +19,7 @@
   - chore: add label sync action ([#176](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/176))
   - chore: update issue templates ([#247](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/247))
 
-# 1.17.0
+## 1.17.0
 
 - **dart_package:**
   - chore(deps): bump webfactory/ssh-agent from 0.8.0 to 0.9.0 ([#175](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/175))
@@ -43,16 +45,16 @@
 - **semantic_pull_request:**
   - docs: updating semantic pull request docs ([#174](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/174))
 
-# 1.16.1
+## 1.16.1
 
 - fix(dart_package): runnable skipped tests in Dart packages ([#168](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/168))
 
-# 1.16.0
+## 1.16.0
 
 - docs: add example usage to license_check ([#164](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/164))
 - feat: add timeout input to the publish workflows ([#166](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/166))
 
-# 1.15.0
+## 1.15.0
 
 - chore(deps): bump actions/setup-node from 3 to 4 ([#155](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/155))
 - chore(deps): bump streetsidesoftware/cspell-action from 2 to 4 ([#153](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/153))
@@ -63,7 +65,7 @@
 - feat: introduce license_check workflow ([#154](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/154))
 - chore(deps): bump streetsidesoftware/cspell-action from 4 to 5 ([#162](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/162))
 
-# 1.14.0
+## 1.14.0
 
 - feat: Add `format_directories` option ([#113](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/113))
 - feat: add `format_line_length` input ([#114](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/114))
@@ -73,7 +75,7 @@
 - docs: link to pana versions page ([#141](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/141))
 - fix: remove analytics due to cli update ([#143](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/143))
 
-# [1.13.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.12.0...v1.13.0) (2023-05-12)
+## [1.13.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.12.0...v1.13.0) (2023-05-12)
 
 ### Features
 
@@ -82,45 +84,45 @@
 - add publish scripts ([#111](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/111)) ([9fce5d3](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9fce5d35e66685847e8e3df2c92eda6e0cafe540))
 - support excluding directories ([#110](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/110)) ([462b9d2](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/462b9d2f52da70f6adaf85a9275b340c79ff8002))
 
-# [1.12.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.11.0...v1.12.0) (2023-01-26)
+## [1.12.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.11.0...v1.12.0) (2023-01-26)
 
 ### Features
 
 - replace flutter format with dart format ([#95](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/95)) ([d23279e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d23279ec9c5271ed441565df73240526b1eb5e98))
 
-# [1.11.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.10.0...v1.11.0) (2022-10-27)
+## [1.11.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.10.0...v1.11.0) (2022-10-27)
 
 ### Features
 
 - add cache key options ([#87](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/87)) ([9aae3cb](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9aae3cb573a24e16374a0686e52ee08037bf9330))
 
-# [1.10.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.9.0...v1.10.0) (2022-10-19)
+## [1.10.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.9.0...v1.10.0) (2022-10-19)
 
 ### Features
 
 - add dependabot ([#79](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/79)) ([bff6468](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/bff6468cc09c495bfd7a8a0d87cb775c502eb0fb))
 - add optional setup step to flutter and dart package workflows ([#85](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/85)) ([d6c97a4](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d6c97a412579a7fdda75de1f0f84634fcb6e0633))
 
-# [1.9.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.8.0...v1.9.0) (2022-10-11)
+## [1.9.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.8.0...v1.9.0) (2022-10-11)
 
 ### Features
 
 - **semantic_pull_request:** add types and scopes inputs ([#65](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/65)) ([e54fbb1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/e54fbb1e853e28a883941d9cdbf649ec9def4faf))
 - spell check workflow ([#76](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/76)) ([9c12bb5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9c12bb5e67b3ce4949750c99e2e27ee137741473))
 
-# [1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
+## [1.8.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.7.0...v1.8.0) (2022-10-04)
 
 ### Features
 
 - upgrade dart and flutter package to very_good_coverage@v2 ([#73](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/73)) ([3571d72](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3571d72c0ed2b8b8bc3fb1ad7699c8dc8975984e))
 
-# [1.7.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.6.0...v1.7.0) (2022-09-09)
+## [1.7.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.6.0...v1.7.0) (2022-09-09)
 
 ### Features
 
 - **dart_package:** add platform input ([#70](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/70)) ([575c4f8](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/575c4f8928f91d46de82b132a8aa13664f811175))
 
-# [1.6.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.4...v1.6.0) (2022-09-01)
+## [1.6.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.5.4...v1.6.0) (2022-09-01)
 
 ### Bug Fixes
 
@@ -154,13 +156,13 @@
 
 - **semantic_pull_request:** remove wip (write access) ([#54](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/54)) ([6eb0847](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6eb084735c27a2b8b7a710ee5c151a1a9246f1bd))
 
-# [1.5.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.4.0...v1.5.0) (2022-07-05)
+## [1.5.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.4.0...v1.5.0) (2022-07-05)
 
 ### Features
 
 - **dart_package:** `report_on` and `analyze_directories` inputs ([#52](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/52)) ([ab40b19](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ab40b190bc9e310a2994342498abfdb9384eeaa4))
 
-# [1.4.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.3.0...v1.4.0) (2022-06-28)
+## [1.4.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.3.0...v1.4.0) (2022-06-28)
 
 ### Bug Fixes
 
@@ -172,7 +174,7 @@
 - **semantic_pull_request:** add semantic pull request workflow ([#48](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/48)) ([43beb8a](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/43beb8a0a20617ccf02a1a5e603ba2d90e45f00d))
 - add semantic commit check to workflows ([#45](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/45)) ([3afb04f](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3afb04feba5abf760b105c908d31b5033aaf6839))
 
-# [1.3.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.2...v1.3.0) (2022-05-31)
+## [1.3.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.2.2...v1.3.0) (2022-05-31)
 
 ### Features
 
@@ -191,7 +193,7 @@
 
 - **dart_package:** use dart test instead of test_coverage ([#28](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/28)) ([b62ee03](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b62ee0393c6da47f8fe8d452406b80aa8d217a05))
 
-# [1.2.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.1...v1.2.0) (2022-04-07)
+## [1.2.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.1.1...v1.2.0) (2022-04-07)
 
 ### Features
 
@@ -204,7 +206,7 @@
 
 - **flutter_package:** use very_good test runner ([#17](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/17)) ([37174b1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/37174b1cd607d13ad9f9f398d15a1725bccc95aa))
 
-# [1.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.2...v1.1.0) (2022-02-28)
+## [1.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.0.2...v1.1.0) (2022-02-28)
 
 ### Features
 
@@ -222,7 +224,7 @@
 
 - enhance workflow step names ([#9](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/9)) ([6429f08](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6429f0849fa0d6b9dc845d6f00d62e4a3d875ff1))
 
-# [1.0.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/07e989fcadd9f5a2250ad14b0fdb82e6c8bc6704...v1.0.0) (2022-01-12)
+## [1.0.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/07e989fcadd9f5a2250ad14b0fdb82e6c8bc6704...v1.0.0) (2022-01-12)
 
 ### Bug Fixes
 
