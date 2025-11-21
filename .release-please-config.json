@@ -13,5 +13,14 @@
       "release-type": "simple",
       "pull-request-title-pattern": "chore: release ${version}"
     }
-  }
+  },
+  "exclude-paths": [
+    ".github",
+    "site",
+    ".release-please-manifest.json",
+    ".release-please-config.json",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "examples"
+  ]
 }
