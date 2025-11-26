@@ -1,0 +1,35 @@
+name: release_please
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release-please
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          manifest-file: ".release-please-manifest.json"
+          config-file: ".release-please-config.json"
+
+      - name: Checkout code
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: actions/checkout@v4
+
+      - name: Update major version tag
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: |
+          VERSION=${{ steps.release-please.outputs.major }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -fa "v${VERSION}" -m "Update v${VERSION} to ${{ steps.release-please.outputs.tag_name }}"
+          git push origin "v${VERSION}" --force
