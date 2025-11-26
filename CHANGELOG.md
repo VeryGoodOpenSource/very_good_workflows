@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.18.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.18.0...v1.18.1) (2025-11-26)
+
+
+### Miscellaneous Chores
+
+* automate releases with release-please action ([#396](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/396)) ([0b293a8](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/0b293a83fcd0193d5a93cb470124b7ab9123768b))
+* upgrade ci to use flutter 3.35.0 ([#380](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/380)) ([a94cdf5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a94cdf5ce64c18ec54beee6daf35e3e0a6088f54))
+
+
+### Docs
+
+* add release process ([#343](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/343)) ([372f810](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/372f810df0f1dc1d5cbe498bd1a7208ddb978252))
+
 ## 1.18.0
 
 - fix: update mason creds example ([#263](https://github.com/VeryGoodOpenSource/very_good_workflows/pull/263))
