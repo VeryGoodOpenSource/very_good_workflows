@@ -23,7 +23,7 @@ jobs:
 
       - name: Checkout code
         if: ${{ steps.release-please.outputs.release_created }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Update major version tag
         if: ${{ steps.release-please.outputs.release_created }}
