@@ -7,6 +7,10 @@ on:
         required: false
         type: string
         default: "lib test"
+      analyze_options:
+        required: false
+        type: string
+        default: ""
       concurrency:
         required: false
         type: number
@@ -107,7 +111,7 @@ jobs:
         run: dart format ${{inputs.format_line_length && format('--line-length {0}', inputs.format_line_length) || ''}} --set-exit-if-changed ${{inputs.format_directories}}
 
       - name: 🕵️ Analyze
-        run: flutter analyze ${{inputs.analyze_directories}}
+        run: flutter analyze ${{inputs.analyze_options}} ${{inputs.analyze_directories}}
 
       - name: ✅ Bloc Lint
         if: ${{inputs.run_bloc_lint}}
