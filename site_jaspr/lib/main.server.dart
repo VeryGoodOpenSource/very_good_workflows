@@ -4,12 +4,13 @@
 /// To run code on the client, check the `main.client.dart` file.
 library;
 
+import 'dart:io';
+
 // Server-specific Jaspr import.
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
 import 'package:jaspr_content/components/callout.dart';
-import 'package:jaspr_content/components/github_button.dart';
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
 import 'package:jaspr_content/components/sidebar.dart';
@@ -47,7 +48,12 @@ void main() {
       ],
       components: [
         Callout(),
-        SafeCodeBlock(),
+        SafeCodeBlock(
+          grammars: {
+            'yaml': File('grammars/yaml.tmLanguage.json').readAsStringSync(),
+            'bash': File('grammars/bash.tmLanguage.json').readAsStringSync(),
+          },
+        ),
         Image(zoom: true),
       ],
       layouts: [
@@ -58,8 +64,8 @@ void main() {
             items: [
               NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
               NavLink(text: 'VGV Dev Tools', href: 'https://verygood.ventures/dev'),
-              IconLink(href: 'https://verygood.ventures', iconSrc: '/images/vgv_logo_black.svg', alt: 'Very Good Ventures'),
-              GitHubButton(repo: 'VeryGoodOpenSource/very_good_workflows'),
+              IconLink(href: 'https://verygood.ventures', iconSrc: '/images/vgv_logo_black.svg', darkIconSrc: '/images/vgv_logo_fill.svg', alt: 'Very Good Ventures'),
+              IconLink(href: 'https://github.com/VeryGoodOpenSource/very_good_workflows', iconSrc: '/images/github.svg', darkIconSrc: '/images/github_white.svg', alt: 'GitHub'),
               ThemeToggle(),
             ],
           ),
@@ -91,13 +97,44 @@ void main() {
         ),
         const HomepageLayout(),
       ],
-      theme: ContentTheme(
-        primary: ThemeColor(Color('#2a48df'), dark: Color('#66fbd1')),
-        background: ThemeColor(Colors.white, dark: Color('#020f30')),
+      theme: ContentTheme.raw(
         colors: [
-          ContentColors.links.apply(ThemeColor(Color('#2a48df'), dark: Color('#66fbd1'))),
-          ContentColors.quoteBorders.apply(Color('#2a48df')),
+          // Exact Docusaurus/Infima color values from site/src/css/custom.css.
+          ColorToken('primary', Color('#2a48df'), dark: Color('#66fbd1')),
+          ColorToken('background', Color('#fbfcff'), dark: Color('#020f30')),
+          ColorToken('text', Color('#1c1e21'), dark: Color('#e3e3e3')),
+          ColorToken('content-headings', Color('#1c1e21'), dark: Color('#ffffff')),
+          ColorToken('content-lead', Color('#606770'), dark: Color('#a0a0a0')),
+          ColorToken('content-links', Color('#2a48df'), dark: Color('#66fbd1')),
+          ColorToken('content-bold', Color('#1c1e21'), dark: Color('#ffffff')),
+          ColorToken('content-counters', Color('#606770'), dark: Color('#a0a0a0')),
+          ColorToken('content-bullets', Color('#dadde1'), dark: Color('#444950')),
+          ColorToken('content-hr', Color('#dadde1'), dark: Color('#444950')),
+          ColorToken('content-quotes', Color('#606770'), dark: Color('#a0a0a0')),
+          ColorToken(
+            'content-quote-borders',
+            Color('#2a48df'),
+            dark: Color('#66fbd1'),
+          ),
+          ColorToken('content-captions', Color('#606770'), dark: Color('#a0a0a0')),
+          ColorToken('content-kbd', Color('#1c1e21'), dark: Color('#ffffff')),
+          ColorToken('content-kbd-shadows', Color('#1c1e21'), dark: Color('#ffffff')),
+          ColorToken('content-code', Color('#1c1e21'), dark: Color('#ffffff')),
+          ColorToken(
+            'content-pre-code',
+            Color('#393a34'),
+            dark: Color('#e3e3e3'),
+          ),
+          ColorToken(
+            'content-pre-bg',
+            Color('#ffffff'),
+            dark: Color('rgb(0 0 0 / 50%)'),
+          ),
+          ColorToken('content-th-borders', Color('#dadde1'), dark: Color('#444950')),
+          ColorToken('content-td-borders', Color('#dadde1'), dark: Color('#444950')),
         ],
+        typography: ContentTypography.base,
+        reset: true,
       ),
     ),
   );

@@ -586,7 +586,7 @@ packages:
     source: hosted
     version: "1.4.1"
   syntax_highlight_lite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: syntax_highlight_lite
       sha256: ff54f69159263e26b843c64a2dc556ac7bbbc66690eb6d500aefb341cf4957a0

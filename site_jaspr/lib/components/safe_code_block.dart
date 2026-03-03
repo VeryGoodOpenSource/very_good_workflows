@@ -3,14 +3,12 @@ import 'package:jaspr_content/components/code_block.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:syntax_highlight_lite/syntax_highlight_lite.dart' hide Color;
 
-/// A code block component that falls back to plain text rendering
-/// for languages not supported by the syntax highlighter.
-///
-/// Currently only 'dart' is supported for highlighting.
+/// A code block component that gracefully handles unsupported languages
+/// by falling back to plain text rendering.
 class SafeCodeBlock extends CustomComponent {
-  SafeCodeBlock() : super.base();
+  SafeCodeBlock({this.grammars = const {}}) : super.base();
 
-  static const _supportedLanguages = {'dart'};
+  final Map<String, String> grammars;
 
   bool _initialized = false;
   HighlighterTheme? _theme;
@@ -30,12 +28,16 @@ class SafeCodeBlock extends CustomComponent {
 
       if (!_initialized) {
         Highlighter.initialize(['dart']);
+        for (final entry in grammars.entries) {
+          Highlighter.addLanguage(entry.key, entry.value);
+        }
         _initialized = true;
       }
 
+      final source = children?.map((c) => c.innerText).join(' ') ?? '';
+
+      // Fall back to plain rendering for unsupported languages.
       if (language != null && !_supportedLanguages.contains(language)) {
-        // Unsupported language: render as plain code block.
-        final source = children?.map((c) => c.innerText).join(' ') ?? '';
         return CodeBlock.from(source: source);
       }
 
@@ -45,11 +47,12 @@ class SafeCodeBlock extends CustomComponent {
             language: language ?? 'dart',
             theme: _theme ??= await HighlighterTheme.loadDarkTheme(),
           );
-          final source = children?.map((c) => c.innerText).join(' ') ?? '';
           return CodeBlock.from(source: source, highlighter: highlighter);
         },
       );
     }
     return null;
   }
+
+  Set<String> get _supportedLanguages => {'dart', ...grammars.keys};
 }

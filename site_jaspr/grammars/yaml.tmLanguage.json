@@ -1,0 +1,197 @@
+{
+	"name": "YAML",
+	"scopeName": "source.yaml",
+	"patterns": [
+		{ "include": "#comment" },
+		{ "include": "#directive" },
+		{ "include": "#document-marker" },
+		{ "include": "#block-scalar" },
+		{ "include": "#block-pair" },
+		{ "include": "#block-sequence" },
+		{ "include": "#flow-collection" },
+		{ "include": "#flow-scalar" },
+		{ "include": "#property" }
+	],
+	"repository": {
+		"comment": {
+			"match": "(?:^|\\s)(#.*)$",
+			"captures": {
+				"1": { "name": "comment.line.number-sign.yaml" }
+			}
+		},
+		"directive": {
+			"patterns": [
+				{
+					"match": "^(%YAML)\\s+(\\d+\\.\\d+)",
+					"captures": {
+						"1": { "name": "keyword.other.directive.yaml.yaml" },
+						"2": { "name": "constant.numeric.yaml-version.yaml" }
+					}
+				},
+				{
+					"match": "^(%TAG)\\s+(\\S+)\\s+(\\S+)",
+					"captures": {
+						"1": { "name": "keyword.other.directive.tag.yaml" },
+						"2": { "name": "storage.type.tag-handle.yaml" },
+						"3": { "name": "support.type.tag-prefix.yaml" }
+					}
+				}
+			]
+		},
+		"document-marker": {
+			"patterns": [
+				{ "match": "^---", "name": "entity.other.document.begin.yaml" },
+				{ "match": "^\\.{3}", "name": "entity.other.document.end.yaml" }
+			]
+		},
+		"property": {
+			"patterns": [
+				{
+					"match": "(&)([^\\s]+)",
+					"captures": {
+						"1": { "name": "punctuation.definition.anchor.yaml" },
+						"2": { "name": "entity.name.type.anchor.yaml" }
+					}
+				},
+				{
+					"match": "(\\*)([^\\s,\\]\\}]+)",
+					"captures": {
+						"1": { "name": "punctuation.definition.alias.yaml" },
+						"2": { "name": "variable.other.alias.yaml" }
+					}
+				},
+				{
+					"match": "!\\S+",
+					"name": "storage.type.tag-handle.yaml"
+				}
+			]
+		},
+		"block-pair": {
+			"patterns": [
+				{
+					"match": "^(\\s*)([-\\w./@]+)\\s*(:)(?=\\s|$)",
+					"captures": {
+						"2": { "name": "entity.name.tag.yaml" },
+						"3": { "name": "punctuation.separator.key-value.mapping.yaml" }
+					}
+				},
+				{
+					"match": "(\\?\\s)",
+					"name": "punctuation.definition.key-value.begin.yaml"
+				},
+				{
+					"begin": "^(\\s*)(\"[^\"]*\"|'[^']*')\\s*(:)(?=\\s|$)",
+					"beginCaptures": {
+						"2": { "name": "entity.name.tag.yaml string.quoted.yaml" },
+						"3": { "name": "punctuation.separator.key-value.mapping.yaml" }
+					},
+					"end": "$"
+				}
+			]
+		},
+		"block-sequence": {
+			"match": "^(\\s*)(-)(?=\\s|$)",
+			"captures": {
+				"2": { "name": "punctuation.definition.block.sequence.item.yaml" }
+			}
+		},
+		"block-scalar": {
+			"patterns": [
+				{
+					"begin": "([|>])([1-9])?([+-])?\\s*(?:#.*)?$",
+					"beginCaptures": {
+						"1": { "name": "keyword.control.flow.block-scalar.yaml" },
+						"2": { "name": "constant.numeric.indentation-indicator.yaml" },
+						"3": { "name": "storage.modifier.chomping-indicator.yaml" }
+					},
+					"end": "^(?=\\S)",
+					"contentName": "string.unquoted.block.yaml"
+				}
+			]
+		},
+		"flow-collection": {
+			"patterns": [
+				{
+					"begin": "\\{",
+					"beginCaptures": { "0": { "name": "punctuation.definition.mapping.begin.yaml" } },
+					"end": "\\}",
+					"endCaptures": { "0": { "name": "punctuation.definition.mapping.end.yaml" } },
+					"name": "meta.flow-mapping.yaml",
+					"patterns": [
+						{ "include": "#flow-scalar" },
+						{ "include": "#comment" },
+						{ "match": ",", "name": "punctuation.separator.mapping.yaml" },
+						{
+							"match": "([\\w./-]+)\\s*(:)(?=\\s|[,}])",
+							"captures": {
+								"1": { "name": "entity.name.tag.yaml" },
+								"2": { "name": "punctuation.separator.key-value.mapping.yaml" }
+							}
+						}
+					]
+				},
+				{
+					"begin": "\\[",
+					"beginCaptures": { "0": { "name": "punctuation.definition.sequence.begin.yaml" } },
+					"end": "\\]",
+					"endCaptures": { "0": { "name": "punctuation.definition.sequence.end.yaml" } },
+					"name": "meta.flow-sequence.yaml",
+					"patterns": [
+						{ "include": "#flow-scalar" },
+						{ "include": "#comment" },
+						{ "match": ",", "name": "punctuation.separator.sequence.yaml" }
+					]
+				}
+			]
+		},
+		"flow-scalar": {
+			"patterns": [
+				{ "include": "#double-quoted" },
+				{ "include": "#single-quoted" },
+				{ "include": "#implicit-type" }
+			]
+		},
+		"double-quoted": {
+			"begin": "\"",
+			"beginCaptures": { "0": { "name": "punctuation.definition.string.begin.yaml" } },
+			"end": "\"",
+			"endCaptures": { "0": { "name": "punctuation.definition.string.end.yaml" } },
+			"name": "string.quoted.double.yaml",
+			"patterns": [
+				{ "match": "\\\\[\"\\\\bfnrt/0aevNLP_ xuU]", "name": "constant.character.escape.yaml" }
+			]
+		},
+		"single-quoted": {
+			"begin": "'",
+			"beginCaptures": { "0": { "name": "punctuation.definition.string.begin.yaml" } },
+			"end": "'(?!')",
+			"endCaptures": { "0": { "name": "punctuation.definition.string.end.yaml" } },
+			"name": "string.quoted.single.yaml",
+			"patterns": [
+				{ "match": "''", "name": "constant.character.escape.yaml" }
+			]
+		},
+		"implicit-type": {
+			"patterns": [
+				{
+					"match": "(?<=:\\s|^\\s*-\\s|,\\s)\\s*(true|false|True|False|TRUE|FALSE|yes|no|Yes|No|YES|NO|on|off|On|Off|ON|OFF)(?=\\s*$|\\s+#|\\s*[,\\]\\}])",
+					"captures": {
+						"1": { "name": "constant.language.boolean.yaml" }
+					}
+				},
+				{
+					"match": "(?<=:\\s|^\\s*-\\s|,\\s)\\s*(null|Null|NULL|~)(?=\\s*$|\\s+#|\\s*[,\\]\\}])",
+					"captures": {
+						"1": { "name": "constant.language.null.yaml" }
+					}
+				},
+				{
+					"match": "(?<=:\\s|^\\s*-\\s|,\\s)\\s*([-+]?(?:0x[0-9a-fA-F]+|0o[0-7]+|0b[01]+|[0-9]+(?:\\.[0-9]*)?(?:[eE][-+]?[0-9]+)?|\\.(?:inf|Inf|INF)|\\.(nan|NaN|NAN)))(?=\\s*$|\\s+#|\\s*[,\\]\\}])",
+					"captures": {
+						"1": { "name": "constant.numeric.yaml" }
+					}
+				}
+			]
+		}
+	}
+}

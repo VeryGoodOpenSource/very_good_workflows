@@ -1,10 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
-import 'package:jaspr_content/components/github_button.dart';
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
 import 'package:jaspr_content/jaspr_content.dart';
-import 'package:jaspr_content/theme.dart';
 
 import 'icon_link.dart';
 import 'nav_link.dart';
@@ -33,8 +31,8 @@ class HomepageLayout extends PageLayoutBase {
           items: [
             NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
             NavLink(text: 'VGV Dev Tools', href: 'https://verygood.ventures/dev'),
-            IconLink(href: 'https://verygood.ventures', iconSrc: '/images/vgv_logo_black.svg', alt: 'Very Good Ventures'),
-            GitHubButton(repo: 'VeryGoodOpenSource/very_good_workflows'),
+            IconLink(href: 'https://verygood.ventures', iconSrc: '/images/vgv_logo_black.svg', darkIconSrc: '/images/vgv_logo_fill.svg', alt: 'Very Good Ventures'),
+            IconLink(href: 'https://github.com/VeryGoodOpenSource/very_good_workflows', iconSrc: '/images/github.svg', darkIconSrc: '/images/github_white.svg', alt: 'GitHub'),
             ThemeToggle(),
           ],
         ),
@@ -124,7 +122,10 @@ class HomepageLayout extends PageLayoutBase {
         css('&').styles(
           position: Position.fixed(top: Unit.zero, left: Unit.zero, right: Unit.zero),
           zIndex: ZIndex(10),
-          raw: {'backdrop-filter': 'blur(8px)'},
+          raw: {
+            'backdrop-filter': 'blur(8px)',
+            'background-color': 'rgba(251, 252, 255, 0.7)',
+          },
         ),
       ]),
 
@@ -133,7 +134,7 @@ class HomepageLayout extends PageLayoutBase {
         css('&').styles(
           padding: Padding.only(top: 8.rem, bottom: 4.rem, left: 2.rem, right: 2.rem),
           textAlign: TextAlign.center,
-          backgroundColor: ContentColors.background,
+          backgroundColor: Color('var(--background)'),
         ),
         css.media(MediaQuery.all(maxWidth: 996.px), [
           css('&').styles(
@@ -156,7 +157,7 @@ class HomepageLayout extends PageLayoutBase {
       css('.hero-subtitle', [
         css('&').styles(
           margin: Margin.only(bottom: 1.rem),
-          color: ContentColors.lead,
+          color: Color('#606770'),
           fontSize: 1.25.rem,
         ),
       ]),
@@ -234,21 +235,25 @@ class HomepageLayout extends PageLayoutBase {
           lineHeight: 1.5.rem,
         ),
         css('h2').styles(
-          color: ContentColors.headings,
+          color: Color('#1c1e21'),
           fontSize: 1.5.rem,
           fontWeight: FontWeight.w600,
         ),
-        css('p').styles(color: ContentColors.text),
+        css('p').styles(color: Color('#1c1e21')),
       ]),
       css('.blog-link', [
         css('&').styles(
-          color: ContentColors.links,
+          color: Color('#2a48df'),
           fontWeight: FontWeight.bold,
           textDecoration: TextDecoration.none,
         ),
         css('&:hover').styles(textDecoration: TextDecoration(line: TextDecorationLine.underline)),
       ]),
     ]),
+    // Semi-transparent header in dark mode for homepage blur effect
+    css('[data-theme="dark"] .homepage .header-container').styles(
+      raw: {'background-color': 'rgba(8, 24, 66, 0.7)'},
+    ),
     // Hide the empty content section rendered by the Content component
     css('.homepage .content').styles(display: Display.none),
     // Dark mode: swap hero logos
@@ -264,5 +269,10 @@ class HomepageLayout extends PageLayoutBase {
     css('[data-theme="dark"] .cta-button:hover').styles(
       backgroundColor: Color('#4de0b8'),
     ),
+    // Dark mode: blog section text colors
+    css('[data-theme="dark"] .blog-content h2').styles(color: Color('#e3e3e3')),
+    css('[data-theme="dark"] .blog-content p').styles(color: Color('#e3e3e3')),
+    css('[data-theme="dark"] .blog-link').styles(color: Color('#66fbd1')),
+    css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#a0a0a0')),
   ];
 }

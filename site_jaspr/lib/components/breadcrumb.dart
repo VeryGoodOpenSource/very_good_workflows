@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/jaspr_content.dart';
-import 'package:jaspr_content/theme.dart';
 
 /// A breadcrumb navigation component for docs pages.
 ///
@@ -69,20 +68,20 @@ class Breadcrumb extends StatelessComponent {
     ]),
     css('.breadcrumb-link', [
       css('&').styles(
-        color: ContentColors.lead,
+        color: Color('#606770'),
         textDecoration: TextDecoration.none,
       ),
-      css('&:hover').styles(color: ContentColors.links),
+      css('&:hover').styles(color: Color('#2a48df')),
     ]),
     css('.breadcrumb-sep').styles(
       opacity: 0.5,
-      color: ContentColors.lead,
+      color: Color('#606770'),
       fontSize: 0.75.rem,
     ),
     css('.breadcrumb-current').styles(
       padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
       radius: BorderRadius.circular(12.px),
-      color: ContentColors.links,
+      color: Color('#2a48df'),
       fontSize: 0.8.rem,
       backgroundColor: Color('color-mix(in srgb, currentColor 8%, transparent)'),
     ),

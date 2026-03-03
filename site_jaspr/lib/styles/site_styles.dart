@@ -1,0 +1,335 @@
+import 'package:jaspr/dom.dart';
+
+/// Comprehensive site styles matching the original Docusaurus/Infima design.
+///
+/// This file provides ALL visual overrides in one place, replacing the scattered
+/// CSS rules that were previously in `_fontStyles` in `site_footer.dart`.
+///
+/// Color reference (from `site/src/css/custom.css`):
+///
+/// | Variable              | Light     | Dark      |
+/// |-----------------------|-----------|-----------|
+/// | primary               | #2a48df   | #66fbd1   |
+/// | primary-dark (hover)  | #1f3ccf   | #44fac7   |
+/// | background            | #fbfcff   | #020f30   |
+/// | navbar-bg             | #fbfcff   | #081842   |
+/// | code-bg (inline dark) | —         | #081842   |
+
+/// Global site styles injected into `<head>` via [Document.head].
+List<StyleRule> get siteStyles => [
+  // ───────────────────────────────────────────────────────────────────────
+  // 1. FONT & BASE
+  // ───────────────────────────────────────────────────────────────────────
+  css(':root').styles(
+    raw: {
+      '--content-font':
+          "'Poppins', ui-sans-serif, system-ui, sans-serif, "
+          "'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', "
+          "'Noto Color Emoji'",
+      // Infima monospace font stack
+      '--ifm-font-family-monospace':
+          "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', "
+          "'Courier New', monospace",
+    },
+  ),
+  css('html, body').styles(
+    raw: {
+      'font-family': 'var(--content-font)',
+      'line-height': '1.65',
+    },
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 2. TYPOGRAPHY OVERRIDES
+  //    Match Docusaurus/Infima heading sizes and spacing exactly.
+  //    jaspr_content's ContentTypography uses smaller headings (h1=2.25em,
+  //    h2=1.5em) and different line-height (1.75). Override to match Infima.
+  // ───────────────────────────────────────────────────────────────────────
+  // Heading sizes: Infima uses h1=3rem, h2=2rem, h3=1.5rem, h4=1.25rem
+  css('.content h1').styles(
+    fontSize: 3.rem,
+    lineHeight: 1.25.em,
+    raw: {'margin': '0 0 1.5625rem'},
+  ),
+  css('.content h2').styles(
+    fontSize: 2.rem,
+    lineHeight: 1.5.em,
+    raw: {'margin': '2.5rem 0 1.25rem'},
+  ),
+  css('.content h3').styles(
+    fontSize: 1.5.rem,
+    lineHeight: 1.5.em,
+    raw: {'margin': '2rem 0 0.75rem'},
+  ),
+  css('.content h4').styles(
+    fontSize: 1.25.rem,
+    lineHeight: 1.5.em,
+    raw: {'margin': '1.5rem 0 0.5rem'},
+  ),
+  // Content line-height: Infima uses 1.65 (not jaspr_content's 1.75)
+  css('.content').styles(raw: {'line-height': '1.65'}),
+  // Remove backtick pseudo-elements and quote marks (Docusaurus doesn't have these)
+  css('.content code::before').styles(raw: {'content': 'none'}),
+  css('.content code::after').styles(raw: {'content': 'none'}),
+  css('.content blockquote p:first-of-type::before').styles(
+    raw: {'content': 'none'},
+  ),
+  css('.content blockquote p:last-of-type::after').styles(
+    raw: {'content': 'none'},
+  ),
+  // Inline code: light gray background, smaller font (matching Infima)
+  // Use :not(pre) > code to avoid styling code inside pre blocks
+  css('.content :not(pre) > code').styles(
+    padding: Padding.only(
+      top: 0.1.rem,
+      right: 0.4.rem,
+      bottom: 0.1.rem,
+      left: 0.4.rem,
+    ),
+    radius: BorderRadius.circular(0.2.rem),
+    fontSize: Unit.percent(95),
+    raw: {
+      'background-color': 'rgba(0, 0, 0, 0.06)',
+      'font-family': 'var(--ifm-font-family-monospace)',
+    },
+  ),
+  // Pre/code blocks: match Docusaurus sizing (15.2px font, 22px line-height)
+  // Docusaurus: pre has no padding/margin, code has 16px padding.
+  // Jaspr base: pre has padding+margin from ContentTypography. Override to match.
+  css('.content pre').styles(
+    padding: Padding.zero,
+    fontSize: 0.95.rem,
+    raw: {
+      'font-family': 'var(--ifm-font-family-monospace)',
+      'line-height': '1.45',
+      'margin': '1.25rem 0',
+    },
+  ),
+  css('.content pre code').styles(
+    padding: Padding.all(1.rem),
+    fontSize: Unit.percent(100),
+    raw: {
+      'font-family': 'var(--ifm-font-family-monospace)',
+      'background': 'transparent',
+      'border-radius': '0',
+      'display': 'block',
+      'line-height': 'inherit',
+    },
+  ),
+  // Content links: primary color, no underline by default (matching original)
+  css('.content a').styles(
+    textDecoration: TextDecoration.none,
+  ),
+  css('.content a:hover').styles(
+    textDecoration: TextDecoration(line: TextDecorationLine.underline),
+  ),
+  // Blockquote: no italic, normal weight (matching Infima defaults)
+  css('.content blockquote').styles(
+    fontWeight: FontWeight.normal,
+    fontStyle: FontStyle.normal,
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 3. HEADER / NAVBAR
+  //    Docusaurus navbar: 60px height (3.75rem), padding 8px 16px
+  // ───────────────────────────────────────────────────────────────────────
+  // Opaque header background for both modes
+  css('.header-container').styles(backgroundColor: Color('#fbfcff')),
+  css('[data-theme="dark"] .header-container').styles(
+    backgroundColor: Color('#081842'),
+  ),
+  // Match Docusaurus navbar height: 60px with padding 0.5rem 1rem
+  css('.header').styles(
+    height: 3.75.rem,
+    padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.5.rem),
+  ),
+  // Hide the title text in the header (original only shows the logo badge)
+  css('.header-title > span').styles(display: Display.none),
+  // Hide the duplicate title, description, and image rendered from frontmatter
+  css('.content-header').styles(display: Display.none),
+  // Larger logo badge in the header (matching original)
+  css('.header-title img').styles(height: 2.5.rem),
+  // Vertically center nav links with icons in the header
+  css('.header .header-items').styles(alignItems: AlignItems.center),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 4. DARK MODE ICON SWITCHING
+  //    Show .icon-light in light mode, .icon-dark in dark mode.
+  // ───────────────────────────────────────────────────────────────────────
+  css('[data-theme="dark"] .icon-link .icon-light').styles(
+    display: Display.none,
+  ),
+  css('[data-theme="dark"] .icon-link .icon-dark').styles(
+    raw: {'display': 'flex !important'},
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 5. DARK MODE "GET STARTED" BUTTON
+  // ───────────────────────────────────────────────────────────────────────
+  css('[data-theme="dark"] .nav-button').styles(
+    color: Color('#020f30'),
+    backgroundColor: Color('#66fbd1'),
+  ),
+  css('[data-theme="dark"] .nav-button:hover').styles(
+    backgroundColor: Color('#44fac7'),
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 6. THEME TOGGLE
+  //    Reverse the icons: show current-mode icon instead of target-mode.
+  //    Light mode: hide moon (first span), show sun (last span).
+  //    Dark mode: show moon (first span), hide sun (last span).
+  // ───────────────────────────────────────────────────────────────────────
+  css('[data-theme="light"] .theme-toggle > span:first-child').styles(
+    raw: {'display': 'none !important'},
+  ),
+  css('[data-theme="light"] .theme-toggle > span:last-child').styles(
+    raw: {'display': 'inline !important'},
+  ),
+  css('[data-theme="dark"] .theme-toggle > span:first-child').styles(
+    raw: {'display': 'inline !important'},
+  ),
+  css('[data-theme="dark"] .theme-toggle > span:last-child').styles(
+    raw: {'display': 'none !important'},
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 7. DOCS LAYOUT SPACING & BREADCRUMB
+  //    Docusaurus: sticky navbar 60px + 16px gap = content at 76px.
+  //    Jaspr default: fixed header 60px + main padding-top 4rem + div
+  //    padding-top 2rem = 96px. Reduce to match Docusaurus.
+  // ───────────────────────────────────────────────────────────────────────
+  // Reduce main padding-top to exactly header height
+  css('.docs .main-container main').styles(
+    padding: Padding.only(top: 3.75.rem),
+  ),
+  // Reduce inner div padding to match Docusaurus 16px gap
+  css('.docs .main-container main > div').styles(
+    padding: Padding.only(top: 1.rem, left: 1.rem, right: 1.rem),
+  ),
+  // Breadcrumb: position above content using flexbox order
+  css('.content-container').styles(
+    display: Display.flex,
+    flexDirection: FlexDirection.column,
+  ),
+  css('.content-footer').styles(raw: {'display': 'contents'}),
+  css('.breadcrumb').styles(raw: {'order': '-1'}),
+  // Override breadcrumb font-size to 16px (matching Docusaurus)
+  css('.docs .breadcrumb').styles(fontSize: 1.rem),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 8. SIDEBAR
+  //    Match the original Docusaurus sidebar styling exactly.
+  //    Key colors:
+  //      Light active/hover: #2a48df
+  //      Dark active/hover:  #44fac7  (--ifm-color-primary-dark)
+  //    Docusaurus sidebar width: 300px (--doc-sidebar-width)
+  // ───────────────────────────────────────────────────────────────────────
+  // Sidebar width: match Docusaurus 300px (--doc-sidebar-width)
+  // Use high specificity to override DocsLayout's .docs .main-container .sidebar-container
+  css('.docs .main-container .sidebar-container').styles(width: 300.px),
+  css('.docs .sidebar').styles(width: 300.px),
+  // Sidebar border-right: match Docusaurus 1px solid border
+  css('.docs .sidebar-container').styles(
+    border: Border.only(
+      right: BorderSide(width: 1.px, color: Color('#dadde1')),
+    ),
+  ),
+  css('[data-theme="dark"] .docs .sidebar-container').styles(
+    border: Border.only(
+      right: BorderSide(width: 1.px, color: Color('#444950')),
+    ),
+  ),
+  // Adjust main padding-left to match wider sidebar (desktop only)
+  css.media(MediaQuery.all(minWidth: 1024.px), [
+    css('.docs .main-container main').styles(
+      padding: Padding.only(left: 300.px),
+    ),
+  ]),
+  // Links: inherit text color, no underline
+  css('.sidebar a').styles(
+    color: Color('var(--text)'),
+    textDecoration: TextDecoration.none,
+  ),
+  // All items: full opacity (jaspr_content defaults to 0.75)
+  css('.sidebar .sidebar-group li div').styles(opacity: 1),
+  // Hover: subtle background tint
+  css('.sidebar .sidebar-group li div:hover').styles(
+    backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+  ),
+  css('[data-theme="dark"] .sidebar .sidebar-group li div:hover').styles(
+    backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+  ),
+  // Active: colored text, medium weight, tinted background
+  css('.sidebar .sidebar-group li div.active').styles(
+    color: Color('#2a48df'),
+    fontWeight: FontWeight.w500,
+    raw: {'background-color': 'color-mix(in srgb, #2a48df 10%, transparent)'},
+  ),
+  css('.sidebar .sidebar-group li div.active a').styles(
+    color: Color('#2a48df'),
+  ),
+  // Dark mode: use #44fac7 for active (--ifm-color-primary-dark)
+  css('[data-theme="dark"] .sidebar .sidebar-group li div.active').styles(
+    color: Color('#44fac7'),
+    raw: {'background-color': 'color-mix(in srgb, #44fac7 10%, transparent)'},
+  ),
+  css('[data-theme="dark"] .sidebar .sidebar-group li div.active a').styles(
+    color: Color('#44fac7'),
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 9. CONTENT AREA LINKS
+  //    Primary color, no underline; underline on hover (matching original).
+  // ───────────────────────────────────────────────────────────────────────
+  css('.content-container a:not(.breadcrumb-link)').styles(
+    color: Color('var(--content-links)'),
+    textDecoration: TextDecoration.none,
+  ),
+  css('.content-container a:not(.breadcrumb-link):hover').styles(
+    textDecoration: TextDecoration(line: TextDecorationLine.underline),
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 10. DARK MODE: CODE BLOCKS & SCROLLBARS
+  // ───────────────────────────────────────────────────────────────────────
+  // Dark mode: all code (inline + blocks) uses navy background
+  // Matches Docusaurus custom.css: html[data-theme='dark'] code { background: #081842 }
+  css('[data-theme="dark"] code').styles(
+    raw: {'background': '#081842 !important'},
+  ),
+  css('[data-theme="dark"]').styles(
+    raw: {'scrollbar-color': '#ffffff30 transparent'},
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 11. FOOTER & PAGE NAVIGATION SPACING
+  //     Docusaurus: footer margin-top 64px, pagination margin-top 48px.
+  // ───────────────────────────────────────────────────────────────────────
+  css('.site-footer').styles(margin: Margin.only(top: 4.rem)),
+  css('.page-nav').styles(margin: Margin.only(top: 3.rem)),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 12. TABLE OF CONTENTS & CONTENT WIDTH
+  //     Docusaurus: 213px TOC, 12.8px font, 703px content width.
+  //     Jaspr default: 272px TOC, extra padding → only 588px content.
+  //     Fix TOC width and reduce padding to match Docusaurus layout.
+  // ───────────────────────────────────────────────────────────────────────
+  // TOC width: high specificity to override DocsLayout's nested selector
+  css('.docs .main-container main > div aside.toc').styles(width: 213.px),
+  css('.docs .main-container main > div aside.toc li').styles(
+    fontSize: 12.8.px,
+  ),
+  // Remove main-container side padding at wide viewports
+  css.media(MediaQuery.all(minWidth: 1280.px), [
+    css('.docs .main-container').styles(
+      padding: Padding.symmetric(horizontal: Unit.zero),
+    ),
+  ]),
+  // Content-container right padding: 32px gap to TOC (matching Docusaurus)
+  css.media(MediaQuery.all(minWidth: 1280.px), [
+    css('.docs .content-container').styles(
+      padding: Padding.only(right: 2.rem),
+    ),
+  ]),
+];

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lsof -ti:3000)",
+      "Bash(node capture.mjs)",
+      "Bash(node compare.mjs)",
+      "Bash(open /Users/john/projects/very_good_workflows/tools/visual-compare/screenshots/report.html)",
+      "Bash(node /private/tmp/check-h1.mjs)",
+      "Bash(node check-h1.mjs)",
+      "Bash(lsof -ti:4000)",
+      "Bash(npx serve build/jaspr -l 4000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4000/docs/overview/)",
+      "Bash(node capture.mjs --jaspr-only)",
+      "Bash(node inspect-dark.mjs)",
+      "Bash(node inspect-spr.mjs)",
+      "Bash(node inspect-width.mjs)"
+    ]
+  }
+}

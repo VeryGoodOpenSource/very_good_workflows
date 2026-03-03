@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/jaspr_content.dart';
-import 'package:jaspr_content/theme.dart';
 
 /// Previous/next navigation buttons for docs pages.
 ///
@@ -75,7 +74,7 @@ class PageNavigation extends StatelessComponent {
         raw: {'flex': '1'},
       ),
       css('&:hover').styles(
-        border: Border.all(color: ContentColors.links, width: 1.px),
+        border: Border.all(color: Color('#2a48df'), width: 1.px),
       ),
     ]),
     css('.page-nav-next').styles(
@@ -83,12 +82,12 @@ class PageNavigation extends StatelessComponent {
     ),
     css('.page-nav-label').styles(
       opacity: 0.6,
-      color: ContentColors.text,
+      color: Color('#1c1e21'),
       fontSize: 0.75.rem,
       fontWeight: FontWeight.w600,
     ),
     css('.page-nav-title').styles(
-      color: ContentColors.links,
+      color: Color('#2a48df'),
       fontWeight: FontWeight.w600,
     ),
   ];
