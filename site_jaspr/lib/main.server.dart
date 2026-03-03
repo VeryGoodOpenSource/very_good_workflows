@@ -14,6 +14,8 @@ import 'package:jaspr_content/components/callout.dart';
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
 import 'package:jaspr_content/components/sidebar.dart';
+
+import 'components/collapsible_sidebar.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
@@ -69,17 +71,13 @@ void main() {
               ThemeToggle(),
             ],
           ),
-          sidebar: Sidebar(
-            groups: [
-              SidebarGroup(
-                links: [
-                  SidebarLink(text: 'Overview', href: '/docs/overview'),
-                  SidebarLink(text: 'Workflows', href: '/docs/workflows'),
-                ],
-              ),
-              SidebarGroup(
-                title: 'Workflows',
-                links: [
+          sidebar: CollapsibleSidebar(
+            items: [
+              SidebarEntry(text: 'Overview', href: '/docs/overview'),
+              SidebarEntry(
+                text: 'Workflows',
+                href: '/docs/workflows',
+                children: [
                   SidebarLink(text: 'Dart Package', href: '/docs/workflows/dart_package'),
                   SidebarLink(text: 'Dart Pub Publish', href: '/docs/workflows/dart_pub_publish'),
                   SidebarLink(text: 'Flutter Package', href: '/docs/workflows/flutter_package'),

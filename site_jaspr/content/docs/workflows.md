@@ -3,7 +3,7 @@ title: "Workflows"
 description: "Learn about all of the workflows that Very Good Workflows supports."
 ---
 
-# Workflows
+# Workflows 🦄
 
 Learn about all of the workflows that Very Good Workflows supports.
 

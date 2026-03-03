@@ -23,6 +23,7 @@ class SiteFooter extends StatelessComponent {
           href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap',
         ),
         Style(styles: siteStyles),
+        script(defer: true, content: _tocScrollspy),
       ]),
       footer(classes: 'site-footer', [
         p([
@@ -35,6 +36,31 @@ class SiteFooter extends StatelessComponent {
       ]),
     ]);
   }
+
+  /// Inline script that highlights the active TOC link based on scroll position.
+  static const _tocScrollspy = '''
+(function(){
+  var links = document.querySelectorAll('.toc a');
+  if (!links.length) return;
+  var ids = [];
+  links.forEach(function(a) {
+    var h = a.getAttribute('href');
+    if (h) { var id = h.split('#')[1]; if (id) ids.push({id:id, el:a}); }
+  });
+  if (!ids.length) return;
+  function update() {
+    var active = null;
+    for (var i = 0; i < ids.length; i++) {
+      var t = document.getElementById(ids[i].id);
+      if (t && t.getBoundingClientRect().top <= 100) active = i;
+    }
+    links.forEach(function(a) { a.classList.remove('toc-active'); });
+    if (active !== null) ids[active].el.classList.add('toc-active');
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+''';
 
   @css
   static List<StyleRule> get styles => [
@@ -52,7 +78,11 @@ class SiteFooter extends StatelessComponent {
       ),
     ]),
     css('[data-theme="dark"] .site-footer').styles(
+      color: Color('#e3e3e3'),
       backgroundColor: Color('#020f30'),
+    ),
+    css('[data-theme="dark"] .site-footer a').styles(
+      color: Color('#44fac7'),
     ),
   ];
 }

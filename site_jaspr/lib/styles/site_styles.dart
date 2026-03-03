@@ -48,11 +48,13 @@ List<StyleRule> get siteStyles => [
   // Heading sizes: Infima uses h1=3rem, h2=2rem, h3=1.5rem, h4=1.25rem
   css('.content h1').styles(
     fontSize: 3.rem,
+    fontWeight: FontWeight.w700,
     lineHeight: 1.25.em,
     raw: {'margin': '0 0 1.5625rem'},
   ),
   css('.content h2').styles(
     fontSize: 2.rem,
+    fontWeight: FontWeight.w700,
     lineHeight: 1.5.em,
     raw: {'margin': '2.5rem 0 1.25rem'},
   ),
@@ -147,10 +149,14 @@ List<StyleRule> get siteStyles => [
   css('.header-title > span').styles(display: Display.none),
   // Hide the duplicate title, description, and image rendered from frontmatter
   css('.content-header').styles(display: Display.none),
-  // Larger logo badge in the header (matching original)
-  css('.header-title img').styles(height: 2.5.rem),
+  // Larger logo badge in the header (matching Docusaurus 32px)
+  css('.header .header-title img').styles(height: 2.rem),
   // Vertically center nav links with icons in the header
   css('.header .header-items').styles(alignItems: AlignItems.center),
+  // Hide header nav items on narrow viewports
+  css.media(MediaQuery.all(maxWidth: 1000.px), [
+    css('.header .header-items').styles(display: Display.none),
+  ]),
 
   // ───────────────────────────────────────────────────────────────────────
   // 4. DARK MODE ICON SWITCHING
@@ -172,6 +178,29 @@ List<StyleRule> get siteStyles => [
   ),
   css('[data-theme="dark"] .nav-button:hover').styles(
     backgroundColor: Color('#44fac7'),
+  ),
+  // Nav links (e.g. "VGV Dev Tools"): lighter weight, slightly smaller
+  css('.nav-link:not(.nav-button)').styles(
+    fontSize: 0.975.rem,
+    fontWeight: FontWeight.w400,
+  ),
+  // Dark mode: nav links should be white
+  css('[data-theme="dark"] .nav-link:not(.nav-button)').styles(color: Colors.white),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 5b. DARK MODE BREADCRUMB
+  // ───────────────────────────────────────────────────────────────────────
+  css('[data-theme="dark"] .breadcrumb-current').styles(
+    color: Color('#44fac7'),
+  ),
+  css('[data-theme="dark"] .breadcrumb-link').styles(
+    color: Color('#a0a0a0'),
+  ),
+  css('[data-theme="dark"] .breadcrumb-link:hover').styles(
+    color: Color('#44fac7'),
+  ),
+  css('[data-theme="dark"] .breadcrumb-sep').styles(
+    color: Color('#a0a0a0'),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -308,6 +337,21 @@ List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   css('.site-footer').styles(margin: Margin.only(top: 4.rem)),
   css('.page-nav').styles(margin: Margin.only(top: 3.rem)),
+  // Dark mode: page nav prev/next blocks
+  css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next')
+      .styles(
+    border: Border.all(color: Color('#444950'), width: 1.px),
+  ),
+  css('[data-theme="dark"] .page-nav-prev:hover, [data-theme="dark"] .page-nav-next:hover')
+      .styles(
+    border: Border.all(color: Color('#44fac7'), width: 1.px),
+  ),
+  css('[data-theme="dark"] .page-nav-label').styles(
+    color: Colors.white,
+  ),
+  css('[data-theme="dark"] .page-nav-title').styles(
+    color: Color('#44fac7'),
+  ),
 
   // ───────────────────────────────────────────────────────────────────────
   // 12. TABLE OF CONTENTS & CONTENT WIDTH
@@ -315,10 +359,63 @@ List<StyleRule> get siteStyles => [
   //     Jaspr default: 272px TOC, extra padding → only 588px content.
   //     Fix TOC width and reduce padding to match Docusaurus layout.
   // ───────────────────────────────────────────────────────────────────────
-  // TOC width: high specificity to override DocsLayout's nested selector
+  // TOC: hide "On this page" heading (Docusaurus doesn't show it)
+  css('.docs .main-container main > div aside.toc h3').styles(
+    display: Display.none,
+  ),
+  // Show TOC at >=1000px (DocsLayout default is 1280px)
+  css.media(MediaQuery.all(minWidth: 1000.px), [
+    css('.docs .main-container main > div aside.toc').styles(
+      display: Display.block,
+    ),
+  ]),
+  // TOC: match Docusaurus styling (left border, link colors, sub-item pills)
   css('.docs .main-container main > div aside.toc').styles(width: 213.px),
+  css('.docs .main-container main > div aside.toc > div').styles(
+    padding: Padding.only(left: 0.5.rem),
+    border: Border.only(
+      left: BorderSide(width: 1.px, color: Color('#dadde1')),
+    ),
+  ),
   css('.docs .main-container main > div aside.toc li').styles(
     fontSize: 12.8.px,
+  ),
+  // TOC links: gray by default, blue when active (matching Docusaurus)
+  css('.toc a').styles(
+    color: Color('#525860'),
+    textDecoration: TextDecoration.none,
+  ),
+  css('.toc a:hover').styles(
+    color: Color('#2a48df'),
+  ),
+  css('.toc a.toc-active').styles(
+    color: Color('#2a48df'),
+    fontWeight: FontWeight.w500,
+  ),
+  // TOC sub-items (h3+): rounded pill border (matching Docusaurus nested items)
+  css('.toc li[style*="0.75"] a').styles(
+    padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
+    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    radius: BorderRadius.circular(12.px),
+    fontSize: 11.px,
+  ),
+  // Dark mode TOC
+  css('[data-theme="dark"] .docs .main-container main > div aside.toc > div').styles(
+    border: Border.only(
+      left: BorderSide(width: 1.px, color: Color('#444950')),
+    ),
+  ),
+  css('[data-theme="dark"] .toc a').styles(
+    color: Color('#a0a0a0'),
+  ),
+  css('[data-theme="dark"] .toc a:hover').styles(
+    color: Color('#44fac7'),
+  ),
+  css('[data-theme="dark"] .toc a.toc-active').styles(
+    color: Color('#44fac7'),
+  ),
+  css('[data-theme="dark"] .toc li[style] a').styles(
+    border: Border.none,
   ),
   // Remove main-container side padding at wide viewports
   css.media(MediaQuery.all(minWidth: 1280.px), [

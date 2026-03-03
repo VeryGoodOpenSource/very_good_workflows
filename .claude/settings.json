@@ -13,7 +13,12 @@
       "Bash(node capture.mjs --jaspr-only)",
       "Bash(node inspect-dark.mjs)",
       "Bash(node inspect-spr.mjs)",
-      "Bash(node inspect-width.mjs)"
+      "Bash(node inspect-width.mjs)",
+      "Bash(dart run jaspr_cli:jaspr build)",
+      "Bash(pkill -f build_daemon)",
+      "Bash(pkill -f dart.*build_runner)",
+      "Bash(curl -s http://localhost:4000/docs/overview/)",
+      "mcp__plugin_wingspan_dart__dart_fix"
     ]
   }
 }
