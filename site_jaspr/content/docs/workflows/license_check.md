@@ -9,7 +9,7 @@ image: /images/meta/open-graph.png
 At VGV, we keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects.
 
 <Info>
-The License Check functionality is powered by [Very Good CLI's license checker](https://cli.vgv.dev/docs/commands/check_licenses), for a deeper understanding of some [inputs](#inputs) refer to its [documentation](https://cli.vgv.dev/docs/commands/check_licenses).
+  The License Check functionality is powered by <a href="https://cli.vgv.dev/docs/commands/check_licenses">Very Good CLI's license checker</a>, for a deeper understanding of some <a href="#inputs">inputs</a> refer to its <a href="https://cli.vgv.dev/docs/commands/check_licenses">documentation</a>.
 </Info>
 
 ## Steps
