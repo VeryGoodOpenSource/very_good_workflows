@@ -16,7 +16,7 @@
   ],
   "useGitignore": true,
   "ignorePaths": [
-    "site_jaspr/grammars/**"
+    "**/*.tmLanguage.json"
   ],
   "words": [
     "amannn",
