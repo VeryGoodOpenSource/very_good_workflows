@@ -18,6 +18,7 @@ import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/breadcrumb.dart' as _breadcrumb;
 import 'package:site_jaspr/components/collapsible_sidebar.dart'
     as _collapsible_sidebar;
+import 'package:site_jaspr/components/edit_page_link.dart' as _edit_page_link;
 import 'package:site_jaspr/components/icon_link.dart' as _icon_link;
 import 'package:site_jaspr/components/nav_link.dart' as _nav_link;
 import 'package:site_jaspr/components/page_navigation.dart' as _page_navigation;
@@ -66,6 +67,7 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._theme_toggle.ThemeToggleState.styles,
     ..._breadcrumb.Breadcrumb.styles,
     ..._collapsible_sidebar.CollapsibleSidebar.styles,
+    ..._edit_page_link.EditPageLink.styles,
     ..._icon_link.IconLink.styles,
     ..._nav_link.NavLink.styles,
     ..._page_navigation.PageNavigation.styles,

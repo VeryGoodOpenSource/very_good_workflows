@@ -21,6 +21,7 @@ import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
 
 import 'components/breadcrumb.dart';
+import 'components/edit_page_link.dart';
 import 'components/homepage_layout.dart';
 import 'components/icon_link.dart';
 import 'components/nav_link.dart';
@@ -66,8 +67,18 @@ void main() {
             items: [
               NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
               NavLink(text: 'VGV Dev Tools', href: 'https://verygood.ventures/dev'),
-              IconLink(href: 'https://verygood.ventures', iconSrc: '/images/vgv_logo_black.svg', darkIconSrc: '/images/vgv_logo_fill.svg', alt: 'Very Good Ventures'),
-              IconLink(href: 'https://github.com/VeryGoodOpenSource/very_good_workflows', iconSrc: '/images/github.svg', darkIconSrc: '/images/github_white.svg', alt: 'GitHub'),
+              IconLink(
+                href: 'https://verygood.ventures',
+                iconSrc: '/images/vgv_logo_black.svg',
+                darkIconSrc: '/images/vgv_logo_fill.svg',
+                alt: 'Very Good Ventures',
+              ),
+              IconLink(
+                href: 'https://github.com/VeryGoodOpenSource/very_good_workflows',
+                iconSrc: '/images/github.svg',
+                darkIconSrc: '/images/github_white.svg',
+                alt: 'GitHub',
+              ),
               ThemeToggle(),
             ],
           ),
@@ -91,7 +102,12 @@ void main() {
               ),
             ],
           ),
-          footer: Component.fragment([const Breadcrumb(), const PageNavigation(), const SiteFooter()]),
+          footer: Component.fragment([
+            const Breadcrumb(),
+            const EditPageLink(),
+            const PageNavigation(),
+            const SiteFooter(),
+          ]),
         ),
         const HomepageLayout(),
       ],
