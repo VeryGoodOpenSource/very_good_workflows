@@ -318,6 +318,29 @@ List<StyleRule> get siteStyles => [
   css('.content-container a:not(.breadcrumb-link):hover').styles(
     textDecoration: TextDecoration(line: TextDecorationLine.underline),
   ),
+  // Callout links: inherit foreground color + always underlined (Infima alert behavior).
+  // Overrides the blue `.content-container a` rule above via cascade order.
+  css('.content-container .doc-callout a').styles(
+    color: Color.inherit,
+    fontWeight: FontWeight.w400,
+    textDecoration: TextDecoration(line: TextDecorationLine.underline),
+  ),
+  css('.content-container .doc-callout a:hover').styles(
+    raw: {'text-decoration-thickness': '2px'},
+  ),
+  // Underline color matches the left border color per type.
+  css('.content-container .doc-callout-info a').styles(
+    raw: {'text-decoration-color': '#54c7ec'},
+  ),
+  css('.content-container .doc-callout-warning a').styles(
+    raw: {'text-decoration-color': '#e6a700'},
+  ),
+  css('.content-container .doc-callout-error a').styles(
+    raw: {'text-decoration-color': '#fa5252'},
+  ),
+  css('.content-container .doc-callout-success a').styles(
+    raw: {'text-decoration-color': '#00a400'},
+  ),
 
   // ───────────────────────────────────────────────────────────────────────
   // 10. DARK MODE: CODE BLOCKS & SCROLLBARS

@@ -10,7 +10,6 @@ import 'dart:io';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
-import 'package:jaspr_content/components/callout.dart';
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
 import 'package:jaspr_content/components/sidebar.dart';
@@ -21,6 +20,7 @@ import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
 
 import 'components/breadcrumb.dart';
+import 'components/doc_callout.dart';
 import 'components/edit_page_link.dart';
 import 'components/homepage_layout.dart';
 import 'components/icon_link.dart';
@@ -50,7 +50,7 @@ void main() {
         TableOfContentsExtension(),
       ],
       components: [
-        Callout(),
+        DocCallout(),
         SafeCodeBlock(
           grammars: {
             'yaml': File('grammars/yaml.tmLanguage.json').readAsStringSync(),

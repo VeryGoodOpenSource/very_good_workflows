@@ -9,7 +9,6 @@ import 'package:jaspr_content/components/_internal/code_block_copy_button.dart'
     as _code_block_copy_button;
 import 'package:jaspr_content/components/_internal/zoomable_image.dart'
     as _zoomable_image;
-import 'package:jaspr_content/components/callout.dart' as _callout;
 import 'package:jaspr_content/components/code_block.dart' as _code_block;
 import 'package:jaspr_content/components/image.dart' as _image;
 import 'package:jaspr_content/components/sidebar_toggle_button.dart'
@@ -18,6 +17,7 @@ import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/breadcrumb.dart' as _breadcrumb;
 import 'package:site_jaspr/components/collapsible_sidebar.dart'
     as _collapsible_sidebar;
+import 'package:site_jaspr/components/doc_callout.dart' as _doc_callout;
 import 'package:site_jaspr/components/edit_page_link.dart' as _edit_page_link;
 import 'package:site_jaspr/components/icon_link.dart' as _icon_link;
 import 'package:site_jaspr/components/nav_link.dart' as _nav_link;
@@ -61,12 +61,12 @@ ServerOptions get defaultServerOptions => ServerOptions(
   },
   styles: () => [
     ..._zoomable_image.ZoomableImage.styles,
-    ..._callout.Callout.styles,
     ..._code_block.CodeBlock.styles,
     ..._image.Image.styles,
     ..._theme_toggle.ThemeToggleState.styles,
     ..._breadcrumb.Breadcrumb.styles,
     ..._collapsible_sidebar.CollapsibleSidebar.styles,
+    ..._doc_callout.DocCallout.styles,
     ..._edit_page_link.EditPageLink.styles,
     ..._icon_link.IconLink.styles,
     ..._nav_link.NavLink.styles,
