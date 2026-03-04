@@ -122,10 +122,7 @@ class HomepageLayout extends PageLayoutBase {
         css('&').styles(
           position: Position.fixed(top: Unit.zero, left: Unit.zero, right: Unit.zero),
           zIndex: ZIndex(10),
-          raw: {
-            'backdrop-filter': 'blur(8px)',
-            'background-color': 'rgba(255, 255, 255, 0.7)',
-          },
+          backgroundColor: Colors.white,
         ),
       ]),
 
@@ -250,9 +247,9 @@ class HomepageLayout extends PageLayoutBase {
         css('&:hover').styles(textDecoration: TextDecoration(line: TextDecorationLine.underline)),
       ]),
     ]),
-    // Semi-transparent header in dark mode for homepage blur effect
+    // Opaque header in dark mode for homepage
     css('[data-theme="dark"] .homepage .header-container').styles(
-      raw: {'background-color': 'rgba(8, 24, 66, 0.7)'},
+      backgroundColor: Color('#081842'),
     ),
     // Hide the empty content section rendered by the Content component
     css('.homepage .content').styles(display: Display.none),
