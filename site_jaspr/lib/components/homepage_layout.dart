@@ -192,7 +192,7 @@ class HomepageLayout extends PageLayoutBase {
       css('.blog-section', [
         css('&').styles(
           display: Display.flex,
-          padding: Padding.symmetric(horizontal: 3.rem, vertical: 4.rem),
+          padding: Padding.only(top: 4.rem, bottom: 6.5.rem, left: 3.rem, right: 3.rem),
           flexDirection: FlexDirection.column,
           alignItems: AlignItems.center,
           gap: Gap(row: 0.5.rem),
@@ -228,18 +228,20 @@ class HomepageLayout extends PageLayoutBase {
           display: Display.flex,
           flexDirection: FlexDirection.column,
           alignItems: AlignItems.start,
-          gap: Gap(row: 0.75.rem),
+          gap: Gap(row: 1.rem),
           lineHeight: 1.5.rem,
         ),
         css('h2').styles(
           color: Color('#1c1e21'),
           fontSize: 1.5.rem,
           fontWeight: FontWeight.w600,
+          lineHeight: 2.rem,
         ),
         css('p').styles(color: Color('#1c1e21')),
       ]),
       css('.blog-link', [
         css('&').styles(
+          margin: Margin.only(top: 0.3.rem),
           color: Color('#2a48df'),
           fontWeight: FontWeight.bold,
           textDecoration: TextDecoration.none,
