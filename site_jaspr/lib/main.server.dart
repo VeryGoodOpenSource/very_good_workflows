@@ -83,6 +83,25 @@ void main() {
             ],
           ),
           sidebar: CollapsibleSidebar(
+            // Mirror the desktop header items in the mobile sidebar panel so
+            // they remain accessible on narrow viewports (< 1024 px).
+            mobileNavItems: [
+              NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
+              NavLink(text: 'VGV Dev Tools', href: 'https://verygood.ventures/dev'),
+              IconLink(
+                href: 'https://verygood.ventures',
+                iconSrc: '/images/vgv_logo_black.svg',
+                darkIconSrc: '/images/vgv_logo_fill.svg',
+                alt: 'Very Good Ventures',
+              ),
+              IconLink(
+                href: 'https://github.com/VeryGoodOpenSource/very_good_workflows',
+                iconSrc: '/images/github.svg',
+                darkIconSrc: '/images/github_white.svg',
+                alt: 'GitHub',
+              ),
+              ThemeToggle(),
+            ],
             items: [
               SidebarEntry(text: 'Overview', href: '/docs/overview'),
               SidebarEntry(

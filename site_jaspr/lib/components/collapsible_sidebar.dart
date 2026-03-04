@@ -28,15 +28,30 @@ class SidebarEntry {
 ///   - The active item and expanded category are determined server-side from
 ///     the current page URL; client-side toggling uses an inline script.
 ///
+/// On mobile (< 1024 px) a header bar is rendered at the top of the panel
+/// containing [mobileNavItems] (all the header nav items — links, icons,
+/// ThemeToggle, etc.) and the close button. This mirrors Docusaurus's
+/// `navbar-sidebar__brand` + `navbar-sidebar__items` structure.
+///
 /// Styling follows Infima's sidebar tokens:
 ///   - Item padding: 0.375rem 0.75rem, border-radius: 0.25rem
 ///   - Active: var(--primary) color, w600, 10 % primary tint background
 ///   - Category headers: always w600 (semibold), whether expanded or not
 ///   - Hover: rgba(0,0,0,0.05) light / rgba(255,255,255,0.05) dark
 class CollapsibleSidebar extends StatelessComponent {
-  const CollapsibleSidebar({required this.items, super.key});
+  const CollapsibleSidebar({
+    required this.items,
+    this.mobileNavItems = const [],
+    super.key,
+  });
 
   final List<SidebarEntry> items;
+
+  /// Nav items rendered in the mobile-only header bar (hidden on desktop).
+  ///
+  /// Pass the same items as the desktop header (NavLinks, IconLinks,
+  /// ThemeToggle, etc.) so they remain accessible on narrow viewports.
+  final List<Component> mobileNavItems;
 
   @override
   Component build(BuildContext context) {
@@ -47,25 +62,36 @@ class CollapsibleSidebar extends StatelessComponent {
         script(defer: true, content: _toggleScript),
       ]),
       nav(classes: 'sidebar', [
-        // Close button for the mobile overlay.
-        button(classes: 'sidebar-close', [
-          svg(
-            viewBox: '0 0 24 24',
-            attributes: {
-              'width': '20',
-              'height': '20',
-              'fill': 'none',
-              'stroke': 'currentColor',
-              'stroke-width': '2',
-            },
+        // Mobile-only header: nav items (flex row) + close button.
+        // Mirrors Docusaurus's navbar-sidebar__brand / navbar-sidebar__items.
+        // Hidden on desktop (≥ 1024 px) via CSS.
+        div(classes: 'sidebar-mobile-header', [
+          div(classes: 'sidebar-mobile-nav', mobileNavItems),
+          // Close button — the SidebarToggleButton listens for .sidebar-close
+          // clicks to collapse the panel.
+          button(
+            classes: 'sidebar-close',
+            attributes: {'type': 'button', 'aria-label': 'Close menu'},
             [
-              line(
-                attributes: {'x1': '18', 'y1': '6', 'x2': '6', 'y2': '18'},
-                [],
-              ),
-              line(
-                attributes: {'x1': '6', 'y1': '6', 'x2': '18', 'y2': '18'},
-                [],
+              svg(
+                viewBox: '0 0 24 24',
+                attributes: {
+                  'width': '20',
+                  'height': '20',
+                  'fill': 'none',
+                  'stroke': 'currentColor',
+                  'stroke-width': '2',
+                },
+                [
+                  line(
+                    attributes: {'x1': '18', 'y1': '6', 'x2': '6', 'y2': '18'},
+                    [],
+                  ),
+                  line(
+                    attributes: {'x1': '6', 'y1': '6', 'x2': '18', 'y2': '18'},
+                    [],
+                  ),
+                ],
               ),
             ],
           ),
@@ -168,21 +194,68 @@ class CollapsibleSidebar extends StatelessComponent {
     // ── Sidebar container ────────────────────────────────────────────────────
     css('.sidebar', [
       css('&').styles(
-        padding: Padding.only(bottom: 1.25.rem, top: 0.75.rem),
         position: Position.relative(),
+        padding: Padding.only(bottom: 1.25.rem),
         fontSize: 0.875.rem,
       ),
-      css.media(MediaQuery.all(minWidth: 1024.px), [
-        css('&').styles(padding: Padding.only(top: Unit.zero)),
-      ]),
-      css('.sidebar-close', [
+
+      // ── Mobile header: nav items + close button ──────────────────────────
+      // Shown only on mobile (< 1024 px). Mirrors Docusaurus's
+      // .navbar-sidebar__brand / .navbar-sidebar__items structure.
+      css('.sidebar-mobile-header', [
         css('&').styles(
-          position: Position.absolute(top: 0.75.rem, right: 0.75.rem),
+          display: Display.flex,
+          padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.5.rem),
+          border: Border.only(
+            bottom: BorderSide(width: 1.px, color: Color('#dadde1')),
+          ),
+          alignItems: AlignItems.center,
+          raw: {'flex-shrink': '0'},
         ),
         css.media(MediaQuery.all(minWidth: 1024.px), [
           css('&').styles(display: Display.none),
         ]),
       ]),
+
+      // Flex row inside the mobile header that holds the nav item components.
+      css('.sidebar-mobile-nav', [
+        css('&').styles(
+          display: Display.flex,
+          alignItems: AlignItems.center,
+          gap: Gap.column(0.25.rem),
+          flex: Flex(grow: 1),
+          raw: {'flex-wrap': 'wrap'},
+        ),
+      ]),
+
+      // ── Close button (inside mobile header) ─────────────────────────────
+      // Styled as a square icon button; the SidebarToggleButton client
+      // component listens for .sidebar-close clicks to dismiss the panel.
+      css('.sidebar-close', [
+        css('&').styles(
+          display: Display.flex,
+          width: 2.rem,
+          height: 2.rem,
+          radius: BorderRadius.circular(0.25.rem),
+          justifyContent: JustifyContent.center,
+          alignItems: AlignItems.center,
+          color: Color.inherit,
+          raw: {
+            'flex-shrink': '0',
+            'border': 'none',
+            'background': 'none',
+            'cursor': 'pointer',
+            'opacity': '0.6',
+            'transition': 'opacity 0.15s ease, background 0.15s ease',
+          },
+        ),
+        css('&:hover').styles(
+          opacity: 0.9,
+          backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+        ),
+      ]),
+
+      // ── Sidebar link group ───────────────────────────────────────────────
       css('.sidebar-group', [
         css('&').styles(
           padding: Padding.only(top: 1.5.rem, right: 0.75.rem),
@@ -288,12 +361,20 @@ class CollapsibleSidebar extends StatelessComponent {
 
     // ── Dark mode overrides ──────────────────────────────────────────────────
     // Active uses var(--primary) which auto-switches via ContentTheme; only
-    // hover backgrounds need explicit dark overrides.
+    // hover backgrounds and borders need explicit dark overrides.
     css('[data-theme="dark"] .sidebar-link:hover').styles(
       backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
     ),
     css('[data-theme="dark"] .sidebar-caret:hover').styles(
       backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+    ),
+    css('[data-theme="dark"] .sidebar-close:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+    ),
+    css('[data-theme="dark"] .sidebar-mobile-header').styles(
+      border: Border.only(
+        bottom: BorderSide(width: 1.px, color: Color('#444950')),
+      ),
     ),
   ];
 }

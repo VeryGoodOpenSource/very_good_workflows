@@ -193,6 +193,13 @@ List<StyleRule> get siteStyles => [
   ),
   // Dark mode: nav links should be white
   css('[data-theme="dark"] .nav-link:not(.nav-button)').styles(color: Colors.white),
+  // Dark mode mobile: "Get Started" becomes a plain transparent link, matching
+  // Docusaurus custom.css html[data-theme='dark'] @media (max-width:996px) rule.
+  css.media(MediaQuery.all(maxWidth: 996.px), [
+    css('[data-theme="dark"] .nav-button').styles(
+      raw: {'background-color': 'transparent', 'color': '#ffffff'},
+    ),
+  ]),
 
   // ───────────────────────────────────────────────────────────────────────
   // 5b. DARK MODE BREADCRUMB
@@ -279,6 +286,28 @@ List<StyleRule> get siteStyles => [
       padding: Padding.only(left: 300.px),
     ),
   ]),
+  // Desktop: align sidebar top with bottom of 3.75rem header.
+  // DocsLayout defaults to top: 4rem — override to close the 4px gap.
+  css.media(MediaQuery.all(minWidth: 1024.px), [
+    css('.docs .main-container .sidebar-container').styles(
+      raw: {'top': '3.75rem'},
+    ),
+  ]),
+  // Mobile: 83 vw width (matches Docusaurus --ifm-navbar-sidebar-width) + z-index
+  // above the fixed header (z-index 10) so the panel slides over the navbar.
+  css.media(MediaQuery.all(maxWidth: 1023.px), [
+    css('.docs .main-container .sidebar-container').styles(
+      zIndex: ZIndex(200),
+      raw: {'width': '83vw'},
+    ),
+  ]),
+  // Fix DocsLayout's sidebar-barrier:
+  //   • position:fixed so it covers the full viewport (including the header).
+  //   • background:#000 so that at DocsLayout's opacity:0.5 it reads as
+  //     rgba(0,0,0,0.5) — the standard Docusaurus dark scrim.
+  css('.docs .main-container .sidebar-barrier').styles(
+    raw: {'position': 'fixed', 'inset': '0', 'background': '#000'},
+  ),
 
   // ───────────────────────────────────────────────────────────────────────
   // 9. CONTENT AREA LINKS
