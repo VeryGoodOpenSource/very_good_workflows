@@ -70,6 +70,8 @@ List<StyleRule> get siteStyles => [
   ),
   // Content line-height: Infima uses 1.65 (not jaspr_content's 1.75)
   css('.content').styles(raw: {'line-height': '1.65'}),
+  // Paragraphs: Docusaurus uses bottom-only margin (1.25rem); Jaspr default is top+bottom
+  css('.content p').styles(raw: {'margin': '0 0 1.25rem'}),
   // Remove backtick pseudo-elements and quote marks (Docusaurus doesn't have these)
   css('.content code::before').styles(raw: {'content': 'none'}),
   css('.content code::after').styles(raw: {'content': 'none'}),
@@ -330,7 +332,10 @@ List<StyleRule> get siteStyles => [
   //     Docusaurus: footer margin-top 64px, pagination margin-top 48px.
   // ───────────────────────────────────────────────────────────────────────
   css('.site-footer').styles(margin: Margin.only(top: 4.rem)),
-  css('.page-nav').styles(margin: Margin.only(top: 3.rem)),
+  css('.page-nav').styles(
+    padding: Padding.zero,
+    margin: Margin.only(top: 3.rem),
+  ),
   // Dark mode: page nav prev/next blocks
   css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next')
       .styles(
@@ -581,9 +586,8 @@ List<StyleRule> get siteStyles => [
     ),
   ]),
   // Content-container right padding: 32px gap to TOC (matching Docusaurus)
-  css.media(MediaQuery.all(minWidth: 1280.px), [
-    css('.docs .content-container').styles(
-      padding: Padding.only(right: 2.rem),
-    ),
-  ]),
+  // Must use high-specificity selector to override jaspr_content's 3rem default
+  css('.docs .main-container main > div .content-container').styles(
+    padding: Padding.only(right: 2.rem),
+  ),
 ];
