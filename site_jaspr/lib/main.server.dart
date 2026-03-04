@@ -21,6 +21,7 @@ import 'package:jaspr_content/theme.dart';
 
 import 'components/breadcrumb.dart';
 import 'components/doc_callout.dart';
+import 'extensions/code_aware_toc.dart';
 import 'components/edit_page_link.dart';
 import 'components/homepage_layout.dart';
 import 'components/icon_link.dart';
@@ -48,6 +49,7 @@ void main() {
       extensions: [
         HeadingAnchorsExtension(),
         TableOfContentsExtension(),
+        CodeAwareTocPostProcessor(),
       ],
       components: [
         DocCallout(),

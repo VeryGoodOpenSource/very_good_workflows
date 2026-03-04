@@ -356,8 +356,8 @@ List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   // Sidebar width: match Docusaurus 300px (--doc-sidebar-width)
   // Use high specificity to override DocsLayout's .docs .main-container .sidebar-container
-  css('.docs .main-container .sidebar-container').styles(width: 300.px),
-  css('.docs .sidebar').styles(width: 300.px),
+  css('.docs .main-container .sidebar-container').styles(width: 300.px, overflow: Overflow.hidden),
+  css('.docs .sidebar').styles(width: 300.px, raw: {'overflow-x': 'hidden'}),
   // Sidebar border-right: match Docusaurus 1px solid border
   css('.docs .sidebar-container').styles(
     border: Border.only(
@@ -532,12 +532,13 @@ List<StyleRule> get siteStyles => [
     color: Color('#2a48df'),
     fontWeight: FontWeight.w500,
   ),
-  // TOC sub-items (h3+): rounded pill border (matching Docusaurus nested items)
-  css('.toc li[style*="0.75"] a').styles(
+  // TOC code sub-items (backtick headings): rounded pill border
+  css('.toc a code').styles(
     padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
     border: Border.all(color: Color('#dadde1'), width: 1.px),
     radius: BorderRadius.circular(12.px),
     fontSize: 11.px,
+    raw: {'font-family': 'inherit'},
   ),
   // Dark mode TOC
   css('[data-theme="dark"] .docs .main-container main > div aside.toc > div').styles(
@@ -554,7 +555,7 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .toc a.toc-active').styles(
     color: Color('#66fbd1'),
   ),
-  css('[data-theme="dark"] .toc li[style*="0.75"] a').styles(
+  css('[data-theme="dark"] .toc a code').styles(
     border: Border.all(color: Color('#444950'), width: 1.px),
   ),
   // ───────────────────────────────────────────────────────────────────────
@@ -621,6 +622,14 @@ List<StyleRule> get siteStyles => [
       padding: Padding.symmetric(vertical: 0.25.rem),
     ),
   ]),
+  // Mobile TOC code sub-items: pill border (same as sidebar TOC)
+  css('.mobile-toc .mobile-toc-content a code').styles(
+    padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
+    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    radius: BorderRadius.circular(12.px),
+    fontSize: 11.px,
+    raw: {'font-family': 'inherit'},
+  ),
   // Mobile TOC links: use higher specificity to override .content-container a
   css('.mobile-toc .mobile-toc-content a').styles(
     color: Color('#1c1e21'),
@@ -645,10 +654,8 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .mobile-toc .mobile-toc-content a:hover').styles(
     color: Color('#66fbd1'),
   ),
-
-  // Dark mode TOC: remove pill borders
-  css('[data-theme="dark"] .toc li[style] a').styles(
-    border: Border.none,
+  css('[data-theme="dark"] .mobile-toc .mobile-toc-content a code').styles(
+    border: Border.all(color: Color('#444950'), width: 1.px),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
