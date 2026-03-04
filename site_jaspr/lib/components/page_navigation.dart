@@ -66,7 +66,7 @@ class PageNavigation extends StatelessComponent {
       css('&').styles(
         display: Display.flex,
         padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.75.rem),
-        border: Border.all(color: Color('#0000001a'), width: 1.px),
+        border: Border.all(color: Color('#0000001f'), width: 1.px),
         radius: BorderRadius.circular(8.px),
         flexDirection: FlexDirection.column,
         gap: Gap(column: 0.25.rem),

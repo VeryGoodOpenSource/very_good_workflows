@@ -298,13 +298,13 @@ List<StyleRule> get siteStyles => [
   css('.sidebar .sidebar-group li div.active a').styles(
     color: Color('#2a48df'),
   ),
-  // Dark mode: use #44fac7 for active (--ifm-color-primary-dark)
+  // Dark mode: use #66fbd1 for active (--ifm-color-primary)
   css('[data-theme="dark"] .sidebar .sidebar-group li div.active').styles(
-    color: Color('#44fac7'),
-    raw: {'background-color': 'color-mix(in srgb, #44fac7 10%, transparent)'},
+    color: Color('#66fbd1'),
+    raw: {'background-color': 'color-mix(in srgb, #66fbd1 10%, transparent)'},
   ),
   css('[data-theme="dark"] .sidebar .sidebar-group li div.active a').styles(
-    color: Color('#44fac7'),
+    color: Color('#66fbd1'),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -367,13 +367,13 @@ List<StyleRule> get siteStyles => [
   ),
   css('[data-theme="dark"] .page-nav-prev:hover, [data-theme="dark"] .page-nav-next:hover')
       .styles(
-    border: Border.all(color: Color('#44fac7'), width: 1.px),
+    border: Border.all(color: Color('#66fbd1'), width: 1.px),
   ),
   css('[data-theme="dark"] .page-nav-label').styles(
     color: Colors.white,
   ),
   css('[data-theme="dark"] .page-nav-title').styles(
-    color: Color('#44fac7'),
+    color: Color('#66fbd1'),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -432,13 +432,13 @@ List<StyleRule> get siteStyles => [
     color: Color('#a0a0a0'),
   ),
   css('[data-theme="dark"] .toc a:hover').styles(
-    color: Color('#44fac7'),
+    color: Color('#66fbd1'),
   ),
   css('[data-theme="dark"] .toc a.toc-active').styles(
-    color: Color('#44fac7'),
+    color: Color('#66fbd1'),
   ),
-  css('[data-theme="dark"] .toc li[style] a').styles(
-    border: Border.none,
+  css('[data-theme="dark"] .toc li[style*="0.75"] a').styles(
+    border: Border.all(color: Color('#444950'), width: 1.px),
   ),
   // Remove main-container side padding at wide viewports
   css.media(MediaQuery.all(minWidth: 1280.px), [
