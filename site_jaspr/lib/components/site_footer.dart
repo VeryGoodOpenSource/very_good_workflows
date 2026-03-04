@@ -20,7 +20,7 @@ class SiteFooter extends StatelessComponent {
         ),
         link(
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap',
         ),
         Style(styles: siteStyles),
         script(defer: true, content: _tocScrollspy),
