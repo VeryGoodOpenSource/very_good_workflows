@@ -88,7 +88,17 @@ void main() {
             // Icon links and secondary text links are intentionally omitted
             // to keep the header to a single row.
             mobileNavItems: [
-              NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
+              a(
+                href: '/docs/workflows',
+                classes: 'mobile-workflows-btn',
+                [
+                  img(
+                    src: '/images/workflows_nav_icon.svg',
+                    alt: 'Workflows',
+                    attributes: {'height': '32', 'width': '105'},
+                  ),
+                ],
+              ),
               ThemeToggle(),
             ],
             items: [

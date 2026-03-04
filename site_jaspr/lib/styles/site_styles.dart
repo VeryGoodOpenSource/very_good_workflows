@@ -304,6 +304,14 @@ List<StyleRule> get siteStyles => [
     ),
     css('.docs .sidebar').styles(width: Unit.percent(100)),
   ]),
+  // Mobile sidebar: Workflows image-button (the SVG pill used in the header).
+  css('.mobile-workflows-btn').styles(
+    display: Display.flex,
+    alignItems: AlignItems.center,
+    textDecoration: TextDecoration.none,
+  ),
+  css('.mobile-workflows-btn:hover').styles(opacity: 0.8),
+
   // Dark mode mobile: sidebar panel uses the navbar background (#081842),
   // matching Docusaurus where --ifm-navbar-background-color is applied to
   // the mobile overlay instead of the page background (#020f30).
