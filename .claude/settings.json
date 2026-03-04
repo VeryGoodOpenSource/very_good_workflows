@@ -18,7 +18,10 @@
       "Bash(pkill -f build_daemon)",
       "Bash(pkill -f dart.*build_runner)",
       "Bash(curl -s http://localhost:4000/docs/overview/)",
-      "mcp__plugin_wingspan_dart__dart_fix"
+      "mcp__plugin_wingspan_dart__dart_fix",
+      "Bash(node capture.js --url=\"http://localhost:4000/docs/workflows\" --name=\"docs-workflows\" --width=1200)",
+      "Bash(node capture.mjs --url=\"http://localhost:3000/docs/workflows\" --name=\"docs-workflows\" --width=1200)",
+      "Bash(node capture.mjs --url=\"http://localhost:4000/docs/workflows\" --name=\"docs-workflows\" --width=1200)"
     ]
   }
 }

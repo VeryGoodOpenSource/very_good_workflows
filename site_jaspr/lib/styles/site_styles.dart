@@ -282,11 +282,11 @@ List<StyleRule> get siteStyles => [
   // 9. CONTENT AREA LINKS
   //    Primary color, no underline; underline on hover (matching original).
   // ───────────────────────────────────────────────────────────────────────
-  css('.content-container a:not(.breadcrumb-link)').styles(
+  css('.content-container a:not(.breadcrumb-link):not(.workflow-card)').styles(
     color: Color('var(--content-links)'),
     textDecoration: TextDecoration.none,
   ),
-  css('.content-container a:not(.breadcrumb-link):hover').styles(
+  css('.content-container a:not(.breadcrumb-link):not(.workflow-card):hover').styles(
     textDecoration: TextDecoration(line: TextDecorationLine.underline),
   ),
   // Callout links: inherit foreground color + always underlined (Infima alert behavior).
@@ -536,18 +536,28 @@ List<StyleRule> get siteStyles => [
       },
     ),
     css('&:hover').styles(
-      raw: {'border-color': '#2a48df', 'text-decoration': 'none'},
+      textDecoration: TextDecoration.none,
+      raw: {'border-color': '#2a48df'},
     ),
     css('h3').styles(
       margin: Margin.only(bottom: 0.25.rem),
       fontSize: 1.25.rem,
       fontWeight: FontWeight.w700,
+      textDecoration: TextDecoration.none,
       raw: {'margin-top': '0'},
     ),
     css('p').styles(
       margin: Margin.zero,
       opacity: 0.6,
+      overflow: Overflow.hidden,
+      color: Color('#000000'),
       fontSize: 0.875.rem,
+      textDecoration: TextDecoration.none,
+      raw: {
+        'display': '-webkit-box',
+        '-webkit-line-clamp': '2',
+        '-webkit-box-orient': 'vertical',
+      },
     ),
   ]),
   // Dark mode workflow cards
@@ -556,6 +566,9 @@ List<StyleRule> get siteStyles => [
       'background': '#1b2a4a',
       'border-color': '#444950',
     },
+  ),
+  css('[data-theme="dark"] .workflow-card p').styles(
+    color: Color('#ffffff'),
   ),
   css('[data-theme="dark"] .workflow-card:hover').styles(
     raw: {'border-color': '#66fbd1'},
