@@ -124,7 +124,7 @@ class HomepageLayout extends PageLayoutBase {
           zIndex: ZIndex(10),
           raw: {
             'backdrop-filter': 'blur(8px)',
-            'background-color': 'rgba(251, 252, 255, 0.7)',
+            'background-color': 'rgba(255, 255, 255, 0.7)',
           },
         ),
       ]),
@@ -156,9 +156,9 @@ class HomepageLayout extends PageLayoutBase {
       css('.hero-logo-dark').styles(display: Display.none),
       css('.hero-subtitle', [
         css('&').styles(
-          margin: Margin.only(bottom: 1.rem),
-          color: Color('#606770'),
-          fontSize: 1.25.rem,
+          margin: Margin.only(bottom: 1.25.rem),
+          color: Color('#444950'),
+          fontSize: 1.5.rem,
         ),
       ]),
       css('.hero-image', [
@@ -181,11 +181,11 @@ class HomepageLayout extends PageLayoutBase {
       css('.cta-button', [
         css('&').styles(
           display: Display.inlineBlock,
-          padding: Padding.symmetric(horizontal: 1.5.rem, vertical: 0.75.rem),
-          radius: BorderRadius.circular(8.px),
+          padding: Padding.symmetric(horizontal: 2.rem, vertical: 0.5.rem),
+          radius: BorderRadius.circular(0.4.rem),
           color: Colors.white,
-          fontSize: 1.125.rem,
-          fontWeight: FontWeight.w600,
+          fontSize: 1.2.rem,
+          fontWeight: FontWeight.w700,
           textDecoration: TextDecoration.none,
           backgroundColor: Color('#2a48df'),
         ),
@@ -198,7 +198,7 @@ class HomepageLayout extends PageLayoutBase {
           padding: Padding.symmetric(horizontal: 3.rem, vertical: 4.rem),
           flexDirection: FlexDirection.column,
           alignItems: AlignItems.center,
-          gap: Gap(column: 0.5.rem),
+          gap: Gap(row: 0.5.rem),
         ),
         css.media(MediaQuery.all(maxWidth: 996.px), [
           css('&').styles(padding: Padding.symmetric(horizontal: 1.rem, vertical: 2.rem)),
@@ -210,10 +210,10 @@ class HomepageLayout extends PageLayoutBase {
           flexDirection: FlexDirection.row,
           justifyContent: JustifyContent.center,
           alignItems: AlignItems.center,
-          gap: Gap(column: 2.rem),
+          gap: Gap(column: 2.rem, row: 2.rem),
         ),
         css.media(MediaQuery.all(maxWidth: 996.px), [
-          css('&').styles(flexDirection: FlexDirection.column, gap: Gap(column: 1.rem)),
+          css('&').styles(flexDirection: FlexDirection.column, gap: Gap(column: 1.rem, row: 1.rem)),
         ]),
       ]),
       css('.blog-column', [
@@ -222,7 +222,7 @@ class HomepageLayout extends PageLayoutBase {
           maxWidth: 452.px,
           flexDirection: FlexDirection.column,
           alignItems: AlignItems.center,
-          gap: Gap(column: 1.rem),
+          gap: Gap(row: 1.rem),
         ),
         css('img').styles(height: Unit.auto, maxWidth: 100.percent, radius: BorderRadius.circular(8.px)),
       ]),
@@ -231,7 +231,7 @@ class HomepageLayout extends PageLayoutBase {
           display: Display.flex,
           flexDirection: FlexDirection.column,
           alignItems: AlignItems.start,
-          gap: Gap(column: 0.25.rem),
+          gap: Gap(row: 0.75.rem),
           lineHeight: 1.5.rem,
         ),
         css('h2').styles(
@@ -273,6 +273,6 @@ class HomepageLayout extends PageLayoutBase {
     css('[data-theme="dark"] .blog-content h2').styles(color: Color('#e3e3e3')),
     css('[data-theme="dark"] .blog-content p').styles(color: Color('#e3e3e3')),
     css('[data-theme="dark"] .blog-link').styles(color: Color('#66fbd1')),
-    css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#a0a0a0')),
+    css('[data-theme="dark"] .hero-subtitle').styles(color: Colors.white),
   ];
 }

@@ -38,10 +38,11 @@ class NavLink extends StatelessComponent {
     css('.nav-button', [
       css('&').styles(
         padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.5.rem),
-        radius: BorderRadius.circular(6.px),
+        radius: BorderRadius.circular(0.4.rem),
         color: Colors.white,
         fontWeight: FontWeight.w600,
         backgroundColor: Color('#2a48df'),
+        raw: {'line-height': '1.25'},
       ),
       css('&:hover').styles(backgroundColor: Color('#1e38b0')),
       css.media(MediaQuery.all(maxWidth: 996.px), [

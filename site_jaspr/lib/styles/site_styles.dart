@@ -121,10 +121,10 @@ List<StyleRule> get siteStyles => [
     },
   ),
   // Content links: primary color, no underline by default (matching original)
-  css('.content a:not(.workflow-card)').styles(
+  css('.content a:not(.workflow-card):not(.page-nav-prev):not(.page-nav-next)').styles(
     textDecoration: TextDecoration.none,
   ),
-  css('.content a:not(.workflow-card):hover').styles(
+  css('.content a:not(.workflow-card):not(.page-nav-prev):not(.page-nav-next):hover').styles(
     textDecoration: TextDecoration(line: TextDecorationLine.underline),
   ),
   // Blockquote: no italic, normal weight (matching Infima defaults)
@@ -138,7 +138,7 @@ List<StyleRule> get siteStyles => [
   //    Docusaurus navbar: 60px height (3.75rem), padding 8px 16px
   // ───────────────────────────────────────────────────────────────────────
   // Opaque header background for both modes
-  css('.header-container').styles(backgroundColor: Color('#fbfcff')),
+  css('.header-container').styles(backgroundColor: Colors.white),
   css('[data-theme="dark"] .header-container').styles(
     backgroundColor: Color('#081842'),
   ),
@@ -202,19 +202,22 @@ List<StyleRule> get siteStyles => [
   ]),
 
   // ───────────────────────────────────────────────────────────────────────
-  // 5b. DARK MODE BREADCRUMB
+  // 5b. BREADCRUMB COLORS
   // ───────────────────────────────────────────────────────────────────────
+  // Light mode: breadcrumb links match Docusaurus body text (#1c1e21)
+  css('.breadcrumb-link').styles(color: Color('#1c1e21')),
+  // Dark mode
   css('[data-theme="dark"] .breadcrumb-current').styles(
-    color: Color('#44fac7'),
+    color: Color('#66fbd1'),
   ),
   css('[data-theme="dark"] .breadcrumb-link').styles(
-    color: Color('#a0a0a0'),
+    color: Color('#e3e3e3'),
   ),
   css('[data-theme="dark"] .breadcrumb-link:hover').styles(
-    color: Color('#44fac7'),
+    color: Color('#66fbd1'),
   ),
   css('[data-theme="dark"] .breadcrumb-sep').styles(
-    color: Color('#a0a0a0'),
+    color: Color('#e3e3e3'),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -223,6 +226,25 @@ List<StyleRule> get siteStyles => [
   //    Light mode: hide moon (first span), show sun (last span).
   //    Dark mode: show moon (first span), hide sun (last span).
   // ───────────────────────────────────────────────────────────────────────
+  css('.theme-toggle').styles(
+    padding: Padding.all(4.px),
+    radius: BorderRadius.circular(50.percent),
+    raw: {
+      'width': '32px',
+      'height': '32px',
+      'box-sizing': 'border-box',
+      'cursor': 'pointer',
+    },
+  ),
+  css('.theme-toggle:hover').styles(
+    backgroundColor: Color('rgba(0, 0, 0, 0.1)'),
+  ),
+  css('[data-theme="dark"] .theme-toggle:hover').styles(
+    backgroundColor: Color('rgba(255, 255, 255, 0.1)'),
+  ),
+  css('.theme-toggle svg').styles(
+    raw: {'width': '24px', 'height': '24px'},
+  ),
   css('[data-theme="light"] .theme-toggle > span:first-child').styles(
     raw: {'display': 'none !important'},
   ),
@@ -247,8 +269,10 @@ List<StyleRule> get siteStyles => [
     padding: Padding.only(top: 3.75.rem),
   ),
   // Reduce inner div padding to match Docusaurus 16px gap
+  // max-width 1320px matches Docusaurus .container constraint
   css('.docs .main-container main > div').styles(
     padding: Padding.only(top: 1.rem, left: 1.rem, right: 1.rem),
+    raw: {'max-width': '1320px', 'margin': '0 auto'},
   ),
   // Breadcrumb: position above content using flexbox order
   css('.content-container').styles(
@@ -257,8 +281,15 @@ List<StyleRule> get siteStyles => [
   ),
   css('.content-footer').styles(raw: {'display': 'contents'}),
   css('.breadcrumb').styles(raw: {'order': '-1'}),
-  // Override breadcrumb font-size to 16px (matching Docusaurus)
-  css('.docs .breadcrumb').styles(fontSize: 1.rem),
+  // Breadcrumb: match Docusaurus sizing (12.8px font, link padding, bottom margin)
+  css('.docs .breadcrumb').styles(
+    padding: Padding.zero,
+    margin: Margin.only(bottom: 12.8.px),
+    fontSize: 12.8.px,
+  ),
+  css('.docs .breadcrumb-link, .docs .breadcrumb-current').styles(
+    padding: Padding.symmetric(vertical: 5.12.px, horizontal: 10.24.px),
+  ),
 
   // ───────────────────────────────────────────────────────────────────────
   // 8. SIDEBAR — layout/sizing only.
@@ -332,11 +363,13 @@ List<StyleRule> get siteStyles => [
   // 9. CONTENT AREA LINKS
   //    Primary color, no underline; underline on hover (matching original).
   // ───────────────────────────────────────────────────────────────────────
-  css('.content-container a:not(.breadcrumb-link):not(.workflow-card)').styles(
+  css('.content-container a:not(.breadcrumb-link):not(.workflow-card):not(.page-nav-prev):not(.page-nav-next)').styles(
     color: Color('var(--content-links)'),
     textDecoration: TextDecoration.none,
   ),
-  css('.content-container a:not(.breadcrumb-link):not(.workflow-card):hover').styles(
+  css(
+    '.content-container a:not(.breadcrumb-link):not(.workflow-card):not(.page-nav-prev):not(.page-nav-next):hover',
+  ).styles(
     textDecoration: TextDecoration(line: TextDecorationLine.underline),
   ),
   // Callout links: inherit foreground color + always underlined (Infima alert behavior).
@@ -384,13 +417,13 @@ List<StyleRule> get siteStyles => [
     padding: Padding.zero,
     margin: Margin.only(top: 3.rem),
   ),
+  // Page nav "Previous"/"Next" label: muted gray (matching Docusaurus #525860)
+  css('.page-nav-label').styles(color: Color('#525860')),
   // Dark mode: page nav prev/next blocks
-  css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next')
-      .styles(
+  css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next').styles(
     border: Border.all(color: Color('#444950'), width: 1.px),
   ),
-  css('[data-theme="dark"] .page-nav-prev:hover, [data-theme="dark"] .page-nav-next:hover')
-      .styles(
+  css('[data-theme="dark"] .page-nav-prev:hover, [data-theme="dark"] .page-nav-next:hover').styles(
     border: Border.all(color: Color('#66fbd1'), width: 1.px),
   ),
   css('[data-theme="dark"] .page-nav-label').styles(
@@ -417,7 +450,9 @@ List<StyleRule> get siteStyles => [
     ),
   ]),
   // TOC: match Docusaurus styling (left border, link colors, sub-item pills)
-  css('.docs .main-container main > div aside.toc').styles(width: 213.px),
+  css('.docs .main-container main > div aside.toc').styles(
+    raw: {'min-width': '140px', 'flex': '0 1 25%'},
+  ),
   css('.docs .main-container main > div aside.toc > div').styles(
     padding: Padding.only(left: 0.5.rem),
     border: Border.only(
@@ -453,7 +488,7 @@ List<StyleRule> get siteStyles => [
     ),
   ),
   css('[data-theme="dark"] .toc a').styles(
-    color: Color('#a0a0a0'),
+    color: Colors.white,
   ),
   css('[data-theme="dark"] .toc a:hover').styles(
     color: Color('#66fbd1'),
@@ -566,7 +601,7 @@ List<StyleRule> get siteStyles => [
   css('.workflow-cards', [
     css('&').styles(
       display: Display.grid,
-      gap: Gap(column: 1.rem, row: 1.rem),
+      gap: Gap(column: 2.rem, row: 2.rem),
       raw: {'grid-template-columns': '1fr', 'margin': '1.5rem 0'},
     ),
   ]),
@@ -578,14 +613,15 @@ List<StyleRule> get siteStyles => [
   css('.workflow-card', [
     css('&').styles(
       display: Display.block,
-      padding: Padding.all(1.5.rem),
-      radius: BorderRadius.circular(0.5.rem),
+      padding: Padding.all(2.rem),
+      radius: BorderRadius.circular(0.8.rem),
       textDecoration: TextDecoration.none,
       raw: {
-        'border': '1px solid #dadde1',
-        'background': '#ffffff',
+        'border': '1px solid #ebedf0',
+        'background': '#fbfcff',
         'color': 'inherit',
         'transition': 'border-color 0.2s ease',
+        'box-shadow': 'rgba(0, 0, 0, 0.15) 0px 1.5px 3px 0px',
       },
     ),
     css('&:hover').styles(
@@ -601,14 +637,13 @@ List<StyleRule> get siteStyles => [
     ),
     css('p').styles(
       margin: Margin.zero,
-      opacity: 0.6,
       overflow: Overflow.hidden,
-      color: Color('#000000'),
-      fontSize: 0.875.rem,
+      color: Color('#444950'),
+      fontSize: 0.8.rem,
       textDecoration: TextDecoration.none,
       raw: {
         'display': '-webkit-box',
-        '-webkit-line-clamp': '2',
+        '-webkit-line-clamp': '1',
         '-webkit-box-orient': 'vertical',
       },
     ),
@@ -616,7 +651,7 @@ List<StyleRule> get siteStyles => [
   // Dark mode workflow cards
   css('[data-theme="dark"] .workflow-card').styles(
     raw: {
-      'background': '#1b2a4a',
+      'background': '#314155',
       'border-color': '#444950',
     },
   ),
@@ -627,15 +662,23 @@ List<StyleRule> get siteStyles => [
     raw: {'border-color': '#66fbd1'},
   ),
 
-  // Remove main-container side padding at wide viewports
-  css.media(MediaQuery.all(minWidth: 1280.px), [
+  // Remove main-container side padding (jaspr_content adds 1.25rem at 768px+)
+  // Docusaurus has no container-level padding — padding lives inside content column
+  css.media(MediaQuery.all(minWidth: 768.px), [
     css('.docs .main-container').styles(
       padding: Padding.symmetric(horizontal: Unit.zero),
     ),
   ]),
-  // Content-container right padding: 32px gap to TOC (matching Docusaurus)
-  // Must use high-specificity selector to override jaspr_content's 3rem default
-  css('.docs .main-container main > div .content-container').styles(
-    padding: Padding.only(right: 2.rem),
-  ),
+  // Desktop content layout: remove inner div horizontal padding and move it
+  // to content-container, so 75% is calculated on the full available space
+  // (matching Docusaurus where contentCol = 75% of docMainContainer width)
+  css.media(MediaQuery.all(minWidth: 1000.px), [
+    css('.docs .main-container main > div').styles(
+      padding: Padding.only(top: 1.rem),
+    ),
+    css('.docs .main-container main > div .content-container').styles(
+      padding: Padding.symmetric(horizontal: 1.rem),
+      raw: {'max-width': '75%'},
+    ),
+  ]),
 ];

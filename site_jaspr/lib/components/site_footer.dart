@@ -56,7 +56,8 @@ class SiteFooter extends StatelessComponent {
       if (t && t.getBoundingClientRect().top <= 100) active = i;
     }
     links.forEach(function(a) { a.classList.remove('toc-active'); });
-    if (active !== null) ids[active].el.classList.add('toc-active');
+    if (active === null) active = 0;
+    ids[active].el.classList.add('toc-active');
   }
   window.addEventListener('scroll', update, {passive:true});
   update();
@@ -114,7 +115,7 @@ class SiteFooter extends StatelessComponent {
         padding: Padding.all(2.rem),
         color: Color('#606770'),
         textAlign: TextAlign.center,
-        fontSize: 1.rem,
+        fontSize: 0.75.rem,
         backgroundColor: Colors.white,
       ),
       css('a').styles(

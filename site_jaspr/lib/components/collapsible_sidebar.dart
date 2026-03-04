@@ -305,7 +305,7 @@ class CollapsibleSidebar extends StatelessComponent {
       // ── Sidebar link group ───────────────────────────────────────────────
       css('.sidebar-group', [
         css('&').styles(
-          padding: Padding.only(top: 1.5.rem, right: 0.75.rem),
+          padding: Padding.only(top: 1.5.rem, right: 0.75.rem, left: 8.px),
         ),
         css('ul').styles(
           padding: Padding.zero,
@@ -323,6 +323,7 @@ class CollapsibleSidebar extends StatelessComponent {
       radius: BorderRadius.circular(0.25.rem),
       alignItems: AlignItems.center,
       color: Color.inherit,
+      fontSize: 1.rem,
       fontWeight: FontWeight.w400,
       textDecoration: TextDecoration.none,
       raw: {
