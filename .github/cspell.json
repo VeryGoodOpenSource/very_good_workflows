@@ -15,28 +15,46 @@
     }
   ],
   "useGitignore": true,
+  "ignorePaths": [
+    "site_jaspr/grammars/**"
+  ],
   "words": [
     "amannn",
     "APPDATA",
     "brickhub",
+    "Consolas",
     "creatordate",
     "creds",
     "clsx",
     "Csvg",
     "Contador",
     "endtemplate",
+    "evenodd",
+    "flexbox",
+    "frontmatter",
     "Infima",
+    "jaspr",
     "linecap",
+    "linejoin",
     "localizable",
+    "Menlo",
     "mostrado",
     "noopener",
+    "noreferrer",
+    "Noto",
+    "Octicon",
     "página",
     "peaceiris",
+    "Scrollspy",
+    "Segoe",
     "srealmoreno",
     "retag",
     "Texto",
     "typecheck",
+    "unhighlighted",
+    "viewports",
     "webfactory",
-    "xlink"
+    "xlink",
+    "zoomable"
   ]
 }
