@@ -41,15 +41,15 @@ class SiteFooter extends StatelessComponent {
   /// Inline script that highlights the active TOC link based on scroll position.
   static const _tocScrollspy = '''
 (function(){
-  var links = document.querySelectorAll('.toc a');
-  if (!links.length) return;
-  var ids = [];
-  links.forEach(function(a) {
-    var h = a.getAttribute('href');
-    if (h) { var id = h.split('#')[1]; if (id) ids.push({id:id, el:a}); }
-  });
-  if (!ids.length) return;
   function update() {
+    var links = document.querySelectorAll('.toc a');
+    if (!links.length) return;
+    var ids = [];
+    links.forEach(function(a) {
+      var h = a.getAttribute('href');
+      if (h) { var id = h.split('#')[1]; if (id) ids.push({id:id, el:a}); }
+    });
+    if (!ids.length) return;
     var active = null;
     for (var i = 0; i < ids.length; i++) {
       var t = document.getElementById(ids[i].id);
