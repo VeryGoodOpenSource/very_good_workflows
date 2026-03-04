@@ -19,14 +19,20 @@ class SidebarEntry {
   bool get hasChildren => children.isNotEmpty;
 }
 
-/// A sidebar with support for collapsible nested items.
+/// A sidebar replicating Docusaurus's collapsible sidebar exactly.
 ///
-/// Items with [SidebarEntry.children] render as a toggle row with a chevron
-/// on the right. Clicking the row expands/collapses the children with a
-/// 0.5s max-height animation.
+/// Matches the Docusaurus `menu__list-item-collapsible` structure:
+///   - Category items render a navigable [a] link alongside a separate
+///     [button] caret that handles expand/collapse only.
+///   - Leaf items render a single [a] link.
+///   - The active item and expanded category are determined server-side from
+///     the current page URL; client-side toggling uses an inline script.
 ///
-/// The initial expanded/collapsed state is determined at build time from the
-/// current page URL.
+/// Styling follows Infima's sidebar tokens:
+///   - Item padding: 0.375rem 0.75rem, border-radius: 0.25rem
+///   - Active: var(--primary) color, w600, 10 % primary tint background
+///   - Category headers: always w600 (semibold), whether expanded or not
+///   - Hover: rgba(0,0,0,0.05) light / rgba(255,255,255,0.05) dark
 class CollapsibleSidebar extends StatelessComponent {
   const CollapsibleSidebar({required this.items, super.key});
 
@@ -38,11 +44,10 @@ class CollapsibleSidebar extends StatelessComponent {
 
     return Component.fragment([
       Document.head(children: [
-        Style(styles: styles),
         script(defer: true, content: _toggleScript),
       ]),
       nav(classes: 'sidebar', [
-        // Close button for mobile overlay
+        // Close button for the mobile overlay.
         button(classes: 'sidebar-close', [
           svg(
             viewBox: '0 0 24 24',
@@ -55,21 +60,11 @@ class CollapsibleSidebar extends StatelessComponent {
             },
             [
               line(
-                attributes: {
-                  'x1': '18',
-                  'y1': '6',
-                  'x2': '6',
-                  'y2': '18',
-                },
+                attributes: {'x1': '18', 'y1': '6', 'x2': '6', 'y2': '18'},
                 [],
               ),
               line(
-                attributes: {
-                  'x1': '6',
-                  'y1': '6',
-                  'x2': '18',
-                  'y2': '18',
-                },
+                attributes: {'x1': '6', 'y1': '6', 'x2': '18', 'y2': '18'},
                 [],
               ),
             ],
@@ -88,83 +83,94 @@ class CollapsibleSidebar extends StatelessComponent {
     final isActive = currentRoute == item.href;
 
     if (!item.hasChildren) {
-      // Simple link item
       return li([
-        div(
-          classes: isActive ? 'active' : null,
-          [a(href: item.href, [Component.text(item.text)])],
+        a(
+          href: item.href,
+          classes: 'sidebar-link${isActive ? ' active' : ''}',
+          [Component.text(item.text)],
         ),
       ]);
     }
 
-    // Collapsible item: expanded if current route matches any child
-    final isExpanded = item.children.any(
-      (child) => currentRoute == child.href,
-    );
+    // Expand the category if the current page is the category itself or a child.
+    final isChildActive = item.children.any((c) => currentRoute == c.href);
+    final isExpanded = isActive || isChildActive;
 
     return li(
-      classes: [
-        'sidebar-collapsible',
-        if (isExpanded) 'expanded',
-      ].join(' '),
+      classes: 'sidebar-collapsible${isExpanded ? ' expanded' : ''}',
       [
-        // Toggle row: text + chevron (clicking toggles, no navigation)
-        div(classes: isActive ? 'sidebar-toggle active' : 'sidebar-toggle', [
-          span([Component.text(item.text)]),
-          span(classes: 'sidebar-chevron', [
-            svg(
-              viewBox: '0 0 24 24',
-              attributes: {
-                'width': '16',
-                'height': '16',
-                'fill': 'none',
-                'stroke': 'currentColor',
-                'stroke-width': '2.5',
-                'stroke-linecap': 'round',
-                'stroke-linejoin': 'round',
-              },
-              [
-                // Right-pointing chevron (>) — rotated 90° when expanded
-                polyline(points: '9 6 15 12 9 18', []),
-              ],
-            ),
-          ]),
-        ]),
-        // Collapsible children
-        ul(classes: 'sidebar-children', [
-          for (final child in item.children)
-            li([
-              div(
-                classes: currentRoute == child.href ? 'active' : null,
-                [a(href: child.href, [Component.text(child.text)])],
+        // Category header: navigable link + separate caret toggle button.
+        // Mirrors Docusaurus's div.menu__list-item-collapsible structure.
+        div(classes: 'sidebar-category-header', [
+          a(
+            href: item.href,
+            // Full .active (color + bg tint) when the category page itself is
+            // current; color-only .parent-active when a child page is current.
+            classes: 'sidebar-link sidebar-category-link'
+                '${isActive ? ' active' : isChildActive ? ' parent-active' : ''}',
+            [Component.text(item.text)],
+          ),
+          button(
+            classes: 'sidebar-caret',
+            attributes: {'type': 'button'},
+            [
+              svg(
+                viewBox: '0 0 24 24',
+                attributes: {
+                  'width': '16',
+                  'height': '16',
+                  'fill': 'none',
+                  'stroke': 'currentColor',
+                  'stroke-width': '2.5',
+                  'stroke-linecap': 'round',
+                  'stroke-linejoin': 'round',
+                },
+                // Right-pointing chevron (>); rotates 90° to point down when expanded.
+                [polyline(points: '9 6 15 12 9 18', [])],
               ),
-            ]),
+            ],
+          ),
+        ]),
+        // Wrapper div is required for the CSS grid expand animation:
+        // grid-template-rows: 0fr → 1fr transitions on the actual content
+        // height, giving smooth expand AND collapse (unlike max-height tricks).
+        div(classes: 'sidebar-children', [
+          ul([
+            for (final child in item.children)
+              li([
+                a(
+                  href: child.href,
+                  classes:
+                      'sidebar-link${currentRoute == child.href ? ' active' : ''}',
+                  [Component.text(child.text)],
+                ),
+              ]),
+          ]),
         ]),
       ],
     );
   }
 
-  /// Inline script that toggles the expanded class on collapsible items.
+  /// Toggles the `.expanded` class on `.sidebar-collapsible` when the caret
+  /// button is clicked. The link itself navigates normally (browser default).
   static const _toggleScript = '''
 (function(){
   document.addEventListener('click', function(e){
-    var toggle = e.target.closest('.sidebar-toggle');
-    if (!toggle) return;
-    e.preventDefault();
-    toggle.closest('.sidebar-collapsible').classList.toggle('expanded');
+    var caret = e.target.closest('.sidebar-caret');
+    if (!caret) return;
+    caret.closest('.sidebar-collapsible').classList.toggle('expanded');
   });
 })();
 ''';
 
   @css
   static List<StyleRule> get styles => [
-    // Base sidebar styles (matching jaspr_content Sidebar)
+    // ── Sidebar container ────────────────────────────────────────────────────
     css('.sidebar', [
       css('&').styles(
-        fontSize: 0.875.rem,
-        lineHeight: 1.25.rem,
         padding: Padding.only(left: 0.5.rem, bottom: 1.25.rem, top: 0.75.rem),
         position: Position.relative(),
+        fontSize: 0.875.rem,
       ),
       css.media(MediaQuery.all(minWidth: 1024.px), [
         css('&').styles(padding: Padding.only(top: Unit.zero)),
@@ -182,83 +188,110 @@ class CollapsibleSidebar extends StatelessComponent {
           padding: Padding.only(top: 1.5.rem, right: 0.75.rem),
         ),
         css('ul').styles(
-          listStyle: ListStyle.none,
-          margin: Margin.zero,
           padding: Padding.zero,
+          margin: Margin.zero,
+          listStyle: ListStyle.none,
         ),
-        css('li', [
-          css('div', [
-            css('&').styles(
-              display: Display.flex,
-              margin: Margin.only(bottom: 1.px),
-              opacity: 0.75,
-              overflow: Overflow.hidden,
-              radius: BorderRadius.circular(.375.rem),
-              textOverflow: TextOverflow.ellipsis,
-              transition:
-                  Transition('all', duration: 150.ms, curve: Curve.easeInOut),
-              whiteSpace: WhiteSpace.noWrap,
-            ),
-            css('&:hover').styles(
-              opacity: 1,
-              backgroundColor: Color('#0000000d'),
-            ),
-            css('&.active').styles(
-              opacity: 1,
-              color: ContentColors.primary,
-              fontWeight: FontWeight.w700,
-              backgroundColor:
-                  Color('color-mix(in srgb, currentColor 15%, transparent)'),
-            ),
-          ]),
-          css('a').styles(
-            display: Display.inlineFlex,
-            flex: Flex(grow: 1),
-            padding: Padding.only(left: 12.px, top: .5.rem, bottom: .5.rem),
-          ),
-        ]),
+        css('li').styles(margin: Margin.only(bottom: 2.px)),
       ]),
     ]),
 
-    // Toggle row: flex with space-between so chevron goes to the right
-    css('.sidebar-toggle', [
-      css('&').styles(
-        alignItems: AlignItems.center,
-        cursor: Cursor.pointer,
-        raw: {'justify-content': 'space-between', 'user-select': 'none'},
-      ),
-      css('span').styles(
-        display: Display.inlineFlex,
-        flex: Flex(grow: 1),
-        padding: Padding.only(left: 12.px, top: .5.rem, bottom: .5.rem),
-      ),
-    ]),
+    // ── Sidebar link (Docusaurus menu__link) ─────────────────────────────────
+    css('.sidebar-link').styles(
+      display: Display.flex,
+      padding: Padding.symmetric(horizontal: 0.75.rem, vertical: 0.375.rem),
+      radius: BorderRadius.circular(0.25.rem),
+      alignItems: AlignItems.center,
+      color: Color.inherit,
+      fontWeight: FontWeight.w400,
+      textDecoration: TextDecoration.none,
+      raw: {
+        'line-height': '1.25',
+        'transition': 'background 0.15s ease-in-out',
+      },
+    ),
+    css('.sidebar-link:hover').styles(
+      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+    ),
+    css('.sidebar-link.active').styles(
+      color: ContentColors.primary,
+      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+    ),
+    // Dark mode active background: same tint as hover.
+    css('[data-theme="dark"] .sidebar-link.active').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+    ),
+    // Parent category: color only, no background tint.
+    css('.sidebar-link.parent-active').styles(
+      color: ContentColors.primary,
+    ),
 
-    // Chevron: sits on the right, rotates when expanded
-    css('.sidebar-chevron', [
-      css('&').styles(
-        alignItems: AlignItems.center,
-        display: Display.flex,
-        opacity: 0.4,
-        padding: Padding.all(0.25.rem),
-        transition: Transition('transform', duration: 300.ms, curve: Curve.ease),
-      ),
-    ]),
-    css('.sidebar-toggle:hover .sidebar-chevron').styles(opacity: 0.8),
-    css('.sidebar-collapsible.expanded .sidebar-chevron').styles(
+    // ── Category header: link + caret side by side ───────────────────────────
+    // Mirrors Docusaurus's div.menu__list-item-collapsible.
+    css('.sidebar-category-header').styles(
+      display: Display.flex,
+      alignItems: AlignItems.stretch,
+    ),
+    // Category link takes remaining width; always semibold (Docusaurus default
+    // for menu__link--sublist regardless of expanded/active state).
+    css('.sidebar-category-link').styles(
+      flex: Flex(grow: 1),
+      fontWeight: FontWeight.w600,
+    ),
+
+    // ── Caret toggle button (Docusaurus menu__caret) ─────────────────────────
+    css('.sidebar-caret').styles(
+      display: Display.flex,
+      padding: Padding.symmetric(horizontal: 0.25.rem),
+      radius: BorderRadius.circular(0.25.rem),
+      alignItems: AlignItems.center,
+      color: Color.inherit,
+      raw: {
+        'opacity': '0.4',
+        'border': 'none',
+        'background': 'none',
+        'cursor': 'pointer',
+        'transition': 'transform 0.2s ease, opacity 0.15s ease',
+        'flex-shrink': '0',
+      },
+    ),
+    css('.sidebar-caret:hover').styles(
+      opacity: 0.8,
+      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+    ),
+    // Caret stays visible (opacity 0.8) and rotates 90° when category is expanded.
+    css('.sidebar-collapsible.expanded .sidebar-caret').styles(
+      opacity: 0.8,
       raw: {'transform': 'rotate(90deg)'},
     ),
 
-    // Collapsible children: animated via max-height
+    // ── Children collapse/expand animation (CSS grid trick) ─────────────────
+    // grid-template-rows: 0fr → 1fr transitions on the real content height,
+    // giving symmetric smooth expand AND collapse animations.
+    // The direct child (ul) must have overflow:hidden to clip at 0fr.
     css('.sidebar-children').styles(
-      overflow: Overflow.hidden,
       raw: {
-        'max-height': '0',
-        'transition': 'max-height 0.5s ease',
+        'display': 'grid',
+        'grid-template-rows': '0fr',
+        'transition': 'grid-template-rows 0.3s ease',
       },
     ),
+    css('.sidebar-children > ul').styles(
+      padding: Padding.only(left: 1.rem),
+      overflow: Overflow.hidden,
+    ),
     css('.sidebar-collapsible.expanded .sidebar-children').styles(
-      raw: {'max-height': '500px'},
+      raw: {'grid-template-rows': '1fr'},
+    ),
+
+    // ── Dark mode overrides ──────────────────────────────────────────────────
+    // Active uses var(--primary) which auto-switches via ContentTheme; only
+    // hover backgrounds need explicit dark overrides.
+    css('[data-theme="dark"] .sidebar-link:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+    ),
+    css('[data-theme="dark"] .sidebar-caret:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
     ),
   ];
 }

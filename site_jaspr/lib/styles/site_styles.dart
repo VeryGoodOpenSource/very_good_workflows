@@ -247,12 +247,9 @@ List<StyleRule> get siteStyles => [
   css('.docs .breadcrumb').styles(fontSize: 1.rem),
 
   // ───────────────────────────────────────────────────────────────────────
-  // 8. SIDEBAR
-  //    Match the original Docusaurus sidebar styling exactly.
-  //    Key colors:
-  //      Light active/hover: #2a48df
-  //      Dark active/hover:  #44fac7  (--ifm-color-primary-dark)
-  //    Docusaurus sidebar width: 300px (--doc-sidebar-width)
+  // 8. SIDEBAR — layout/sizing only.
+  //    Link/hover/active styles live in CollapsibleSidebar.styles using
+  //    var(--primary) (theme-aware). Width matches Docusaurus 300px.
   // ───────────────────────────────────────────────────────────────────────
   // Sidebar width: match Docusaurus 300px (--doc-sidebar-width)
   // Use high specificity to override DocsLayout's .docs .main-container .sidebar-container
@@ -275,37 +272,6 @@ List<StyleRule> get siteStyles => [
       padding: Padding.only(left: 300.px),
     ),
   ]),
-  // Links: inherit text color, no underline
-  css('.sidebar a').styles(
-    color: Color('var(--text)'),
-    textDecoration: TextDecoration.none,
-  ),
-  // All items: full opacity (jaspr_content defaults to 0.75)
-  css('.sidebar .sidebar-group li div').styles(opacity: 1),
-  // Hover: subtle background tint
-  css('.sidebar .sidebar-group li div:hover').styles(
-    backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
-  ),
-  css('[data-theme="dark"] .sidebar .sidebar-group li div:hover').styles(
-    backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
-  ),
-  // Active: colored text, medium weight, tinted background
-  css('.sidebar .sidebar-group li div.active').styles(
-    color: Color('#2a48df'),
-    fontWeight: FontWeight.w500,
-    raw: {'background-color': 'color-mix(in srgb, #2a48df 10%, transparent)'},
-  ),
-  css('.sidebar .sidebar-group li div.active a').styles(
-    color: Color('#2a48df'),
-  ),
-  // Dark mode: use #66fbd1 for active (--ifm-color-primary)
-  css('[data-theme="dark"] .sidebar .sidebar-group li div.active').styles(
-    color: Color('#66fbd1'),
-    raw: {'background-color': 'color-mix(in srgb, #66fbd1 10%, transparent)'},
-  ),
-  css('[data-theme="dark"] .sidebar .sidebar-group li div.active a').styles(
-    color: Color('#66fbd1'),
-  ),
 
   // ───────────────────────────────────────────────────────────────────────
   // 9. CONTENT AREA LINKS
