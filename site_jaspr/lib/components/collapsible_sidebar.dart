@@ -58,9 +58,11 @@ class CollapsibleSidebar extends StatelessComponent {
     final currentRoute = context.page.url;
 
     return Component.fragment([
-      Document.head(children: [
-        script(defer: true, content: _toggleScript),
-      ]),
+      Document.head(
+        children: [
+          script(defer: true, content: _toggleScript),
+        ],
+      ),
       nav(classes: 'sidebar', [
         // Mobile-only header: nav items (flex row) + close button.
         // Mirrors Docusaurus's navbar-sidebar__brand / navbar-sidebar__items.
@@ -96,6 +98,14 @@ class CollapsibleSidebar extends StatelessComponent {
             ],
           ),
         ]),
+        // Mobile-only "← Back to main menu" — mirrors Docusaurus's secondary
+        // panel back-link; closes the sidebar panel when clicked.
+        // Hidden on desktop (≥ 1024 px) via CSS.
+        button(
+          classes: 'sidebar-back',
+          attributes: {'type': 'button'},
+          [Component.text('← Back to main menu')],
+        ),
         div(classes: 'sidebar-group', [
           ul([
             for (final item in items) _buildItem(item, currentRoute),
@@ -132,8 +142,13 @@ class CollapsibleSidebar extends StatelessComponent {
             href: item.href,
             // Full .active (color + bg tint) when the category page itself is
             // current; color-only .parent-active when a child page is current.
-            classes: 'sidebar-link sidebar-category-link'
-                '${isActive ? ' active' : isChildActive ? ' parent-active' : ''}',
+            classes:
+                'sidebar-link sidebar-category-link'
+                '${isActive
+                    ? ' active'
+                    : isChildActive
+                    ? ' parent-active'
+                    : ''}',
             [Component.text(item.text)],
           ),
           button(
@@ -166,8 +181,7 @@ class CollapsibleSidebar extends StatelessComponent {
               li([
                 a(
                   href: child.href,
-                  classes:
-                      'sidebar-link${currentRoute == child.href ? ' active' : ''}',
+                  classes: 'sidebar-link${currentRoute == child.href ? ' active' : ''}',
                   [Component.text(child.text)],
                 ),
               ]),
@@ -177,14 +191,22 @@ class CollapsibleSidebar extends StatelessComponent {
     );
   }
 
-  /// Toggles the `.expanded` class on `.sidebar-collapsible` when the caret
-  /// button is clicked. The link itself navigates normally (browser default).
+  /// Handles sidebar interactions:
+  ///   - `.sidebar-caret` clicks toggle the `.expanded` class on the parent
+  ///     collapsible item.
+  ///   - `.sidebar-back` clicks close the mobile sidebar panel (same as ×).
   static const _toggleScript = '''
 (function(){
   document.addEventListener('click', function(e){
     var caret = e.target.closest('.sidebar-caret');
-    if (!caret) return;
-    caret.closest('.sidebar-collapsible').classList.toggle('expanded');
+    if (caret) {
+      caret.closest('.sidebar-collapsible').classList.toggle('expanded');
+      return;
+    }
+    if (e.target.closest('.sidebar-back')) {
+      var c = document.querySelector('.sidebar-container');
+      if (c) c.classList.remove('open');
+    }
   });
 })();
 ''';
@@ -206,9 +228,6 @@ class CollapsibleSidebar extends StatelessComponent {
         css('&').styles(
           display: Display.flex,
           padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.5.rem),
-          border: Border.only(
-            bottom: BorderSide(width: 1.px, color: Color('#dadde1')),
-          ),
           alignItems: AlignItems.center,
           raw: {'flex-shrink': '0'},
         ),
@@ -253,6 +272,34 @@ class CollapsibleSidebar extends StatelessComponent {
           opacity: 0.9,
           backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
         ),
+      ]),
+
+      // ── "← Back to main menu" button ────────────────────────────────────
+      // Shown only on mobile. Mirrors Docusaurus's secondary-panel back link.
+      // Clicking closes the sidebar panel (handled in _toggleScript).
+      css('.sidebar-back', [
+        css('&').styles(
+          display: Display.block,
+          width: Unit.percent(100),
+          padding: Padding.symmetric(horizontal: 0.75.rem, vertical: 0.625.rem),
+          opacity: 0.7,
+          cursor: Cursor.pointer,
+          transition: Transition('all', duration: 150.ms, curve: Curve.easeInOut),
+          fontSize: 0.875.rem,
+          raw: {
+            'text-align': 'left',
+            'background': 'none',
+            'border': 'none',
+            'color': 'inherit',
+          },
+        ),
+        css('&:hover').styles(
+          opacity: 1,
+          backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+        ),
+        css.media(MediaQuery.all(minWidth: 1024.px), [
+          css('&').styles(display: Display.none),
+        ]),
       ]),
 
       // ── Sidebar link group ───────────────────────────────────────────────
@@ -371,10 +418,8 @@ class CollapsibleSidebar extends StatelessComponent {
     css('[data-theme="dark"] .sidebar-close:hover').styles(
       backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
     ),
-    css('[data-theme="dark"] .sidebar-mobile-header').styles(
-      border: Border.only(
-        bottom: BorderSide(width: 1.px, color: Color('#444950')),
-      ),
+    css('[data-theme="dark"] .sidebar-back:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
     ),
   ];
 }
