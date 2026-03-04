@@ -659,6 +659,37 @@ List<StyleRule> get siteStyles => [
   ),
 
   // ───────────────────────────────────────────────────────────────────────
+  // 12c. TABLES (matching Docusaurus/Infima table styling)
+  // ───────────────────────────────────────────────────────────────────────
+  css('.content-container table').styles(
+    width: Unit.percent(100),
+    raw: {'display': 'table', 'border-collapse': 'collapse', 'margin-bottom': '1.25rem'},
+  ),
+  css('.content-container th, .content-container td').styles(
+    padding: Padding.all(0.75.rem),
+    border: Border.all(color: Color('#dadde1'), width: 1.px),
+  ),
+  css('.content-container thead tr').styles(
+    raw: {'background': '#f6f7f8'},
+  ),
+  css('.content-container th').styles(
+    fontWeight: FontWeight.w700,
+  ),
+  css('.content-container tr:nth-child(2n)').styles(
+    raw: {'background': '#fbfcfd'},
+  ),
+  // Dark mode tables
+  css('[data-theme="dark"] .content-container th, [data-theme="dark"] .content-container td').styles(
+    border: Border.all(color: Color('#444950'), width: 1.px),
+  ),
+  css('[data-theme="dark"] .content-container thead tr').styles(
+    raw: {'background': 'rgba(255, 255, 255, 0.05)'},
+  ),
+  css('[data-theme="dark"] .content-container tr:nth-child(2n)').styles(
+    raw: {'background': 'rgba(255, 255, 255, 0.02)'},
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
   // 13. WORKFLOW CARDS
   //     Docusaurus category page: 2-column card grid with icon, title,
   //     and truncated description. Matches /docs/category/workflows.
