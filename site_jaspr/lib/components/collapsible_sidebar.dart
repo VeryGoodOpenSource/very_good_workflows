@@ -33,6 +33,11 @@ class SidebarEntry {
 /// ThemeToggle, etc.) and the close button. This mirrors Docusaurus's
 /// `navbar-sidebar__brand` + `navbar-sidebar__items` structure.
 ///
+/// When [primaryNavItems] is provided, a two-panel mobile sidebar is rendered:
+///   - Secondary panel (default): the doc links + "← Back to main menu"
+///   - Primary panel: the [primaryNavItems] shown as a vertical list.
+///   Tapping "← Back to main menu" switches to the primary panel.
+///
 /// Styling follows Infima's sidebar tokens:
 ///   - Item padding: 0.375rem 0.75rem, border-radius: 0.25rem
 ///   - Active: var(--primary) color, w600, 10 % primary tint background
@@ -42,6 +47,7 @@ class CollapsibleSidebar extends StatelessComponent {
   const CollapsibleSidebar({
     required this.items,
     this.mobileNavItems = const [],
+    this.primaryNavItems = const [],
     super.key,
   });
 
@@ -52,6 +58,12 @@ class CollapsibleSidebar extends StatelessComponent {
   /// Pass the same items as the desktop header (NavLinks, IconLinks,
   /// ThemeToggle, etc.) so they remain accessible on narrow viewports.
   final List<Component> mobileNavItems;
+
+  /// Nav items shown in the primary panel when "← Back to main menu" is tapped.
+  ///
+  /// Mirrors Docusaurus's two-panel mobile sidebar: the secondary panel shows
+  /// doc links, and the primary panel shows the global site nav items.
+  final List<Component> primaryNavItems;
 
   @override
   Component build(BuildContext context) {
@@ -98,9 +110,17 @@ class CollapsibleSidebar extends StatelessComponent {
             ],
           ),
         ]),
-        // Mobile-only "← Back to main menu" — mirrors Docusaurus's secondary
-        // panel back-link; closes the sidebar panel when clicked.
+        // Mobile-only primary panel — shown when the nav has .show-primary.
+        // Contains the global nav items (Get Started, VGV Dev Tools, icons).
         // Hidden on desktop (≥ 1024 px) via CSS.
+        if (primaryNavItems.isNotEmpty)
+          div(classes: 'sidebar-primary', [
+            div(classes: 'sidebar-primary-nav', primaryNavItems),
+          ]),
+        // Mobile-only "← Back to main menu" — mirrors Docusaurus's secondary
+        // panel back-link; switches to the primary panel when clicked.
+        // Hidden on desktop (≥ 1024 px) via CSS.
+        // Hidden in primary mode (.show-primary on parent .sidebar) via CSS.
         button(
           classes: 'sidebar-back',
           attributes: {'type': 'button'},
@@ -194,7 +214,10 @@ class CollapsibleSidebar extends StatelessComponent {
   /// Handles sidebar interactions:
   ///   - `.sidebar-caret` clicks toggle the `.expanded` class on the parent
   ///     collapsible item.
-  ///   - `.sidebar-back` clicks close the mobile sidebar panel (same as ×).
+  ///   - `.sidebar-back` clicks switch to the primary panel by adding
+  ///     `.show-primary` to the parent `.sidebar`.
+  ///   - `.sidebar-close` / `.sidebar-barrier` clicks reset the panel state
+  ///     back to secondary so the next open starts fresh.
   static const _toggleScript = '''
 (function(){
   document.addEventListener('click', function(e){
@@ -204,8 +227,13 @@ class CollapsibleSidebar extends StatelessComponent {
       return;
     }
     if (e.target.closest('.sidebar-back')) {
-      var c = document.querySelector('.sidebar-container');
-      if (c) c.classList.remove('open');
+      var s = e.target.closest('.sidebar');
+      if (s) s.classList.add('show-primary');
+      return;
+    }
+    if (e.target.closest('.sidebar-close') || e.target.closest('.sidebar-barrier')) {
+      var s = document.querySelector('.sidebar');
+      if (s) s.classList.remove('show-primary');
     }
   });
 })();
@@ -274,9 +302,25 @@ class CollapsibleSidebar extends StatelessComponent {
         ),
       ]),
 
+      // ── Primary panel ────────────────────────────────────────────────────
+      // Shown on mobile when the sidebar has .show-primary (set by JS).
+      // Contains the global nav items passed as primaryNavItems.
+      // Hidden on desktop (≥ 1024 px) and by default on mobile.
+      css('.sidebar-primary', [
+        css('&').styles(display: Display.none),
+      ]),
+      css('.sidebar-primary-nav', [
+        css('&').styles(
+          display: Display.flex,
+          padding: Padding.symmetric(vertical: 0.5.rem),
+          flexDirection: FlexDirection.column,
+          gap: Gap.column(2.px),
+        ),
+      ]),
+
       // ── "← Back to main menu" button ────────────────────────────────────
       // Shown only on mobile. Mirrors Docusaurus's secondary-panel back link.
-      // Clicking closes the sidebar panel (handled in _toggleScript).
+      // Clicking switches to the primary panel (handled in _toggleScript).
       css('.sidebar-back', [
         css('&').styles(
           display: Display.block,
@@ -406,6 +450,18 @@ class CollapsibleSidebar extends StatelessComponent {
     css('.sidebar-collapsible.expanded .sidebar-children').styles(
       raw: {'grid-template-rows': '1fr'},
     ),
+
+    // ── Primary panel: mobile two-panel toggle ───────────────────────────────
+    // When .show-primary is on the sidebar: show primary panel, hide back
+    // button and doc-links group. On desktop these rules have no effect since
+    // all mobile-only elements are already display:none at ≥ 1024 px.
+    css.media(MediaQuery.all(maxWidth: 1023.px), [
+      css('.sidebar.show-primary .sidebar-primary').styles(display: Display.block),
+      css('.sidebar.show-primary .sidebar-back').styles(
+        raw: {'display': 'none !important'},
+      ),
+      css('.sidebar.show-primary .sidebar-group').styles(display: Display.none),
+    ]),
 
     // ── Dark mode overrides ──────────────────────────────────────────────────
     // Active uses var(--primary) which auto-switches via ContentTheme; only

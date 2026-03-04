@@ -222,12 +222,19 @@ List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   // 4. DARK MODE ICON SWITCHING
   //    Show .icon-light in light mode, .icon-dark in dark mode.
+  //    .sidebar-icon-* are used in sidebar primary-panel icon links.
   // ───────────────────────────────────────────────────────────────────────
   css('[data-theme="dark"] .icon-link .icon-light').styles(
     display: Display.none,
   ),
   css('[data-theme="dark"] .icon-link .icon-dark').styles(
     raw: {'display': 'flex !important'},
+  ),
+  // Sidebar primary-panel icon switching (sidebar-icon-light / sidebar-icon-dark)
+  css('.sidebar-icon-dark').styles(display: Display.none),
+  css('[data-theme="dark"] .sidebar-icon-light').styles(display: Display.none),
+  css('[data-theme="dark"] .sidebar-icon-dark').styles(
+    raw: {'display': 'inline !important'},
   ),
 
   // ───────────────────────────────────────────────────────────────────────

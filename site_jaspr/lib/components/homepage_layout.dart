@@ -24,18 +24,149 @@ class HomepageLayout extends PageLayoutBase {
   @override
   Component buildBody(Page page, Component child) {
     return div(classes: 'homepage', [
-      div(classes: 'header-container', [
-        Header(
-          title: 'Very Good Workflows',
-          logo: '/images/workflows_nav_icon.svg',
-          items: [
-            NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
-            NavLink(text: 'VGV Dev Tools', href: 'https://verygood.ventures/dev'),
-            IconLink(href: 'https://verygood.ventures', iconSrc: '/images/vgv_logo_black.svg', darkIconSrc: '/images/vgv_logo_fill.svg', alt: 'Very Good Ventures'),
-            IconLink(href: 'https://github.com/VeryGoodOpenSource/very_good_workflows', iconSrc: '/images/github.svg', darkIconSrc: '/images/github_white.svg', alt: 'GitHub'),
-            ThemeToggle(),
-          ],
-        ),
+      // data-has-sidebar makes the SidebarToggleButton (hamburger) visible
+      // at narrow viewports — it's part of the Header's leading slot.
+      div(
+        classes: 'header-container',
+        attributes: {'data-has-sidebar': ''},
+        [
+          Header(
+            title: 'Very Good Workflows',
+            logo: '/images/workflows_nav_icon.svg',
+            items: [
+              NavLink(text: 'Get Started', href: '/docs/overview', isButton: true),
+              NavLink(text: 'VGV Dev Tools', href: 'https://verygood.ventures/dev'),
+              IconLink(
+                href: 'https://verygood.ventures',
+                iconSrc: '/images/vgv_logo_black.svg',
+                darkIconSrc: '/images/vgv_logo_fill.svg',
+                alt: 'Very Good Ventures',
+              ),
+              IconLink(
+                href: 'https://github.com/VeryGoodOpenSource/very_good_workflows',
+                iconSrc: '/images/github.svg',
+                darkIconSrc: '/images/github_white.svg',
+                alt: 'GitHub',
+              ),
+              ThemeToggle(),
+            ],
+          ),
+        ],
+      ),
+      // Mobile sidebar backdrop — must immediately precede .sidebar-container
+      // for the :has(+ .sidebar-container.open) CSS selector to work.
+      div(classes: 'sidebar-barrier', attributes: {'role': 'button'}, []),
+      // Mobile sidebar panel — same primary nav as the docs sidebar's primary
+      // panel (Get Started, VGV Dev Tools, VGV icon, GitHub icon).
+      // SidebarToggleButton (in the Header) toggles .open on this container.
+      div(classes: 'sidebar-container', [
+        nav(classes: 'sidebar', [
+          // Mobile header: logo pill + ThemeToggle + close ×
+          div(classes: 'sidebar-mobile-header', [
+            div(classes: 'sidebar-mobile-nav', [
+              a(
+                href: '/',
+                classes: 'mobile-workflows-btn',
+                [
+                  img(
+                    src: '/images/workflows_nav_icon.svg',
+                    alt: 'Workflows',
+                    attributes: {'height': '32', 'width': '105'},
+                  ),
+                ],
+              ),
+              ThemeToggle(),
+            ]),
+            button(
+              classes: 'sidebar-close',
+              attributes: {'type': 'button', 'aria-label': 'Close menu'},
+              [
+                svg(
+                  viewBox: '0 0 24 24',
+                  attributes: {
+                    'width': '20',
+                    'height': '20',
+                    'fill': 'none',
+                    'stroke': 'currentColor',
+                    'stroke-width': '2',
+                  },
+                  [
+                    line(
+                      attributes: {'x1': '18', 'y1': '6', 'x2': '6', 'y2': '18'},
+                      [],
+                    ),
+                    line(
+                      attributes: {'x1': '6', 'y1': '6', 'x2': '18', 'y2': '18'},
+                      [],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ]),
+          // Primary nav items as sidebar-style links
+          div(classes: 'sidebar-home-nav', [
+            ul([
+              li([
+                a(
+                  href: '/docs/overview',
+                  classes: 'sidebar-primary-link',
+                  [Component.text('Get Started')],
+                ),
+              ]),
+              li([
+                a(
+                  href: 'https://verygood.ventures/dev',
+                  target: Target.blank,
+                  classes: 'sidebar-primary-link',
+                  [Component.text('VGV Dev Tools')],
+                ),
+              ]),
+              li([
+                a(
+                  href: 'https://verygood.ventures',
+                  target: Target.blank,
+                  classes: 'sidebar-primary-link',
+                  [
+                    img(
+                      classes: 'sidebar-icon-light',
+                      src: '/images/vgv_logo_black.svg',
+                      alt: 'Very Good Ventures',
+                      attributes: {'width': '24', 'height': '24'},
+                    ),
+                    img(
+                      classes: 'sidebar-icon-dark',
+                      src: '/images/vgv_logo_fill.svg',
+                      alt: 'Very Good Ventures',
+                      attributes: {'width': '24', 'height': '24'},
+                    ),
+                  ],
+                ),
+              ]),
+              li([
+                a(
+                  href: 'https://github.com/VeryGoodOpenSource/very_good_workflows',
+                  target: Target.blank,
+                  classes: 'sidebar-primary-link',
+                  [
+                    img(
+                      classes: 'sidebar-icon-light',
+                      src: '/images/github.svg',
+                      alt: 'GitHub',
+                      attributes: {'width': '24', 'height': '24'},
+                    ),
+                    img(
+                      classes: 'sidebar-icon-dark',
+                      src: '/images/github_white.svg',
+                      alt: 'GitHub',
+                      attributes: {'width': '24', 'height': '24'},
+                    ),
+                  ],
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
       ]),
       header(classes: 'hero-banner', [
         div(classes: 'hero-content', [
@@ -98,8 +229,7 @@ class HomepageLayout extends PageLayoutBase {
                 ]),
                 a(
                   classes: 'blog-link',
-                  href:
-                      'https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects',
+                  href: 'https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects',
                   [Component.text('Read the Blog >')],
                 ),
               ]),
@@ -147,7 +277,10 @@ class HomepageLayout extends PageLayoutBase {
         ),
       ]),
       css('.hero-logo', [
-        css('&').styles(width: 400.px, margin: Margin.only(bottom: 1.rem)),
+        css('&').styles(
+          width: 400.px,
+          margin: Margin.only(bottom: 1.rem),
+        ),
       ]),
       // Theme-aware logo switching
       css('.hero-logo-dark').styles(display: Display.none),
@@ -198,7 +331,9 @@ class HomepageLayout extends PageLayoutBase {
           gap: Gap(row: 0.5.rem),
         ),
         css.media(MediaQuery.all(maxWidth: 996.px), [
-          css('&').styles(padding: Padding.symmetric(horizontal: 1.rem, vertical: 2.rem)),
+          css('&').styles(
+            padding: Padding.symmetric(horizontal: 1.rem, vertical: 2.rem),
+          ),
         ]),
       ]),
       css('.blog-row', [
@@ -210,7 +345,10 @@ class HomepageLayout extends PageLayoutBase {
           gap: Gap(column: 2.rem, row: 2.rem),
         ),
         css.media(MediaQuery.all(maxWidth: 996.px), [
-          css('&').styles(flexDirection: FlexDirection.column, gap: Gap(column: 1.rem, row: 1.rem)),
+          css('&').styles(
+            flexDirection: FlexDirection.column,
+            gap: Gap(column: 1.rem, row: 1.rem),
+          ),
         ]),
       ]),
       css('.blog-column', [
@@ -273,5 +411,109 @@ class HomepageLayout extends PageLayoutBase {
     css('[data-theme="dark"] .blog-content p').styles(color: Color('#e3e3e3')),
     css('[data-theme="dark"] .blog-link').styles(color: Color('#66fbd1')),
     css('[data-theme="dark"] .hero-subtitle').styles(color: Colors.white),
+    css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#a0a0a0')),
+
+    // ── Home page mobile sidebar ─────────────────────────────────────────────
+    // The SidebarToggleButton in the Header toggles .open on .sidebar-container.
+    // The barrier uses :has(+ .sidebar-container.open) to show the scrim.
+    css('.homepage .sidebar-container').styles(
+      position: Position.fixed(top: Unit.zero, bottom: Unit.zero),
+      zIndex: ZIndex(200),
+      overflow: Overflow.only(y: Overflow.auto),
+      raw: {
+        'width': '83vw',
+        'transform': 'translateX(-100%)',
+        'transition': 'transform 150ms ease-in-out',
+        'background-color': '#fbfcff',
+      },
+    ),
+    css('.homepage .sidebar-container.open').styles(
+      raw: {'transform': 'translateX(0)'},
+    ),
+    css('.homepage .sidebar-barrier').styles(
+      position: Position.fixed(),
+      zIndex: ZIndex(199),
+      opacity: 0,
+      pointerEvents: PointerEvents.none,
+      raw: {'inset': '0', 'background': '#000'},
+    ),
+    css('.homepage .sidebar-barrier:has(+ .sidebar-container.open)').styles(
+      opacity: 0.5,
+      pointerEvents: PointerEvents.auto,
+    ),
+    // Dark mode: use the navbar background color for the sidebar panel.
+    css('[data-theme="dark"] .homepage .sidebar-container').styles(
+      raw: {'background-color': '#081842'},
+    ),
+    // Home sidebar nav: reuse CollapsibleSidebar's sidebar-mobile-header layout.
+    // The .sidebar-mobile-header, .sidebar-mobile-nav, .sidebar-close styles
+    // are injected by CollapsibleSidebar on docs pages, so duplicate them here.
+    css('.homepage .sidebar .sidebar-mobile-header').styles(
+      display: Display.flex,
+      padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.5.rem),
+      alignItems: AlignItems.center,
+      raw: {'flex-shrink': '0'},
+    ),
+    css('.homepage .sidebar .sidebar-mobile-nav').styles(
+      display: Display.flex,
+      alignItems: AlignItems.center,
+      gap: Gap.column(0.25.rem),
+      flex: Flex(grow: 1),
+      raw: {'flex-wrap': 'wrap'},
+    ),
+    css('.homepage .sidebar .sidebar-close').styles(
+      display: Display.flex,
+      width: 2.rem,
+      height: 2.rem,
+      radius: BorderRadius.circular(0.25.rem),
+      justifyContent: JustifyContent.center,
+      alignItems: AlignItems.center,
+      color: Color.inherit,
+      raw: {
+        'flex-shrink': '0',
+        'border': 'none',
+        'background': 'none',
+        'cursor': 'pointer',
+        'opacity': '0.6',
+        'transition': 'opacity 0.15s ease, background 0.15s ease',
+      },
+    ),
+    css('.homepage .sidebar .sidebar-close:hover').styles(
+      opacity: 0.9,
+      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+    ),
+    // Home sidebar nav items: .sidebar-home-nav ul/li + .sidebar-primary-link
+    css('.homepage .sidebar-home-nav').styles(
+      padding: Padding.only(top: 1.5.rem, right: 0.75.rem),
+    ),
+    css('.homepage .sidebar-home-nav ul').styles(
+      padding: Padding.zero,
+      margin: Margin.zero,
+      listStyle: ListStyle.none,
+    ),
+    css('.homepage .sidebar-home-nav li').styles(margin: Margin.only(bottom: 2.px)),
+    // Sidebar-style link for home primary panel items
+    css('.sidebar-primary-link').styles(
+      display: Display.flex,
+      padding: Padding.symmetric(horizontal: 0.75.rem, vertical: 0.375.rem),
+      radius: BorderRadius.circular(0.25.rem),
+      alignItems: AlignItems.center,
+      color: Color.inherit,
+      fontWeight: FontWeight.w400,
+      textDecoration: TextDecoration.none,
+      raw: {
+        'line-height': '1.25',
+        'transition': 'background 0.15s ease-in-out',
+      },
+    ),
+    css('.sidebar-primary-link:hover').styles(
+      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+    ),
+    css('[data-theme="dark"] .sidebar-primary-link:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+    ),
+    css('[data-theme="dark"] .homepage .sidebar .sidebar-close:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+    ),
   ];
 }

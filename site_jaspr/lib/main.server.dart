@@ -102,6 +102,59 @@ void main() {
                 ],
               ),
             ],
+            // Primary panel: global nav items shown when "← Back to main menu"
+            // is tapped — mirrors Docusaurus's primary sidebar panel.
+            primaryNavItems: [
+              a(
+                href: '/docs/overview',
+                classes: 'sidebar-link',
+                [Component.text('Get Started')],
+              ),
+              a(
+                href: 'https://verygood.ventures/dev',
+                target: Target.blank,
+                classes: 'sidebar-link',
+                [Component.text('VGV Dev Tools')],
+              ),
+              a(
+                href: 'https://verygood.ventures',
+                target: Target.blank,
+                classes: 'sidebar-link',
+                [
+                  img(
+                    classes: 'sidebar-icon-light',
+                    src: '/images/vgv_logo_black.svg',
+                    alt: 'Very Good Ventures',
+                    attributes: {'width': '24', 'height': '24'},
+                  ),
+                  img(
+                    classes: 'sidebar-icon-dark',
+                    src: '/images/vgv_logo_fill.svg',
+                    alt: 'Very Good Ventures',
+                    attributes: {'width': '24', 'height': '24'},
+                  ),
+                ],
+              ),
+              a(
+                href: 'https://github.com/VeryGoodOpenSource/very_good_workflows',
+                target: Target.blank,
+                classes: 'sidebar-link',
+                [
+                  img(
+                    classes: 'sidebar-icon-light',
+                    src: '/images/github.svg',
+                    alt: 'GitHub',
+                    attributes: {'width': '24', 'height': '24'},
+                  ),
+                  img(
+                    classes: 'sidebar-icon-dark',
+                    src: '/images/github_white.svg',
+                    alt: 'GitHub',
+                    attributes: {'width': '24', 'height': '24'},
+                  ),
+                ],
+              ),
+            ],
             items: [
               SidebarEntry(text: 'Overview', href: '/docs/overview'),
               SidebarEntry(
