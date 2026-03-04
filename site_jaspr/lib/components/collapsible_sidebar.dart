@@ -168,7 +168,7 @@ class CollapsibleSidebar extends StatelessComponent {
     // ── Sidebar container ────────────────────────────────────────────────────
     css('.sidebar', [
       css('&').styles(
-        padding: Padding.only(left: 0.5.rem, bottom: 1.25.rem, top: 0.75.rem),
+        padding: Padding.only(bottom: 1.25.rem, top: 0.75.rem),
         position: Position.relative(),
         fontSize: 0.875.rem,
       ),
@@ -274,10 +274,12 @@ class CollapsibleSidebar extends StatelessComponent {
         'display': 'grid',
         'grid-template-rows': '0fr',
         'transition': 'grid-template-rows 0.3s ease',
+        // Indentation applied here (not on the inner ul) to avoid being
+        // overridden by the higher-specificity .sidebar .sidebar-group ul rule.
+        'padding-left': '1rem',
       },
     ),
     css('.sidebar-children > ul').styles(
-      padding: Padding.only(left: 1.rem),
       overflow: Overflow.hidden,
     ),
     css('.sidebar-collapsible.expanded .sidebar-children').styles(
