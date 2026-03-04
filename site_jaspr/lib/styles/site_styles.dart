@@ -119,10 +119,10 @@ List<StyleRule> get siteStyles => [
     },
   ),
   // Content links: primary color, no underline by default (matching original)
-  css('.content a').styles(
+  css('.content a:not(.workflow-card)').styles(
     textDecoration: TextDecoration.none,
   ),
-  css('.content a:hover').styles(
+  css('.content a:not(.workflow-card):hover').styles(
     textDecoration: TextDecoration(line: TextDecorationLine.underline),
   ),
   // Blockquote: no italic, normal weight (matching Infima defaults)
