@@ -22,6 +22,7 @@ import 'package:site_jaspr/components/edit_page_link.dart' as _edit_page_link;
 import 'package:site_jaspr/components/icon_link.dart' as _icon_link;
 import 'package:site_jaspr/components/nav_link.dart' as _nav_link;
 import 'package:site_jaspr/components/page_navigation.dart' as _page_navigation;
+import 'package:site_jaspr/components/safe_code_block.dart' as _safe_code_block;
 import 'package:site_jaspr/components/site_footer.dart' as _site_footer;
 
 /// Default [ServerOptions] for use with your Jaspr project.
@@ -71,6 +72,7 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._icon_link.IconLink.styles,
     ..._nav_link.NavLink.styles,
     ..._page_navigation.PageNavigation.styles,
+    ..._safe_code_block.SafeCodeBlock.styles,
     ..._site_footer.SiteFooter.styles,
   ],
 );
