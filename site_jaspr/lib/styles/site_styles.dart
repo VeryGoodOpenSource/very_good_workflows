@@ -406,6 +406,62 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .toc li[style*="0.75"] a').styles(
     border: Border.all(color: Color('#444950'), width: 1.px),
   ),
+  // Dark mode TOC: remove pill borders
+  css('[data-theme="dark"] .toc li[style] a').styles(
+    border: Border.none,
+  ),
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 13. WORKFLOW CARDS
+  //     Docusaurus category page: 2-column card grid with icon, title,
+  //     and truncated description. Matches /docs/category/workflows.
+  // ───────────────────────────────────────────────────────────────────────
+  css('.workflow-cards', [
+    css('&').styles(
+      display: Display.grid,
+      gap: Gap(column: 1.rem, row: 1.rem),
+      raw: {'grid-template-columns': 'repeat(2, 1fr)', 'margin': '1.5rem 0'},
+    ),
+  ]),
+  css('.workflow-card', [
+    css('&').styles(
+      display: Display.block,
+      padding: Padding.all(1.5.rem),
+      radius: BorderRadius.circular(0.5.rem),
+      textDecoration: TextDecoration.none,
+      raw: {
+        'border': '1px solid #dadde1',
+        'background': '#ffffff',
+        'color': 'inherit',
+        'transition': 'border-color 0.2s ease',
+      },
+    ),
+    css('&:hover').styles(
+      raw: {'border-color': '#2a48df', 'text-decoration': 'none'},
+    ),
+    css('h3').styles(
+      margin: Margin.only(bottom: 0.25.rem),
+      fontSize: 1.25.rem,
+      fontWeight: FontWeight.w700,
+      raw: {'margin-top': '0'},
+    ),
+    css('p').styles(
+      margin: Margin.zero,
+      opacity: 0.6,
+      fontSize: 0.875.rem,
+    ),
+  ]),
+  // Dark mode workflow cards
+  css('[data-theme="dark"] .workflow-card').styles(
+    raw: {
+      'background': '#1b2a4a',
+      'border-color': '#444950',
+    },
+  ),
+  css('[data-theme="dark"] .workflow-card:hover').styles(
+    raw: {'border-color': '#66fbd1'},
+  ),
+
   // Remove main-container side padding at wide viewports
   css.media(MediaQuery.all(minWidth: 1280.px), [
     css('.docs .main-container').styles(

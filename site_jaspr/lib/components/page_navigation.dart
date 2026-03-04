@@ -38,16 +38,12 @@ class PageNavigation extends StatelessComponent {
         a(classes: 'page-nav-prev', href: prev.href, [
           span(classes: 'page-nav-label', [Component.text('Previous')]),
           span(classes: 'page-nav-title', [Component.text('\u00AB ${prev.title}')]),
-        ])
-      else
-        div([]),
+        ]),
       if (next != null)
         a(classes: 'page-nav-next', href: next.href, [
           span(classes: 'page-nav-label', [Component.text('Next')]),
           span(classes: 'page-nav-title', [Component.text('${next.title} \u00BB')]),
-        ])
-      else
-        div([]),
+        ]),
     ]);
   }
 
@@ -71,13 +67,14 @@ class PageNavigation extends StatelessComponent {
         flexDirection: FlexDirection.column,
         gap: Gap(column: 0.25.rem),
         textDecoration: TextDecoration.none,
-        raw: {'flex': '1'},
+        raw: {'flex': '0 1 calc(50% - 0.375rem)'},
       ),
       css('&:hover').styles(
         border: Border.all(color: Color('#2a48df'), width: 1.px),
       ),
     ]),
     css('.page-nav-next').styles(
+      margin: Margin.only(left: Unit.auto),
       alignItems: AlignItems.end,
     ),
     css('.page-nav-label').styles(
