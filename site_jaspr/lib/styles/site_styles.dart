@@ -295,10 +295,21 @@ List<StyleRule> get siteStyles => [
   ]),
   // Mobile: 83 vw width (matches Docusaurus --ifm-navbar-sidebar-width) + z-index
   // above the fixed header (z-index 10) so the panel slides over the navbar.
+  // .sidebar must also be 100% so nav items fill the panel (not the 300px
+  // desktop value which would leave dead space on wider phones).
   css.media(MediaQuery.all(maxWidth: 1023.px), [
     css('.docs .main-container .sidebar-container').styles(
       zIndex: ZIndex(200),
       raw: {'width': '83vw'},
+    ),
+    css('.docs .sidebar').styles(width: Unit.percent(100)),
+  ]),
+  // Dark mode mobile: sidebar panel uses the navbar background (#081842),
+  // matching Docusaurus where --ifm-navbar-background-color is applied to
+  // the mobile overlay instead of the page background (#020f30).
+  css.media(MediaQuery.all(maxWidth: 1023.px), [
+    css('[data-theme="dark"] .docs .main-container .sidebar-container').styles(
+      backgroundColor: Color('#081842'),
     ),
   ]),
   // Fix DocsLayout's sidebar-barrier:
