@@ -161,11 +161,17 @@ List<StyleRule> get siteStyles => [
     raw: {'color': 'white !important'},
   ),
   // Green check icon after successful copy (CheckIcon has no <rect>, CopyIcon does).
-  // Must also cover :hover state so green wins over hover color.
+  // Needs both light and dark mode rules to beat specificity of dark hover rule.
   css('.code-block button:not(:has(svg rect))').styles(
     raw: {'color': '#00a86b !important', 'opacity': '1 !important'},
   ),
   css('.code-block button:not(:has(svg rect)):hover').styles(
+    raw: {'color': '#00a86b !important'},
+  ),
+  css('[data-theme="dark"] .code-block button:not(:has(svg rect))').styles(
+    raw: {'color': '#00a86b !important', 'opacity': '1 !important'},
+  ),
+  css('[data-theme="dark"] .code-block button:not(:has(svg rect)):hover').styles(
     raw: {'color': '#00a86b !important'},
   ),
   // Content links: primary color, no underline by default (matching original)
