@@ -406,6 +406,96 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .toc li[style*="0.75"] a').styles(
     border: Border.all(color: Color('#444950'), width: 1.px),
   ),
+  // ───────────────────────────────────────────────────────────────────────
+  // 12b. MOBILE TOC (collapsible "On this page" above content < 1000px)
+  // ───────────────────────────────────────────────────────────────────────
+  css('.mobile-toc', [
+    css('&').styles(
+      margin: Margin.only(bottom: 1.rem),
+      radius: BorderRadius.circular(0.5.rem),
+      raw: {
+        'border': '1px solid #dadde1',
+        'background': '#f6f7f8',
+      },
+    ),
+  ]),
+  // Hide mobile TOC at wide viewports where sidebar TOC is visible
+  css.media(MediaQuery.all(minWidth: 1000.px), [
+    css('.mobile-toc').styles(display: Display.none),
+  ]),
+  css('.mobile-toc-toggle', [
+    css('&').styles(
+      display: Display.flex,
+      width: Unit.percent(100),
+      padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.75.rem),
+      cursor: Cursor.pointer,
+      fontSize: 0.875.rem,
+      fontWeight: FontWeight.w700,
+      raw: {
+        'align-items': 'center',
+        'justify-content': 'space-between',
+        'background': 'none',
+        'border': 'none',
+        'color': 'inherit',
+        'font-family': 'inherit',
+      },
+    ),
+    css('svg').styles(
+      opacity: 0.5,
+      raw: {
+        'transition': 'transform 0.2s ease',
+      },
+    ),
+  ]),
+  css('.mobile-toc.expanded .mobile-toc-toggle svg').styles(
+    raw: {'transform': 'rotate(180deg)'},
+  ),
+  css('.mobile-toc-content', [
+    css('&').styles(
+      overflow: Overflow.hidden,
+      raw: {
+        'max-height': '0',
+        'transition': 'max-height 0.3s ease',
+      },
+    ),
+    css('ul').styles(
+      padding: Padding.only(
+        left: 1.rem,
+        right: 1.rem,
+        bottom: 0.75.rem,
+      ),
+      margin: Margin.zero,
+      listStyle: ListStyle.none,
+    ),
+    css('li').styles(
+      padding: Padding.symmetric(vertical: 0.25.rem),
+    ),
+    css('a').styles(
+      color: Color('#525860'),
+      fontSize: 0.8125.rem,
+      textDecoration: TextDecoration.none,
+    ),
+    css('a:hover').styles(
+      color: Color('#2a48df'),
+    ),
+  ]),
+  css('.mobile-toc.expanded .mobile-toc-content').styles(
+    raw: {'max-height': '500px'},
+  ),
+  // Dark mode mobile TOC
+  css('[data-theme="dark"] .mobile-toc').styles(
+    raw: {
+      'background': '#0d1f42',
+      'border-color': '#444950',
+    },
+  ),
+  css('[data-theme="dark"] .mobile-toc-content a').styles(
+    color: Color('#a0a0a0'),
+  ),
+  css('[data-theme="dark"] .mobile-toc-content a:hover').styles(
+    color: Color('#66fbd1'),
+  ),
+
   // Dark mode TOC: remove pill borders
   css('[data-theme="dark"] .toc li[style] a').styles(
     border: Border.none,
@@ -420,7 +510,12 @@ List<StyleRule> get siteStyles => [
     css('&').styles(
       display: Display.grid,
       gap: Gap(column: 1.rem, row: 1.rem),
-      raw: {'grid-template-columns': 'repeat(2, 1fr)', 'margin': '1.5rem 0'},
+      raw: {'grid-template-columns': '1fr', 'margin': '1.5rem 0'},
+    ),
+  ]),
+  css.media(MediaQuery.all(minWidth: 1024.px), [
+    css('.workflow-cards').styles(
+      raw: {'grid-template-columns': 'repeat(2, 1fr)'},
     ),
   ]),
   css('.workflow-card', [
