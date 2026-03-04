@@ -153,6 +153,11 @@ List<StyleRule> get siteStyles => [
   css('.header .header-title img').styles(height: 2.rem),
   // Vertically center nav links with icons in the header
   css('.header .header-items').styles(alignItems: AlignItems.center),
+  // Hamburger menu button: match Docusaurus 30×30 SVG (jaspr_content default is 20×20)
+  css('.sidebar-toggle-button svg').styles(
+    width: 30.px,
+    height: 30.px,
+  ),
   // Hide header nav items on narrow viewports
   css.media(MediaQuery.all(maxWidth: 1000.px), [
     css('.header .header-items').styles(display: Display.none),
@@ -412,10 +417,9 @@ List<StyleRule> get siteStyles => [
   css('.mobile-toc', [
     css('&').styles(
       margin: Margin.only(bottom: 1.rem),
-      radius: BorderRadius.circular(0.5.rem),
+      radius: BorderRadius.circular(0.4.rem),
       raw: {
-        'border': '1px solid #dadde1',
-        'background': '#f6f7f8',
+        'background': 'rgba(0, 0, 0, 0.05)',
       },
     ),
   ]),
@@ -470,29 +474,29 @@ List<StyleRule> get siteStyles => [
     css('li').styles(
       padding: Padding.symmetric(vertical: 0.25.rem),
     ),
-    css('a').styles(
-      color: Color('#525860'),
-      fontSize: 0.8125.rem,
-      textDecoration: TextDecoration.none,
-    ),
-    css('a:hover').styles(
-      color: Color('#2a48df'),
-    ),
   ]),
+  // Mobile TOC links: use higher specificity to override .content-container a
+  css('.mobile-toc .mobile-toc-content a').styles(
+    color: Color('#1c1e21'),
+    fontSize: 0.8125.rem,
+    textDecoration: TextDecoration.none,
+  ),
+  css('.mobile-toc .mobile-toc-content a:hover').styles(
+    color: Color('#2a48df'),
+  ),
   css('.mobile-toc.expanded .mobile-toc-content').styles(
     raw: {'max-height': '500px'},
   ),
   // Dark mode mobile TOC
   css('[data-theme="dark"] .mobile-toc').styles(
     raw: {
-      'background': '#0d1f42',
-      'border-color': '#444950',
+      'background': 'rgba(255, 255, 255, 0.05)',
     },
   ),
-  css('[data-theme="dark"] .mobile-toc-content a').styles(
-    color: Color('#a0a0a0'),
+  css('[data-theme="dark"] .mobile-toc .mobile-toc-content a').styles(
+    color: Color('#e3e3e3'),
   ),
-  css('[data-theme="dark"] .mobile-toc-content a:hover').styles(
+  css('[data-theme="dark"] .mobile-toc .mobile-toc-content a:hover').styles(
     color: Color('#66fbd1'),
   ),
 
