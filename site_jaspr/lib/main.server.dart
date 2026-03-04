@@ -99,7 +99,6 @@ void main() {
                   ),
                 ],
               ),
-              ThemeToggle(),
             ],
             items: [
               SidebarEntry(text: 'Overview', href: '/docs/overview'),

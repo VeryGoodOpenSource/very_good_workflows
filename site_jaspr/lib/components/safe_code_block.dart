@@ -1,5 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
+import 'package:jaspr_content/components/_internal/code_block_copy_button.dart';
 import 'package:jaspr_content/components/code_block.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:syntax_highlight_lite/syntax_highlight_lite.dart' hide Color;
@@ -100,6 +101,7 @@ class _DualCodeBlock extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(classes: 'code-block', [
+      CodeBlockCopyButton(),
       pre(classes: 'syntax-light', [
         code([_buildSpan(lightHighlighter.highlight(source))]),
       ]),

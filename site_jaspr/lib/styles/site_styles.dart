@@ -120,6 +120,54 @@ List<StyleRule> get siteStyles => [
       'line-height': 'inherit',
     },
   ),
+  // Code block copy button: match Docusaurus style.
+  // Framework sets opacity:0 and position:absolute AFTER our styles,
+  // so we use !important to override.
+  css('.code-block button').styles(
+    display: Display.flex,
+    padding: Padding.all(0.25.rem),
+    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    radius: BorderRadius.circular(0.4.rem),
+    justifyContent: JustifyContent.center,
+    alignItems: AlignItems.center,
+    backgroundColor: Colors.white,
+    raw: {
+      'position': 'absolute !important',
+      'top': '0.5rem',
+      'right': '0.5rem',
+      'width': 'auto !important',
+      'height': 'auto !important',
+      'opacity': '0 !important',
+      'color': '#606770 !important',
+      'cursor': 'pointer',
+      'transition': 'opacity 0.2s, color 0.2s',
+    },
+  ),
+  css('.code-block button svg').styles(
+    raw: {'width': '18px !important', 'height': '18px !important'},
+  ),
+  css('.code-block:hover button').styles(
+    raw: {'opacity': '0.5 !important'},
+  ),
+  css('.code-block button:hover').styles(
+    raw: {'opacity': '1 !important', 'color': '#1c1e21 !important'},
+  ),
+  css('[data-theme="dark"] .code-block button').styles(
+    border: Border.all(color: Color('#444950'), width: 1.px),
+    backgroundColor: Color('#1e1e1e'),
+    raw: {'color': '#a0a0a0 !important'},
+  ),
+  css('[data-theme="dark"] .code-block button:hover').styles(
+    raw: {'color': 'white !important'},
+  ),
+  // Green check icon after successful copy (CheckIcon has no <rect>, CopyIcon does).
+  // Must also cover :hover state so green wins over hover color.
+  css('.code-block button:not(:has(svg rect))').styles(
+    raw: {'color': '#00a86b !important', 'opacity': '1 !important'},
+  ),
+  css('.code-block button:not(:has(svg rect)):hover').styles(
+    raw: {'color': '#00a86b !important'},
+  ),
   // Content links: primary color, no underline by default (matching original)
   css('.content a:not(.workflow-card):not(.page-nav-prev):not(.page-nav-next)').styles(
     textDecoration: TextDecoration.none,
@@ -227,11 +275,13 @@ List<StyleRule> get siteStyles => [
   //    Dark mode: show moon (first span), hide sun (last span).
   // ───────────────────────────────────────────────────────────────────────
   css('.theme-toggle').styles(
-    padding: Padding.all(4.px),
-    radius: BorderRadius.circular(50.percent),
+    padding: Padding.zero,
+    justifyContent: JustifyContent.center,
+    alignItems: AlignItems.center,
     raw: {
       'width': '32px',
       'height': '32px',
+      'border-radius': '50% !important',
       'box-sizing': 'border-box',
       'cursor': 'pointer',
     },
@@ -243,8 +293,10 @@ List<StyleRule> get siteStyles => [
     backgroundColor: Color('rgba(255, 255, 255, 0.1)'),
   ),
   css('.theme-toggle svg').styles(
-    raw: {'width': '24px', 'height': '24px'},
+    raw: {'width': '20px', 'height': '20px'},
   ),
+  // Reverse icons: show current state (sun in light, moon in dark).
+  // Framework default: moon in light, sun in dark.
   css('[data-theme="light"] .theme-toggle > span:first-child').styles(
     raw: {'display': 'none !important'},
   ),
