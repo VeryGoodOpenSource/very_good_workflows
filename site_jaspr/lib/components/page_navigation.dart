@@ -60,7 +60,7 @@ class PageNavigation extends StatelessComponent {
     ]),
     css('.page-nav-prev, .page-nav-next').styles(
       display: Display.flex,
-      padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.75.rem),
+      padding: Padding.all(1.rem),
       border: Border.all(color: Color('#0000001f'), width: 1.px),
       radius: BorderRadius.circular(8.px),
       flexDirection: FlexDirection.column,
