@@ -2,6 +2,7 @@
 title: Dart Package
 description: A reusable workflow for running checks on Dart packages.
 image: /images/meta/open-graph.png
+sidebar_position: 1
 ---
 
 # Dart Package

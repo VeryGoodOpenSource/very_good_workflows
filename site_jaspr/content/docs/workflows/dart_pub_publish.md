@@ -2,6 +2,7 @@
 title: Dart Pub Publish
 description: A reusable workflow for publishing Dart packages to pub.dev.
 image: /images/meta/open-graph.png
+sidebar_position: 2
 ---
 
 # Dart Pub Publish

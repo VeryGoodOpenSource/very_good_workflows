@@ -2,36 +2,26 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 
+import '../utils/page_order.dart';
+
 /// Previous/next navigation buttons for docs pages.
 ///
-/// Page order matches the sidebar configuration.
+/// Page order is derived automatically from `context.pages` and each page's
+/// `sidebar_position` frontmatter field, matching the sidebar order.
 class PageNavigation extends StatelessComponent {
   const PageNavigation({super.key});
-
-  static const _pages = [
-    (title: 'Overview', href: '/docs/overview'),
-    (title: 'Workflows', href: '/docs/workflows'),
-    (title: 'Dart Package', href: '/docs/workflows/dart_package'),
-    (title: 'Dart Pub Publish', href: '/docs/workflows/dart_pub_publish'),
-    (title: 'Flutter Package', href: '/docs/workflows/flutter_package'),
-    (title: 'Flutter Pub Publish', href: '/docs/workflows/flutter_pub_publish'),
-    (title: 'License Check', href: '/docs/workflows/license_check'),
-    (title: 'Mason Publish', href: '/docs/workflows/mason_publish'),
-    (title: 'Pana', href: '/docs/workflows/pana'),
-    (title: 'Semantic Pull Request', href: '/docs/workflows/semantic_pull_request'),
-    (title: 'Spell Check', href: '/docs/workflows/spell_check'),
-  ];
 
   @override
   Component build(BuildContext context) {
     if (kIsWeb) return Component.fragment([]);
 
     final url = context.page.url;
-    final index = _pages.indexWhere((pg) => pg.href == url);
+    final pages = getOrderedDocPages(context.pages);
+    final index = pages.indexWhere((pg) => pg.href == url);
     if (index == -1) return Component.fragment([]);
 
-    final prev = index > 0 ? _pages[index - 1] : null;
-    final next = index < _pages.length - 1 ? _pages[index + 1] : null;
+    final prev = index > 0 ? pages[index - 1] : null;
+    final next = index < pages.length - 1 ? pages[index + 1] : null;
 
     return nav(classes: 'page-nav', [
       if (prev != null)
@@ -54,7 +44,9 @@ class PageNavigation extends StatelessComponent {
         display: Display.flex,
         padding: Padding.zero,
         margin: Margin.only(top: 48.px),
-        border: Border.only(top: BorderSide(color: Color('#0000000d'), width: 1.px)),
+        border: Border.only(
+          top: BorderSide(color: Color('#0000000d'), width: 1.px),
+        ),
         gap: Gap(column: 0.75.rem),
       ),
     ]),

@@ -2,6 +2,7 @@
 title: Spell Check
 description: A reusable workflow for running spell checks on projects.
 image: /images/meta/open-graph.png
+sidebar_position: 9
 ---
 
 # Spell Check

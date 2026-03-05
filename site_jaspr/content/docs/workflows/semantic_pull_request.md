@@ -2,6 +2,7 @@
 title: Semantic Pull Request
 description: A reusable workflow for enforcing semantic commit conventions.
 image: /images/meta/open-graph.png
+sidebar_position: 8
 ---
 
 # Semantic Pull Request

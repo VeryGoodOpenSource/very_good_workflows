@@ -2,6 +2,7 @@
 title: Flutter Pub Publish
 description: A reusable workflow for publishing Flutter packages to pub.dev.
 image: /images/meta/open-graph.png
+sidebar_position: 4
 ---
 
 # Flutter Pub Publish

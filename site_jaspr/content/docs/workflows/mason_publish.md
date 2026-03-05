@@ -2,6 +2,7 @@
 title: Mason Publish
 description: A reusable workflow for publishing Mason bricks to brickhub.dev.
 image: /images/meta/open-graph.png
+sidebar_position: 6
 ---
 
 # Mason Publish

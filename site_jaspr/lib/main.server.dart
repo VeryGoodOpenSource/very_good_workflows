@@ -12,8 +12,6 @@ import 'package:jaspr/server.dart';
 
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
-import 'package:jaspr_content/components/sidebar.dart';
-
 import 'components/collapsible_sidebar.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
 import 'package:jaspr_content/jaspr_content.dart';
@@ -29,6 +27,7 @@ import 'components/nav_link.dart';
 import 'components/page_navigation.dart';
 import 'components/safe_code_block.dart';
 import 'components/site_footer.dart';
+import 'components/workflow_cards.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
 import 'main.server.options.dart';
@@ -42,6 +41,7 @@ void main() {
   // Starts the app.
   runApp(
     ContentApp(
+      eagerlyLoadAllPages: true,
       templateEngine: MustacheTemplateEngine(),
       parsers: [
         MarkdownParser(),
@@ -53,6 +53,7 @@ void main() {
       ],
       components: [
         DocCallout(),
+        WorkflowCards(),
         SafeCodeBlock(
           grammars: {
             'yaml': File('grammars/yaml.tmLanguage.json').readAsStringSync(),
@@ -162,17 +163,7 @@ void main() {
               SidebarEntry(
                 text: 'Workflows',
                 href: '/docs/workflows',
-                children: [
-                  SidebarLink(text: 'Dart Package', href: '/docs/workflows/dart_package'),
-                  SidebarLink(text: 'Dart Pub Publish', href: '/docs/workflows/dart_pub_publish'),
-                  SidebarLink(text: 'Flutter Package', href: '/docs/workflows/flutter_package'),
-                  SidebarLink(text: 'Flutter Pub Publish', href: '/docs/workflows/flutter_pub_publish'),
-                  SidebarLink(text: 'License Check', href: '/docs/workflows/license_check'),
-                  SidebarLink(text: 'Mason Publish', href: '/docs/workflows/mason_publish'),
-                  SidebarLink(text: 'Pana', href: '/docs/workflows/pana'),
-                  SidebarLink(text: 'Semantic Pull Request', href: '/docs/workflows/semantic_pull_request'),
-                  SidebarLink(text: 'Spell Check', href: '/docs/workflows/spell_check'),
-                ],
+                autoChildren: true,
               ),
             ],
           ),

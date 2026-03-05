@@ -2,6 +2,7 @@
 title: License Check
 description: A reusable workflow for checking dependency licenses.
 image: /images/meta/open-graph.png
+sidebar_position: 5
 ---
 
 # License Check

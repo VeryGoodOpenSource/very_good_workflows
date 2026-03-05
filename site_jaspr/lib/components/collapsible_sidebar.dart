@@ -4,19 +4,27 @@ import 'package:jaspr_content/components/sidebar.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
 
+import '../utils/page_order.dart';
+
 /// A sidebar entry that can optionally have collapsible children.
+///
+/// When [autoChildren] is `true`, children are derived at build time from
+/// `context.pages` by matching pages whose URL starts with [href]/. This
+/// removes the need to hardcode [SidebarLink] entries for each child page.
 class SidebarEntry {
   const SidebarEntry({
     required this.text,
     required this.href,
     this.children = const [],
+    this.autoChildren = false,
   });
 
   final String text;
   final String href;
   final List<SidebarLink> children;
+  final bool autoChildren;
 
-  bool get hasChildren => children.isNotEmpty;
+  bool get hasChildren => children.isNotEmpty || autoChildren;
 }
 
 /// A sidebar replicating Docusaurus's collapsible sidebar exactly.
@@ -68,6 +76,18 @@ class CollapsibleSidebar extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final currentRoute = context.page.url;
+
+    // Resolve auto-children from context.pages for entries that opt in.
+    final resolvedItems = kIsWeb
+        ? items
+        : items.map((item) {
+            if (!item.autoChildren) return item;
+            final children = getChildPages(
+              context.pages,
+              item.href,
+            ).map((p) => SidebarLink(text: p.title, href: p.href)).toList();
+            return SidebarEntry(text: item.text, href: item.href, children: children);
+          }).toList();
 
     return Component.fragment([
       Document.head(
@@ -128,7 +148,7 @@ class CollapsibleSidebar extends StatelessComponent {
         ),
         div(classes: 'sidebar-group', [
           ul([
-            for (final item in items) _buildItem(item, currentRoute),
+            for (final item in resolvedItems) _buildItem(item, currentRoute),
           ]),
         ]),
       ]),

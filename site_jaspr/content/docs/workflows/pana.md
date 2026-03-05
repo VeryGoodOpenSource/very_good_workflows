@@ -2,6 +2,7 @@
 title: Pana
 description: A reusable workflow for verifying pub.dev package scores.
 image: /images/meta/open-graph.png
+sidebar_position: 7
 ---
 
 # Pana

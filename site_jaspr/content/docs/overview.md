@@ -2,6 +2,7 @@
 title: Overview
 description: A collection of reusable GitHub workflows used at Very Good Ventures.
 image: /images/meta/open-graph.png
+sidebar_position: 1
 ---
 
 # Overview

@@ -2,6 +2,7 @@
 title: Flutter Package
 description: A reusable workflow for running checks on Flutter packages.
 image: /images/meta/open-graph.png
+sidebar_position: 3
 ---
 
 # Flutter Package
