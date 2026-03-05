@@ -58,21 +58,19 @@ class PageNavigation extends StatelessComponent {
         gap: Gap(column: 0.75.rem),
       ),
     ]),
-    css('.page-nav-prev, .page-nav-next', [
-      css('&').styles(
-        display: Display.flex,
-        padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.75.rem),
-        border: Border.all(color: Color('#0000001f'), width: 1.px),
-        radius: BorderRadius.circular(8.px),
-        flexDirection: FlexDirection.column,
-        gap: Gap(column: 0.25.rem),
-        textDecoration: TextDecoration.none,
-        raw: {'flex': '0 1 calc(50% - 0.375rem)'},
-      ),
-      css('&:hover').styles(
-        border: Border.all(color: Color('#2a48df'), width: 1.px),
-      ),
-    ]),
+    css('.page-nav-prev, .page-nav-next').styles(
+      display: Display.flex,
+      padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.75.rem),
+      border: Border.all(color: Color('#0000001f'), width: 1.px),
+      radius: BorderRadius.circular(8.px),
+      flexDirection: FlexDirection.column,
+      gap: Gap(column: 0.25.rem),
+      textDecoration: TextDecoration.none,
+      raw: {'flex': '0 1 calc(50% - 0.375rem)'},
+    ),
+    css('.page-nav-prev:hover, .page-nav-next:hover').styles(
+      border: Border.all(color: Color('#2a48df'), width: 1.px),
+    ),
     css('.page-nav-next').styles(
       margin: Margin.only(left: Unit.auto),
       alignItems: AlignItems.end,

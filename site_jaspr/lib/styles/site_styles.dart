@@ -97,7 +97,7 @@ List<StyleRule> get siteStyles => [
     radius: BorderRadius.circular(0.4.rem),
     fontSize: Unit.percent(95),
     raw: {
-      'background-color': 'rgba(0, 0, 0, 0.06)',
+      'background-color': '#f6f7f8',
       'font-family': 'var(--ifm-font-family-monospace)',
       'font-weight': 'inherit',
     },
@@ -476,9 +476,10 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] code').styles(
     raw: {'background': '#081842 !important'},
   ),
-  // Dark mode inline code: lighter border to match Docusaurus
+  // Dark mode inline code: match Docusaurus border and text color
   css('[data-theme="dark"] .content :not(pre) > code').styles(
-    border: Border.all(color: Color('rgba(255, 255, 255, 0.1)'), width: 1.px),
+    border: Border.all(color: Color('rgba(0, 0, 0, 0.1)'), width: 1.px),
+    color: Color('#e3e3e3'),
   ),
   css('[data-theme="dark"]').styles(
     raw: {'scrollbar-color': '#ffffff30 transparent'},
