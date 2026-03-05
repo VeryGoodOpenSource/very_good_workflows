@@ -52,8 +52,8 @@ class PageNavigation extends StatelessComponent {
     css('.page-nav', [
       css('&').styles(
         display: Display.flex,
-        padding: Padding.symmetric(vertical: 2.rem),
-        margin: Margin.only(top: 2.rem),
+        padding: Padding.zero,
+        margin: Margin.only(top: 48.px),
         border: Border.only(top: BorderSide(color: Color('#0000000d'), width: 1.px)),
         gap: Gap(column: 0.75.rem),
       ),

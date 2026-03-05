@@ -115,7 +115,7 @@ class SiteFooter extends StatelessComponent {
         padding: Padding.all(2.rem),
         color: Color('#606770'),
         textAlign: TextAlign.center,
-        fontSize: 0.75.rem,
+        fontSize: 1.rem,
         backgroundColor: Colors.white,
       ),
       css('a').styles(

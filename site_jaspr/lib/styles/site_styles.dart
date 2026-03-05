@@ -55,14 +55,12 @@ List<StyleRule> get siteStyles => [
   css('.content h2').styles(
     fontSize: 2.rem,
     fontWeight: FontWeight.w700,
-    lineHeight: 1.5.em,
-    raw: {'margin': '2.5rem 0 1.25rem'},
+    raw: {'margin': '2.5rem 0 1.25rem', 'line-height': '1.25'},
   ),
   css('.content h3').styles(
     fontSize: 1.5.rem,
     fontWeight: FontWeight.w700,
-    lineHeight: 1.5.em,
-    raw: {'margin': '2rem 0 0.75rem'},
+    raw: {'margin': '1.875rem 0 1.25rem', 'line-height': '1.25'},
   ),
   css('.content h4').styles(
     fontSize: 1.25.rem,
@@ -73,6 +71,15 @@ List<StyleRule> get siteStyles => [
   css('.content').styles(raw: {'line-height': '1.65'}),
   // Paragraphs: Docusaurus uses bottom-only margin (1.25rem); Jaspr default is top+bottom
   css('.content p').styles(raw: {'margin': '0 0 1.25rem'}),
+  // Lists: match Docusaurus/Infima spacing (bottom-only margin, left padding)
+  css('.content ul, .content ol').styles(
+    margin: Margin.only(top: Unit.zero, bottom: 1.25.rem),
+    raw: {'padding-left': '2rem'},
+  ),
+  css('.content li').styles(
+    padding: Padding.zero,
+    margin: Margin.zero,
+  ),
   // Remove backtick pseudo-elements and quote marks (Docusaurus doesn't have these)
   css('.content code::before').styles(raw: {'content': 'none'}),
   css('.content code::after').styles(raw: {'content': 'none'}),
@@ -92,6 +99,7 @@ List<StyleRule> get siteStyles => [
     raw: {
       'background-color': 'rgba(0, 0, 0, 0.06)',
       'font-family': 'var(--ifm-font-family-monospace)',
+      'font-weight': 'inherit',
     },
   ),
   // Pre/code blocks: match Docusaurus sizing (15.2px font, 22px line-height)
@@ -103,7 +111,7 @@ List<StyleRule> get siteStyles => [
     raw: {
       'font-family': 'var(--ifm-font-family-monospace)',
       'line-height': '1.45',
-      'margin': '1.25rem 0',
+      'margin': '0 0 1.25rem',
     },
   ),
   css('.content pre code').styles(
@@ -481,10 +489,7 @@ List<StyleRule> get siteStyles => [
   //     Docusaurus: footer margin-top 64px, pagination margin-top 48px.
   // ───────────────────────────────────────────────────────────────────────
   css('.site-footer').styles(margin: Margin.only(top: 4.rem)),
-  css('.page-nav').styles(
-    padding: Padding.zero,
-    margin: Margin.only(top: 3.rem),
-  ),
+  // page-nav spacing is set in PageNavigation.styles (48px margin-top, zero padding)
   // Page nav "Previous"/"Next" label: muted gray (matching Docusaurus #525860)
   css('.page-nav-label').styles(color: Color('#525860')),
   // Dark mode: page nav prev/next blocks
