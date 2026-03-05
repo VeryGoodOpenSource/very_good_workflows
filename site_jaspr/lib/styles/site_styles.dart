@@ -506,8 +506,6 @@ List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   css('.site-footer').styles(margin: Margin.only(top: 4.rem)),
   // page-nav spacing is set in PageNavigation.styles (48px margin-top, zero padding)
-  // Page nav "Previous"/"Next" label: muted gray (matching Docusaurus #525860)
-  css('.page-nav-label').styles(color: Color('#525860')),
   // Dark mode: page nav prev/next blocks
   css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next').styles(
     border: Border.all(color: Color('#606770'), width: 1.px),

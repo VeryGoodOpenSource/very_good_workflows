@@ -62,11 +62,11 @@ class PageNavigation extends StatelessComponent {
       display: Display.flex,
       padding: Padding.all(1.rem),
       border: Border.all(color: Color('#0000001f'), width: 1.px),
-      radius: BorderRadius.circular(8.px),
+      radius: BorderRadius.circular(0.4.rem),
       flexDirection: FlexDirection.column,
-      gap: Gap(column: 0.25.rem),
+      gap: Gap(row: 0.25.rem),
       textDecoration: TextDecoration.none,
-      raw: {'flex': '0 1 calc(50% - 0.375rem)'},
+      raw: {'flex': '0 1 calc(50% - 0.375rem)', 'line-height': '1.25'},
     ),
     css('.page-nav-prev:hover, .page-nav-next:hover').styles(
       border: Border.all(color: Color('#2a48df'), width: 1.px),
@@ -76,14 +76,13 @@ class PageNavigation extends StatelessComponent {
       alignItems: AlignItems.end,
     ),
     css('.page-nav-label').styles(
-      opacity: 0.6,
-      color: Color('#1c1e21'),
-      fontSize: 0.75.rem,
-      fontWeight: FontWeight.w600,
+      color: Color('#525860'),
+      fontSize: 0.875.rem,
+      fontWeight: FontWeight.w500,
     ),
     css('.page-nav-title').styles(
       color: Color('#2a48df'),
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
     ),
   ];
 }
