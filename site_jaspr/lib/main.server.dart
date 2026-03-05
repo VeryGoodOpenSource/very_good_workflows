@@ -57,6 +57,7 @@ void main() {
           grammars: {
             'yaml': File('grammars/yaml.tmLanguage.json').readAsStringSync(),
             'bash': File('grammars/bash.tmLanguage.json').readAsStringSync(),
+            'json': File('grammars/json.tmLanguage.json').readAsStringSync(),
           },
         ),
         Image(zoom: true),
