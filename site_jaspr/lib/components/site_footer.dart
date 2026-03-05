@@ -25,6 +25,7 @@ class SiteFooter extends StatelessComponent {
         Style(styles: siteStyles),
         script(defer: true, content: _tocScrollspy),
         script(defer: true, content: _mobileToc),
+        script(defer: true, content: _relocateFooter),
       ]),
       footer(classes: 'site-footer', [
         p([
@@ -108,6 +109,22 @@ class SiteFooter extends StatelessComponent {
 })();
 ''';
 
+  /// Moves `.site-footer` from inside `.content-container` to be a direct
+  /// child of `.main-container`, so its background spans the full viewport
+  /// width and paints above the sidebar border.
+  static const _relocateFooter = '''
+(function(){
+  function move(){
+    var footer = document.querySelector('.site-footer');
+    var mc = document.querySelector('.main-container');
+    if (footer && mc && footer.parentElement !== mc) {
+      mc.appendChild(footer);
+    }
+  }
+  requestAnimationFrame(function(){ requestAnimationFrame(move); });
+})();
+''';
+
   @css
   static List<StyleRule> get styles => [
     css('.site-footer', [
@@ -117,6 +134,10 @@ class SiteFooter extends StatelessComponent {
         textAlign: TextAlign.center,
         fontSize: 1.rem,
         backgroundColor: Colors.white,
+        raw: {
+          'position': 'relative',
+          'z-index': '11',
+        },
       ),
       css('a').styles(
         color: Color('#2a48df'),

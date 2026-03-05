@@ -197,7 +197,10 @@ List<StyleRule> get siteStyles => [
   //    Docusaurus navbar: 60px height (3.75rem), padding 8px 16px
   // ───────────────────────────────────────────────────────────────────────
   // Opaque header background for both modes
-  css('.header-container').styles(backgroundColor: Colors.white),
+  css('.docs .header-container').styles(
+    backgroundColor: Colors.white,
+    raw: {'z-index': '20'},
+  ),
   css('[data-theme="dark"] .header-container').styles(
     backgroundColor: Color('#081842'),
   ),
@@ -370,7 +373,19 @@ List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   // Sidebar width: match Docusaurus 300px (--doc-sidebar-width)
   // Use high specificity to override DocsLayout's .docs .main-container .sidebar-container
-  css('.docs .main-container .sidebar-container').styles(width: 300.px, overflow: Overflow.hidden),
+  css('.docs .main-container .sidebar-container').styles(
+    width: 300.px,
+    padding: Padding.only(bottom: 8.rem),
+    raw: {
+      'overflow-y': 'auto',
+      'overflow-x': 'hidden',
+      'scrollbar-width': 'none',
+      '-ms-overflow-style': 'none',
+    },
+  ),
+  css('.docs .main-container .sidebar-container::-webkit-scrollbar').styles(
+    display: Display.none,
+  ),
   css('.docs .sidebar').styles(width: 300.px, raw: {'overflow-x': 'hidden'}),
   // Sidebar border-right: match Docusaurus 1px solid border
   css('.docs .sidebar-container').styles(
@@ -741,8 +756,8 @@ List<StyleRule> get siteStyles => [
       raw: {'border-color': '#2a48df'},
     ),
     css('h3').styles(
-      margin: Margin.only(bottom: 0.25.rem),
-      fontSize: 1.25.rem,
+      margin: Margin.only(bottom: 1.rem),
+      fontSize: 1.2.rem,
       fontWeight: FontWeight.w700,
       textDecoration: TextDecoration.none,
       raw: {'margin-top': '0'},
