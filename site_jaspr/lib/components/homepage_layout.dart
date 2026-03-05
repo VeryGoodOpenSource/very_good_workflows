@@ -410,8 +410,7 @@ class HomepageLayout extends PageLayoutBase {
     css('[data-theme="dark"] .blog-content h2').styles(color: Color('#e3e3e3')),
     css('[data-theme="dark"] .blog-content p').styles(color: Color('#e3e3e3')),
     css('[data-theme="dark"] .blog-link').styles(color: Color('#66fbd1')),
-    css('[data-theme="dark"] .hero-subtitle').styles(color: Colors.white),
-    css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#a0a0a0')),
+    css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#ebedf0')),
 
     // ── Home page mobile sidebar ─────────────────────────────────────────────
     // The SidebarToggleButton in the Header toggles .open on .sidebar-container.
