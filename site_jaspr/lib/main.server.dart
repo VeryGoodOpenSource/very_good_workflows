@@ -220,6 +220,20 @@ void main() {
           ),
           ColorToken('content-th-borders', Color('#dadde1'), dark: Color('#444950')),
           ColorToken('content-td-borders', Color('#dadde1'), dark: Color('#444950')),
+          // UI component tokens (non-content).
+          ColorToken('navbar-bg', Color('#fbfcff'), dark: Color('#081842')),
+          ColorToken(
+            'primary-hover',
+            Color('#1e38b0'),
+            dark: Color('#44fac7'),
+          ),
+          ColorToken('border', Color('#dadde1'), dark: Color('#444950')),
+          ColorToken(
+            'secondary-text',
+            Color('#606770'),
+            dark: Color('#a0a0a0'),
+          ),
+          ColorToken('surface', Color('#ffffff'), dark: Color('#1e1e1e')),
         ],
         typography: ContentTypography.base,
         reset: true,

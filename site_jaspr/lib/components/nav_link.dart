@@ -30,7 +30,7 @@ class NavLink extends StatelessComponent {
   static List<StyleRule> get styles => [
     css('.nav-link').styles(
       padding: Padding.symmetric(horizontal: 0.75.rem, vertical: 0.25.rem),
-      color: Color('#1c1e21'),
+      color: Color('var(--text)'),
       fontSize: 0.875.rem,
       fontWeight: FontWeight.w500,
       textDecoration: TextDecoration.none,
@@ -41,14 +41,14 @@ class NavLink extends StatelessComponent {
         radius: BorderRadius.circular(0.4.rem),
         color: Colors.white,
         fontWeight: FontWeight.w600,
-        backgroundColor: Color('#2a48df'),
+        backgroundColor: Color('var(--primary)'),
         raw: {'line-height': '1.25'},
       ),
-      css('&:hover').styles(backgroundColor: Color('#1e38b0')),
+      css('&:hover').styles(backgroundColor: Color('var(--primary-hover)')),
       css.media(MediaQuery.all(maxWidth: 996.px), [
         css('&').styles(
           padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.5.rem),
-          color: Color('#1c1e21'),
+          color: Color('var(--text)'),
           fontWeight: FontWeight.w300,
           backgroundColor: Colors.white,
         ),

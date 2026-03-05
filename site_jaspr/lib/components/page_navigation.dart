@@ -69,19 +69,19 @@ class PageNavigation extends StatelessComponent {
       raw: {'flex': '0 1 calc(50% - 0.375rem)', 'line-height': '1.25'},
     ),
     css('.page-nav-prev:hover, .page-nav-next:hover').styles(
-      border: Border.all(color: Color('#2a48df'), width: 1.px),
+      border: Border.all(color: Color('var(--primary)'), width: 1.px),
     ),
     css('.page-nav-next').styles(
       margin: Margin.only(left: Unit.auto),
       alignItems: AlignItems.end,
     ),
     css('.page-nav-label').styles(
-      color: Color('#525860'),
+      color: Color('var(--secondary-text)'),
       fontSize: 0.875.rem,
       fontWeight: FontWeight.w500,
     ),
     css('.page-nav-title').styles(
-      color: Color('#2a48df'),
+      color: Color('var(--primary)'),
       fontWeight: FontWeight.w700,
     ),
   ];

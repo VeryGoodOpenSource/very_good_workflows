@@ -252,7 +252,7 @@ class HomepageLayout extends PageLayoutBase {
         css('&').styles(
           position: Position.fixed(top: Unit.zero, left: Unit.zero, right: Unit.zero),
           zIndex: ZIndex(10),
-          backgroundColor: Colors.white,
+          backgroundColor: Color('var(--navbar-bg)'),
         ),
       ]),
 
@@ -317,9 +317,9 @@ class HomepageLayout extends PageLayoutBase {
           fontSize: 1.2.rem,
           fontWeight: FontWeight.w700,
           textDecoration: TextDecoration.none,
-          backgroundColor: Color('#2a48df'),
+          backgroundColor: Color('var(--primary)'),
         ),
-        css('&:hover').styles(backgroundColor: Color('#1e38b0')),
+        css('&:hover').styles(backgroundColor: Color('var(--primary-hover)')),
       ]),
       // Blog section
       css('.blog-section', [
@@ -370,27 +370,23 @@ class HomepageLayout extends PageLayoutBase {
           lineHeight: 1.5.rem,
         ),
         css('h2').styles(
-          color: Color('#1c1e21'),
+          color: Color('var(--text)'),
           fontSize: 1.5.rem,
           fontWeight: FontWeight.w600,
           lineHeight: 2.rem,
         ),
-        css('p').styles(color: Color('#1c1e21')),
+        css('p').styles(color: Color('var(--text)')),
       ]),
       css('.blog-link', [
         css('&').styles(
           margin: Margin.only(top: 0.3.rem),
-          color: Color('#2a48df'),
+          color: Color('var(--primary)'),
           fontWeight: FontWeight.bold,
           textDecoration: TextDecoration.none,
         ),
         css('&:hover').styles(textDecoration: TextDecoration(line: TextDecorationLine.underline)),
       ]),
     ]),
-    // Opaque header in dark mode for homepage
-    css('[data-theme="dark"] .homepage .header-container').styles(
-      backgroundColor: Color('#081842'),
-    ),
     // Hide the empty content section rendered by the Content component
     css('.homepage .content').styles(display: Display.none),
     // Dark mode: swap hero logos
@@ -398,18 +394,11 @@ class HomepageLayout extends PageLayoutBase {
     css('[data-theme="dark"] .hero-logo-dark').styles(
       raw: {'display': 'block !important'},
     ),
-    // Dark mode: CTA button
+    // Dark mode: CTA button text (bg handled by --primary token)
     css('[data-theme="dark"] .cta-button').styles(
-      color: Color('#020f30'),
-      backgroundColor: Color('#66fbd1'),
+      color: Color('var(--background)'),
     ),
-    css('[data-theme="dark"] .cta-button:hover').styles(
-      backgroundColor: Color('#4de0b8'),
-    ),
-    // Dark mode: blog section text colors
-    css('[data-theme="dark"] .blog-content h2').styles(color: Color('#e3e3e3')),
-    css('[data-theme="dark"] .blog-content p').styles(color: Color('#e3e3e3')),
-    css('[data-theme="dark"] .blog-link').styles(color: Color('#66fbd1')),
+    // Dark mode: hero subtitle (unique color, not in tokens)
     css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#ebedf0')),
 
     // ── Home page mobile sidebar ─────────────────────────────────────────────
@@ -423,7 +412,7 @@ class HomepageLayout extends PageLayoutBase {
         'width': '83vw',
         'transform': 'translateX(-100%)',
         'transition': 'transform 150ms ease-in-out',
-        'background-color': '#fbfcff',
+        'background-color': 'var(--navbar-bg)',
       },
     ),
     css('.homepage .sidebar-container.open').styles(
@@ -439,10 +428,6 @@ class HomepageLayout extends PageLayoutBase {
     css('.homepage .sidebar-barrier:has(+ .sidebar-container.open)').styles(
       opacity: 0.5,
       pointerEvents: PointerEvents.auto,
-    ),
-    // Dark mode: use the navbar background color for the sidebar panel.
-    css('[data-theme="dark"] .homepage .sidebar-container').styles(
-      raw: {'background-color': '#081842'},
     ),
     // Home sidebar nav: reuse CollapsibleSidebar's sidebar-mobile-header layout.
     // The .sidebar-mobile-header, .sidebar-mobile-nav, .sidebar-close styles

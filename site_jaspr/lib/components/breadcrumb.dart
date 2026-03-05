@@ -68,20 +68,20 @@ class Breadcrumb extends StatelessComponent {
     ]),
     css('.breadcrumb-link', [
       css('&').styles(
-        color: Color('#606770'),
+        color: Color('var(--secondary-text)'),
         textDecoration: TextDecoration.none,
       ),
-      css('&:hover').styles(color: Color('#2a48df')),
+      css('&:hover').styles(color: Color('var(--primary)')),
     ]),
     css('.breadcrumb-sep').styles(
       opacity: 0.5,
-      color: Color('#606770'),
+      color: Color('var(--secondary-text)'),
       fontSize: 0.75.rem,
     ),
     css('.breadcrumb-current').styles(
       padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
       radius: BorderRadius.circular(12.px),
-      color: Color('#2a48df'),
+      color: Color('var(--primary)'),
       fontSize: 0.8.rem,
       backgroundColor: Color('color-mix(in srgb, currentColor 8%, transparent)'),
     ),

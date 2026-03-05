@@ -75,17 +75,12 @@ class EditPageLink extends StatelessComponent {
     css('.edit-page-link').styles(
       display: Display.inlineFlex,
       alignItems: AlignItems.center,
-      color: Color('#2a48df'),
+      color: Color('var(--primary)'),
       textDecoration: TextDecoration.none,
       raw: {'gap': '0.3em'},
     ),
     css('.edit-page-link:hover').styles(
       textDecoration: TextDecoration(line: TextDecorationLine.underline),
-    ),
-
-    // Dark mode: --ifm-color-primary in dark = #66fbd1
-    css('[data-theme="dark"] .edit-page-link').styles(
-      color: Color('#66fbd1'),
     ),
 
     // Prevent the SVG from growing/shrinking inside the flex row.

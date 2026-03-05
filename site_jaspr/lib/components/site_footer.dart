@@ -130,26 +130,19 @@ class SiteFooter extends StatelessComponent {
     css('.site-footer', [
       css('&').styles(
         padding: Padding.all(2.rem),
-        color: Color('#606770'),
+        color: Color('var(--text)'),
         textAlign: TextAlign.center,
-        fontSize: 0.875.rem,
-        backgroundColor: Colors.white,
+        fontSize: 1.rem,
+        backgroundColor: Color('var(--background)'),
         raw: {
           'position': 'relative',
           'z-index': '11',
         },
       ),
       css('a').styles(
-        color: Color('#2a48df'),
+        color: Color('var(--primary)'),
         textDecoration: TextDecoration.none,
       ),
     ]),
-    css('[data-theme="dark"] .site-footer').styles(
-      color: Color('#e3e3e3'),
-      backgroundColor: Color('#020f30'),
-    ),
-    css('[data-theme="dark"] .site-footer a').styles(
-      color: Color('#44fac7'),
-    ),
   ];
 }

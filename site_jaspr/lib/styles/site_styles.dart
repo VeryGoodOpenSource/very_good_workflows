@@ -137,11 +137,11 @@ List<StyleRule> get siteStyles => [
   css('.code-block button').styles(
     display: Display.flex,
     padding: Padding.all(0.25.rem),
-    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    border: Border.all(color: Color('var(--border)'), width: 1.px),
     radius: BorderRadius.circular(0.4.rem),
     justifyContent: JustifyContent.center,
     alignItems: AlignItems.center,
-    backgroundColor: Colors.white,
+    backgroundColor: Color('var(--surface)'),
     raw: {
       'position': 'absolute !important',
       'top': '0.5rem',
@@ -149,7 +149,7 @@ List<StyleRule> get siteStyles => [
       'width': 'auto !important',
       'height': 'auto !important',
       'opacity': '0 !important',
-      'color': '#606770 !important',
+      'color': 'var(--secondary-text) !important',
       'cursor': 'pointer',
       'transition': 'opacity 0.2s, color 0.2s',
     },
@@ -161,15 +161,7 @@ List<StyleRule> get siteStyles => [
     raw: {'opacity': '0.5 !important'},
   ),
   css('.code-block button:hover').styles(
-    raw: {'opacity': '1 !important', 'color': '#1c1e21 !important'},
-  ),
-  css('[data-theme="dark"] .code-block button').styles(
-    border: Border.all(color: Color('#444950'), width: 1.px),
-    backgroundColor: Color('#1e1e1e'),
-    raw: {'color': '#a0a0a0 !important'},
-  ),
-  css('[data-theme="dark"] .code-block button:hover').styles(
-    raw: {'color': 'white !important'},
+    raw: {'opacity': '1 !important', 'color': 'var(--text) !important'},
   ),
   // Green check icon after successful copy (CheckIcon has no <rect>, CopyIcon does).
   // Needs both light and dark mode rules to beat specificity of dark hover rule.
@@ -204,11 +196,8 @@ List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   // Opaque header background for both modes
   css('.docs .header-container').styles(
-    backgroundColor: Colors.white,
+    backgroundColor: Color('var(--navbar-bg)'),
     raw: {'z-index': '20'},
-  ),
-  css('[data-theme="dark"] .header-container').styles(
-    backgroundColor: Color('#081842'),
   ),
   // Match Docusaurus navbar: 60px height, box-shadow (not border-bottom)
   css('.header').styles(
@@ -257,11 +246,7 @@ List<StyleRule> get siteStyles => [
   // 5. DARK MODE "GET STARTED" BUTTON
   // ───────────────────────────────────────────────────────────────────────
   css('[data-theme="dark"] .nav-button').styles(
-    color: Color('#020f30'),
-    backgroundColor: Color('#66fbd1'),
-  ),
-  css('[data-theme="dark"] .nav-button:hover').styles(
-    backgroundColor: Color('#44fac7'),
+    color: Color('var(--background)'),
   ),
   // Nav links (e.g. "VGV Dev Tools"): lighter weight, slightly smaller
   css('.nav-link:not(.nav-button)').styles(
@@ -282,19 +267,10 @@ List<StyleRule> get siteStyles => [
   // 5b. BREADCRUMB COLORS
   // ───────────────────────────────────────────────────────────────────────
   // Light mode: breadcrumb links match Docusaurus body text (#1c1e21)
-  css('.breadcrumb-link').styles(color: Color('#1c1e21')),
-  // Dark mode
-  css('[data-theme="dark"] .breadcrumb-current').styles(
-    color: Color('#66fbd1'),
-  ),
-  css('[data-theme="dark"] .breadcrumb-link').styles(
-    color: Color('#e3e3e3'),
-  ),
-  css('[data-theme="dark"] .breadcrumb-link:hover').styles(
-    color: Color('#66fbd1'),
-  ),
+  css('.breadcrumb-link').styles(color: Color('var(--text)')),
+  // Dark mode: separator needs explicit override (--secondary-text dark ≠ #e3e3e3)
   css('[data-theme="dark"] .breadcrumb-sep').styles(
-    color: Color('#e3e3e3'),
+    color: Color('var(--text)'),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -396,12 +372,7 @@ List<StyleRule> get siteStyles => [
   // Sidebar border-right: match Docusaurus 1px solid border
   css('.docs .sidebar-container').styles(
     border: Border.only(
-      right: BorderSide(width: 1.px, color: Color('#dadde1')),
-    ),
-  ),
-  css('[data-theme="dark"] .docs .sidebar-container').styles(
-    border: Border.only(
-      right: BorderSide(width: 1.px, color: Color('#444950')),
+      right: BorderSide(width: 1.px, color: Color('var(--border)')),
     ),
   ),
   // Dark mode sidebar links: Docusaurus uses #dadde1
@@ -445,7 +416,7 @@ List<StyleRule> get siteStyles => [
   // the mobile overlay instead of the page background (#020f30).
   css.media(MediaQuery.all(maxWidth: 1023.px), [
     css('[data-theme="dark"] .docs .main-container .sidebar-container').styles(
-      backgroundColor: Color('#081842'),
+      backgroundColor: Color('var(--navbar-bg)'),
     ),
   ]),
   // Fix DocsLayout's sidebar-barrier:
@@ -524,14 +495,8 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next').styles(
     border: Border.all(color: Color('#606770'), width: 1.px),
   ),
-  css('[data-theme="dark"] .page-nav-prev:hover, [data-theme="dark"] .page-nav-next:hover').styles(
-    border: Border.all(color: Color('#66fbd1'), width: 1.px),
-  ),
   css('[data-theme="dark"] .page-nav-label').styles(
     color: Colors.white,
-  ),
-  css('[data-theme="dark"] .page-nav-title').styles(
-    color: Color('#66fbd1'),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -557,7 +522,7 @@ List<StyleRule> get siteStyles => [
   css('.docs .main-container main > div aside.toc > div').styles(
     padding: Padding.only(left: 0.5.rem),
     border: Border.only(
-      left: BorderSide(width: 1.px, color: Color('#dadde1')),
+      left: BorderSide(width: 1.px, color: Color('var(--border)')),
     ),
   ),
   css('.docs .main-container main > div aside.toc li').styles(
@@ -565,41 +530,27 @@ List<StyleRule> get siteStyles => [
   ),
   // TOC links: gray by default, blue when active (matching Docusaurus)
   css('.toc a').styles(
-    color: Color('#525860'),
+    color: Color('var(--secondary-text)'),
     textDecoration: TextDecoration.none,
   ),
   css('.toc a:hover').styles(
-    color: Color('#2a48df'),
+    color: Color('var(--primary)'),
   ),
   css('.toc a.toc-active').styles(
-    color: Color('#2a48df'),
+    color: Color('var(--primary)'),
     fontWeight: FontWeight.w500,
   ),
   // TOC code sub-items (backtick headings): rounded pill border
   css('.toc a code').styles(
     padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
-    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    border: Border.all(color: Color('var(--border)'), width: 1.px),
     radius: BorderRadius.circular(12.px),
     fontSize: 11.px,
     raw: {'font-family': 'inherit'},
   ),
-  // Dark mode TOC
-  css('[data-theme="dark"] .docs .main-container main > div aside.toc > div').styles(
-    border: Border.only(
-      left: BorderSide(width: 1.px, color: Color('#444950')),
-    ),
-  ),
+  // Dark mode TOC: override link color (--secondary-text dark is #a0a0a0, need white)
   css('[data-theme="dark"] .toc a').styles(
     color: Colors.white,
-  ),
-  css('[data-theme="dark"] .toc a:hover').styles(
-    color: Color('#66fbd1'),
-  ),
-  css('[data-theme="dark"] .toc a.toc-active').styles(
-    color: Color('#66fbd1'),
-  ),
-  css('[data-theme="dark"] .toc a code').styles(
-    border: Border.all(color: Color('#444950'), width: 1.px),
   ),
   // ───────────────────────────────────────────────────────────────────────
   // 12b. MOBILE TOC (collapsible "On this page" above content < 1000px)
@@ -668,19 +619,19 @@ List<StyleRule> get siteStyles => [
   // Mobile TOC code sub-items: pill border (same as sidebar TOC)
   css('.mobile-toc .mobile-toc-content a code').styles(
     padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
-    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    border: Border.all(color: Color('var(--border)'), width: 1.px),
     radius: BorderRadius.circular(12.px),
     fontSize: 11.px,
     raw: {'font-family': 'inherit'},
   ),
   // Mobile TOC links: use higher specificity to override .content-container a
   css('.mobile-toc .mobile-toc-content a').styles(
-    color: Color('#1c1e21'),
+    color: Color('var(--text)'),
     fontSize: 0.8125.rem,
     textDecoration: TextDecoration.none,
   ),
   css('.mobile-toc .mobile-toc-content a:hover').styles(
-    color: Color('#2a48df'),
+    color: Color('var(--primary)'),
   ),
   css('.mobile-toc.expanded .mobile-toc-content').styles(
     raw: {'max-height': '500px'},
@@ -690,15 +641,6 @@ List<StyleRule> get siteStyles => [
     raw: {
       'background': 'rgba(255, 255, 255, 0.05)',
     },
-  ),
-  css('[data-theme="dark"] .mobile-toc .mobile-toc-content a').styles(
-    color: Color('#e3e3e3'),
-  ),
-  css('[data-theme="dark"] .mobile-toc .mobile-toc-content a:hover').styles(
-    color: Color('#66fbd1'),
-  ),
-  css('[data-theme="dark"] .mobile-toc .mobile-toc-content a code').styles(
-    border: Border.all(color: Color('#444950'), width: 1.px),
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -710,7 +652,7 @@ List<StyleRule> get siteStyles => [
   ),
   css('.content-container th, .content-container td').styles(
     padding: Padding.all(0.75.rem),
-    border: Border.all(color: Color('#dadde1'), width: 1.px),
+    border: Border.all(color: Color('var(--border)'), width: 1.px),
   ),
   css('.content-container thead tr').styles(
     raw: {'background': '#f6f7f8'},
@@ -722,9 +664,6 @@ List<StyleRule> get siteStyles => [
     raw: {'background': '#fbfcfd'},
   ),
   // Dark mode tables
-  css('[data-theme="dark"] .content-container th, [data-theme="dark"] .content-container td').styles(
-    border: Border.all(color: Color('#444950'), width: 1.px),
-  ),
   css('[data-theme="dark"] .content-container thead tr').styles(
     raw: {'background': 'rgba(255, 255, 255, 0.05)'},
   ),
@@ -765,7 +704,7 @@ List<StyleRule> get siteStyles => [
     ),
     css('&:hover').styles(
       textDecoration: TextDecoration.none,
-      raw: {'border-color': '#2a48df'},
+      raw: {'border-color': 'var(--primary)'},
     ),
     css('h3').styles(
       margin: Margin.only(bottom: 1.rem),
@@ -796,9 +735,6 @@ List<StyleRule> get siteStyles => [
   ),
   css('[data-theme="dark"] .workflow-card p').styles(
     color: Color('#ebedf0'),
-  ),
-  css('[data-theme="dark"] .workflow-card:hover').styles(
-    raw: {'border-color': '#66fbd1'},
   ),
 
   // Remove main-container side padding (jaspr_content adds 1.25rem at 768px+)
