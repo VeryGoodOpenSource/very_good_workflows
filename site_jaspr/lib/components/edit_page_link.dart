@@ -67,7 +67,7 @@ class EditPageLink extends StatelessComponent {
     // Block container — provides the 3rem top margin gap from content,
     // matching Docusaurus's `docusaurus-mt-lg` class on DocItemFooter.
     css('.edit-page-row').styles(
-      margin: Margin.only(top: 3.rem),
+      margin: Margin.only(top: 1.75.rem),
     ),
 
     // The link itself: inline-flex so icon and text sit side by side.
