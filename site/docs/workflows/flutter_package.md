@@ -13,8 +13,7 @@ The Flutter package workflow consists of the following steps:
 1. Install dependencies
 2. Format
 3. Analyze
-4. Run tests
-5. Check code coverage
+4. Run tests (includes coverage collection and enforcement)
 
 ## Inputs
 
@@ -38,7 +37,7 @@ The Flutter package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** A space-separated list of paths to exclude from the coverage report. Supports `globs` to describe file patterns.
+**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart'`). Only a single glob pattern is supported.
 
 **Default** `""`
 
@@ -101,6 +100,20 @@ The Flutter package workflow consists of the following steps:
 **Optional** List of paths to exclude from `packages get`. Supports `globs` to describe file patterns.
 
 **Default** `"!*"`
+
+### `show_uncovered`
+
+**Optional** Whether to show uncovered lines when coverage is below 100%. Implicitly enables coverage collection when used alone.
+
+**Default** `false`
+
+### `collect_coverage_from`
+
+**Optional** Whether to collect coverage from imported files only or all files. Counting untested files against coverage (`all`) results in stricter enforcement.
+
+**Allowed values** `imports`, `all`
+
+**Default** `"imports"`
 
 ## Secrets
 

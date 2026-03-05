@@ -15,6 +15,7 @@ on:
         required: false
         type: string
         default: ""
+        description: "A glob pattern to exclude files from coverage (e.g. '**/*.g.dart'). Only a single glob pattern is supported."
       flutter_channel:
         required: false
         type: string
@@ -62,6 +63,16 @@ on:
         type: boolean
         default: true
         required: false
+      show_uncovered:
+        required: false
+        type: boolean
+        default: false
+        description: "Whether to show uncovered lines when coverage is below 100%."
+      collect_coverage_from:
+        required: false
+        type: string
+        default: "imports"
+        description: "Whether to collect coverage from imported files only or all files. Allowed values: imports, all."
     secrets:
       ssh_key:
         required: false
@@ -116,11 +127,14 @@ jobs:
           bloc lint .
 
       - name: 🧪 Run Tests
-        run: very_good test -j ${{inputs.concurrency}} ${{(inputs.test_recursion && '--recursive') || ''}} ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}} --coverage --test-randomize-ordering-seed random
-
-      - name: 📊 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v3
-        with:
-          path: ${{inputs.working_directory}}/coverage/lcov.info
-          exclude: ${{inputs.coverage_excludes}}
-          min_coverage: ${{inputs.min_coverage}}
+        run: >-
+          very_good test
+          -j ${{inputs.concurrency}}
+          ${{(inputs.test_recursion && '--recursive') || ''}}
+          ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}}
+          --coverage
+          --min-coverage ${{inputs.min_coverage}}
+          ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
+          ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
+          ${{inputs.show_uncovered && '--show-uncovered' || ''}}
+          --test-randomize-ordering-seed random

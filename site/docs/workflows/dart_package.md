@@ -13,8 +13,7 @@ The Dart package workflow consists of the following steps:
 1. Install dependencies
 2. Format
 3. Analyze
-4. Run tests
-5. Check code coverage
+4. Run tests (includes coverage collection and enforcement)
 
 ## Inputs
 
@@ -26,7 +25,7 @@ The Dart package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
+**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart'`). Only a single glob pattern is supported.
 
 **Default** `""`
 
@@ -66,7 +65,7 @@ The Dart package workflow consists of the following steps:
 
 ### `check_ignore`
 
-**Optional** Allows ignoring lines from [coverage](https://pub.dev/packages/coverage).
+> **Deprecated** This input has no effect and will be removed in a future release. Coverage is now handled by `very_good_cli`. See [VeryGoodOpenSource/very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli/issues) for tracking.
 
 **Default** `false`
 
@@ -106,6 +105,20 @@ The Dart package workflow consists of the following steps:
 **Optional** To avoid getting packages in `example/` when running `dart pub get` (if it exists).
 
 **Default** `false`
+
+### `show_uncovered`
+
+**Optional** Whether to show uncovered lines when coverage is below 100%. Implicitly enables coverage collection when used alone.
+
+**Default** `false`
+
+### `collect_coverage_from`
+
+**Optional** Whether to collect coverage from imported files only or all files. Counting untested files against coverage (`all`) results in stricter enforcement.
+
+**Allowed values** `imports`, `all`
+
+**Default** `"imports"`
 
 ## Secrets
 
