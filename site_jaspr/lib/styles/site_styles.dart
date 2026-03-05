@@ -46,12 +46,6 @@ List<StyleRule> get siteStyles => [
   //    h2=1.5em) and different line-height (1.75). Override to match Infima.
   // ───────────────────────────────────────────────────────────────────────
   // Heading sizes: Infima uses h1=3rem, h2=2rem, h3=1.5rem, h4=1.25rem
-  // Heading anchors: framework uses display:flex on headings which makes
-  // the # anchor a block flex-child on a new line. Force inline so it
-  // doesn't add extra height.
-  css('.content :is(h1, h2, h3, h4, h5, h6)[anchor] > a').styles(
-    raw: {'position': 'absolute'},
-  ),
   css('.content h1').styles(
     fontSize: 3.rem,
     fontWeight: FontWeight.w700,
@@ -183,6 +177,10 @@ List<StyleRule> get siteStyles => [
   ),
   css('.content a:not(.workflow-card):not(.page-nav-prev):not(.page-nav-next):hover').styles(
     textDecoration: TextDecoration(line: TextDecorationLine.underline),
+  ),
+  // Heading anchors: bold '#' to match Docusaurus hash-link styling
+  css('.content :is(h1, h2, h3, h4, h5, h6)[anchor="true"] > a').styles(
+    fontWeight: FontWeight.w700,
   ),
   // Blockquote: no italic, normal weight (matching Infima defaults)
   css('.content blockquote').styles(
