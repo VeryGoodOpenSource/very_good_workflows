@@ -102,6 +102,7 @@ void main() {
                   ),
                 ],
               ),
+              ThemeToggle(),
             ],
             // Primary panel: global nav items shown when "← Back to main menu"
             // is tapped — mirrors Docusaurus's primary sidebar panel.

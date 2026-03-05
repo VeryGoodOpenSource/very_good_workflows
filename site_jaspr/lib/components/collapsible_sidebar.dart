@@ -255,7 +255,8 @@ class CollapsibleSidebar extends StatelessComponent {
       css('.sidebar-mobile-header', [
         css('&').styles(
           display: Display.flex,
-          padding: Padding.symmetric(horizontal: 0.5.rem, vertical: 0.5.rem),
+          height: 3.75.rem,
+          padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.5.rem),
           alignItems: AlignItems.center,
           raw: {'flex-shrink': '0'},
         ),
@@ -269,7 +270,7 @@ class CollapsibleSidebar extends StatelessComponent {
         css('&').styles(
           display: Display.flex,
           alignItems: AlignItems.center,
-          gap: Gap.column(0.25.rem),
+          gap: Gap.column(0.5.rem),
           flex: Flex(grow: 1),
           raw: {'flex-wrap': 'wrap'},
         ),

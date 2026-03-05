@@ -316,7 +316,7 @@ List<StyleRule> get siteStyles => [
     backgroundColor: Color('rgba(255, 255, 255, 0.1)'),
   ),
   css('.theme-toggle svg').styles(
-    raw: {'width': '20px', 'height': '20px'},
+    raw: {'width': '24px', 'height': '24px'},
   ),
   // Reverse icons: show current state (sun in light, moon in dark).
   // Framework default: moon in light, sun in dark.
