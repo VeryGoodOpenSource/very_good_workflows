@@ -609,7 +609,7 @@ List<StyleRule> get siteStyles => [
     css('&').styles(
       display: Display.flex,
       width: Unit.percent(100),
-      padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.75.rem),
+      padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.5.rem),
       cursor: Cursor.pointer,
       fontSize: 0.875.rem,
       fontWeight: FontWeight.w700,

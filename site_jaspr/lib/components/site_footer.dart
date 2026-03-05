@@ -85,7 +85,7 @@ class SiteFooter extends StatelessComponent {
 
     var toggle = document.createElement('button');
     toggle.className = 'mobile-toc-toggle';
-    toggle.innerHTML = '<span>On this page</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    toggle.innerHTML = '<span>On this page</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
 
     var content = document.createElement('div');
     content.className = 'mobile-toc-content';
@@ -132,7 +132,7 @@ class SiteFooter extends StatelessComponent {
         padding: Padding.all(2.rem),
         color: Color('#606770'),
         textAlign: TextAlign.center,
-        fontSize: 1.rem,
+        fontSize: 0.875.rem,
         backgroundColor: Colors.white,
         raw: {
           'position': 'relative',
