@@ -45,7 +45,7 @@ class PageNavigation extends StatelessComponent {
         padding: Padding.zero,
         margin: Margin.only(top: 48.px),
         border: Border.only(
-          top: BorderSide(color: Color('#0000000d'), width: 1.px),
+          top: BorderSide(color: Color('var(--hover-overlay)'), width: 1.px),
         ),
         gap: Gap(column: 0.75.rem),
       ),
@@ -53,7 +53,7 @@ class PageNavigation extends StatelessComponent {
     css('.page-nav-prev, .page-nav-next').styles(
       display: Display.flex,
       padding: Padding.all(1.rem),
-      border: Border.all(color: Color('#0000001f'), width: 1.px),
+      border: Border.all(color: Color('var(--border)'), width: 1.px),
       radius: BorderRadius.circular(0.4.rem),
       flexDirection: FlexDirection.column,
       gap: Gap(row: 0.25.rem),

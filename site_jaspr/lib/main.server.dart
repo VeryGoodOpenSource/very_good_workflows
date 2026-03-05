@@ -225,6 +225,42 @@ void main() {
             dark: Color('#a0a0a0'),
           ),
           ColorToken('surface', Color('#ffffff'), dark: Color('#1e1e1e')),
+          // Shared UI tokens (hover overlays, muted text, callout colors).
+          ColorToken(
+            'hover-overlay',
+            Color('rgba(0, 0, 0, 0.05)'),
+            dark: Color('rgba(255, 255, 255, 0.05)'),
+          ),
+          ColorToken('muted-text', Color('#444950'), dark: Color('#ebedf0')),
+          // Callout / admonition tokens.
+          ColorToken('callout-info-text', Color('#193c47')),
+          ColorToken(
+            'callout-info-bg',
+            Color('#eef9fd'),
+            dark: Color('rgba(84, 199, 236, 0.15)'),
+          ),
+          ColorToken('callout-info-border', Color('#54c7ec')),
+          ColorToken('callout-warning-text', Color('#4d3800')),
+          ColorToken(
+            'callout-warning-bg',
+            Color('#fff8e6'),
+            dark: Color('rgba(230, 167, 0, 0.15)'),
+          ),
+          ColorToken('callout-warning-border', Color('#e6a700')),
+          ColorToken('callout-error-text', Color('#4b1113')),
+          ColorToken(
+            'callout-error-bg',
+            Color('#ffebec'),
+            dark: Color('rgba(250, 82, 82, 0.15)'),
+          ),
+          ColorToken('callout-error-border', Color('#fa5252')),
+          ColorToken('callout-success-text', Color('#003100')),
+          ColorToken(
+            'callout-success-bg',
+            Color('#e6fce6'),
+            dark: Color('rgba(0, 164, 0, 0.15)'),
+          ),
+          ColorToken('callout-success-border', Color('#00a400')),
         ],
         typography: ContentTypography.base,
         reset: true,

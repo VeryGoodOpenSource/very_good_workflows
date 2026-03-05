@@ -21,9 +21,11 @@ class CodeAwareTocPostProcessor implements PageExtension {
     if (codeHeadingIds.isNotEmpty) {
       final toc = page.data['toc'];
       if (toc is TableOfContents) {
-        page.apply(data: {
-          'toc': _CodeAwareTableOfContents(toc.entries, codeHeadingIds),
-        });
+        page.apply(
+          data: {
+            'toc': _CodeAwareTableOfContents(toc.entries, codeHeadingIds),
+          },
+        );
       }
     }
 
@@ -79,10 +81,7 @@ class _CodeAwareTableOfContents extends TableOfContents {
               return a(
                 href: '${route.path}#${entry.id}',
                 [
-                  if (isCode)
-                    code([Component.text(entry.text)])
-                  else
-                    Component.text(entry.text),
+                  if (isCode) code([Component.text(entry.text)]) else Component.text(entry.text),
                 ],
               );
             },

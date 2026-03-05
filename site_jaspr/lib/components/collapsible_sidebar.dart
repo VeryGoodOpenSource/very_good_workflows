@@ -319,7 +319,7 @@ class CollapsibleSidebar extends StatelessComponent {
         ),
         css('&:hover').styles(
           opacity: 0.9,
-          backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+          backgroundColor: Color('var(--hover-overlay)'),
         ),
       ]),
 
@@ -360,7 +360,7 @@ class CollapsibleSidebar extends StatelessComponent {
         ),
         css('&:hover').styles(
           opacity: 1,
-          backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+          backgroundColor: Color('var(--hover-overlay)'),
         ),
         css.media(MediaQuery.all(minWidth: 1024.px), [
           css('&').styles(display: Display.none),
@@ -397,15 +397,11 @@ class CollapsibleSidebar extends StatelessComponent {
       },
     ),
     css('.sidebar-link:hover').styles(
-      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+      backgroundColor: Color('var(--hover-overlay)'),
     ),
     css('.sidebar-link.active').styles(
       color: ContentColors.primary,
-      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
-    ),
-    // Dark mode active background: same tint as hover.
-    css('[data-theme="dark"] .sidebar-link.active').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+      backgroundColor: Color('var(--hover-overlay)'),
     ),
     // Parent category: color only, no background tint.
     css('.sidebar-link.parent-active').styles(
@@ -443,7 +439,7 @@ class CollapsibleSidebar extends StatelessComponent {
     ),
     css('.sidebar-caret:hover').styles(
       opacity: 0.8,
-      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+      backgroundColor: Color('var(--hover-overlay)'),
     ),
     // Caret stays visible (opacity 0.8) and rotates 90° when category is expanded.
     css('.sidebar-collapsible.expanded .sidebar-caret').styles(
@@ -484,20 +480,7 @@ class CollapsibleSidebar extends StatelessComponent {
       css('.sidebar.show-primary .sidebar-group').styles(display: Display.none),
     ]),
 
-    // ── Dark mode overrides ──────────────────────────────────────────────────
-    // Active uses var(--primary) which auto-switches via ContentTheme; only
-    // hover backgrounds and borders need explicit dark overrides.
-    css('[data-theme="dark"] .sidebar-link:hover').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
-    ),
-    css('[data-theme="dark"] .sidebar-caret:hover').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
-    ),
-    css('[data-theme="dark"] .sidebar-close:hover').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
-    ),
-    css('[data-theme="dark"] .sidebar-back:hover').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
-    ),
+    // Dark mode: active bg also uses --hover-overlay (auto-switches via token).
+    // Active uses var(--primary) color which auto-switches via ContentTheme.
   ];
 }

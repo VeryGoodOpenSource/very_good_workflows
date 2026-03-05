@@ -121,9 +121,7 @@ class _DualCodeBlock extends StatelessComponent {
         color: Color.value(style.foreground.argb & 0x00FFFFFF),
         fontWeight: style.bold ? FontWeight.bold : null,
         fontStyle: style.italic ? FontStyle.italic : null,
-        textDecoration: style.underline
-            ? TextDecoration(line: TextDecorationLine.underline)
-            : null,
+        textDecoration: style.underline ? TextDecoration(line: TextDecorationLine.underline) : null,
       );
     }
 

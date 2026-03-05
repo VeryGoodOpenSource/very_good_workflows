@@ -287,7 +287,7 @@ class HomepageLayout extends PageLayoutBase {
       css('.hero-subtitle', [
         css('&').styles(
           margin: Margin.only(bottom: 1.25.rem),
-          color: Color('#444950'),
+          color: Color('var(--muted-text)'),
           fontSize: 1.5.rem,
         ),
       ]),
@@ -398,8 +398,6 @@ class HomepageLayout extends PageLayoutBase {
     css('[data-theme="dark"] .cta-button').styles(
       color: Color('var(--background)'),
     ),
-    // Dark mode: hero subtitle (unique color, not in tokens)
-    css('[data-theme="dark"] .hero-subtitle').styles(color: Color('#ebedf0')),
 
     // ── Home page mobile sidebar ─────────────────────────────────────────────
     // The SidebarToggleButton in the Header toggles .open on .sidebar-container.
@@ -464,7 +462,7 @@ class HomepageLayout extends PageLayoutBase {
     ),
     css('.homepage .sidebar .sidebar-close:hover').styles(
       opacity: 0.9,
-      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
+      backgroundColor: Color('var(--hover-overlay)'),
     ),
     // Home sidebar nav items: .sidebar-home-nav ul/li + .sidebar-primary-link
     css('.homepage .sidebar-home-nav').styles(
@@ -491,13 +489,7 @@ class HomepageLayout extends PageLayoutBase {
       },
     ),
     css('.sidebar-primary-link:hover').styles(
-      backgroundColor: Color('rgba(0, 0, 0, 0.05)'),
-    ),
-    css('[data-theme="dark"] .sidebar-primary-link:hover').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
-    ),
-    css('[data-theme="dark"] .homepage .sidebar .sidebar-close:hover').styles(
-      backgroundColor: Color('rgba(255, 255, 255, 0.05)'),
+      backgroundColor: Color('var(--hover-overlay)'),
     ),
   ];
 }

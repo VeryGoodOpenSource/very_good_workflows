@@ -30,6 +30,9 @@ List<StyleRule> get siteStyles => [
       '--ifm-font-family-monospace':
           "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', "
           "'Courier New', monospace",
+      // Color tokens (hover-overlay, muted-text, callout-*) are defined as
+      // ColorToken entries in main.server.dart so that dark mode values update
+      // dynamically with the theme toggle.
     },
   ),
   css('html, body').styles(
@@ -450,16 +453,16 @@ List<StyleRule> get siteStyles => [
   ),
   // Underline color matches the left border color per type.
   css('.content-container .doc-callout-info a').styles(
-    raw: {'text-decoration-color': '#54c7ec'},
+    raw: {'text-decoration-color': 'var(--callout-info-border)'},
   ),
   css('.content-container .doc-callout-warning a').styles(
-    raw: {'text-decoration-color': '#e6a700'},
+    raw: {'text-decoration-color': 'var(--callout-warning-border)'},
   ),
   css('.content-container .doc-callout-error a').styles(
-    raw: {'text-decoration-color': '#fa5252'},
+    raw: {'text-decoration-color': 'var(--callout-error-border)'},
   ),
   css('.content-container .doc-callout-success a').styles(
-    raw: {'text-decoration-color': '#00a400'},
+    raw: {'text-decoration-color': 'var(--callout-success-border)'},
   ),
 
   // ───────────────────────────────────────────────────────────────────────
@@ -558,7 +561,7 @@ List<StyleRule> get siteStyles => [
       margin: Margin.only(bottom: 1.rem),
       radius: BorderRadius.circular(0.4.rem),
       raw: {
-        'background': 'rgba(0, 0, 0, 0.05)',
+        'background': 'var(--hover-overlay)',
       },
     ),
   ]),
@@ -634,12 +637,6 @@ List<StyleRule> get siteStyles => [
   css('.mobile-toc.expanded .mobile-toc-content').styles(
     raw: {'max-height': '500px'},
   ),
-  // Dark mode mobile TOC
-  css('[data-theme="dark"] .mobile-toc').styles(
-    raw: {
-      'background': 'rgba(255, 255, 255, 0.05)',
-    },
-  ),
 
   // ───────────────────────────────────────────────────────────────────────
   // 12c. TABLES (matching Docusaurus/Infima table styling)
@@ -663,7 +660,7 @@ List<StyleRule> get siteStyles => [
   ),
   // Dark mode tables
   css('[data-theme="dark"] .content-container thead tr').styles(
-    raw: {'background': 'rgba(255, 255, 255, 0.05)'},
+    raw: {'background': 'var(--hover-overlay)'},
   ),
   css('[data-theme="dark"] .content-container tr:nth-child(2n)').styles(
     raw: {'background': 'rgba(255, 255, 255, 0.02)'},
@@ -714,7 +711,7 @@ List<StyleRule> get siteStyles => [
     css('p').styles(
       margin: Margin.zero,
       overflow: Overflow.hidden,
-      color: Color('#444950'),
+      color: Color('var(--muted-text)'),
       fontSize: 0.8.rem,
       textDecoration: TextDecoration.none,
       raw: {
@@ -730,9 +727,6 @@ List<StyleRule> get siteStyles => [
       'background': '#314155',
       'border-color': '#444950',
     },
-  ),
-  css('[data-theme="dark"] .workflow-card p').styles(
-    color: Color('#ebedf0'),
   ),
 
   // Remove main-container side padding (jaspr_content adds 1.25rem at 768px+)

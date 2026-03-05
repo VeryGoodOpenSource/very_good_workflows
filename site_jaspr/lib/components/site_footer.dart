@@ -13,24 +13,29 @@ class SiteFooter extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return Component.fragment([
-      Document.head(children: [
-        link(
-          rel: 'preconnect',
-          href: 'https://fonts.googleapis.com',
-        ),
-        link(
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap',
-        ),
-        Style(styles: siteStyles),
-        script(defer: true, content: _tocScrollspy),
-        script(defer: true, content: _mobileToc),
-        script(defer: true, content: _relocateFooter),
-      ]),
+      Document.head(
+        children: [
+          link(
+            rel: 'preconnect',
+            href: 'https://fonts.googleapis.com',
+          ),
+          link(
+            rel: 'stylesheet',
+            href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap',
+          ),
+          Style(styles: siteStyles),
+          script(defer: true, content: _themeToggleFix),
+          script(defer: true, content: _tocScrollspy),
+          script(defer: true, content: _mobileToc),
+          script(defer: true, content: _relocateFooter),
+        ],
+      ),
       footer(classes: 'site-footer', [
         p([
           Component.text('Built with \u{1F499} by '),
-          a(href: 'https://verygood.ventures', [b([Component.text('Very Good Ventures')])]),
+          a(href: 'https://verygood.ventures', [
+            b([Component.text('Very Good Ventures')]),
+          ]),
         ]),
         p([
           Component.text('Copyright \u00A9 ${DateTime.now().year} Very Good Ventures.'),
@@ -38,6 +43,22 @@ class SiteFooter extends StatelessComponent {
       ]),
     ]);
   }
+
+  /// Workaround for Jaspr framework bug where `Document.html` doesn't update
+  /// the `data-theme` attribute on the root element during client-side rebuilds.
+  /// Reads the theme from localStorage (which the framework updates correctly)
+  /// after a microtask so Jaspr's handler runs first.
+  static const _themeToggleFix = '''
+(function(){
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.theme-toggle')) return;
+    setTimeout(function(){
+      var theme = localStorage.getItem('jaspr:theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    }, 0);
+  });
+})();
+''';
 
   /// Inline script that highlights the active TOC link based on scroll position.
   static const _tocScrollspy = '''
