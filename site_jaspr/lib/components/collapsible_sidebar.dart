@@ -368,7 +368,7 @@ class CollapsibleSidebar extends StatelessComponent {
       alignItems: AlignItems.center,
       color: Color.inherit,
       fontSize: 1.rem,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       textDecoration: TextDecoration.none,
       raw: {
         'line-height': '1.25',

@@ -60,6 +60,7 @@ List<StyleRule> get siteStyles => [
   ),
   css('.content h3').styles(
     fontSize: 1.5.rem,
+    fontWeight: FontWeight.w700,
     lineHeight: 1.5.em,
     raw: {'margin': '2rem 0 0.75rem'},
   ),
@@ -84,13 +85,9 @@ List<StyleRule> get siteStyles => [
   // Inline code: light gray background, smaller font (matching Infima)
   // Use :not(pre) > code to avoid styling code inside pre blocks
   css('.content :not(pre) > code').styles(
-    padding: Padding.only(
-      top: 0.1.rem,
-      right: 0.4.rem,
-      bottom: 0.1.rem,
-      left: 0.4.rem,
-    ),
-    radius: BorderRadius.circular(0.2.rem),
+    padding: Padding.all(0.1.rem),
+    border: Border.all(color: Color('rgba(0, 0, 0, 0.1)'), width: 1.px),
+    radius: BorderRadius.circular(0.4.rem),
     fontSize: Unit.percent(95),
     raw: {
       'background-color': 'rgba(0, 0, 0, 0.06)',
@@ -196,10 +193,12 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .header-container').styles(
     backgroundColor: Color('#081842'),
   ),
-  // Match Docusaurus navbar height: 60px with padding 0.5rem 1rem
+  // Match Docusaurus navbar: 60px height, box-shadow (not border-bottom)
   css('.header').styles(
     height: 3.75.rem,
     padding: Padding.symmetric(horizontal: 1.rem, vertical: 0.5.rem),
+    border: Border.none,
+    raw: {'box-shadow': 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px'},
   ),
   // Hide the title text in the header (original only shows the logo badge)
   css('.header-title > span').styles(display: Display.none),
@@ -469,6 +468,10 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] code').styles(
     raw: {'background': '#081842 !important'},
   ),
+  // Dark mode inline code: lighter border to match Docusaurus
+  css('[data-theme="dark"] .content :not(pre) > code').styles(
+    border: Border.all(color: Color('rgba(255, 255, 255, 0.1)'), width: 1.px),
+  ),
   css('[data-theme="dark"]').styles(
     raw: {'scrollbar-color': '#ffffff30 transparent'},
   ),
@@ -486,7 +489,7 @@ List<StyleRule> get siteStyles => [
   css('.page-nav-label').styles(color: Color('#525860')),
   // Dark mode: page nav prev/next blocks
   css('[data-theme="dark"] .page-nav-prev, [data-theme="dark"] .page-nav-next').styles(
-    border: Border.all(color: Color('#444950'), width: 1.px),
+    border: Border.all(color: Color('#606770'), width: 1.px),
   ),
   css('[data-theme="dark"] .page-nav-prev:hover, [data-theme="dark"] .page-nav-next:hover').styles(
     border: Border.all(color: Color('#66fbd1'), width: 1.px),
@@ -759,7 +762,7 @@ List<StyleRule> get siteStyles => [
     },
   ),
   css('[data-theme="dark"] .workflow-card p').styles(
-    color: Color('#ffffff'),
+    color: Color('#ebedf0'),
   ),
   css('[data-theme="dark"] .workflow-card:hover').styles(
     raw: {'border-color': '#66fbd1'},
@@ -777,7 +780,7 @@ List<StyleRule> get siteStyles => [
   // (matching Docusaurus where contentCol = 75% of docMainContainer width)
   css.media(MediaQuery.all(minWidth: 1000.px), [
     css('.docs .main-container main > div').styles(
-      padding: Padding.only(top: 1.rem),
+      padding: Padding.only(top: 1.rem, left: Unit.zero, right: Unit.zero),
     ),
     css('.docs .main-container main > div .content-container').styles(
       padding: Padding.symmetric(horizontal: 1.rem),
