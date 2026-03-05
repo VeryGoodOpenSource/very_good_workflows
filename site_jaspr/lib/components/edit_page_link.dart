@@ -13,8 +13,7 @@ import 'package:jaspr_content/jaspr_content.dart';
 class EditPageLink extends StatelessComponent {
   const EditPageLink({super.key});
 
-  static const _editUrlBase =
-      'https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/site';
+  static const _editUrlBase = 'https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/site';
 
   @override
   Component build(BuildContext context) {
@@ -23,8 +22,8 @@ class EditPageLink extends StatelessComponent {
     if (kIsWeb) return Component.fragment([]);
 
     final url = context.page.url;
-    // Only render on /docs/* pages.
-    if (!url.startsWith('/docs/')) return Component.fragment([]);
+    // Only render on /docs/* pages, but not the workflows category index.
+    if (!url.startsWith('/docs/') || url == '/docs/workflows') return Component.fragment([]);
 
     // /docs/workflows/license_check  →  docs/workflows/license_check.md
     final filePath = '${url.replaceFirst('/', '')}.md';
