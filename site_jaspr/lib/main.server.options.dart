@@ -15,6 +15,8 @@ import 'package:jaspr_content/components/sidebar_toggle_button.dart'
     as _sidebar_toggle_button;
 import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/breadcrumb.dart' as _breadcrumb;
+import 'package:site_jaspr/components/theme_toggle_fix.dart'
+    as _theme_toggle_fix;
 import 'package:site_jaspr/components/collapsible_sidebar.dart'
     as _collapsible_sidebar;
 import 'package:site_jaspr/components/doc_callout.dart' as _doc_callout;
@@ -59,6 +61,10 @@ ServerOptions get defaultServerOptions => ServerOptions(
     _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
       'jaspr_content:theme_toggle',
     ),
+    _theme_toggle_fix.ThemeToggleFix:
+        ClientTarget<_theme_toggle_fix.ThemeToggleFix>(
+          'site_jaspr:theme_toggle_fix',
+        ),
   },
   styles: () => [
     ..._zoomable_image.ZoomableImage.styles,

@@ -14,6 +14,8 @@ import 'package:jaspr_content/components/sidebar_toggle_button.dart'
     deferred as _sidebar_toggle_button;
 import 'package:jaspr_content/components/theme_toggle.dart'
     deferred as _theme_toggle;
+import 'package:site_jaspr/components/theme_toggle_fix.dart'
+    deferred as _theme_toggle_fix;
 
 /// Default [ClientOptions] for use with your Jaspr project.
 ///
@@ -52,6 +54,10 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'jaspr_content:theme_toggle': ClientLoader(
       (p) => _theme_toggle.ThemeToggle(),
       loader: _theme_toggle.loadLibrary,
+    ),
+    'site_jaspr:theme_toggle_fix': ClientLoader(
+      (p) => _theme_toggle_fix.ThemeToggleFix(),
+      loader: _theme_toggle_fix.loadLibrary,
     ),
   },
 );
