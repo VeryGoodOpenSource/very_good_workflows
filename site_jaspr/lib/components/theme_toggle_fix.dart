@@ -27,8 +27,8 @@ class _ThemeToggleFixState extends State<ThemeToggleFix> {
     _listener = ((JSAny? raw) {
       final target = (raw as web.Event).target;
       if (target == null || !target.isA<web.Element>()) return;
-      final el = target as web.Element;
-      if (el.closest('.theme-toggle') == null) return;
+      final element = target as web.Element;
+      if (element.closest('.theme-toggle') == null) return;
       Future.delayed(Duration.zero, () {
         final theme = web.window.localStorage.getItem('jaspr:theme') ?? 'light';
         web.document.documentElement?.setAttribute('data-theme', theme);
@@ -39,9 +39,9 @@ class _ThemeToggleFixState extends State<ThemeToggleFix> {
 
   @override
   void dispose() {
-    final l = _listener;
-    if (l != null) {
-      web.document.removeEventListener('click', l as web.EventListener);
+    final listener = _listener;
+    if (listener != null) {
+      web.document.removeEventListener('click', listener as web.EventListener);
       _listener = null;
     }
     super.dispose();

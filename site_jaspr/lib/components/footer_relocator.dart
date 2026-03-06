@@ -25,10 +25,10 @@ class _FooterRelocatorState extends State<FooterRelocator> {
 
   void _move() {
     final footer = web.document.querySelector('.site-footer');
-    final mc = web.document.querySelector('.main-container');
-    if (footer == null || mc == null) return;
-    if (footer.parentElement == mc) return;
-    mc.appendChild(footer);
+    final mainContainer = web.document.querySelector('.main-container');
+    if (footer == null || mainContainer == null) return;
+    if (footer.parentElement == mainContainer) return;
+    mainContainer.appendChild(footer);
   }
 
   @override

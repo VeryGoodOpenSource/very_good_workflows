@@ -36,18 +36,18 @@ class _TocScrollspyState extends State<TocScrollspy> {
     for (var i = 0; i < links.length; i++) {
       final node = links.item(i);
       if (node == null || !node.isA<web.Element>()) continue;
-      final el = node as web.Element;
-      final href = el.getAttribute('href');
+      final element = node as web.Element;
+      final href = element.getAttribute('href');
       if (href == null || !href.contains('#')) continue;
       final id = href.split('#').last;
-      if (id.isNotEmpty) entries.add((id: id, el: el));
+      if (id.isNotEmpty) entries.add((id: id, el: element));
     }
     if (entries.isEmpty) return;
 
     int? active;
     for (var i = 0; i < entries.length; i++) {
-      final el = web.document.getElementById(entries[i].id);
-      if (el != null && el.getBoundingClientRect().top <= 100) active = i;
+      final element = web.document.getElementById(entries[i].id);
+      if (element != null && element.getBoundingClientRect().top <= 100) active = i;
     }
 
     for (var i = 0; i < links.length; i++) {
@@ -61,9 +61,9 @@ class _TocScrollspyState extends State<TocScrollspy> {
 
   @override
   void dispose() {
-    final l = _listener;
-    if (l != null) {
-      web.window.removeEventListener('scroll', l as web.EventListener);
+    final listener = _listener;
+    if (listener != null) {
+      web.window.removeEventListener('scroll', listener as web.EventListener);
       _listener = null;
     }
     super.dispose();

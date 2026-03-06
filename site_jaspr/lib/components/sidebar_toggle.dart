@@ -30,21 +30,20 @@ class _SidebarToggleState extends State<SidebarToggle> {
     _listener = ((JSAny? raw) {
       final target = (raw as web.Event).target;
       if (target == null || !target.isA<web.Element>()) return;
-      final el = target as web.Element;
+      final element = target as web.Element;
 
-      final caret = el.closest('.sidebar-caret');
+      final caret = element.closest('.sidebar-caret');
       if (caret != null) {
         caret.closest('.sidebar-collapsible')?.classList.toggle('expanded');
         return;
       }
 
-      if (el.closest('.sidebar-back') != null) {
-        el.closest('.sidebar')?.classList.add('show-primary');
+      if (element.closest('.sidebar-back') != null) {
+        element.closest('.sidebar')?.classList.add('show-primary');
         return;
       }
 
-      if (el.closest('.sidebar-close') != null ||
-          el.closest('.sidebar-barrier') != null) {
+      if (element.closest('.sidebar-close') != null || element.closest('.sidebar-barrier') != null) {
         web.document.querySelector('.sidebar')?.classList.remove('show-primary');
       }
     }).toJS;
@@ -53,9 +52,9 @@ class _SidebarToggleState extends State<SidebarToggle> {
 
   @override
   void dispose() {
-    final l = _listener;
-    if (l != null) {
-      web.document.removeEventListener('click', l as web.EventListener);
+    final listener = _listener;
+    if (listener != null) {
+      web.document.removeEventListener('click', listener as web.EventListener);
       _listener = null;
     }
     super.dispose();
