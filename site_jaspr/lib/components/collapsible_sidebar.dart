@@ -5,6 +5,7 @@ import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
 
 import '../utils/page_order.dart';
+import 'sidebar_toggle.dart';
 
 /// A sidebar entry that can optionally have collapsible children.
 ///
@@ -90,11 +91,7 @@ class CollapsibleSidebar extends StatelessComponent {
           }).toList();
 
     return Component.fragment([
-      Document.head(
-        children: [
-          script(defer: true, content: _toggleScript),
-        ],
-      ),
+      SidebarToggle(),
       nav(classes: 'sidebar', [
         // Mobile-only header: nav items (flex row) + close button.
         // Mirrors Docusaurus's navbar-sidebar__brand / navbar-sidebar__items.
@@ -230,34 +227,6 @@ class CollapsibleSidebar extends StatelessComponent {
       ],
     );
   }
-
-  /// Handles sidebar interactions:
-  ///   - `.sidebar-caret` clicks toggle the `.expanded` class on the parent
-  ///     collapsible item.
-  ///   - `.sidebar-back` clicks switch to the primary panel by adding
-  ///     `.show-primary` to the parent `.sidebar`.
-  ///   - `.sidebar-close` / `.sidebar-barrier` clicks reset the panel state
-  ///     back to secondary so the next open starts fresh.
-  static const _toggleScript = '''
-(function(){
-  document.addEventListener('click', function(e){
-    var caret = e.target.closest('.sidebar-caret');
-    if (caret) {
-      caret.closest('.sidebar-collapsible').classList.toggle('expanded');
-      return;
-    }
-    if (e.target.closest('.sidebar-back')) {
-      var s = e.target.closest('.sidebar');
-      if (s) s.classList.add('show-primary');
-      return;
-    }
-    if (e.target.closest('.sidebar-close') || e.target.closest('.sidebar-barrier')) {
-      var s = document.querySelector('.sidebar');
-      if (s) s.classList.remove('show-primary');
-    }
-  });
-})();
-''';
 
   @css
   static List<StyleRule> get styles => [
