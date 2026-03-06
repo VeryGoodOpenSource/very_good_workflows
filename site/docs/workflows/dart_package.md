@@ -65,7 +65,7 @@ The Dart package workflow consists of the following steps:
 
 ### `check_ignore`
 
-> **Deprecated** This input has no effect and will be removed in a future release. Coverage is now handled by `very_good_cli`. See [VeryGoodOpenSource/very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli/issues) for tracking.
+**Optional** Whether to check for and respect coverage ignore comments (e.g. `// coverage:ignore-line`).
 
 **Default** `false`
 
