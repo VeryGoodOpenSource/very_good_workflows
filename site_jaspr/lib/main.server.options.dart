@@ -17,6 +17,8 @@ import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/breadcrumb.dart' as _breadcrumb;
 import 'package:site_jaspr/components/theme_toggle_fix.dart'
     as _theme_toggle_fix;
+import 'package:site_jaspr/components/footer_relocator.dart'
+    as _footer_relocator;
 import 'package:site_jaspr/components/toc_scrollspy.dart' as _toc_scrollspy;
 import 'package:site_jaspr/components/collapsible_sidebar.dart'
     as _collapsible_sidebar;
@@ -69,6 +71,10 @@ ServerOptions get defaultServerOptions => ServerOptions(
     _toc_scrollspy.TocScrollspy: ClientTarget<_toc_scrollspy.TocScrollspy>(
       'site_jaspr:toc_scrollspy',
     ),
+    _footer_relocator.FooterRelocator:
+        ClientTarget<_footer_relocator.FooterRelocator>(
+          'site_jaspr:footer_relocator',
+        ),
   },
   styles: () => [
     ..._zoomable_image.ZoomableImage.styles,

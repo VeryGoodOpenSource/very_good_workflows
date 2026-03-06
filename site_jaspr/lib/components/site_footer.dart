@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 
 import '../styles/site_styles.dart';
 import 'theme_toggle_fix.dart';
+import 'footer_relocator.dart';
 import 'toc_scrollspy.dart';
 
 /// The site footer with copyright notice.
@@ -27,11 +28,11 @@ class SiteFooter extends StatelessComponent {
           ),
           Style(styles: siteStyles),
           script(defer: true, content: _mobileToc),
-          script(defer: true, content: _relocateFooter),
         ],
       ),
       ThemeToggleFix(),
       TocScrollspy(),
+      FooterRelocator(),
       footer(classes: 'site-footer', [
         p([
           Component.text('Built with \u{1F499} by '),
@@ -87,22 +88,6 @@ class SiteFooter extends StatelessComponent {
     if (!btn) return;
     btn.closest('.mobile-toc').classList.toggle('expanded');
   });
-})();
-''';
-
-  /// Moves `.site-footer` from inside `.content-container` to be a direct
-  /// child of `.main-container`, so its background spans the full viewport
-  /// width and paints above the sidebar border.
-  static const _relocateFooter = '''
-(function(){
-  function move(){
-    var footer = document.querySelector('.site-footer');
-    var mc = document.querySelector('.main-container');
-    if (footer && mc && footer.parentElement !== mc) {
-      mc.appendChild(footer);
-    }
-  }
-  requestAnimationFrame(function(){ requestAnimationFrame(move); });
 })();
 ''';
 

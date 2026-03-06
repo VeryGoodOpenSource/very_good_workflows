@@ -16,6 +16,8 @@ import 'package:jaspr_content/components/theme_toggle.dart'
     deferred as _theme_toggle;
 import 'package:site_jaspr/components/theme_toggle_fix.dart'
     deferred as _theme_toggle_fix;
+import 'package:site_jaspr/components/footer_relocator.dart'
+    deferred as _footer_relocator;
 import 'package:site_jaspr/components/toc_scrollspy.dart'
     deferred as _toc_scrollspy;
 
@@ -64,6 +66,10 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'site_jaspr:toc_scrollspy': ClientLoader(
       (p) => _toc_scrollspy.TocScrollspy(),
       loader: _toc_scrollspy.loadLibrary,
+    ),
+    'site_jaspr:footer_relocator': ClientLoader(
+      (p) => _footer_relocator.FooterRelocator(),
+      loader: _footer_relocator.loadLibrary,
     ),
   },
 );
