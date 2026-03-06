@@ -107,7 +107,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          flutter pub global activate very_good_cli
+          dart pub global activate --source git https://github.com/VeryGoodOpenSource/very_good_cli.git
           very_good packages get --recursive --ignore=${{inputs.package_get_excludes}}
 
       - name: ⚙️ Run Setup
