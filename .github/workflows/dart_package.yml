@@ -109,7 +109,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          dart pub global activate very_good_cli
+          dart pub global activate --source git https://github.com/VeryGoodOpenSource/very_good_cli.git
           dart pub get ${{(inputs.no_example && '--no-example') || ''}}
 
       - name: ⚙️ Run Setup
