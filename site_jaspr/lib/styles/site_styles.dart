@@ -380,6 +380,15 @@ List<StyleRule> get siteStyles => [
   css('[data-theme="dark"] .docs .sidebar a').styles(
     color: Color('#dadde1'),
   ),
+  // Dark mode: restore primary color for active/parent-active sidebar links.
+  // Needs higher specificity than [data-theme="dark"] .docs .sidebar a (0,3,1).
+  css('[data-theme="dark"] .docs .sidebar .sidebar-link.active').styles(
+    color: Color('var(--primary)'),
+    backgroundColor: Color('var(--hover-overlay)'),
+  ),
+  css('[data-theme="dark"] .docs .sidebar .sidebar-link.parent-active').styles(
+    color: Color('var(--primary)'),
+  ),
   // Adjust main padding-left to match wider sidebar (desktop only)
   css.media(MediaQuery.all(minWidth: 1024.px), [
     css('.docs .main-container main').styles(
@@ -552,6 +561,11 @@ List<StyleRule> get siteStyles => [
   // Dark mode TOC: override link color (--secondary-text dark is #a0a0a0, need white)
   css('[data-theme="dark"] .toc a').styles(
     color: Colors.white,
+  ),
+  // Dark mode TOC: restore primary color for the active link.
+  // Needs higher specificity than [data-theme="dark"] .toc a (0,2,1) to win.
+  css('[data-theme="dark"] .toc a.toc-active').styles(
+    color: Color('var(--primary)'),
   ),
   // ───────────────────────────────────────────────────────────────────────
   // 12b. MOBILE TOC (collapsible "On this page" above content < 1000px)
