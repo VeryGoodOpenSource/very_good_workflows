@@ -1,4 +1,4 @@
-import 'dart:js_interop';
+import 'package:universal_web/js_interop.dart';
 
 import 'package:jaspr/jaspr.dart';
 import 'package:universal_web/web.dart' as web;
