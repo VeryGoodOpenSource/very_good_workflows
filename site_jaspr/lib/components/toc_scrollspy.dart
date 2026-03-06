@@ -1,6 +1,5 @@
-import 'package:universal_web/js_interop.dart';
-
 import 'package:jaspr/jaspr.dart';
+import 'package:universal_web/js_interop.dart';
 import 'package:universal_web/web.dart' as web;
 
 /// Highlights the active table-of-contents link based on scroll position.

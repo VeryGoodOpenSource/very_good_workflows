@@ -22,10 +22,8 @@ class Breadcrumb extends StatelessComponent {
 
     final title = page.data.page['title'] as String? ?? _formatSegment(segments.last);
 
-    final items = <Component>[];
-
     // Home icon
-    items.add(
+    final items = <Component>[
       a(classes: 'breadcrumb-link', href: '/', [
         svg(
           viewBox: '0 0 24 24',
@@ -33,20 +31,20 @@ class Breadcrumb extends StatelessComponent {
           [path(d: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z', [])],
         ),
       ]),
-    );
+    ];
 
     // Middle segments (skip 'docs' prefix and last segment)
     for (var i = 1; i < segments.length - 1; i++) {
       final href = '/${segments.sublist(0, i + 1).join('/')}';
-      items.add(span(classes: 'breadcrumb-sep', [Component.text('>')]));
-      items.add(
-        a(classes: 'breadcrumb-link', href: href, [Component.text(_formatSegment(segments[i]))]),
-      );
+      items
+        ..add(span(classes: 'breadcrumb-sep', [Component.text('>')]))
+        ..add(a(classes: 'breadcrumb-link', href: href, [Component.text(_formatSegment(segments[i]))]));
     }
 
     // Current page
-    items.add(span(classes: 'breadcrumb-sep', [Component.text('>')]));
-    items.add(span(classes: 'breadcrumb-current', [Component.text(title)]));
+    items
+      ..add(span(classes: 'breadcrumb-sep', [Component.text('>')]))
+      ..add(span(classes: 'breadcrumb-current', [Component.text(title)]));
 
     return nav(classes: 'breadcrumb', items);
   }

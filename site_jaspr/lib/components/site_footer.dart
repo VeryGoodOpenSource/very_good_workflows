@@ -1,9 +1,9 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-import '../styles/site_styles.dart';
-import 'footer_relocator.dart';
-import 'toc_scrollspy.dart';
+import 'package:site_jaspr/components/footer_relocator.dart';
+import 'package:site_jaspr/components/toc_scrollspy.dart';
+import 'package:site_jaspr/styles/site_styles.dart';
 
 /// The site footer with copyright notice.
 ///

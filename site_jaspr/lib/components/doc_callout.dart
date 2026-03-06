@@ -4,7 +4,7 @@ import 'package:jaspr_content/jaspr_content.dart';
 
 /// Docusaurus-compatible callout/admonition component.
 ///
-/// Replaces jaspr_content's [Callout] to match Docusaurus admonition layout:
+/// Replaces jaspr_content's Callout to match Docusaurus admonition layout:
 ///   - Left-border only (5 px), 4 px border-radius
 ///   - Heading row: filled SVG icon + uppercase type label
 ///   - Content body below
@@ -18,7 +18,7 @@ class DocCallout extends CustomComponentBase {
   DocCallout();
 
   @override
-  final Pattern pattern = RegExp(r'Info|Warning|Error|Success');
+  final Pattern pattern = RegExp('Info|Warning|Error|Success');
 
   @override
   Component apply(String name, Map<String, String> attributes, Component? child) {

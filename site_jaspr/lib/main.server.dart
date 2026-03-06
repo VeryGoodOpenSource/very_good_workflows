@@ -9,28 +9,26 @@ import 'dart:io';
 // Server-specific Jaspr import.
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
-
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
-import 'components/collapsible_sidebar.dart';
-import 'components/theme_toggle.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
-
-import 'components/breadcrumb.dart';
-import 'components/doc_callout.dart';
-import 'extensions/code_aware_toc.dart';
-import 'components/edit_page_link.dart';
-import 'components/homepage_layout.dart';
-import 'components/icon_link.dart';
-import 'components/nav_link.dart';
-import 'components/page_navigation.dart';
-import 'components/safe_code_block.dart';
-import 'components/site_footer.dart';
-import 'components/workflow_cards.dart';
+import 'package:site_jaspr/components/breadcrumb.dart';
+import 'package:site_jaspr/components/collapsible_sidebar.dart';
+import 'package:site_jaspr/components/doc_callout.dart';
+import 'package:site_jaspr/components/edit_page_link.dart';
+import 'package:site_jaspr/components/homepage_layout.dart';
+import 'package:site_jaspr/components/icon_link.dart';
+import 'package:site_jaspr/components/nav_link.dart';
+import 'package:site_jaspr/components/page_navigation.dart';
+import 'package:site_jaspr/components/safe_code_block.dart';
+import 'package:site_jaspr/components/site_footer.dart';
+import 'package:site_jaspr/components/theme_toggle.dart';
+import 'package:site_jaspr/components/workflow_cards.dart';
+import 'package:site_jaspr/extensions/code_aware_toc.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
-import 'main.server.options.dart';
+import 'package:site_jaspr/main.server.options.dart';
 
 void main() {
   // Initializes the server environment with the generated default options.

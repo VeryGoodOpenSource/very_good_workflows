@@ -4,8 +4,8 @@ import 'package:jaspr_content/jaspr_content.dart';
 
 /// "Edit this page" link shown below doc content, matching Docusaurus exactly.
 ///
-/// Replicates the behavior of Docusaurus's [EditThisPage] component +
-/// [EditMetaRow] wrapper, using the same editUrl base from docusaurus.config.js:
+/// Replicates the behavior of Docusaurus's EditThisPage component +
+/// EditMetaRow wrapper, using the same editUrl base from docusaurus.config.js:
 ///   https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/site
 ///
 /// The SVG pencil icon is the exact path from Docusaurus's Icon/Edit/index.tsx

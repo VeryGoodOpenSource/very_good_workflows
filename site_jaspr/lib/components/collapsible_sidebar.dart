@@ -4,8 +4,8 @@ import 'package:jaspr_content/components/sidebar.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
 
-import '../utils/page_order.dart';
-import 'sidebar_toggle.dart';
+import 'package:site_jaspr/components/sidebar_toggle.dart';
+import 'package:site_jaspr/utils/page_order.dart';
 
 /// A sidebar entry that can optionally have collapsible children.
 ///

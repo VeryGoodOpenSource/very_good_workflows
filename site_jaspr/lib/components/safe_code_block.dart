@@ -42,7 +42,7 @@ class SafeCodeBlock extends CustomComponent {
       }
 
       if (!_initialized) {
-        Highlighter.initialize(['dart']);
+        Highlighter.initialize(['dart']).ignore();
         for (final entry in grammars.entries) {
           Highlighter.addLanguage(entry.key, entry.value);
         }

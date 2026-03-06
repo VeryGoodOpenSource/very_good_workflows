@@ -3,10 +3,10 @@ import 'package:jaspr/server.dart';
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 
-import 'icon_link.dart';
-import 'nav_link.dart';
-import 'site_footer.dart';
-import 'theme_toggle.dart';
+import 'package:site_jaspr/components/icon_link.dart';
+import 'package:site_jaspr/components/nav_link.dart';
+import 'package:site_jaspr/components/site_footer.dart';
+import 'package:site_jaspr/components/theme_toggle.dart';
 
 /// A custom page layout for the homepage.
 class HomepageLayout extends PageLayoutBase {

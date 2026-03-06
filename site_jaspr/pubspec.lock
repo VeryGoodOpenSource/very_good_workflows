@@ -353,14 +353,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.11.0"
-  lints:
-    dependency: "direct dev"
-    description:
-      name: lints
-      sha256: c35bb79562d980e9a453fc715854e1ed39e24e7d0297a880ef54e17f9874a9d7
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.1"
   liquify:
     dependency: transitive
     description:
@@ -641,6 +633,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.3"
+  very_good_analysis:
+    dependency: "direct dev"
+    description:
+      name: very_good_analysis
+      sha256: d1cb1d66a5aae2c702d68caca6c8347306d35e728fd94555fa21fa0448a972e0
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.2.0"
   vm_service:
     dependency: transitive
     description:
@@ -690,4 +690,4 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.10.0 <3.12.0-z"
+  dart: ">=3.11.0 <3.12.0-z"

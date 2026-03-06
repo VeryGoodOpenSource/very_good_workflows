@@ -15,7 +15,7 @@ import 'package:jaspr/dom.dart';
 /// | navbar-bg             | #fbfcff   | #081842   |
 /// | code-bg (inline dark) | —         | #081842   |
 
-/// Global site styles injected into `<head>` via [Document.head].
+/// Global site styles injected into `<head>` via `Document.head`.
 List<StyleRule> get siteStyles => [
   // ───────────────────────────────────────────────────────────────────────
   // 1. FONT & BASE

@@ -1,6 +1,5 @@
-import 'package:universal_web/js_interop.dart';
-
 import 'package:jaspr/jaspr.dart';
+import 'package:universal_web/js_interop.dart';
 import 'package:universal_web/web.dart' as web;
 
 /// Client-side handler for collapsible sidebar interactions.
@@ -28,6 +27,7 @@ class _SidebarToggleState extends State<SidebarToggle> {
     super.initState();
     if (!kIsWeb) return;
     _listener = ((JSAny? raw) {
+      if (raw == null) return;
       final target = (raw as web.Event).target;
       if (target == null || !target.isA<web.Element>()) return;
       final element = target as web.Element;

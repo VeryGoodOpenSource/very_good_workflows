@@ -8,7 +8,7 @@ library;
 import 'package:jaspr/client.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
-import 'main.client.options.dart';
+import 'package:site_jaspr/main.client.options.dart';
 
 void main() {
   // Initializes the client environment with the generated default options.

@@ -2,7 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 
-import '../utils/page_order.dart';
+import 'package:site_jaspr/utils/page_order.dart';
 
 /// A custom component that auto-generates workflow card links from child pages.
 ///
