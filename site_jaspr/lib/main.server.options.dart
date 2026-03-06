@@ -15,21 +15,21 @@ import 'package:jaspr_content/components/sidebar_toggle_button.dart'
     as _sidebar_toggle_button;
 import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/breadcrumb.dart' as _breadcrumb;
-import 'package:site_jaspr/components/theme_toggle_fix.dart'
-    as _theme_toggle_fix;
-import 'package:site_jaspr/components/footer_relocator.dart'
-    as _footer_relocator;
-import 'package:site_jaspr/components/sidebar_toggle.dart' as _sidebar_toggle;
-import 'package:site_jaspr/components/toc_scrollspy.dart' as _toc_scrollspy;
 import 'package:site_jaspr/components/collapsible_sidebar.dart'
     as _collapsible_sidebar;
 import 'package:site_jaspr/components/doc_callout.dart' as _doc_callout;
 import 'package:site_jaspr/components/edit_page_link.dart' as _edit_page_link;
+import 'package:site_jaspr/components/footer_relocator.dart'
+    as _footer_relocator;
 import 'package:site_jaspr/components/icon_link.dart' as _icon_link;
 import 'package:site_jaspr/components/nav_link.dart' as _nav_link;
 import 'package:site_jaspr/components/page_navigation.dart' as _page_navigation;
 import 'package:site_jaspr/components/safe_code_block.dart' as _safe_code_block;
+import 'package:site_jaspr/components/sidebar_toggle.dart' as _sidebar_toggle;
 import 'package:site_jaspr/components/site_footer.dart' as _site_footer;
+import 'package:site_jaspr/components/theme_toggle_fix.dart'
+    as _theme_toggle_fix;
+import 'package:site_jaspr/components/toc_scrollspy.dart' as _toc_scrollspy;
 
 /// Default [ServerOptions] for use with your Jaspr project.
 ///
@@ -65,21 +65,16 @@ ServerOptions get defaultServerOptions => ServerOptions(
     _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
       'jaspr_content:theme_toggle',
     ),
-    _theme_toggle_fix.ThemeToggleFix:
-        ClientTarget<_theme_toggle_fix.ThemeToggleFix>(
-          'site_jaspr:theme_toggle_fix',
-        ),
-    _toc_scrollspy.TocScrollspy: ClientTarget<_toc_scrollspy.TocScrollspy>(
-      'site_jaspr:toc_scrollspy',
-    ),
     _footer_relocator.FooterRelocator:
-        ClientTarget<_footer_relocator.FooterRelocator>(
-          'site_jaspr:footer_relocator',
-        ),
-    _sidebar_toggle.SidebarToggle:
-        ClientTarget<_sidebar_toggle.SidebarToggle>(
-          'site_jaspr:sidebar_toggle',
-        ),
+        ClientTarget<_footer_relocator.FooterRelocator>('footer_relocator'),
+    _sidebar_toggle.SidebarToggle: ClientTarget<_sidebar_toggle.SidebarToggle>(
+      'sidebar_toggle',
+    ),
+    _theme_toggle_fix.ThemeToggleFix:
+        ClientTarget<_theme_toggle_fix.ThemeToggleFix>('theme_toggle_fix'),
+    _toc_scrollspy.TocScrollspy: ClientTarget<_toc_scrollspy.TocScrollspy>(
+      'toc_scrollspy',
+    ),
   },
   styles: () => [
     ..._zoomable_image.ZoomableImage.styles,

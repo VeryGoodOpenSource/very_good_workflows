@@ -86,7 +86,7 @@ class CollapsibleSidebar extends StatelessComponent {
             final children = getChildPages(
               context.pages,
               item.href,
-            ).map((p) => SidebarLink(text: p.title, href: p.href)).toList();
+            ).map((page) => SidebarLink(text: page.title, href: page.href)).toList();
             return SidebarEntry(text: item.text, href: item.href, children: children);
           }).toList();
 

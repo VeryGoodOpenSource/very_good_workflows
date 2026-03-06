@@ -14,12 +14,12 @@ import 'package:jaspr_content/components/sidebar_toggle_button.dart'
     deferred as _sidebar_toggle_button;
 import 'package:jaspr_content/components/theme_toggle.dart'
     deferred as _theme_toggle;
-import 'package:site_jaspr/components/theme_toggle_fix.dart'
-    deferred as _theme_toggle_fix;
 import 'package:site_jaspr/components/footer_relocator.dart'
     deferred as _footer_relocator;
 import 'package:site_jaspr/components/sidebar_toggle.dart'
     deferred as _sidebar_toggle;
+import 'package:site_jaspr/components/theme_toggle_fix.dart'
+    deferred as _theme_toggle_fix;
 import 'package:site_jaspr/components/toc_scrollspy.dart'
     deferred as _toc_scrollspy;
 
@@ -61,21 +61,21 @@ ClientOptions get defaultClientOptions => ClientOptions(
       (p) => _theme_toggle.ThemeToggle(),
       loader: _theme_toggle.loadLibrary,
     ),
-    'site_jaspr:theme_toggle_fix': ClientLoader(
-      (p) => _theme_toggle_fix.ThemeToggleFix(),
-      loader: _theme_toggle_fix.loadLibrary,
-    ),
-    'site_jaspr:toc_scrollspy': ClientLoader(
-      (p) => _toc_scrollspy.TocScrollspy(),
-      loader: _toc_scrollspy.loadLibrary,
-    ),
-    'site_jaspr:footer_relocator': ClientLoader(
+    'footer_relocator': ClientLoader(
       (p) => _footer_relocator.FooterRelocator(),
       loader: _footer_relocator.loadLibrary,
     ),
-    'site_jaspr:sidebar_toggle': ClientLoader(
+    'sidebar_toggle': ClientLoader(
       (p) => _sidebar_toggle.SidebarToggle(),
       loader: _sidebar_toggle.loadLibrary,
+    ),
+    'theme_toggle_fix': ClientLoader(
+      (p) => _theme_toggle_fix.ThemeToggleFix(),
+      loader: _theme_toggle_fix.loadLibrary,
+    ),
+    'toc_scrollspy': ClientLoader(
+      (p) => _toc_scrollspy.TocScrollspy(),
+      loader: _toc_scrollspy.loadLibrary,
     ),
   },
 );
