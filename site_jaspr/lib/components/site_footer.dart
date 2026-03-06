@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 
 import '../styles/site_styles.dart';
 import 'theme_toggle_fix.dart';
+import 'toc_scrollspy.dart';
 
 /// The site footer with copyright notice.
 ///
@@ -25,12 +26,12 @@ class SiteFooter extends StatelessComponent {
             href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap',
           ),
           Style(styles: siteStyles),
-          script(defer: true, content: _tocScrollspy),
           script(defer: true, content: _mobileToc),
           script(defer: true, content: _relocateFooter),
         ],
       ),
       ThemeToggleFix(),
+      TocScrollspy(),
       footer(classes: 'site-footer', [
         p([
           Component.text('Built with \u{1F499} by '),
@@ -44,32 +45,6 @@ class SiteFooter extends StatelessComponent {
       ]),
     ]);
   }
-
-  /// Inline script that highlights the active TOC link based on scroll position.
-  static const _tocScrollspy = '''
-(function(){
-  function update() {
-    var links = document.querySelectorAll('.toc a');
-    if (!links.length) return;
-    var ids = [];
-    links.forEach(function(a) {
-      var h = a.getAttribute('href');
-      if (h) { var id = h.split('#')[1]; if (id) ids.push({id:id, el:a}); }
-    });
-    if (!ids.length) return;
-    var active = null;
-    for (var i = 0; i < ids.length; i++) {
-      var t = document.getElementById(ids[i].id);
-      if (t && t.getBoundingClientRect().top <= 100) active = i;
-    }
-    links.forEach(function(a) { a.classList.remove('toc-active'); });
-    if (active === null) active = 0;
-    ids[active].el.classList.add('toc-active');
-  }
-  window.addEventListener('scroll', update, {passive:true});
-  update();
-})();
-''';
 
   /// Inline script that creates a collapsible mobile TOC above the content
   /// when the right sidebar TOC is hidden (viewport < 1000px).

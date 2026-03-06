@@ -16,6 +16,8 @@ import 'package:jaspr_content/components/theme_toggle.dart'
     deferred as _theme_toggle;
 import 'package:site_jaspr/components/theme_toggle_fix.dart'
     deferred as _theme_toggle_fix;
+import 'package:site_jaspr/components/toc_scrollspy.dart'
+    deferred as _toc_scrollspy;
 
 /// Default [ClientOptions] for use with your Jaspr project.
 ///
@@ -58,6 +60,10 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'site_jaspr:theme_toggle_fix': ClientLoader(
       (p) => _theme_toggle_fix.ThemeToggleFix(),
       loader: _theme_toggle_fix.loadLibrary,
+    ),
+    'site_jaspr:toc_scrollspy': ClientLoader(
+      (p) => _toc_scrollspy.TocScrollspy(),
+      loader: _toc_scrollspy.loadLibrary,
     ),
   },
 );
