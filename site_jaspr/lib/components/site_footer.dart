@@ -2,7 +2,6 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../styles/site_styles.dart';
-import 'theme_toggle_fix.dart';
 import 'footer_relocator.dart';
 import 'toc_scrollspy.dart';
 
@@ -30,7 +29,6 @@ class SiteFooter extends StatelessComponent {
           script(defer: true, content: _mobileToc),
         ],
       ),
-      ThemeToggleFix(),
       TocScrollspy(),
       FooterRelocator(),
       footer(classes: 'site-footer', [

@@ -13,7 +13,7 @@ import 'package:jaspr/server.dart';
 import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
 import 'components/collapsible_sidebar.dart';
-import 'package:jaspr_content/components/theme_toggle.dart';
+import 'components/theme_toggle.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/theme.dart';
 

@@ -276,18 +276,21 @@ List<StyleRule> get siteStyles => [
 
   // ───────────────────────────────────────────────────────────────────────
   // 6. THEME TOGGLE
-  //    Reverse the icons: show current-mode icon instead of target-mode.
-  //    Light mode: hide moon (first span), show sun (last span).
-  //    Dark mode: show moon (first span), hide sun (last span).
+  //    Two spans: sun (light) · moon (dark).
+  //    Visibility is driven by data-theme on <html>.
   // ───────────────────────────────────────────────────────────────────────
   css('.theme-toggle').styles(
+    display: Display.flex,
     padding: Padding.zero,
     justifyContent: JustifyContent.center,
     alignItems: AlignItems.center,
     raw: {
       'width': '32px',
       'height': '32px',
-      'border-radius': '50% !important',
+      'background': 'none',
+      'border': 'none',
+      'outline': 'none',
+      'border-radius': '50%',
       'box-sizing': 'border-box',
       'cursor': 'pointer',
     },
@@ -301,19 +304,16 @@ List<StyleRule> get siteStyles => [
   css('.theme-toggle svg').styles(
     raw: {'width': '24px', 'height': '24px'},
   ),
-  // Reverse icons: show current state (sun in light, moon in dark).
-  // Framework default: moon in light, sun in dark.
-  css('[data-theme="light"] .theme-toggle > span:first-child').styles(
-    raw: {'display': 'none !important'},
+  // Default: hide both icons.
+  css('.theme-toggle > span:nth-child(1)').styles(raw: {'display': 'none'}),
+  css('.theme-toggle > span:nth-child(2)').styles(raw: {'display': 'none'}),
+  // Light: show sun.
+  css('[data-theme="light"] .theme-toggle > span:nth-child(1)').styles(
+    raw: {'display': 'inline'},
   ),
-  css('[data-theme="light"] .theme-toggle > span:last-child').styles(
-    raw: {'display': 'inline !important'},
-  ),
-  css('[data-theme="dark"] .theme-toggle > span:first-child').styles(
-    raw: {'display': 'inline !important'},
-  ),
-  css('[data-theme="dark"] .theme-toggle > span:last-child').styles(
-    raw: {'display': 'none !important'},
+  // Dark: show moon.
+  css('[data-theme="dark"] .theme-toggle > span:nth-child(2)').styles(
+    raw: {'display': 'inline'},
   ),
 
   // ───────────────────────────────────────────────────────────────────────

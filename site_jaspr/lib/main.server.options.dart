@@ -13,7 +13,6 @@ import 'package:jaspr_content/components/code_block.dart' as _code_block;
 import 'package:jaspr_content/components/image.dart' as _image;
 import 'package:jaspr_content/components/sidebar_toggle_button.dart'
     as _sidebar_toggle_button;
-import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/breadcrumb.dart' as _breadcrumb;
 import 'package:site_jaspr/components/collapsible_sidebar.dart'
     as _collapsible_sidebar;
@@ -27,8 +26,7 @@ import 'package:site_jaspr/components/page_navigation.dart' as _page_navigation;
 import 'package:site_jaspr/components/safe_code_block.dart' as _safe_code_block;
 import 'package:site_jaspr/components/sidebar_toggle.dart' as _sidebar_toggle;
 import 'package:site_jaspr/components/site_footer.dart' as _site_footer;
-import 'package:site_jaspr/components/theme_toggle_fix.dart'
-    as _theme_toggle_fix;
+import 'package:site_jaspr/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/toc_scrollspy.dart' as _toc_scrollspy;
 
 /// Default [ServerOptions] for use with your Jaspr project.
@@ -62,16 +60,14 @@ ServerOptions get defaultServerOptions => ServerOptions(
         ClientTarget<_sidebar_toggle_button.SidebarToggleButton>(
           'jaspr_content:sidebar_toggle_button',
         ),
-    _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
-      'jaspr_content:theme_toggle',
-    ),
     _footer_relocator.FooterRelocator:
         ClientTarget<_footer_relocator.FooterRelocator>('footer_relocator'),
     _sidebar_toggle.SidebarToggle: ClientTarget<_sidebar_toggle.SidebarToggle>(
       'sidebar_toggle',
     ),
-    _theme_toggle_fix.ThemeToggleFix:
-        ClientTarget<_theme_toggle_fix.ThemeToggleFix>('theme_toggle_fix'),
+    _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
+      'theme_toggle',
+    ),
     _toc_scrollspy.TocScrollspy: ClientTarget<_toc_scrollspy.TocScrollspy>(
       'toc_scrollspy',
     ),
@@ -80,7 +76,6 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._zoomable_image.ZoomableImage.styles,
     ..._code_block.CodeBlock.styles,
     ..._image.Image.styles,
-    ..._theme_toggle.ThemeToggleState.styles,
     ..._breadcrumb.Breadcrumb.styles,
     ..._collapsible_sidebar.CollapsibleSidebar.styles,
     ..._doc_callout.DocCallout.styles,

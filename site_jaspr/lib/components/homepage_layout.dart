@@ -1,12 +1,12 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 import 'package:jaspr_content/components/header.dart';
-import 'package:jaspr_content/components/theme_toggle.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 
 import 'icon_link.dart';
 import 'nav_link.dart';
 import 'site_footer.dart';
+import 'theme_toggle.dart';
 
 /// A custom page layout for the homepage.
 class HomepageLayout extends PageLayoutBase {
