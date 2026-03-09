@@ -37,7 +37,7 @@ The Flutter package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart'`). Only a single glob pattern is supported.
+**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart **/gen/*.dart'`).
 
 **Default** `""`
 
@@ -101,11 +101,35 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `"!*"`
 
+### `platform`
+
+**Optional** The platform to run tests on (e.g., `chrome`, `android`, `ios`).
+
+**Default** `""`
+
+### `report_on`
+
+**Optional** A comma-separated list of folders that should be checked in code coverage.
+
+**Default** `"lib"`
+
+### `run_bloc_lint`
+
+**Optional** Whether to run [bloc lint](https://pub.dev/packages/bloc_tools) on the package.
+
+**Default** `true`
+
+### `run_skipped`
+
+**Optional** Run skipped tests instead of skipping them.
+
+**Default** `false`
+
 ### `show_uncovered`
 
 **Optional** Whether to show uncovered lines when coverage is below 100%. Implicitly enables coverage collection when used alone.
 
-**Default** `false`
+**Default** `true`
 
 ### `collect_coverage_from`
 

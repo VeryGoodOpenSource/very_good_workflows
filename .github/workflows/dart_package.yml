@@ -20,7 +20,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "A glob pattern to exclude files from coverage (e.g. '**/*.g.dart'). Only a single glob pattern is supported."
+        description: "A glob pattern to exclude files from coverage (e.g. '**/*.g.dart **/gen/*.dart')."
       dart_sdk:
         required: false
         type: string
@@ -72,7 +72,7 @@ on:
       show_uncovered:
         required: false
         type: boolean
-        default: false
+        default: true
         description: "Whether to show uncovered lines when coverage is below 100%."
       test_optimization:
         required: false

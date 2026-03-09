@@ -25,7 +25,7 @@ The Dart package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart'`). Only a single glob pattern is supported.
+**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart **/gen/*.dart'`).
 
 **Default** `""`
 
@@ -110,7 +110,7 @@ The Dart package workflow consists of the following steps:
 
 **Optional** Whether to show uncovered lines when coverage is below 100%. Implicitly enables coverage collection when used alone.
 
-**Default** `false`
+**Default** `true`
 
 ### `collect_coverage_from`
 
@@ -119,6 +119,18 @@ The Dart package workflow consists of the following steps:
 **Allowed values** `imports`, `all`
 
 **Default** `"imports"`
+
+### `test_optimization`
+
+**Optional** Whether to apply optimizations for test performance.
+
+**Default** `true`
+
+### `run_bloc_lint`
+
+**Optional** Whether to run [bloc lint](https://pub.dev/packages/bloc_tools) on the package.
+
+**Default** `true`
 
 ## Secrets
 

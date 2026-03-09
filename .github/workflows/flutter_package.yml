@@ -20,7 +20,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "A glob pattern to exclude files from coverage (e.g. '**/*.g.dart'). Only a single glob pattern is supported."
+        description: "A glob pattern to exclude files from coverage (e.g. '**/*.g.dart **/gen/*.dart')."
       flutter_channel:
         required: false
         type: string
@@ -49,10 +49,18 @@ on:
         type: string
         default: ""
         description: "The platform to run tests on (e.g., 'chrome', 'android', 'ios')."
+      report_on:
+        required: false
+        type: string
+        default: "lib"
       run_bloc_lint:
         required: false
         type: boolean
         default: true
+      run_skipped:
+        required: false
+        type: boolean
+        default: false
       runs_on:
         required: false
         type: string
@@ -64,7 +72,7 @@ on:
       show_uncovered:
         required: false
         type: boolean
-        default: false
+        default: true
         description: "Whether to show uncovered lines when coverage is below 100%."
       test_optimization:
         required: false
@@ -140,7 +148,9 @@ jobs:
           --coverage
           --min-coverage ${{inputs.min_coverage}}
           ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
+          ${{format('--report-on {0}', inputs.report_on)}}
           ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
+          ${{inputs.run_skipped && '--run-skipped' || ''}}
           ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}}
           --test-randomize-ordering-seed random
