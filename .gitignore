@@ -1,1 +1,6 @@
 .idea
+
+# Mason (local brick scaffolding tooling)
+.mason/
+mason.yaml
+mason-lock.json

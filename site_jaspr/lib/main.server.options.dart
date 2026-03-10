@@ -1,0 +1,111 @@
+// dart format off
+// ignore_for_file: type=lint
+
+// GENERATED FILE, DO NOT MODIFY
+// Generated with jaspr_builder
+
+import 'package:jaspr/server.dart';
+import 'package:jaspr_content/components/_internal/code_block_copy_button.dart'
+    as _code_block_copy_button;
+import 'package:jaspr_content/components/_internal/zoomable_image.dart'
+    as _zoomable_image;
+import 'package:jaspr_content/components/callout.dart' as _callout;
+import 'package:jaspr_content/components/code_block.dart' as _code_block;
+import 'package:jaspr_content/components/image.dart' as _image;
+import 'package:jaspr_content/components/sidebar_toggle_button.dart'
+    as _sidebar_toggle_button;
+import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
+import 'package:very_good_jaspr/src/components/breadcrumb.dart' as _breadcrumb;
+import 'package:very_good_jaspr/src/components/collapsible_sidebar.dart'
+    as _collapsible_sidebar;
+import 'package:very_good_jaspr/src/components/doc_callout.dart'
+    as _doc_callout;
+import 'package:very_good_jaspr/src/components/edit_page_link.dart'
+    as _edit_page_link;
+import 'package:very_good_jaspr/src/components/footer_relocator.dart'
+    as _footer_relocator;
+import 'package:very_good_jaspr/src/components/icon_link.dart' as _icon_link;
+import 'package:very_good_jaspr/src/components/nav_link.dart' as _nav_link;
+import 'package:very_good_jaspr/src/components/page_navigation.dart'
+    as _page_navigation;
+import 'package:very_good_jaspr/src/components/safe_code_block.dart'
+    as _safe_code_block;
+import 'package:very_good_jaspr/src/components/sidebar_toggle.dart'
+    as _sidebar_toggle;
+import 'package:very_good_jaspr/src/components/site_footer.dart'
+    as _site_footer;
+import 'package:very_good_jaspr/src/components/theme_toggle_fix.dart'
+    as _theme_toggle_fix;
+import 'package:very_good_jaspr/src/components/toc_scrollspy.dart'
+    as _toc_scrollspy;
+
+/// Default [ServerOptions] for use with your Jaspr project.
+///
+/// Use this to initialize Jaspr **before** calling [runApp].
+///
+/// Example:
+/// ```dart
+/// import 'main.server.options.dart';
+///
+/// void main() {
+///   Jaspr.initializeApp(
+///     options: defaultServerOptions,
+///   );
+///
+///   runApp(...);
+/// }
+/// ```
+ServerOptions get defaultServerOptions => ServerOptions(
+  clientId: 'main.client.dart.js',
+  clients: {
+    _code_block_copy_button.CodeBlockCopyButton:
+        ClientTarget<_code_block_copy_button.CodeBlockCopyButton>(
+          'jaspr_content:code_block_copy_button',
+        ),
+    _zoomable_image.ZoomableImage: ClientTarget<_zoomable_image.ZoomableImage>(
+      'jaspr_content:zoomable_image',
+      params: __zoomable_imageZoomableImage,
+    ),
+    _sidebar_toggle_button.SidebarToggleButton:
+        ClientTarget<_sidebar_toggle_button.SidebarToggleButton>(
+          'jaspr_content:sidebar_toggle_button',
+        ),
+    _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
+      'jaspr_content:theme_toggle',
+    ),
+    _footer_relocator.FooterRelocator:
+        ClientTarget<_footer_relocator.FooterRelocator>(
+          'very_good_jaspr:footer_relocator',
+        ),
+    _sidebar_toggle.SidebarToggle: ClientTarget<_sidebar_toggle.SidebarToggle>(
+      'very_good_jaspr:sidebar_toggle',
+    ),
+    _theme_toggle_fix.ThemeToggleFix:
+        ClientTarget<_theme_toggle_fix.ThemeToggleFix>(
+          'very_good_jaspr:theme_toggle_fix',
+        ),
+    _toc_scrollspy.TocScrollspy: ClientTarget<_toc_scrollspy.TocScrollspy>(
+      'very_good_jaspr:toc_scrollspy',
+    ),
+  },
+  styles: () => [
+    ..._zoomable_image.ZoomableImage.styles,
+    ..._callout.Callout.styles,
+    ..._code_block.CodeBlock.styles,
+    ..._image.Image.styles,
+    ..._theme_toggle.ThemeToggleState.styles,
+    ..._breadcrumb.Breadcrumb.styles,
+    ..._collapsible_sidebar.CollapsibleSidebar.styles,
+    ..._doc_callout.DocCallout.styles,
+    ..._edit_page_link.EditPageLink.styles,
+    ..._icon_link.IconLink.styles,
+    ..._nav_link.NavLink.styles,
+    ..._page_navigation.PageNavigation.styles,
+    ..._safe_code_block.SafeCodeBlock.styles,
+    ..._site_footer.SiteFooter.styles,
+  ],
+);
+
+Map<String, Object?> __zoomable_imageZoomableImage(
+  _zoomable_image.ZoomableImage c,
+) => {'src': c.src, 'alt': c.alt, 'caption': c.caption};

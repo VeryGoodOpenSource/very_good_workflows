@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      build_web_compilers:entrypoint:
+        options:
+          dart2js_args:
+            - --no-source-maps
+          compiler: dart2js
+        dev_options:
+          compiler: dartdevc
+          unsafe-allow-unsupported-modules: true
