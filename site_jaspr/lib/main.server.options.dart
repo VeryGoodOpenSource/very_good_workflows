@@ -28,6 +28,7 @@ import 'package:site_jaspr/components/sidebar_toggle.dart' as _sidebar_toggle;
 import 'package:site_jaspr/components/site_footer.dart' as _site_footer;
 import 'package:site_jaspr/components/theme_toggle.dart' as _theme_toggle;
 import 'package:site_jaspr/components/toc_scrollspy.dart' as _toc_scrollspy;
+import 'package:site_jaspr/components/workflow_cards.dart' as _workflow_cards;
 
 /// Default [ServerOptions] for use with your Jaspr project.
 ///
@@ -85,6 +86,9 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._page_navigation.PageNavigation.styles,
     ..._safe_code_block.SafeCodeBlock.styles,
     ..._site_footer.SiteFooter.styles,
+    ..._theme_toggle.ThemeToggle.styles,
+    ..._toc_scrollspy.TocScrollspy.styles,
+    ..._workflow_cards.WorkflowCards.styles,
   ],
 );
 

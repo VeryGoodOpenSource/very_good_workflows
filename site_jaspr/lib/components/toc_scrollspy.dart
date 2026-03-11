@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:universal_web/js_interop.dart';
 import 'package:universal_web/web.dart' as web;
@@ -13,6 +14,20 @@ class TocScrollspy extends StatefulComponent {
 
   @override
   State createState() => _TocScrollspyState();
+
+  @css
+  static List<StyleRule> get styles => [
+    // Active TOC link: primary color + medium weight.
+    // The .toc-active class is toggled by this component via JS classlist.
+    css('.toc a.toc-active').styles(
+      color: Color('var(--primary)'),
+      fontWeight: FontWeight.w500,
+    ),
+    // Dark mode: restore primary color (overrides any framework default).
+    css('[data-theme="dark"] .toc a.toc-active').styles(
+      color: Color('var(--primary)'),
+    ),
+  ];
 }
 
 class _TocScrollspyState extends State<TocScrollspy> {

@@ -57,5 +57,12 @@ class IconLink extends StatelessComponent {
       css('&:hover').styles(opacity: 0.6),
       css('.icon-dark').styles(display: Display.none),
     ]),
+    // Dark mode: flip — show dark variant, hide light variant.
+    css('[data-theme="dark"] .icon-link .icon-light').styles(
+      display: Display.none,
+    ),
+    css('[data-theme="dark"] .icon-link .icon-dark').styles(
+      raw: {'display': 'flex !important'},
+    ),
   ];
 }

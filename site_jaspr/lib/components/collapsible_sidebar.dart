@@ -451,5 +451,14 @@ class CollapsibleSidebar extends StatelessComponent {
 
     // Dark mode: active bg also uses --hover-overlay (auto-switches via token).
     // Active uses var(--primary) color which auto-switches via ContentTheme.
+
+    // Sidebar icon theme switching (.sidebar-icon-light / .sidebar-icon-dark).
+    // Light mode (default): hide the dark variant.
+    css('.sidebar-icon-dark').styles(display: Display.none),
+    // Dark mode: hide light variant, show dark variant.
+    css('[data-theme="dark"] .sidebar-icon-light').styles(display: Display.none),
+    css('[data-theme="dark"] .sidebar-icon-dark').styles(
+      raw: {'display': 'inline !important'},
+    ),
   ];
 }

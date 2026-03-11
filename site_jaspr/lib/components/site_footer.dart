@@ -7,8 +7,7 @@ import 'package:site_jaspr/styles/site_styles.dart';
 
 /// The site footer with copyright notice.
 ///
-/// Also injects the Poppins font and comprehensive site styles into the
-/// document head.
+/// Also injects the Poppins font and global site styles into the document head.
 class SiteFooter extends StatelessComponent {
   const SiteFooter({super.key});
 

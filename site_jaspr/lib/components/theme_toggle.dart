@@ -12,6 +12,46 @@ import 'package:universal_web/web.dart' as web;
 class ThemeToggle extends StatelessComponent {
   const ThemeToggle({super.key});
 
+  @css
+  static List<StyleRule> get styles => [
+    css('.theme-toggle').styles(
+      display: Display.flex,
+      padding: Padding.zero,
+      justifyContent: JustifyContent.center,
+      alignItems: AlignItems.center,
+      raw: {
+        'width': '32px',
+        'height': '32px',
+        'background': 'none',
+        'border': 'none',
+        'outline': 'none',
+        'border-radius': '50%',
+        'box-sizing': 'border-box',
+        'cursor': 'pointer',
+      },
+    ),
+    css('.theme-toggle:hover').styles(
+      backgroundColor: Color('rgba(0, 0, 0, 0.1)'),
+    ),
+    css('[data-theme="dark"] .theme-toggle:hover').styles(
+      backgroundColor: Color('rgba(255, 255, 255, 0.1)'),
+    ),
+    css('.theme-toggle svg').styles(
+      raw: {'width': '24px', 'height': '24px'},
+    ),
+    // Default: hide both icons until data-theme is resolved.
+    css('.theme-toggle > span:nth-child(1)').styles(raw: {'display': 'none'}),
+    css('.theme-toggle > span:nth-child(2)').styles(raw: {'display': 'none'}),
+    // Light mode: show sun.
+    css('[data-theme="light"] .theme-toggle > span:nth-child(1)').styles(
+      raw: {'display': 'inline'},
+    ),
+    // Dark mode: show moon.
+    css('[data-theme="dark"] .theme-toggle > span:nth-child(2)').styles(
+      raw: {'display': 'inline'},
+    ),
+  ];
+
   @override
   Component build(BuildContext context) {
     return Component.fragment([

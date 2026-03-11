@@ -54,5 +54,7 @@ class NavLink extends StatelessComponent {
         ),
       ]),
     ]),
+    // Dark mode: primary is a light teal (#66fbd1), so use dark text for contrast.
+    css('[data-theme="dark"] .nav-button').styles(color: Color('var(--background)')),
   ];
 }
