@@ -4,6 +4,8 @@
 /// To run code on the client, check the `main.client.dart` file.
 library;
 
+import 'dart:io';
+
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
@@ -35,9 +37,9 @@ void main() {
         CategoryCards(),
         SafeCodeBlock(
           grammars: {
-            // Add grammar files as needed:
-            // 'yaml': File('grammars/yaml.tmLanguage.json').readAsStringSync(),
-            // 'bash': File('grammars/bash.tmLanguage.json').readAsStringSync(),
+            'yaml': File('grammars/yaml.tmLanguage.json').readAsStringSync(),
+            'bash': File('grammars/bash.tmLanguage.json').readAsStringSync(),
+            'json': File('grammars/json.tmLanguage.json').readAsStringSync(),
           },
         ),
         Image(zoom: true),
@@ -75,11 +77,11 @@ void main() {
           ),
           sidebar: CollapsibleSidebar(
             mobileNavItems: [
-              a(href: '/docs/overview', classes: 'mobile-workflows-btn', [
+              a(href: '/docs/overview', classes: 'mobile-logo-btn', [
                 img(
                   src: '/images/workflows_nav_icon.svg',
                   alt: 'Very Good Workflows',
-                  attributes: const {'height': '32', 'width': '32'},
+                  attributes: const {'height': '32', 'width': '105'},
                 ),
               ]),
               ThemeToggle(),
@@ -148,7 +150,7 @@ void main() {
             EditPageLink(
               editUrlBase:
                   'https://github.com/VeryGoodOpenSource/very_good_workflows/tree/main/site_jaspr/',
-              excludePaths: const {'/'},
+              excludePaths: const {'/', '/docs/workflows'},
             ),
             const PageNavigation(),
             const SiteFooter(),
@@ -166,9 +168,9 @@ void main() {
           githubUrl:
               'https://github.com/VeryGoodOpenSource/very_good_workflows',
           heroImage: '/images/workflows_hero.png',
-          blogSection: div(classes: 'homepage-blogs', [
-            div(classes: 'homepage-blog-row', [
-              div(classes: 'homepage-blog-image', [
+          blogSection: div(classes: 'blog-section', [
+            div(classes: 'blog-row', [
+              div(classes: 'blog-column', [
                 img(
                   src:
                       'https://uploads-ssl.webflow.com/5ee12d8e99cde2e20255c16c/61ef1d505cfdeb570f714a7f_Very%20good%20workflows.jpg',
@@ -176,23 +178,25 @@ void main() {
                   attributes: const {'width': '452', 'height': '254'},
                 ),
               ]),
-              div(classes: 'homepage-blog-content', [
-                h2([
-                  Component.text(
-                    'Configuring workflows for your Flutter projects',
+              div(classes: 'blog-column', [
+                div(classes: 'blog-content', [
+                  h2([
+                    Component.text(
+                      'Configuring workflows for your Flutter projects',
+                    ),
+                  ]),
+                  p([
+                    Component.text(
+                      'A guide for using Very Good Workflows in your projects.',
+                    ),
+                  ]),
+                  a(
+                    href:
+                        'https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects',
+                    classes: 'blog-link',
+                    [Component.text('Read the Blog >')],
                   ),
                 ]),
-                p([
-                  Component.text(
-                    'A guide for using Very Good Workflows in your projects.',
-                  ),
-                ]),
-                a(
-                  href:
-                      'https://verygood.ventures/blog/configuring-workflows-for-your-flutter-projects',
-                  classes: 'homepage-blog-link',
-                  [Component.text('Read the Blog >')],
-                ),
               ]),
             ]),
           ]),
