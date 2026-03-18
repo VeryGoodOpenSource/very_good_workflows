@@ -41,7 +41,7 @@ The Flutter package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** A glob pattern to exclude files from the coverage report (e.g. `'**/*.g.dart **/gen/*.dart'`).
+**Optional** Space-separated list of globs to exclude files from the coverage report (e.g. '**/*.g.dart **/gen/*.dart').
 
 **Default** `""`
 
