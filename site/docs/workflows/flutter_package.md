@@ -10,10 +10,14 @@ This workflow runs helpful checks on a Flutter package according to the steps be
 
 The Flutter package workflow consists of the following steps:
 
-1. Install dependencies
-2. Format
-3. Analyze
-4. Run tests (includes coverage collection and enforcement)
+1. Setup Flutter
+2. Set SSH Key (if provided)
+3. Install dependencies
+4. Run Setup (if provided)
+5. Format
+6. Analyze
+7. Bloc Lint (if enabled)
+8. Run tests (includes coverage collection and enforcement)
 
 ## Inputs
 
