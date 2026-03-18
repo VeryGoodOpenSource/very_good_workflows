@@ -20,7 +20,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "A glob pattern to exclude files from coverage (e.g. '**/*.g.dart **/gen/*.dart')."
+        description: "Space-separated list of globs to exclude files from the coverage report (e.g. '**/*.g.dart **/gen/*.dart')."
       flutter_channel:
         required: false
         type: string
