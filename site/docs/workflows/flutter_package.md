@@ -41,7 +41,13 @@ The Flutter package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** Space-separated list of globs to exclude files from the coverage report (e.g. '**/\*.g.dart **/gen/\*.dart').
+**Optional** Space-separated list of globs to exclude files from the coverage report (e.g. `'**/*.g.dart **/gen/*.dart'`).
+
+Use a single quoted string with each glob separated by spaces. For example, to exclude generated files and localization assets, copy/paste:
+
+```yaml
+coverage_excludes: 'lib/l10n/** **/*.g.dart **/*.freezed.dart'
+```
 
 **Default** `""`
 
