@@ -7,6 +7,11 @@ on:
         required: false
         type: string
         default: "lib test"
+      collect_coverage_from:
+        required: false
+        type: string
+        default: "imports"
+        description: "Whether to collect coverage from imported files only or all files. Allowed values: imports, all."
       concurrency:
         required: false
         type: number
@@ -15,6 +20,7 @@ on:
         required: false
         type: string
         default: ""
+        description: "Space-separated list of globs to exclude files from the coverage report (e.g. '**/*.g.dart **/gen/*.dart')."
       dart_sdk:
         required: false
         type: string
@@ -30,6 +36,10 @@ on:
         required: false
         type: number
         default: 100
+      no_example:
+        required: false
+        type: boolean
+        default: false
       platform:
         required: false
         type: string
@@ -38,10 +48,19 @@ on:
         required: false
         type: boolean
         default: false
+        description: "Whether to check for and respect coverage ignore comments (e.g. // coverage:ignore-line)."
       report_on:
         required: false
         type: string
         default: "lib"
+      run_bloc_lint:
+        required: false
+        type: boolean
+        default: true
+      run_skipped:
+        required: false
+        type: boolean
+        default: false
       runs_on:
         required: false
         type: string
@@ -50,22 +69,20 @@ on:
         required: false
         type: string
         default: ""
+      show_uncovered:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to show uncovered lines when coverage is below 100%."
+      test_optimization:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to apply optimizations for test performance."
       working_directory:
         required: false
         type: string
         default: "."
-      run_skipped:
-        required: false
-        type: boolean
-        default: false
-      no_example:
-        required: false
-        type: boolean
-        default: false
-      run_bloc_lint:
-        type: boolean
-        default: true
-        required: false
     secrets:
       ssh_key:
         required: false
@@ -96,7 +113,9 @@ jobs:
           ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
-        run: dart pub get ${{(inputs.no_example && '--no-example') || ''}}
+        run: |
+          dart pub global activate very_good_cli
+          dart pub get ${{(inputs.no_example && '--no-example') || ''}}
 
       - name: ⚙️ Run Setup
         if: "${{inputs.setup != ''}}"
@@ -115,13 +134,17 @@ jobs:
           bloc lint .
 
       - name: 🧪 Run Tests
-        run: |
-          dart pub global activate coverage 1.15.0
-          dart test -j ${{inputs.concurrency}} --coverage=coverage --platform=${{inputs.platform}} ${{(inputs.run_skipped && '--run-skipped') || ''}} && dart pub global run coverage:format_coverage --lcov ${{(inputs.check_ignore && '--check-ignore') || ''}} --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=${{inputs.report_on}}
-
-      - name: 📊 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v3
-        with:
-          path: ${{inputs.working_directory}}/coverage/lcov.info
-          exclude: ${{inputs.coverage_excludes}}
-          min_coverage: ${{inputs.min_coverage}}
+        run: >-
+          very_good dart test
+          -j ${{inputs.concurrency}}
+          --coverage
+          --platform ${{inputs.platform}}
+          --min-coverage ${{inputs.min_coverage}}
+          ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
+          ${{format('--report-on {0}', inputs.report_on)}}
+          ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
+          ${{inputs.check_ignore && '--check-ignore' || '--no-check-ignore'}}
+          ${{inputs.show_uncovered && '--show-uncovered' || ''}}
+          ${{inputs.run_skipped && '--run-skipped' || ''}}
+          ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}}
+          --test-randomize-ordering-seed random

@@ -10,11 +10,14 @@ This workflow runs helpful checks on a Dart package according to the steps below
 
 The Dart package workflow consists of the following steps:
 
-1. Install dependencies
-2. Format
-3. Analyze
-4. Run tests
-5. Check code coverage
+1. Setup Dart
+2. Set SSH Key (if provided)
+3. Install dependencies
+4. Run Setup (if provided)
+5. Format
+6. Analyze
+7. Bloc Lint (if enabled)
+8. Run tests (includes coverage collection and enforcement)
 
 ## Inputs
 
@@ -26,7 +29,7 @@ The Dart package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
+**Optional** Space-separated list of globs to exclude files from the coverage report (e.g. '**/\*.g.dart **/gen/\*.dart').
 
 **Default** `""`
 
@@ -66,7 +69,7 @@ The Dart package workflow consists of the following steps:
 
 ### `check_ignore`
 
-**Optional** Allows ignoring lines from [coverage](https://pub.dev/packages/coverage).
+**Optional** Whether to check for and respect coverage ignore comments (e.g. `// coverage:ignore-line`).
 
 **Default** `false`
 
@@ -106,6 +109,32 @@ The Dart package workflow consists of the following steps:
 **Optional** To avoid getting packages in `example/` when running `dart pub get` (if it exists).
 
 **Default** `false`
+
+### `show_uncovered`
+
+**Optional** Whether to show uncovered lines when coverage is below 100%. Implicitly enables coverage collection when used alone.
+
+**Default** `true`
+
+### `collect_coverage_from`
+
+**Optional** Whether to collect coverage from imported files only or all files. Counting untested files against coverage (`all`) results in stricter enforcement.
+
+**Allowed values** `imports`, `all`
+
+**Default** `"imports"`
+
+### `test_optimization`
+
+**Optional** Whether to apply optimizations for test performance.
+
+**Default** `true`
+
+### `run_bloc_lint`
+
+**Optional** Whether to run [bloc lint](https://pub.dev/packages/bloc_tools) on the package.
+
+**Default** `true`
 
 ## Secrets
 
