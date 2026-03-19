@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.19.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.18.1...v1.19.0) (2026-03-19)
+
+
+### Bug Fixes
+
+* **ci:** update excluded directories from release ([#428](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/428)) ([060618d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/060618d42496a5ec827b3c2702998e906803b2d3))
+
+
+### Refactors
+
+* remove coverage action in favor of CLI ([#425](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/425)) ([b001826](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b001826016fbf3ae33544d190e4706b8679c20ed))
+
+
+### Miscellaneous Chores
+
+* bump @babel/eslint-parser from 7.28.5 to 7.28.6 in /site ([#413](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/413)) ([ee6fee4](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ee6fee493379008f72a0694650e30328c2ee19f2))
+* bump @eslint/js from 9.39.1 to 9.39.2 in /site ([#408](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/408)) ([7951736](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/795173638d2610d523337926c4a41bbb4df6cf4d))
+* bump eslint-plugin-jest from 29.12.1 to 29.13.0 in /site ([#420](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/420)) ([408be27](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/408be27bbee549a761d0bec9f160547e198d09ec))
+* bump eslint-plugin-jest from 29.13.0 to 29.15.0 in /site ([#422](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/422)) ([36a8229](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/36a822940e7676efc50300f1e15e3cd8135d1c70))
+* bump eslint-plugin-jest from 29.2.1 to 29.5.0 in /site ([#410](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/410)) ([fe0c4a5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/fe0c4a5ad372aeaa38e71d916f9107dbe0c13414))
+* bump globals from 16.5.0 to 17.0.0 in /site ([#412](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/412)) ([65b8a03](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/65b8a036f8fad7fa64c6d333b6a134fb673eceee))
+* bump globals from 17.0.0 to 17.1.0 in /site ([#415](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/415)) ([2143c1c](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/2143c1c6ad116f7ef60d08cb59cd3e621e987755))
+* bump globals from 17.1.0 to 17.3.0 in /site ([#419](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/419)) ([87fe593](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/87fe593d96d4320f479665bacdfbb4802b9e061c))
+* bump globals from 17.3.0 to 17.4.0 in /site ([#424](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/424)) ([aa6f735](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/aa6f7355e290edd91d1b801d0a9873a18ad0ea87))
+* bump jest from 30.2.0 to 30.3.0 in /site ([#427](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/427)) ([6505830](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/6505830a5f22ef2c221e649eb0c79f35f52591a6))
+* bump prettier from 3.6.2 to 3.7.3 in /site ([#403](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/403)) ([41f2cfa](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/41f2cfa2107abd0429ace6e60532ea36f433c7d6))
+* bump prettier from 3.7.3 to 3.7.4 in /site ([#404](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/404)) ([c23799f](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/c23799f79a71c8ce531b67d6c2854b1dd33b7024))
+* bump prettier from 3.7.4 to 3.8.0 in /site ([#414](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/414)) ([3841e8d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3841e8d6c1a0a4a013980026a250479a1f0c61f0))
+* bump prettier from 3.8.0 to 3.8.1 in /site ([#418](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/418)) ([b024250](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b0242504a00713771610dcc1979252cfef59b186))
+* bump react-dom from 19.2.0 to 19.2.1 in /site ([#406](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/406)) ([0c135d7](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/0c135d7ac42778aef1e44812537729d5c0b18298))
+* bump react-dom from 19.2.1 to 19.2.3 in /site ([#409](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/409)) ([05e90ff](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/05e90ff741c6172754b4f7ade6f1efe312f1f3f2))
+* bump react-dom from 19.2.3 to 19.2.4 in /site ([#416](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/416)) ([3bfb45e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3bfb45e08d82cb2e38121103a56d51929ce2fbd5))
+* bump webfactory/ssh-agent from 0.9.1 to 0.10.0 ([#426](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/426)) ([624db51](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/624db51e317d3a7f5e8622ce86e539c3de2e677d))
+
 ## [1.18.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.18.0...v1.18.1) (2025-11-27)
 
 
