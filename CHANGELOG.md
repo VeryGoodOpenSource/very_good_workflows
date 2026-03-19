@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.18.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.18.1...v1.18.2) (2026-03-19)
+## [1.19.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.18.1...v1.19.0) (2026-03-19)
 
 
 ### Bug Fixes
