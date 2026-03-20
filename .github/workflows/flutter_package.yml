@@ -120,7 +120,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          dart pub global activate very_good_cli
+          dart pub global activate very_good_cli 1.1.0
           very_good packages get --recursive --ignore=${{inputs.package_get_excludes}}
 
       - name: ⚙️ Run Setup
