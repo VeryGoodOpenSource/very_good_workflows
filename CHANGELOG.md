@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.0...v1.19.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* pin `very_good_cli` version ([#432](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/432)) ([dfc070e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/dfc070e8c300df4d3087fc6e83a716ff58c4137f))
+
 ## [1.19.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.18.1...v1.19.0) (2026-03-19)
 
 
