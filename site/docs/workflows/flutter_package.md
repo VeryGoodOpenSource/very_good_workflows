@@ -113,7 +113,7 @@ The Flutter package workflow consists of the following steps:
 
 ### `report_on`
 
-**Optional** A comma-separated list of folders that should be checked in code coverage.
+**Optional** A comma or space-separated list of directories to report coverage on.
 
 **Default** `"lib"`
 
