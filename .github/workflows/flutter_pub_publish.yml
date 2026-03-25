@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🐦 Setup Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.23.0.23.0
         with:
           flutter-version: ${{inputs.flutter_version}}
           channel: ${{inputs.flutter_channel}}
@@ -60,7 +60,7 @@ jobs:
 
       - name: 🎯 Setup Dart
         if: ${{ secrets.pub_credentials == '' }}
-        uses: dart-lang/setup-dart@v1
+        uses: dart-lang/setup-dart@v1.7.2
         with:
           sdk: ${{inputs.dart_sdk}}
 
