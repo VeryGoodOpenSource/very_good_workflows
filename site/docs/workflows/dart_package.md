@@ -75,7 +75,7 @@ The Dart package workflow consists of the following steps:
 
 ### `report_on`
 
-**Optional** A comma-separated list of folders that should be checked in code coverage.
+**Optional** A space-separated list of directories to report coverage on.
 
 **Default** `"lib"`
 
