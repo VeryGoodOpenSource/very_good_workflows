@@ -141,7 +141,7 @@ jobs:
           --platform ${{inputs.platform}}
           --min-coverage ${{inputs.min_coverage}}
           ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
-          $(echo "${{inputs.report_on}}" | sed 's/[, ][, ]*/ --report-on /g; s/^/--report-on /')
+          ${{format('--report-on {0}', inputs.report_on)}}
           ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
           ${{inputs.check_ignore && '--check-ignore' || '--no-check-ignore'}}
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
