@@ -148,7 +148,7 @@ jobs:
           --coverage
           --min-coverage ${{inputs.min_coverage}}
           ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
-          $(printf -- '--report-on %s ' ${{inputs.report_on}})
+          $(echo "${{inputs.report_on}}" | sed 's/[, ][, ]*/ --report-on /g; s/^/--report-on /')
           ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
           ${{inputs.run_skipped && '--run-skipped' || ''}}
