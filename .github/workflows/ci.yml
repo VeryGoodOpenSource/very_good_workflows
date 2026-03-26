@@ -46,7 +46,7 @@ jobs:
     with:
       modified_files_only: false
 
-  verify-license-check:
+  verify-license-check-no-sdk:
     uses: ./.github/workflows/license_check.yml
     with:
       working_directory: examples/dart_package
@@ -54,6 +54,31 @@ jobs:
       allowed: ""
       forbidden: "unknown"
       skip_packages: "very_good_analysis"
+
+  verify-license-check-dart-only:
+    uses: ./.github/workflows/license_check.yml
+    with:
+      working_directory: examples/dart_package
+      dart_sdk: "stable"
+      dependency_type: "direct-dev"
+      allowed: ""
+      forbidden: "unknown"
+      skip_packages: "very_good_analysis"
+
+  verify-license-check-flutter-only:
+    uses: ./.github/workflows/license_check.yml
+    with:
+      working_directory: examples/flutter_package
+      flutter_version: "3.41.x"
+      allowed: "MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0,Zlib"
+
+  verify-license-check-both:
+    uses: ./.github/workflows/license_check.yml
+    with:
+      working_directory: examples/flutter_package
+      flutter_version: "3.41.x"
+      dart_sdk: "stable"
+      allowed: "MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0,Zlib"
 
   build:
     needs:
@@ -64,7 +89,10 @@ jobs:
         verify-pana-flutter,
         verify-semantic-pull-request,
         verify-spell-check,
-        verify-license-check,
+        verify-license-check-no-sdk,
+        verify-license-check-dart-only,
+        verify-license-check-flutter-only,
+        verify-license-check-both,
       ]
 
     runs-on: ubuntu-latest

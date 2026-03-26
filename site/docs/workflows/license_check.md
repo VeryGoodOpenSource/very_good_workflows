@@ -35,9 +35,15 @@ The License Check workflow consists of the following steps:
 
 ### `dart_sdk`
 
-**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5.0`) or a channel (e.g. `stable`):
+**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5.0`) or a channel (e.g. `stable`). This parameter is ignored if a flutter_version is specified.
 
 **Default** `"stable"`
+
+### `flutter_version`
+
+**Optional** Which Flutter SDK version to use.
+
+**Default** `""`
 
 ### `allowed`
 
@@ -104,7 +110,8 @@ jobs:
   license_check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
     with:
-      allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0'
+      flutter_version: '3.32.0'
+      allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0,Zlib'
 ```
 
 The example [workflow file](https://docs.github.com/en/actions/quickstart#creating-your-first-workflow) will [trigger](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) the `license_check` job on every push to the `main` branch and on every pull request that modifies the `pubspec.yaml` or the `license_check.yaml` workflow file.
