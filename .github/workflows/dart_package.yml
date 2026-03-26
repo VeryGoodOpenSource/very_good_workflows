@@ -114,7 +114,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          dart pub global activate --source git https://github.com/VeryGoodOpenSource/very_good_cli.git --git-ref feat/report-on-multiple-paths
+          dart pub global activate --source git https://github.com/VeryGoodOpenSource/very_good_cli.git --git-ref main
           dart pub get ${{(inputs.no_example && '--no-example') || ''}}
 
       - name: ⚙️ Run Setup

@@ -120,7 +120,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          dart pub global activate --source git https://github.com/VeryGoodOpenSource/very_good_cli.git --git-ref feat/report-on-multiple-paths
+          dart pub global activate --source git https://github.com/VeryGoodOpenSource/very_good_cli.git --git-ref main
           very_good packages get --recursive --ignore=${{inputs.package_get_excludes}}
 
       - name: ⚙️ Run Setup
