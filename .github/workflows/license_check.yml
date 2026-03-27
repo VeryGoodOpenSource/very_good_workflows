@@ -15,6 +15,14 @@ on:
         required: false
         type: string
         default: "stable"
+      flutter_channel:
+        required: false
+        type: string
+        default: "stable"
+      flutter_version:
+        required: false
+        type: string
+        default: ""
       allowed:
         required: false
         type: string
@@ -52,9 +60,19 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🎯 Setup Dart
+        if: inputs.flutter_version == ''
         uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{inputs.dart_sdk}}
+
+      - name: 🐦 Setup Flutter
+        if: inputs.flutter_version != ''
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{inputs.flutter_version}}
+          channel: ${{inputs.flutter_channel}}
+          cache: true
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
 
       - name: 🤫 Set SSH Key
         env:
@@ -65,7 +83,7 @@ jobs:
           ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
-        run: dart pub get --no-example
+        run: ${{ inputs.flutter_version != '' && 'flutter' || 'dart' }} pub get --no-example
 
       - name: 👨‍⚖️ Check licenses
         run: |

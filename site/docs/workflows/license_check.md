@@ -14,7 +14,7 @@ The License Check functionality is powered by [Very Good CLI's license checker](
 
 The License Check workflow consists of the following steps:
 
-1. Setup Dart
+1. Setup Dart or Flutter
 2. Set SSH Key (if provided)
 3. Install project dependencies
 4. Check licenses
@@ -35,9 +35,21 @@ The License Check workflow consists of the following steps:
 
 ### `dart_sdk`
 
-**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5.0`) or a channel (e.g. `stable`):
+**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5.0`) or a channel (e.g. `stable`). Ignored when `flutter_version` is set.
 
 **Default** `"stable"`
+
+### `flutter_channel`
+
+**Optional** The Flutter channel to use (e.g. `stable`, `beta`). Only used when `flutter_version` is set.
+
+**Default** `"stable"`
+
+### `flutter_version`
+
+**Optional** Which Flutter SDK version to use. When set, Flutter is used instead of Dart to install dependencies. It can be a version (e.g. `3.24.0`) or a version constraint (e.g. `3.24.x`).
+
+**Default** `""`
 
 ### `allowed`
 
