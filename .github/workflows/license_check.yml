@@ -55,24 +55,27 @@ jobs:
 
     runs-on: ${{inputs.runs_on}}
 
+    env:
+      is_flutter: ${{ inputs.flutter_version != '' }}
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v6
 
       - name: 🎯 Setup Dart
-        if: inputs.flutter_version == ''
+        if: env.is_flutter == 'false'
         uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{inputs.dart_sdk}}
 
       - name: 🐦 Setup Flutter
-        if: inputs.flutter_version != ''
+        if: env.is_flutter == 'true'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{inputs.flutter_version}}
-          channel: ${{inputs.flutter_channel}}
           cache: true
+          channel: ${{inputs.flutter_channel}}
           cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+          flutter-version: ${{inputs.flutter_version}}
 
       - name: 🤫 Set SSH Key
         env:
@@ -83,7 +86,7 @@ jobs:
           ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
-        run: ${{ inputs.flutter_version != '' && 'flutter' || 'dart' }} pub get --no-example
+        run: ${{ env.is_flutter == 'true' && 'flutter' || 'dart' }} pub get --no-example
 
       - name: 👨‍⚖️ Check licenses
         run: |
