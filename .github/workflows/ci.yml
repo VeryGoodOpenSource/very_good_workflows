@@ -55,6 +55,17 @@ jobs:
       forbidden: "unknown"
       skip_packages: "very_good_analysis"
 
+  verify-license-check-flutter:
+    uses: ./.github/workflows/license_check.yml
+    with:
+      working_directory: examples/flutter_package
+      flutter_channel: stable
+      flutter_version: "3.41.x"
+      dependency_type: "direct-dev"
+      allowed: ""
+      forbidden: "unknown"
+      skip_packages: "very_good_analysis"
+
   build:
     needs:
       [
@@ -65,6 +76,7 @@ jobs:
         verify-semantic-pull-request,
         verify-spell-check,
         verify-license-check,
+        verify-license-check-flutter,
       ]
 
     runs-on: ubuntu-latest
