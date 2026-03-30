@@ -64,7 +64,7 @@ jobs:
 
       - name: 🎯 Setup Dart
         if: env.is_flutter == 'false'
-        uses: dart-lang/setup-dart@v1
+        uses: dart-lang/setup-dart@v1.7.2
         with:
           sdk: ${{inputs.dart_sdk}}
 
