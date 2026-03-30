@@ -103,7 +103,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: 🐦 Setup Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.23.0
         with:
           flutter-version: ${{inputs.flutter_version}}
           channel: ${{inputs.flutter_channel}}
@@ -120,7 +120,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          dart pub global activate very_good_cli 1.1.0
+          dart pub global activate very_good_cli 1.1.1
           very_good packages get --recursive --ignore=${{inputs.package_get_excludes}}
 
       - name: ⚙️ Run Setup
@@ -148,7 +148,7 @@ jobs:
           --coverage
           --min-coverage ${{inputs.min_coverage}}
           ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
-          ${{format('--report-on {0}', inputs.report_on)}}
+          ${{format('--report-on "{0}"', inputs.report_on)}}
           ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
           ${{inputs.run_skipped && '--run-skipped' || ''}}
