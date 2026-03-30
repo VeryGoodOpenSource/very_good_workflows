@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.19.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.1...v1.19.2) (2026-03-30)
+
+
+### Bug Fixes
+
+* license check on flutter package ([#436](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/436)) ([80910dc](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/80910dca145e077bcc6724e36c9f92a57ad8cc83))
+* support multiple paths for report_on ([#435](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/435)) ([5bf4391](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5bf439137d871beab3ceb5dae0f05541556d733c))
+
 ## [1.19.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.0...v1.19.1) (2026-03-20)
 
 
