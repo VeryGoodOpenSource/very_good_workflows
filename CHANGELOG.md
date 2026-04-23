@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.2...v1.19.3) (2026-04-23)
+
+
+### Miscellaneous Chores
+
+* bump googleapis/release-please-action from 4 to 5 ([#446](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/446)) ([cdb25f5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/cdb25f5b93949a97d4210f8b5d6f53e8d07edf03))
+
 ## [1.19.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.1...v1.19.2) (2026-03-30)
 
 
