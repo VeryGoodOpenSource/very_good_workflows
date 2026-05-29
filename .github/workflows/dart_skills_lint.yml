@@ -1,0 +1,55 @@
+name: Dart Skills Lint Workflow
+
+on:
+  workflow_call:
+    inputs:
+      skills_directories:
+        required: false
+        type: string
+        default: ""
+        description: "Space-separated list of root directories containing skill sub-folders to validate (passed as --skills-directory flags). If empty, dart_skills_lint falls back to its defaults (.claude/skills and .agents/skills)."
+      dart_skills_lint_version:
+        required: false
+        type: string
+        default: ""
+        description: "Version constraint for dart pub global activate dart_skills_lint (e.g., ^0.2.0). If empty, activates the latest version."
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      working_directory:
+        required: false
+        type: string
+        default: "."
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+
+    runs-on: ${{inputs.runs_on}}
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v6
+
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1.7.2
+        with:
+          sdk: ${{inputs.dart_sdk}}
+
+      - name: 📦 Activate dart_skills_lint
+        run: dart pub global activate dart_skills_lint ${{inputs.dart_skills_lint_version}}
+
+      - name: 🔍 Lint Skills
+        run: |
+          FLAGS=""
+          for dir in ${{inputs.skills_directories}}; do
+            FLAGS="$FLAGS --skills-directory $dir"
+          done
+          dart pub global run dart_skills_lint $FLAGS
