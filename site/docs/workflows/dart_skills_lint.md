@@ -6,7 +6,7 @@ sidebar_position: 10
 
 We use [`dart_skills_lint`](https://github.com/flutter/skills/tree/main/tool/dart_skills_lint) to validate agent skill directories against the [Agent Skills Specification](https://github.com/flutter/skills/blob/main/tool/dart_skills_lint/documentation/knowledge/SPECIFICATION.md).
 
-This workflow only validates skill linting — no tests, coverage, formatting, or pana scoring. It serves as a presubmit check to ensure skill definitions (e.g., `SKILL.md` files, YAML frontmatter, directory structure, relative paths) are valid.
+This workflow only validates skill linting — no tests, coverage, formatting, or pana scoring. It serves as a pre-merge check to ensure skill definitions (e.g., `SKILL.md` files, YAML front matter, directory structure, relative paths) are valid.
 
 ## Steps
 
