@@ -64,5 +64,5 @@ jobs:
   lint-skills:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_skills_lint.yml@v1
     with:
-      skills_directories: ".agents/skills .claude/skills"
+      skills_directories: '.agents/skills .claude/skills'
 ```
