@@ -14,7 +14,7 @@ The dart skills lint workflow consists of the following steps:
 
 1. Git checkout
 2. Setup Dart
-3. Activate `dart_skills_lint`
+3. Activate `dart_skills_lint` from the [`flutter/skills`](https://github.com/flutter/skills) git repository
 4. Lint skills
 
 ## Inputs
@@ -25,9 +25,9 @@ The dart skills lint workflow consists of the following steps:
 
 **Default** `""`
 
-### `dart_skills_lint_version`
+### `dart_skills_lint_ref`
 
-**Optional** Version constraint for `dart pub global activate dart_skills_lint` (e.g., `^0.2.0`). If empty, activates the latest version.
+**Optional** Git ref (branch, tag, or commit SHA) of [`flutter/skills`](https://github.com/flutter/skills) to activate `dart_skills_lint` from. If empty, uses the default branch.
 
 **Default** `""`
 

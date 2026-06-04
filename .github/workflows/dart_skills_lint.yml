@@ -8,11 +8,11 @@ on:
         type: string
         default: ""
         description: "Space-separated list of root directories containing skill sub-folders to validate (passed as --skills-directory flags). If empty, dart_skills_lint falls back to its defaults (.claude/skills and .agents/skills)."
-      dart_skills_lint_version:
+      dart_skills_lint_ref:
         required: false
         type: string
         default: ""
-        description: "Version constraint for dart pub global activate dart_skills_lint (e.g., ^0.2.0). If empty, activates the latest version."
+        description: "Git ref (branch, tag, or commit SHA) of flutter/skills to activate dart_skills_lint from. If empty, uses the default branch."
       dart_sdk:
         required: false
         type: string
@@ -44,7 +44,15 @@ jobs:
           sdk: ${{inputs.dart_sdk}}
 
       - name: 📦 Activate dart_skills_lint
-        run: dart pub global activate dart_skills_lint ${{inputs.dart_skills_lint_version}}
+        run: |
+          REF_FLAG=""
+          if [ -n "${{inputs.dart_skills_lint_ref}}" ]; then
+            REF_FLAG="--git-ref ${{inputs.dart_skills_lint_ref}}"
+          fi
+          dart pub global activate \
+            --source git https://github.com/flutter/skills.git \
+            --git-path tool/dart_skills_lint \
+            $REF_FLAG
 
       - name: 🔍 Lint Skills
         run: |
