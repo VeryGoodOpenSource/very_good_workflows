@@ -1,0 +1,63 @@
+name: Dart Skills Lint Workflow
+
+on:
+  workflow_call:
+    inputs:
+      skills_directories:
+        required: false
+        type: string
+        default: ""
+        description: "Space-separated list of root directories containing skill sub-folders to validate (passed as --skills-directory flags). If empty, dart_skills_lint falls back to its defaults (.claude/skills and .agents/skills)."
+      dart_skills_lint_ref:
+        required: false
+        type: string
+        default: ""
+        description: "Git ref (branch, tag, or commit SHA) of flutter/skills to activate dart_skills_lint from. If empty, uses the default branch."
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      working_directory:
+        required: false
+        type: string
+        default: "."
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+
+    runs-on: ${{inputs.runs_on}}
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v6
+
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1.7.2
+        with:
+          sdk: ${{inputs.dart_sdk}}
+
+      - name: 📦 Activate dart_skills_lint
+        run: |
+          REF_FLAG=""
+          if [ -n "${{inputs.dart_skills_lint_ref}}" ]; then
+            REF_FLAG="--git-ref ${{inputs.dart_skills_lint_ref}}"
+          fi
+          dart pub global activate \
+            --source git https://github.com/flutter/skills.git \
+            --git-path tool/dart_skills_lint \
+            $REF_FLAG
+
+      - name: 🔍 Lint Skills
+        run: |
+          FLAGS=""
+          for dir in ${{inputs.skills_directories}}; do
+            FLAGS="$FLAGS --skills-directory $dir"
+          done
+          dart pub global run dart_skills_lint $FLAGS
