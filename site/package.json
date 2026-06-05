@@ -28,12 +28,11 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.28.6",
-    "@docusaurus/eslint-plugin": "^3.10.1",
     "@docusaurus/module-type-aliases": "3.10.1",
     "@docusaurus/tsconfig": "3.10.1",
     "@docusaurus/types": "3.10.1",
     "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.0",
     "eslint-plugin-jest": "^29.15.2",
     "globals": "^17.4.0",
     "jest": "^30.3.0",
