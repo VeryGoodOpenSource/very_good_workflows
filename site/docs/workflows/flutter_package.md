@@ -10,11 +10,14 @@ This workflow runs helpful checks on a Flutter package according to the steps be
 
 The Flutter package workflow consists of the following steps:
 
-1. Install dependencies
-2. Format
-3. Analyze
-4. Run tests
-5. Check code coverage
+1. Setup Flutter
+2. Set SSH Key (if provided)
+3. Install dependencies
+4. Run Setup (if provided)
+5. Format
+6. Analyze
+7. Bloc Lint (if enabled)
+8. Run tests (includes coverage collection and enforcement)
 
 ## Inputs
 
@@ -38,7 +41,7 @@ The Flutter package workflow consists of the following steps:
 
 ### `coverage_excludes`
 
-**Optional** A space-separated list of paths to exclude from the coverage report. Supports `globs` to describe file patterns.
+**Optional** Space-separated list of globs to exclude files from the coverage report (e.g. '**/\*.g.dart **/gen/\*.dart').
 
 **Default** `""`
 
@@ -101,6 +104,44 @@ The Flutter package workflow consists of the following steps:
 **Optional** List of paths to exclude from `packages get`. Supports `globs` to describe file patterns.
 
 **Default** `"!*"`
+
+### `platform`
+
+**Optional** The platform to run tests on (e.g., `chrome`, `android`, `ios`).
+
+**Default** `""`
+
+### `report_on`
+
+**Optional** A comma-separated list of folders that should be checked in code coverage.
+
+**Default** `"lib"`
+
+### `run_bloc_lint`
+
+**Optional** Whether to run [bloc lint](https://pub.dev/packages/bloc_tools) on the package.
+
+**Default** `true`
+
+### `run_skipped`
+
+**Optional** Run skipped tests instead of skipping them.
+
+**Default** `false`
+
+### `show_uncovered`
+
+**Optional** Whether to show uncovered lines when coverage is below 100%. Implicitly enables coverage collection when used alone.
+
+**Default** `true`
+
+### `collect_coverage_from`
+
+**Optional** Whether to collect coverage from imported files only or all files. Counting untested files against coverage (`all`) results in stricter enforcement.
+
+**Allowed values** `imports`, `all`
+
+**Default** `"imports"`
 
 ## Secrets
 

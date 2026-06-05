@@ -27,7 +27,6 @@ on:
       mason_credentials:
         required: true
 
-
 jobs:
   publish:
     defaults:
@@ -37,13 +36,13 @@ jobs:
     runs-on: ${{inputs.runs_on}}
 
     timeout-minutes: ${{inputs.timeout_minutes}}
-    
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v6
 
       - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1
+        uses: dart-lang/setup-dart@v1.7.2
         with:
           sdk: ${{inputs.dart_sdk}}
 

@@ -15,6 +15,14 @@ on:
         required: false
         type: string
         default: "stable"
+      flutter_channel:
+        required: false
+        type: string
+        default: "stable"
+      flutter_version:
+        required: false
+        type: string
+        default: ""
       allowed:
         required: false
         type: string
@@ -47,27 +55,40 @@ jobs:
 
     runs-on: ${{inputs.runs_on}}
 
+    env:
+      is_flutter: ${{ inputs.flutter_version != '' }}
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v6
 
       - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1
+        if: env.is_flutter == 'false'
+        uses: dart-lang/setup-dart@v1.7.2
         with:
           sdk: ${{inputs.dart_sdk}}
+
+      - name: 🐦 Setup Flutter
+        if: env.is_flutter == 'true'
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+          channel: ${{inputs.flutter_channel}}
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+          flutter-version: ${{inputs.flutter_version}}
 
       - name: 🤫 Set SSH Key
         env:
           ssh_key: ${{secrets.ssh_key}}
         if: env.ssh_key != null
-        uses: webfactory/ssh-agent@v0.9.1
+        uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 📦 Install Dependencies
-        run: dart pub get --no-example
+        run: ${{ env.is_flutter == 'true' && 'flutter' || 'dart' }} pub get --no-example
 
       - name: 👨‍⚖️ Check licenses
         run: |
-          dart pub global activate very_good_cli
+          dart pub global activate very_good_cli 1.1.0
           dart pub global run very_good_cli:very_good packages check licenses --skip-packages=${{inputs.skip_packages}} --dependency-type=${{inputs.dependency_type}} ${{(inputs.ignore_retrieval_failures && '--ignore-retrieval-failures') || ''}} --allowed=${{inputs.allowed}} --forbidden=${{inputs.forbidden}}
