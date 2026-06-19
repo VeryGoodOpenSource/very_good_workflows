@@ -36,10 +36,10 @@ jobs:
 
     steps:
       - name: 📚 Git Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1.7.2
+        uses: dart-lang/setup-dart@v1.8.1
         with:
           sdk: ${{inputs.dart_sdk}}
 
@@ -60,4 +60,4 @@ jobs:
           for dir in ${{inputs.skills_directories}}; do
             FLAGS="$FLAGS --skills-directory $dir"
           done
-          dart pub global run dart_skills_lint $FLAGS
+          dart pub global run dart_skills_lint:cli $FLAGS
