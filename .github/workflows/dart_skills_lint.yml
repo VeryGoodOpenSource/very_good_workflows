@@ -60,4 +60,4 @@ jobs:
           for dir in ${{inputs.skills_directories}}; do
             FLAGS="$FLAGS --skills-directory $dir"
           done
-          dart pub global run dart_skills_lint $FLAGS
+          dart pub global run dart_skills_lint:cli $FLAGS
