@@ -86,6 +86,10 @@ on:
         required: false
         type: string
         default: "."
+      post_setup_command:
+        required: false
+        type: string
+        default: ""
     secrets:
       ssh_key:
         required: false
@@ -126,6 +130,11 @@ jobs:
       - name: ⚙️ Run Setup
         if: "${{inputs.setup != ''}}"
         run: ${{inputs.setup}}
+
+      - name: 🛠️ Run post setup command
+        if: ${{ inputs.post_setup_command != '' }}
+        shell: bash
+        run: ${{ inputs.post_setup_command }}
 
       - name: ✨ Check Formatting
         run: dart format ${{inputs.format_line_length && format('--line-length {0}', inputs.format_line_length) || ''}} --set-exit-if-changed ${{inputs.format_directories}}
