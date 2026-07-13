@@ -37,7 +37,7 @@
     "globals": "^17.7.0",
     "jest": "^30.3.0",
     "prettier": "^3.8.4",
-    "typescript": "~6.0.2"
+    "typescript": "~7.0.2"
   },
   "browserslist": {
     "production": [
