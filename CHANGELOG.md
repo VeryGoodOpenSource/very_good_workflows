@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.19.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.2...v1.19.3) (2026-08-07)
+
+
+### Miscellaneous Chores
+
+* bump [@docusaurus](https://github.com/docusaurus) from 3.9.2 to 3.10.0 in /site ([#444](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/444)) ([aeb8fe3](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/aeb8fe3e7271cad2770f4afc1613bf9f2b0e8935))
+* bump @docusaurus/preset-classic from 3.10.1 to 3.10.2 in /site ([#462](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/462)) ([d257283](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d25728321b00881e5eab780f4c2bfa8f3e148536))
+* bump @docusaurus/tsconfig from 3.10.1 to 3.10.2 in /site ([#463](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/463)) ([9280875](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/92808754578380a6e3a22d448900ed97adf1f558))
+* bump @docusaurus/tsconfig from 3.9.2 to 3.10.0 in /site ([#443](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/443)) ([3f3c109](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3f3c109ab6f22bf29847f5cf6c8684d83ade7ec8))
+* bump @eslint/js from 9.39.2 to 10.0.1 in /site ([#421](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/421)) ([7822b7d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/7822b7d4f3ee76393c6152ce8901762bb4fa4c70))
+* bump actions/checkout from 6 to 7 ([#453](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/453)) ([86e2d68](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/86e2d68bb1e27b2518e4a2277205d23d21cb413c))
+* bump actions/setup-node from 6 to 7 ([#466](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/466)) ([d4002ce](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d4002ce49425d1e7a422ebd2757469308512fbc9))
+* bump dart-lang/setup-dart from 1.7.2 to 1.8.0 ([#470](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/470)) ([42b08a3](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/42b08a3dbb908fb29ac5e26d11593a145d7673a9))
+* bump eslint from 10.4.1 to 10.5.0 in /site ([#451](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/451)) ([b578dda](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b578dda7540c8bbfd62982634f603716494277d2))
+* bump eslint from 10.5.0 to 10.6.0 in /site ([#457](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/457)) ([75f342c](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/75f342c5d0b8c8adde3a2b7ea101e7e47897d1fc))
+* bump eslint-plugin-jest from 29.15.0 to 29.15.2 in /site ([#445](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/445)) ([e91885e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/e91885e86b2d4a0abf7235cf87b53b0c0e16f690))
+* bump eslint-plugin-jest from 29.15.2 to 29.15.3 in /site ([#456](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/456)) ([5772503](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/57725032690eef628c0da7baf28e5e7c1e43bf9d))
+* bump eslint-plugin-jest from 29.15.3 to 29.15.4 in /site ([#460](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/460)) ([d7e0679](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/d7e06794644716a9fb1e7567b7369c6ec6677205))
+* bump globals from 17.6.0 to 17.7.0 in /site ([#455](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/455)) ([2e05657](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/2e05657d5fe0952003cad0d9ce15ad33d48e4b93))
+* bump googleapis/release-please-action from 4 to 5 ([#446](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/446)) ([cdb25f5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/cdb25f5b93949a97d4210f8b5d6f53e8d07edf03))
+* bump prettier from 3.8.3 to 3.8.4 in /site ([#452](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/452)) ([645d967](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/645d9671c7761d0a9c9ed61026b27917b140a899))
+* bump prettier from 3.8.4 to 3.9.5 in /site ([#465](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/465)) ([75a44d5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/75a44d587a38fc6358d86c3676755fd2ccf79a32))
+* bump typescript from 5.9.3 to 6.0.2 in /site ([#434](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/434)) ([80126b1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/80126b18a0f516eee5a0a807eead3ff7509953a5))
+* bump typescript from 6.0.3 to 7.0.2 in /site ([#464](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/464)) ([88c5f2a](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/88c5f2a78bb8d2ce375a93ee8846385051b46bef))
+
 ## [1.19.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.1...v1.19.2) (2026-03-30)
 
 
