@@ -39,7 +39,6 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml
 
 # A reusable workflow to keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
-
 ```
 
 [github_workflows_link]: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
