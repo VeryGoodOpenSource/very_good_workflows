@@ -21,6 +21,11 @@ on:
         type: string
         default: ""
         description: "Space-separated list of globs to exclude files from the coverage report (e.g. '**/*.g.dart **/gen/*.dart')."
+      dart_define:
+        required: false
+        type: string
+        default: ""
+        description: "Space-separated list of key-value pairs passed to the tests as --dart-define (e.g. 'dart.vm.product=true FLAVOR=staging')."
       flutter_channel:
         required: false
         type: string
@@ -140,17 +145,22 @@ jobs:
           bloc lint .
 
       - name: 🧪 Run Tests
-        run: >-
-          very_good test
-          -j ${{inputs.concurrency}}
-          ${{(inputs.test_recursion && '--recursive') || ''}}
-          ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}}
-          --coverage
-          --min-coverage ${{inputs.min_coverage}}
-          ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
-          ${{format('--report-on "{0}"', inputs.report_on)}}
-          ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
-          ${{inputs.show_uncovered && '--show-uncovered' || ''}}
-          ${{inputs.run_skipped && '--run-skipped' || ''}}
-          ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}}
-          --test-randomize-ordering-seed random
+        run: |
+          dart_defines=""
+          for define in ${{inputs.dart_define}}; do
+            dart_defines="$dart_defines --dart-define=$define"
+          done
+          very_good test \
+            -j ${{inputs.concurrency}} \
+            ${{(inputs.test_recursion && '--recursive') || ''}} \
+            ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}} \
+            --coverage \
+            --min-coverage ${{inputs.min_coverage}} \
+            ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}} \
+            ${{format('--report-on "{0}"', inputs.report_on)}} \
+            ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}} \
+            ${{inputs.show_uncovered && '--show-uncovered' || ''}} \
+            ${{inputs.run_skipped && '--run-skipped' || ''}} \
+            ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}} \
+            $dart_defines \
+            --test-randomize-ordering-seed random
