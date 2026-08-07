@@ -45,6 +45,12 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `""`
 
+### `dart_define`
+
+**Optional** Space-separated list of key-value pairs passed to the tests as `--dart-define` (e.g. `dart.vm.product=true FLAVOR=staging`). Each pair is forwarded as a separate `--dart-define` flag.
+
+**Default** `""`
+
 ### `flutter_channel`
 
 **Optional** The Flutter release channel to use (e.g. `stable`).
@@ -161,6 +167,7 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       coverage_excludes: '**/*.g.dart'
+      dart_define: 'dart.vm.product=true FLAVOR=staging'
       flutter_channel: 'stable'
       flutter_version: '3.35.0'
       working_directory: 'examples/my_flutter_package'
