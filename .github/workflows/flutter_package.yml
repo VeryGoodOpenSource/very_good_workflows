@@ -145,22 +145,18 @@ jobs:
           bloc lint .
 
       - name: 🧪 Run Tests
-        run: |
-          dart_defines=""
-          for define in ${{inputs.dart_define}}; do
-            dart_defines="$dart_defines --dart-define=$define"
-          done
-          very_good test \
-            -j ${{inputs.concurrency}} \
-            ${{(inputs.test_recursion && '--recursive') || ''}} \
-            ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}} \
-            --coverage \
-            --min-coverage ${{inputs.min_coverage}} \
-            ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}} \
-            ${{format('--report-on "{0}"', inputs.report_on)}} \
-            ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}} \
-            ${{inputs.show_uncovered && '--show-uncovered' || ''}} \
-            ${{inputs.run_skipped && '--run-skipped' || ''}} \
-            ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}} \
-            $dart_defines \
-            --test-randomize-ordering-seed random
+        run: >-
+          very_good test
+          -j ${{inputs.concurrency}}
+          ${{(inputs.test_recursion && '--recursive') || ''}}
+          ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}}
+          --coverage
+          --min-coverage ${{inputs.min_coverage}}
+          ${{inputs.coverage_excludes != '' && format('--exclude-coverage "{0}"', inputs.coverage_excludes) || ''}}
+          ${{format('--report-on "{0}"', inputs.report_on)}}
+          ${{inputs.collect_coverage_from != 'imports' && format('--collect-coverage-from {0}', inputs.collect_coverage_from) || ''}}
+          ${{inputs.show_uncovered && '--show-uncovered' || ''}}
+          ${{inputs.run_skipped && '--run-skipped' || ''}}
+          ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}}
+          $(for define in ${{inputs.dart_define}}; do printf -- '--dart-define=%s ' "$define"; done)
+          --test-randomize-ordering-seed random
