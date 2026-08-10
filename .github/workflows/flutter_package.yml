@@ -144,6 +144,17 @@ jobs:
           flutter pub global activate bloc_tools
           bloc lint .
 
+      # Built in a bash step so the test command below stays shell-agnostic
+      # (Windows runners default to pwsh, which cannot parse bash loops).
+      - name: 🎯 Resolve Dart Defines
+        shell: bash
+        run: |
+          defines=""
+          for define in ${{inputs.dart_define}}; do
+            defines="$defines --dart-define=$define"
+          done
+          echo "dart_defines=$defines" >> "$GITHUB_ENV"
+
       - name: 🧪 Run Tests
         run: >-
           very_good test
@@ -158,5 +169,5 @@ jobs:
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
           ${{inputs.run_skipped && '--run-skipped' || ''}}
           ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}}
-          $(for define in ${{inputs.dart_define}}; do printf -- '--dart-define=%s ' "$define"; done)
+          ${{env.dart_defines}}
           --test-randomize-ordering-seed random

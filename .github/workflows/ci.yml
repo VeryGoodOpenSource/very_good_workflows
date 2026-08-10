@@ -22,6 +22,18 @@ jobs:
       setup: flutter doctor --verbose
       working_directory: examples/flutter_package
 
+  # Guards against shell-portability regressions in flutter_package.yml,
+  # where Windows runners default to pwsh instead of bash.
+  verify-flutter-windows:
+    uses: ./.github/workflows/flutter_package.yml
+    with:
+      flutter_channel: stable
+      flutter_version: "3.41.x"
+      runs_on: windows-latest
+      run_bloc_lint: false
+      dart_define: "FLAVOR=staging API_URL=https://example.com"
+      working_directory: examples/flutter_package
+
   verify-pana-dart:
     uses: ./.github/workflows/pana.yml
     with:
@@ -71,6 +83,7 @@ jobs:
       [
         verify-dart,
         verify-flutter,
+        verify-flutter-windows,
         verify-pana-dart,
         verify-pana-flutter,
         verify-semantic-pull-request,
