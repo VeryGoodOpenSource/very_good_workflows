@@ -87,7 +87,7 @@ The Dart package workflow consists of the following steps:
 
 ### `setup`
 
-**Optional** A command that should be executed immediately after dependencies are installed.
+**Optional** A command that should be executed immediately after dependencies are installed. It can also be used to export environment variables for later steps (see [Providing environment variables](#providing-environment-variables)).
 
 **Default** `""`
 
@@ -141,6 +141,50 @@ The Dart package workflow consists of the following steps:
 ### `ssh_key`
 
 **Optional** An SSH key used to access private repositories when installing dependencies.
+
+## Providing environment variables
+
+Tests sometimes read values from the environment via [`Platform.environment`](https://api.dart.dev/dart-io/Platform/environment.html), for example:
+
+```dart
+import 'dart:io';
+
+final myVar = Platform.environment['MY_VAR'];
+```
+
+Because this is a [reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows), an `env` block defined in your caller workflow is **not** inherited by the steps that run inside `dart_package.yml`. To make a variable available to the test step, use the [`setup`](#setup) input to append it to [`$GITHUB_ENV`](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable). Variables written to `$GITHUB_ENV` are exported to every subsequent step in the job, including the one that runs your tests.
+
+```yaml
+name: My Dart Workflow
+
+on: pull_request
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    with:
+      setup: echo "MY_VAR=true" >> $GITHUB_ENV
+```
+
+To provide multiple variables, chain the commands:
+
+```yaml
+    with:
+      setup: |
+        echo "MY_VAR=true" >> $GITHUB_ENV
+        echo "ANOTHER_VAR=some-value" >> $GITHUB_ENV
+```
+
+If a value is sensitive, pass it through a [secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) instead of hardcoding it:
+
+```yaml
+    with:
+      setup: echo "API_TOKEN=${{secrets.API_TOKEN}}" >> $GITHUB_ENV
+```
+
+:::note
+Setting the variable inline before the test command (e.g. `MY_VAR="true" dart test`) is not possible through the `setup` input, because `setup` and the test step run in separate shells. Writing to `$GITHUB_ENV` is the supported way to share values across steps.
+:::
 
 ## Example Usage
 
