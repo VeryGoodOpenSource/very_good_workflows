@@ -145,6 +145,7 @@ jobs:
           bloc lint .
 
       - name: 🧪 Run Tests
+        shell: bash
         run: >-
           very_good test
           -j ${{inputs.concurrency}}
