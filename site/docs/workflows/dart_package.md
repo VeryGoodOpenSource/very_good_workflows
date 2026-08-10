@@ -169,17 +169,17 @@ jobs:
 To provide multiple variables, chain the commands:
 
 ```yaml
-    with:
-      setup: |
-        echo "MY_VAR=true" >> $GITHUB_ENV
-        echo "ANOTHER_VAR=some-value" >> $GITHUB_ENV
+with:
+  setup: |
+    echo "MY_VAR=true" >> $GITHUB_ENV
+    echo "ANOTHER_VAR=some-value" >> $GITHUB_ENV
 ```
 
 If a value is sensitive, pass it through a [secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) instead of hardcoding it:
 
 ```yaml
-    with:
-      setup: echo "API_TOKEN=${{secrets.API_TOKEN}}" >> $GITHUB_ENV
+with:
+  setup: echo "API_TOKEN=${{secrets.API_TOKEN}}" >> $GITHUB_ENV
 ```
 
 :::note
