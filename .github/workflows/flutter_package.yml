@@ -21,6 +21,11 @@ on:
         type: string
         default: ""
         description: "Space-separated list of globs to exclude files from the coverage report (e.g. '**/*.g.dart **/gen/*.dart')."
+      dart_define:
+        required: false
+        type: string
+        default: ""
+        description: "Space-separated list of key-value pairs passed to the tests as --dart-define (e.g. 'dart.vm.product=true FLAVOR=staging')."
       flutter_channel:
         required: false
         type: string
@@ -153,4 +158,5 @@ jobs:
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
           ${{inputs.run_skipped && '--run-skipped' || ''}}
           ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}}
+          $(for define in ${{inputs.dart_define}}; do printf -- '--dart-define=%s ' "$define"; done)
           --test-randomize-ordering-seed random
