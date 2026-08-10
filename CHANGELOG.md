@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.20.0...v1.20.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* resolve dart defines in a shell-agnostic way on windows ([#474](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/474)) ([907a462](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/907a46291ffe9b6f4821e01c9bda3ece9d2d6c7b))
+
 ## [1.20.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.19.2...v1.20.0) (2026-08-10)
 
 
