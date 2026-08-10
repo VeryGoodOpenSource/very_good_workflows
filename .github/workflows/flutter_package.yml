@@ -153,7 +153,7 @@ jobs:
           for define in ${{inputs.dart_define}}; do
             defines="$defines --dart-define=$define"
           done
-          echo "vgw_dart_defines=$defines" >> "$GITHUB_ENV"
+          echo "dart_defines=$defines" >> "$GITHUB_ENV"
 
       - name: 🧪 Run Tests
         run: >-
@@ -169,5 +169,5 @@ jobs:
           ${{inputs.show_uncovered && '--show-uncovered' || ''}}
           ${{inputs.run_skipped && '--run-skipped' || ''}}
           ${{inputs.platform != '' && format('--platform {0}', inputs.platform) || ''}}
-          ${{env.vgw_dart_defines}}
+          ${{env.dart_defines}}
           --test-randomize-ordering-seed random
