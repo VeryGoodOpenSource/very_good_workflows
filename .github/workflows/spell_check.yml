@@ -23,6 +23,10 @@ on:
         required: false
         type: boolean
         default: true
+      check_pr_title:
+        required: false
+        type: boolean
+        default: true
       working_directory:
         required: false
         type: string
@@ -48,3 +52,9 @@ jobs:
           incremental_files_only: ${{inputs.modified_files_only}}
           root: ${{inputs.working_directory}}
           verbose: ${{inputs.verbose}}
+
+      - name: 🪄 Spell Check PR Title
+        if: inputs.check_pr_title && github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: echo "$PR_TITLE" | npx --yes cspell@9 stdin --config "${{inputs.config}}" --no-progress --no-summary
