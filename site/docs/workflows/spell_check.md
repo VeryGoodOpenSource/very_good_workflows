@@ -12,6 +12,7 @@ The spell check workflow consists of the following steps:
 
 1. Git checkout
 2. Run spell check
+3. Run spell check on the pull request title (when `check_pr_title` is enabled)
 
 ## Inputs
 
@@ -51,6 +52,12 @@ The spell check workflow consists of the following steps:
 
 **Default** `true`
 
+### `check_pr_title`
+
+**Optional** An optional boolean which determines whether the pull request title is spell checked using the same `config`. Only runs on `pull_request` events.
+
+**Default** `true`
+
 ## Example Usage
 
 ```yaml
@@ -68,6 +75,7 @@ jobs:
         .*/**/*.yml
       runs_on: macos-latest
       modified_files_only: false
+      check_pr_title: true
       working_directory: examples/my_project
 ```
 
