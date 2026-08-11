@@ -56,7 +56,7 @@ The spell check workflow consists of the following steps:
 
 **Optional** An optional boolean which determines whether the pull request title is spell checked using the same `config`. Only runs on `pull_request` events.
 
-**Default** `false`
+**Default** `true`
 
 ## Example Usage
 

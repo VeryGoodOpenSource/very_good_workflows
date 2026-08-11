@@ -26,7 +26,7 @@ on:
       check_pr_title:
         required: false
         type: boolean
-        default: false
+        default: true
       working_directory:
         required: false
         type: string
