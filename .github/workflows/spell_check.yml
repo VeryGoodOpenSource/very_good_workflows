@@ -10,7 +10,7 @@ on:
       includes:
         required: false
         type: string
-        default: ""
+        default: "**/*.{yml,yaml}"
       runs_on:
         required: false
         type: string
