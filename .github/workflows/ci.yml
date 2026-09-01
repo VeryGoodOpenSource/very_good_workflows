@@ -48,10 +48,10 @@ jobs:
       min_score: 95
       working_directory: examples/flutter_package
 
-  verify-dart-skills-lint:
-    uses: ./.github/workflows/dart_skills_lint.yml
+  verify-skills-lint:
+    uses: ./.github/workflows/skills_lint.yml
     with:
-      working_directory: examples/dart_skills_lint
+      working_directory: examples/skills_lint
       skills_directories: "skills"
 
   verify-semantic-pull-request:
@@ -59,11 +59,11 @@ jobs:
     with:
       scopes: |
         dart_package
-        dart_skills_lint
         deps
         flutter_package
         pana
         semantic_pull_request
+        skills_lint
         spell_check
 
   verify-spell-check:
@@ -99,7 +99,7 @@ jobs:
         verify-flutter-windows,
         verify-pana-dart,
         verify-pana-flutter,
-        verify-dart-skills-lint,
+        verify-skills-lint,
         verify-semantic-pull-request,
         verify-spell-check,
         verify-license-check,

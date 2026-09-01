@@ -1,8 +1,8 @@
-# dart_skills_lint
+# skills_lint
 
 [![License: MIT][license_badge]][license_link]
 
-An example skills directory used to verify the `dart_skills_lint` reusable
+An example skills directory used to verify the `skills_lint` reusable
 workflow.
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
