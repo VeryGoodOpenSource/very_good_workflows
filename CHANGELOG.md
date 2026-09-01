@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.21.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.20.1...v1.21.0) (2026-09-01)
+
+
+### Features
+
+* add spell checking on PR titles ([#468](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/468)) ([f69487f](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/f69487f5d377d68485d8607d8ade1e762eccd102))
+* **deps:** upgrade to Flutter 3.47 and Dart 3.13 ([#486](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/486)) ([bab4f13](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/bab4f13e4a4ee685a55473277761bfeef5b132f5))
+
+
+### Bug Fixes
+
+* correct typos in issue templates ([#484](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/484)) ([a4ab3e1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a4ab3e14c53bfa801283a3e65d1f567015327bb8))
+
+
+### Miscellaneous Chores
+
+* bump dart-lang/setup-dart from 1.8.0 to 1.8.1 ([#491](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/491)) ([3bd015c](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3bd015c73b15f15b698806360acf5c2c0218cc3e))
+* bump eslint from 10.6.0 to 10.8.1 in /site ([#477](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/477)) ([b3c2ae1](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b3c2ae19c40e09d6560dace0be29d9a8c9bb087b))
+* bump eslint from 10.8.1 to 10.9.0 in /site ([#490](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/490)) ([1f39808](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/1f3980878bbd71d4ce56b639b740486947d28954))
+* bump eslint from 10.9.0 to 10.9.1 in /site ([#492](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/492)) ([bce2b91](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/bce2b915a92155c9f796b599e83a91c32c48f8e5))
+* bump eslint-plugin-jest from 29.16.0 to 29.16.1 in /site ([#488](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/488)) ([c65e189](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/c65e18971f498c11fbcab842ed6e73514badb527))
+* bump eslint-plugin-jest from 29.16.1 to 29.16.5 in /site ([#493](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/493)) ([e4b80be](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/e4b80bea3aa50649ca3ed270c82ab0459711693d))
+* bump globals from 17.7.0 to 17.9.0 in /site ([#478](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/478)) ([ee403af](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ee403af090070f639dbff1426101f767909c91a8))
+* bump globals from 17.9.0 to 17.11.0 in /site ([#487](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/487)) ([3a295b5](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/3a295b57f9ce9be4a31b2684bf112863e8f22c9c))
+* bump jest from 30.4.2 to 30.5.0 in /site ([#494](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/494)) ([16f0a56](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/16f0a5668534ee4f3eee93e638895fd4df8620b5))
+* bump prettier from 3.9.5 to 3.9.6 in /site ([#479](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/479)) ([5aed557](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5aed557d1db28fcf7edf5514a669518eac64e099))
+* bump react-dom from 19.2.7 to 19.2.8 in /site ([#476](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/476)) ([58d92ba](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/58d92baf582d9a2f82e26c7b9ec4d306bf0a2e8f))
+* bump streetsidesoftware/cspell-action from 8 to 9 ([#489](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/489)) ([f053008](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/f053008378cc15a643a9050e67b0417bc548e7e8))
+
+
+### Docs
+
+* add Platform.environment guide for dart_package workflow ([#473](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/473)) ([61058dd](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/61058ddd37e3727ab71cca26aae10db271b7c23c))
+
 ## [1.20.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.20.0...v1.20.1) (2026-08-10)
 
 
