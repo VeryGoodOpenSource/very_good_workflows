@@ -3,5 +3,5 @@
 /// {@endtemplate}
 class DartPackage {
   /// {@macro dart_package}
-  const DartPackage();
+  const new();
 }
