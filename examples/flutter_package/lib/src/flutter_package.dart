@@ -3,5 +3,5 @@
 /// {@endtemplate}
 class FlutterPackage {
   /// {@macro flutter_package}
-  const FlutterPackage();
+  const new();
 }
