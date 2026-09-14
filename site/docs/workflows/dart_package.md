@@ -163,7 +163,7 @@ Set [`artifact_paths`](#artifact_paths) to keep files produced by the run, such 
 
 ```yaml
 with:
-  artifact_paths: "coverage/lcov.info"
+  artifact_paths: 'coverage/lcov.info'
 ```
 
 Globs are resolved from the repository root rather than from [`working_directory`](#working_directory), so a package nested in a monorepo needs the prefix written out in full:
@@ -171,7 +171,7 @@ Globs are resolved from the repository root rather than from [`working_directory
 ```yaml
 with:
   working_directory: packages/my_package
-  artifact_paths: "packages/my_package/coverage/lcov.info"
+  artifact_paths: 'packages/my_package/coverage/lcov.info'
 ```
 
 Pass several globs on separate lines, and use [`artifact_name`](#artifact_name) to keep names unique when more than one job uploads in the same run:
@@ -181,7 +181,7 @@ with:
   artifact_paths: |
     coverage/lcov.info
     build/reports/**
-  artifact_name: "artifacts-${{matrix.package}}"
+  artifact_name: 'artifacts-${{matrix.package}}'
 ```
 
 Exclusions and the rest of the pattern syntax work as described in the [`actions/upload-artifact` documentation](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions).

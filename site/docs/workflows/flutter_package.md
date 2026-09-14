@@ -179,7 +179,7 @@ The main use case is golden tests. When `matchesGoldenFile` fails, Flutter write
 ```yaml
 with:
   test_optimization: false
-  artifact_paths: "**/failures/**"
+  artifact_paths: '**/failures/**'
 ```
 
 Both settings are needed here. As noted under [`test_optimization`](#test_optimization), the optimization step groups tests into a single file and breaks golden tests, so it has to be off before there are any failures worth uploading.
@@ -189,7 +189,7 @@ Globs are resolved from the repository root rather than from [`working_directory
 ```yaml
 with:
   working_directory: packages/my_package
-  artifact_paths: "packages/my_package/**/failures/**"
+  artifact_paths: 'packages/my_package/**/failures/**'
 ```
 
 Pass several globs on separate lines, and use [`artifact_name`](#artifact_name) to keep names unique when more than one job uploads in the same run:
@@ -199,7 +199,7 @@ with:
   artifact_paths: |
     **/failures/**
     coverage/lcov.info
-  artifact_name: "artifacts-${{matrix.package}}"
+  artifact_name: 'artifacts-${{matrix.package}}'
 ```
 
 Exclusions and the rest of the pattern syntax work as described in the [`actions/upload-artifact` documentation](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions).
