@@ -7,6 +7,16 @@ on:
         required: false
         type: string
         default: "lib test"
+      artifact_name:
+        required: false
+        type: string
+        default: "artifacts"
+        description: "The name of the uploaded artifact. Must be unique across jobs in the same workflow run."
+      artifact_paths:
+        required: false
+        type: string
+        default: ""
+        description: "Newline-separated list of globs to upload as a workflow artifact, relative to the repository root (e.g. 'coverage/lcov.info'). Empty disables the upload."
       collect_coverage_from:
         required: false
         type: string
@@ -148,3 +158,13 @@ jobs:
           ${{inputs.run_skipped && '--run-skipped' || ''}}
           ${{(inputs.test_optimization && '--optimization') || '--no-optimization'}}
           --test-randomize-ordering-seed random
+
+      # `path` is resolved by actions/upload-artifact from the repository root,
+      # not from `working_directory`.
+      - name: 📤 Upload Artifacts
+        if: ${{!cancelled() && inputs.artifact_paths != ''}}
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{inputs.artifact_name}}
+          path: ${{inputs.artifact_paths}}
+          if-no-files-found: ignore

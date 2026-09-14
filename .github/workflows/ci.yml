@@ -13,6 +13,8 @@ jobs:
       setup: dart --version
       platform: "vm,chrome"
       working_directory: examples/dart_package
+      artifact_name: dart-package-artifacts
+      artifact_paths: examples/dart_package/coverage/lcov.info
 
   verify-flutter:
     uses: ./.github/workflows/flutter_package.yml
@@ -21,6 +23,8 @@ jobs:
       flutter_version: "3.47.x"
       setup: flutter doctor --verbose
       working_directory: examples/flutter_package
+      artifact_name: flutter-package-artifacts
+      artifact_paths: examples/flutter_package/coverage/lcov.info
 
   # Guards against shell-portability regressions in flutter_package.yml,
   # where Windows runners default to pwsh instead of bash.
