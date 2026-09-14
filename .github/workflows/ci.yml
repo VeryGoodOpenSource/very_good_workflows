@@ -34,8 +34,6 @@ jobs:
       dart_define: "FLAVOR=staging API_URL=https://example.com"
       working_directory: examples/flutter_package
 
-  # Validates that a Flutter version config file (e.g. .fvmrc) resolves the
-  # Flutter version instead of an explicit flutter_version input.
   verify-flutter-version-file:
     uses: ./.github/workflows/flutter_package.yml
     with:
@@ -101,9 +99,6 @@ jobs:
       forbidden: "unknown"
       skip_packages: "very_good_analysis"
 
-  # Validates that setting flutter_version_file makes the license check treat the
-  # package as a Flutter package (installing dependencies with Flutter) even when
-  # flutter_version is not set.
   verify-license-check-flutter-version-file:
     uses: ./.github/workflows/license_check.yml
     with:
