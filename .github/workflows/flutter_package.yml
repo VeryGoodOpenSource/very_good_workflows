@@ -182,8 +182,6 @@ jobs:
           ${{env.dart_defines}}
           --test-randomize-ordering-seed random
 
-      # `path` is resolved by actions/upload-artifact from the repository root,
-      # not from `working_directory`.
       - name: 📤 Upload Artifacts
         if: ${{!cancelled() && inputs.artifact_paths != ''}}
         uses: actions/upload-artifact@v7
