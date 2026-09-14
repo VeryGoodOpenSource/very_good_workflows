@@ -34,6 +34,11 @@ on:
         required: false
         type: string
         default: ""
+      flutter_version_file:
+        required: false
+        type: string
+        default: ""
+        description: "The path to a file containing the Flutter version to use (e.g. 'pubspec.yaml' or '.fvmrc'). Takes precedence over flutter_version when set."
       format_directories:
         required: false
         type: string
@@ -111,6 +116,7 @@ jobs:
         uses: subosito/flutter-action@v2.23.0
         with:
           flutter-version: ${{inputs.flutter_version}}
+          flutter-version-file: ${{inputs.flutter_version_file}}
           channel: ${{inputs.flutter_channel}}
           cache: true
           cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
