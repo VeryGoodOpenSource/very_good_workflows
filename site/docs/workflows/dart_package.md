@@ -18,6 +18,7 @@ The Dart package workflow consists of the following steps:
 6. Analyze
 7. Bloc Lint (if enabled)
 8. Run tests (includes coverage collection and enforcement)
+9. Upload artifacts (if configured)
 
 ## Inputs
 
@@ -136,11 +137,54 @@ The Dart package workflow consists of the following steps:
 
 **Default** `true`
 
+### `artifact_paths`
+
+**Optional** A newline-separated list of globs to upload as a workflow artifact once the tests finish. Runs on both passing and failing test runs, so it captures output from a failed run as well as reports produced by a green one. An empty value disables the upload entirely.
+
+**Default** `""`
+
+**Note**: Unlike the other path inputs, these globs are resolved from the **repository root**, not from [`working_directory`](#working_directory). This is a constraint of [`actions/upload-artifact`](https://github.com/actions/upload-artifact), which has no working directory setting. See [Uploading artifacts](#uploading-artifacts).
+
+### `artifact_name`
+
+**Optional** The name given to the uploaded artifact. Must be unique across every job in the same workflow run, otherwise the upload fails with a conflict. Only relevant when [`artifact_paths`](#artifact_paths) is set.
+
+**Default** `"artifacts"`
+
 ## Secrets
 
 ### `ssh_key`
 
 **Optional** An SSH key used to access private repositories when installing dependencies.
+
+## Uploading artifacts
+
+Set [`artifact_paths`](#artifact_paths) to keep files produced by the run, such as the coverage report. The step executes whether the tests pass or fail, and quietly does nothing when no file matches.
+
+```yaml
+with:
+  artifact_paths: 'coverage/lcov.info'
+```
+
+Globs are resolved from the repository root rather than from [`working_directory`](#working_directory), so a package nested in a monorepo needs the prefix written out in full:
+
+```yaml
+with:
+  working_directory: packages/my_package
+  artifact_paths: 'packages/my_package/coverage/lcov.info'
+```
+
+Pass several globs on separate lines, and use [`artifact_name`](#artifact_name) to keep names unique when more than one job uploads in the same run:
+
+```yaml
+with:
+  artifact_paths: |
+    coverage/lcov.info
+    build/reports/**
+  artifact_name: 'artifacts-${{matrix.package}}'
+```
+
+Exclusions and the rest of the pattern syntax work as described in the [`actions/upload-artifact` documentation](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions).
 
 ## Providing environment variables
 
