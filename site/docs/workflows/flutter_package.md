@@ -63,6 +63,12 @@ The Flutter package workflow consists of the following steps:
 
 **Default** `""`
 
+### `flutter_version_file`
+
+**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`). This lets you keep a single source of truth for the Flutter version. Takes precedence over `flutter_version` when set.
+
+**Default** `""`
+
 ### `format_line_length`
 
 **Optional** The preferred line length preferred for running the `dart format` command. Be aware that this does not change the behavior of the analysis step and longer lines could still make the workflow fail if the rule `lines_longer_than_80_chars` is used.
