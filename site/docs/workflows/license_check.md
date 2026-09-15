@@ -51,6 +51,12 @@ The License Check workflow consists of the following steps:
 
 **Default** `""`
 
+### `flutter_version_file`
+
+**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`). This lets you keep a single source of truth for the Flutter version. When set, Flutter is used instead of Dart to install dependencies, and it takes precedence over `flutter_version`.
+
+**Default** `""`
+
 ### `allowed`
 
 **Optional** Only allow the use of certain licenses. The expected format is a comma-separated list.
