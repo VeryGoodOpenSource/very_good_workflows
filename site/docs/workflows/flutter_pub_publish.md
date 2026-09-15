@@ -31,6 +31,12 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 **Default** `""`
 
+### `flutter_version_file`
+
+**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`). This lets you keep a single source of truth for the Flutter version. Takes precedence over `flutter_version` when set.
+
+**Default** `""`
+
 ### `working_directory`
 
 **Optional** The path to the root of the Flutter package.
