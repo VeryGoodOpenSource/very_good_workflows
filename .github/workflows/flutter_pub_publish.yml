@@ -6,29 +6,29 @@ on:
       flutter_channel:
         required: false
         type: string
-        default: 'stable'
+        default: "stable"
       flutter_version:
         required: false
         type: string
-        default: ''
+        default: ""
       flutter_version_file:
         required: false
         type: string
-        default: ''
+        default: ""
         description: "Path to a file that holds the Flutter version, such as '.fvmrc'. Mutually exclusive with flutter_version."
       dart_sdk:
         required: false
         type: string
-        default: 'stable'
-        description: 'The Dart SDK version to install before publishing.'
+        default: "stable"
+        description: "The Dart SDK version to install before publishing."
       working_directory:
         required: false
         type: string
-        default: '.'
+        default: "."
       runs_on:
         required: false
         type: string
-        default: 'ubuntu-latest'
+        default: "ubuntu-latest"
       timeout_minutes:
         required: false
         type: number

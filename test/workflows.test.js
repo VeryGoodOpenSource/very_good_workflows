@@ -89,12 +89,20 @@ function findInvalidJobs(doc) {
 }
 
 /**
+ * Returns the `workflow_call` spec for a workflow document, or an empty object
+ * when the workflow does not declare one. Single source for the unwrap so the
+ * YAML 1.1 fallback in `getTriggers` only has to be handled once.
+ */
+function workflowCallSpec(doc) {
+  return (getTriggers(doc) || {}).workflow_call || {};
+}
+
+/**
  * Returns `"name: type"` descriptors for every `workflow_call` input that does
  * not declare a valid type, as required by the GitHub Actions schema.
  */
 function findInvalidInputs(doc) {
-  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
-  const inputs = workflowCall.inputs || {};
+  const inputs = workflowCallSpec(doc).inputs || {};
   return Object.entries(inputs)
     .filter(
       ([, spec]) =>
@@ -107,24 +115,21 @@ function findInvalidInputs(doc) {
  * Returns the declared `workflow_call` input names for a workflow document.
  */
 function declaredInputs(doc) {
-  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
-  return Object.keys(workflowCall.inputs || {});
+  return Object.keys(declaredInputsSpec(doc));
 }
 
 /**
  * Returns the declared `workflow_call` input specs for a workflow document.
  */
 function declaredInputsSpec(doc) {
-  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
-  return workflowCall.inputs || {};
+  return workflowCallSpec(doc).inputs || {};
 }
 
 /**
  * Returns the declared `workflow_call` secret names for a workflow document.
  */
 function declaredSecrets(doc) {
-  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
-  const secrets = workflowCall.secrets;
+  const secrets = workflowCallSpec(doc).secrets;
   if (!secrets || typeof secrets !== 'object') return [];
   return Object.keys(secrets);
 }
@@ -163,6 +168,19 @@ function findStep(doc, jobName, needle) {
       (typeof step.name === 'string' && step.name.includes(needle)) ||
       (typeof step.uses === 'string' && step.uses.includes(needle)),
   );
+}
+
+/**
+ * Returns every workflow file whose raw source references `needle` (an action
+ * name such as `upload-artifact`). Used to prove the hand-maintained wiring
+ * lists below stay complete as templates are added.
+ */
+function workflowsReferencing(needle) {
+  return allWorkflowFiles
+    .filter((file) =>
+      fs.readFileSync(path.join(workflowsDir, file), 'utf8').includes(needle),
+    )
+    .sort();
 }
 
 const allWorkflowFiles = fs
@@ -237,7 +255,7 @@ describe('workflow templates', () => {
     });
 
     test('every workflow_call input has a boolean "required" when present', () => {
-      const workflowCall = getTriggers(doc).workflow_call || {};
+      const workflowCall = workflowCallSpec(doc);
       const inputs = workflowCall.inputs || {};
       const badRequired = Object.entries(inputs)
         .filter(
@@ -249,7 +267,7 @@ describe('workflow templates', () => {
     });
 
     test('required inputs do not declare a default', () => {
-      const workflowCall = getTriggers(doc).workflow_call || {};
+      const workflowCall = workflowCallSpec(doc);
       const inputs = workflowCall.inputs || {};
       // A default only makes sense for optional inputs.
       const contradictory = Object.entries(inputs)
@@ -261,7 +279,7 @@ describe('workflow templates', () => {
     });
 
     test('every declared secret is well-formed', () => {
-      const workflowCall = getTriggers(doc).workflow_call || {};
+      const workflowCall = workflowCallSpec(doc);
       const secrets = workflowCall.secrets;
       if (secrets === undefined || secrets === 'inherit') return;
       expect(secrets).toBeInstanceOf(Object);
@@ -424,6 +442,14 @@ describe('validators reject malformed workflows', () => {
 describe('inputs are wired into the steps that consume them', () => {
   const uploadArtifactTemplates = ['dart_package.yml', 'flutter_package.yml'];
 
+  test('uploadArtifactTemplates covers every upload-artifact consumer', () => {
+    // Without this guard a new template could adopt upload-artifact and never
+    // be checked by the wiring assertion below.
+    expect(workflowsReferencing('actions/upload-artifact')).toEqual(
+      [...uploadArtifactTemplates].sort(),
+    );
+  });
+
   test.each(uploadArtifactTemplates)(
     '%s passes artifact_name and artifact_paths to upload-artifact',
     (file) => {
@@ -443,6 +469,19 @@ describe('inputs are wired into the steps that consume them', () => {
     'license_check.yml',
   ];
 
+  // pana.yml also sets up Flutter but does not yet expose flutter_version_file,
+  // so it is knowingly excluded from the version-file assertion below. Remove it
+  // from this set once that input is added.
+  const FLUTTER_VERSION_FILE_EXEMPT = ['pana.yml'];
+
+  test('flutterSetupTemplates covers every flutter-action consumer', () => {
+    // Without this guard a new Flutter template could skip the version-file
+    // wiring assertion entirely.
+    expect(workflowsReferencing('subosito/flutter-action')).toEqual(
+      [...flutterSetupTemplates, ...FLUTTER_VERSION_FILE_EXEMPT].sort(),
+    );
+  });
+
   test.each(flutterSetupTemplates)(
     '%s passes both Flutter version inputs to flutter-action',
     (file) => {
@@ -456,6 +495,29 @@ describe('inputs are wired into the steps that consume them', () => {
       );
     },
   );
+
+  const dartSetupTemplates = [
+    'dart_package.yml',
+    'dart_pub_publish.yml',
+    'flutter_pub_publish.yml',
+    'license_check.yml',
+    'mason_publish.yml',
+    'skills_lint.yml',
+  ];
+
+  test('dartSetupTemplates covers every setup-dart consumer', () => {
+    expect(workflowsReferencing('dart-lang/setup-dart')).toEqual(
+      [...dartSetupTemplates].sort(),
+    );
+  });
+
+  test.each(dartSetupTemplates)('%s passes dart_sdk to setup-dart', (file) => {
+    const doc = loadYaml(path.join(workflowsDir, file));
+    const jobName = Object.keys(doc.jobs)[0];
+    const step = findStep(doc, jobName, 'setup-dart');
+    expect(step).toBeDefined();
+    expect(String(step.with.sdk)).toContain('inputs.dart_sdk');
+  });
 
   test('license_check.yml derives is_flutter from both Flutter version inputs', () => {
     const doc = loadYaml(path.join(workflowsDir, 'license_check.yml'));
@@ -474,4 +536,80 @@ describe('inputs are wired into the steps that consume them', () => {
       expect(spec.description).not.toContain('Takes precedence');
     }
   });
+});
+
+// A version pinned in one template and floating in another is invisible to
+// every per-file assertion above: each template is internally consistent while
+// the family silently drifts apart.
+describe('pinned tool versions agree across every template', () => {
+  const sources = new Map(
+    allWorkflowFiles.map((file) => [
+      file,
+      fs.readFileSync(path.join(workflowsDir, file), 'utf8'),
+    ]),
+  );
+
+  /**
+   * Maps each distinct captured version to the files that declare it, so a
+   * failure names the offending template instead of just a set size.
+   */
+  function versionsByFile(pattern) {
+    const found = new Map();
+    for (const [file, source] of sources) {
+      for (const match of source.matchAll(pattern)) {
+        const version = match[1];
+        if (!found.has(version)) found.set(version, []);
+        found.get(version).push(file);
+      }
+    }
+    return Object.fromEntries(found);
+  }
+
+  test('very_good_cli is pinned to a single version', () => {
+    const versions = versionsByFile(/very_good_cli (\d+\.\d+\.\d+)/g);
+    expect(Object.keys(versions)).toHaveLength(1);
+  });
+
+  test('subosito/flutter-action is pinned to a single ref', () => {
+    const versions = versionsByFile(/subosito\/flutter-action@(\S+)/g);
+    expect(Object.keys(versions)).toHaveLength(1);
+  });
+
+  test('dart-lang/setup-dart is pinned to a single ref', () => {
+    const versions = versionsByFile(/dart-lang\/setup-dart@(\S+)/g);
+    expect(Object.keys(versions)).toHaveLength(1);
+  });
+});
+
+// ci.yml calls the templates it verifies. A typo in a `with:` key resolves to
+// nothing at runtime rather than failing the call, so the caller's inputs are
+// checked against the callee's declared contract here.
+describe('ci.yml passes only inputs the target template declares', () => {
+  const ciDoc = loadYaml(ciWorkflowPath);
+  const callingJobs = Object.entries(ciDoc.jobs || {}).filter(
+    ([, job]) =>
+      job &&
+      typeof job.uses === 'string' &&
+      job.uses.startsWith('./.github/workflows/'),
+  );
+
+  test('at least one ci.yml job calls a local template', () => {
+    // Guards against a discovery regression that would skip every case below.
+    expect(callingJobs.length).toBeGreaterThan(0);
+  });
+
+  test.each(callingJobs.map(([name]) => name))(
+    'job %s passes only declared inputs',
+    (jobName) => {
+      const job = ciDoc.jobs[jobName];
+      const templateFile = job.uses.replace('./.github/workflows/', '');
+      const templateDoc = loadYaml(path.join(workflowsDir, templateFile));
+      const declared = new Set(declaredInputs(templateDoc));
+      const undeclared = Object.keys(job.with || {})
+        .filter((key) => !declared.has(key))
+        .sort();
+      // If this fails, the key is misspelled or the template never declared it.
+      expect(undeclared).toEqual([]);
+    },
+  );
 });

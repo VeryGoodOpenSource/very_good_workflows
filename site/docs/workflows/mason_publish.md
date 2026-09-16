@@ -35,18 +35,6 @@ The Mason Publish workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
-## Secrets
-
-### `mason_credentials`
-
-**Required** The mason credentials needed for publishing. This can be retrieved by reading out your `mason-credentials.json` on your system after you ran a `mason login`, the location of the file is different per operating system:
-
-| OS      | Path                                                                                            |
-| ------- | ----------------------------------------------------------------------------------------------- |
-| Linux   | `$XDG_CONFIG_HOME/mason/mason-credentials.json` or `$HOME/.config/mason/mason-credentials.json` |
-| macOS   | `~/Library/Application\ Support/mason/mason-credentials.json`                                   |
-| Windows | `%APPDATA%/mason/mason-credentials.json`                                                        |
-
 ### `dart_sdk`
 
 **Optional** The Dart SDK version to install with the `Setup Dart` action before publishing.
@@ -58,6 +46,18 @@ The Mason Publish workflow consists of the following steps:
 **Optional** The maximum number of minutes the publish job is allowed to run before it is cancelled.
 
 **Default** `5`
+
+## Secrets
+
+### `mason_credentials`
+
+**Required** The mason credentials needed for publishing. This can be retrieved by reading out your `mason-credentials.json` on your system after you ran a `mason login`, the location of the file is different per operating system:
+
+| OS      | Path                                                                                            |
+| ------- | ----------------------------------------------------------------------------------------------- |
+| Linux   | `$XDG_CONFIG_HOME/mason/mason-credentials.json` or `$HOME/.config/mason/mason-credentials.json` |
+| macOS   | `~/Library/Application\ Support/mason/mason-credentials.json`                                   |
+| Windows | `%APPDATA%/mason/mason-credentials.json`                                                        |
 
 ## Example Usage
 

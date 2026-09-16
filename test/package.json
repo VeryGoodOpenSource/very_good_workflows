@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "format": "prettier --write workflows.test.js eslint.config.js package.json",
-    "format:check": "prettier --check workflows.test.js eslint.config.js package.json"
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

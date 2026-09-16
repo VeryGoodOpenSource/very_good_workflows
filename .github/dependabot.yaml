@@ -16,3 +16,7 @@ updates:
     directory: "/site"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/test"
+    schedule:
+      interval: "weekly"

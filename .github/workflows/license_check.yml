@@ -75,7 +75,7 @@ jobs:
 
       - name: 🐦 Setup Flutter
         if: env.is_flutter == 'true'
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.23.0
         with:
           cache: true
           channel: ${{inputs.flutter_channel}}

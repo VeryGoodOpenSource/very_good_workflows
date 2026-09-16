@@ -48,6 +48,7 @@ complementary ways:
 Run the structural suite locally with:
 
 ```sh
+cd test
 npm install
 npm test
 ```
@@ -67,31 +68,29 @@ and changelog generation are handled automatically based on [Conventional Commit
 ### How It Works
 
 - 📌 **On every commit to `main`:**
-    - Commits are analyzed using Conventional Commits standards
-    - A release PR is automatically created or updated if a version bump is needed
-    - The **release PR** includes:
-        - An updated `CHANGELOG.md` 
-        - A version bump in `.release-please-manifest.json`
+  - Commits are analyzed using Conventional Commits standards
+  - A release PR is automatically created or updated if a version bump is needed
+  - The **release PR** includes:
+    - An updated `CHANGELOG.md`
+    - A version bump in `.release-please-manifest.json`
 
-    ##### 💡 Notes
-
-    - The GitHub Action workflow that automates the release process is configured in `.github/workflows/release_please.yml`
-    - release-please settings are defined in `.release-please-config.json` and `.release-please-manifest.json`
-    - The release PR can be manually edited before merging
-    - The release PR should be merged **ONLY** when a new release is needed.
+  ##### 💡 Notes
+  - The GitHub Action workflow that automates the release process is configured in `.github/workflows/release_please.yml`
+  - release-please settings are defined in `.release-please-config.json` and `.release-please-manifest.json`
+  - The release PR can be manually edited before merging
+  - The release PR should be merged **ONLY** when a new release is needed.
 
 <br />
 
 - ✅ **When the release PR is merged:**
-    - A new Git tag is created
-    - A GitHub Release is published with the changelog
-    - The new version is immediately available using: `VeryGoodOpenSource/very_good_workflows/.github/workflows/<workflow_name>@v<version>`
+  - A new Git tag is created
+  - A GitHub Release is published with the changelog
+  - The new version is immediately available using: `VeryGoodOpenSource/very_good_workflows/.github/workflows/<workflow_name>@v<version>`
 
-    ##### 💡 Notes
-
-    - Changes to excluded paths (.github/, site/, examples/, docs) will not trigger releases
-    - Only workflow file changes will result in version bumps
-    - Major version tags (e.g., `v1`) are automatically updated to point to the latest release within that major version
+  ##### 💡 Notes
+  - Changes to excluded paths (site/, test/, examples/, and repo meta docs) will not trigger releases
+  - Only workflow file changes will result in version bumps
+  - Major version tags (e.g., `v1`) are automatically updated to point to the latest release within that major version
 
 <br />
 
