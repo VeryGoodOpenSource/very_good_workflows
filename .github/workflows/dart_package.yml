@@ -124,7 +124,7 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: |
-          dart pub global activate very_good_cli 1.4.0
+          dart pub global activate very_good_cli 1.5.0
           dart pub get ${{(inputs.no_example && '--no-example') || ''}}
 
       - name: ⚙️ Run Setup
