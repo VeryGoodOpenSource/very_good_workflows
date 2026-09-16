@@ -15,7 +15,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "Path to a file that holds the Flutter version, such as '.fvmrc'. Mutually exclusive with flutter_version."
+        description: "Path to a file that holds the Flutter version, such as '.fvmrc'. Takes precedence over flutter_version when set."
       dart_sdk:
         required: false
         type: string

@@ -27,7 +27,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "Path to a file that holds the Flutter version, such as '.fvmrc'; treats the package as Flutter. Mutually exclusive with flutter_version. See the docs for Windows caveats."
+        description: "Path to a file that holds the Flutter version, such as '.fvmrc'; treats the package as Flutter. Takes precedence over flutter_version when set."
       allowed:
         required: false
         type: string
