@@ -7,6 +7,10 @@ on:
         required: false
         type: string
         default: ""
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
       working_directory:
         required: false
         type: string

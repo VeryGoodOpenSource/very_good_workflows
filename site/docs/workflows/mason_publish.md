@@ -47,6 +47,18 @@ The Mason Publish workflow consists of the following steps:
 | macOS   | `~/Library/Application\ Support/mason/mason-credentials.json`                                   |
 | Windows | `%APPDATA%/mason/mason-credentials.json`                                                        |
 
+### `dart_sdk`
+
+**Optional** The Dart SDK version used when publishing via the `Setup Dart` action.
+
+**Default** `"stable"`
+
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes the publish job is allowed to run before it is cancelled.
+
+**Default** `5`
+
 ## Example Usage
 
 We recommend using [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for safely storing and reading the credentials.

@@ -37,6 +37,12 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 **Default** `"ubuntu-latest"`
 
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes the publish job is allowed to run before it is cancelled.
+
+**Default** `5`
+
 ## Example Usage
 
 ```yaml

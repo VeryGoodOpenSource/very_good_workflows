@@ -66,8 +66,8 @@ function isReusableTemplate(doc) {
   const triggers = getTriggers(doc);
   return Boolean(
     triggers &&
-      typeof triggers === 'object' &&
-      Object.prototype.hasOwnProperty.call(triggers, 'workflow_call'),
+    typeof triggers === 'object' &&
+    Object.prototype.hasOwnProperty.call(triggers, 'workflow_call'),
   );
 }
 
@@ -101,6 +101,68 @@ function findInvalidInputs(doc) {
         !spec || typeof spec !== 'object' || !VALID_INPUT_TYPES.has(spec.type),
     )
     .map(([name, spec]) => `${name}: ${spec && spec.type}`);
+}
+
+/**
+ * Returns the declared `workflow_call` input names for a workflow document.
+ */
+function declaredInputs(doc) {
+  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
+  return Object.keys(workflowCall.inputs || {});
+}
+
+/**
+ * Returns the declared `workflow_call` input specs for a workflow document.
+ */
+function declaredInputsSpec(doc) {
+  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
+  return workflowCall.inputs || {};
+}
+
+/**
+ * Returns the declared `workflow_call` secret names for a workflow document.
+ */
+function declaredSecrets(doc) {
+  const workflowCall = (getTriggers(doc) || {}).workflow_call || {};
+  const secrets = workflowCall.secrets;
+  if (!secrets || typeof secrets !== 'object') return [];
+  return Object.keys(secrets);
+}
+
+/**
+ * Returns every `inputs.<name>` referenced in a workflow's raw source that is
+ * not declared under `workflow_call.inputs`.
+ *
+ * An undeclared reference silently resolves to the empty string at runtime
+ * rather than failing, so it can only be caught statically.
+ */
+function findUndeclaredInputRefs(source, doc) {
+  const declared = new Set(declaredInputs(doc));
+  const referenced = new Set(
+    [...source.matchAll(/inputs\.([A-Za-z0-9_]+)/g)].map((match) => match[1]),
+  );
+  return [...referenced].filter((name) => !declared.has(name)).sort();
+}
+
+/**
+ * Returns the `### input_name` headings documented on a docs page.
+ */
+function documentedNames(markdown) {
+  return [...markdown.matchAll(/^###\s+`?([A-Za-z0-9_]+)`?\s*$/gm)].map(
+    (match) => match[1],
+  );
+}
+
+/**
+ * Finds a step in a job by a substring of its `name` or `uses`.
+ */
+function findStep(doc, jobName, needle) {
+  const job = (doc.jobs || {})[jobName] || {};
+  return (job.steps || []).find(
+    (step) =>
+      (typeof step.name === 'string' && step.name.includes(needle)) ||
+      (typeof step.uses === 'string' && step.uses.includes(needle)),
+  );
 }
 
 const allWorkflowFiles = fs
@@ -180,9 +242,7 @@ describe('workflow templates', () => {
       const badRequired = Object.entries(inputs)
         .filter(
           ([, spec]) =>
-            spec &&
-            'required' in spec &&
-            typeof spec.required !== 'boolean',
+            spec && 'required' in spec && typeof spec.required !== 'boolean',
         )
         .map(([name]) => name);
       expect(badRequired).toEqual([]);
@@ -193,7 +253,9 @@ describe('workflow templates', () => {
       const inputs = workflowCall.inputs || {};
       // A default only makes sense for optional inputs.
       const contradictory = Object.entries(inputs)
-        .filter(([, spec]) => spec && spec.required === true && 'default' in spec)
+        .filter(
+          ([, spec]) => spec && spec.required === true && 'default' in spec,
+        )
         .map(([name]) => name);
       expect(contradictory).toEqual([]);
     });
@@ -216,6 +278,35 @@ describe('workflow templates', () => {
 
     test('is documented on the docs site', () => {
       expect(fs.existsSync(path.join(docsDir, `${base}.md`))).toBe(true);
+    });
+
+    test('references no undeclared inputs', () => {
+      // `${{inputs.foo}}` with no matching workflow_call input resolves to the
+      // empty string at runtime instead of failing, so it must be caught here.
+      const source = fs.readFileSync(path.join(workflowsDir, file), 'utf8');
+      expect(findUndeclaredInputRefs(source, doc)).toEqual([]);
+    });
+
+    test('documents every declared input, and documents nothing else', () => {
+      // Keeps the docs page and the workflow_call contract in lockstep in both
+      // directions: a new input must be documented, and a removed one must not
+      // linger in the docs. Declared secrets are documented the same way.
+      const markdown = fs.readFileSync(
+        path.join(docsDir, `${base}.md`),
+        'utf8',
+      );
+      const documented = new Set(documentedNames(markdown));
+      const inputs = declaredInputs(doc);
+      const secrets = new Set(declaredSecrets(doc));
+
+      const undocumented = inputs.filter((name) => !documented.has(name));
+      expect(undocumented).toEqual([]);
+
+      const declared = new Set([...inputs, ...secrets]);
+      const documentedButUndeclared = [...documented].filter(
+        (name) => !declared.has(name),
+      );
+      expect(documentedButUndeclared).toEqual([]);
     });
 
     test('is advertised in the README quick start', () => {
@@ -274,10 +365,13 @@ describe('docs stay in sync with the templates', () => {
     .filter((file) => file.endsWith('.md'))
     .sort();
 
-  test.each(docFiles)('%s documents an existing workflow template', (docFile) => {
-    const workflowFile = `${docFile.replace(/\.md$/, '')}.yml`;
-    expect(templateFiles).toContain(workflowFile);
-  });
+  test.each(docFiles)(
+    '%s documents an existing workflow template',
+    (docFile) => {
+      const workflowFile = `${docFile.replace(/\.md$/, '')}.yml`;
+      expect(templateFiles).toContain(workflowFile);
+    },
+  );
 });
 
 // Guard against vacuous validators: prove the structural checks actually reject
@@ -320,5 +414,64 @@ describe('validators reject malformed workflows', () => {
       'missing: undefined',
       'wrong: object',
     ]);
+  });
+});
+
+// Structural validation above proves an input is declared; it does not prove the
+// input is actually wired into the step that consumes it. A swapped or dropped
+// reference inside a step's `with:` block is invisible to every assertion above,
+// so the inputs that feed a specific action are pinned to that action here.
+describe('inputs are wired into the steps that consume them', () => {
+  const uploadArtifactTemplates = ['dart_package.yml', 'flutter_package.yml'];
+
+  test.each(uploadArtifactTemplates)(
+    '%s passes artifact_name and artifact_paths to upload-artifact',
+    (file) => {
+      const doc = loadYaml(path.join(workflowsDir, file));
+      const step = findStep(doc, 'build', 'upload-artifact');
+      expect(step).toBeDefined();
+      expect(step.with.name).toContain('inputs.artifact_name');
+      expect(step.with.path).toContain('inputs.artifact_paths');
+      // The upload is skipped rather than failed when no paths are configured.
+      expect(String(step.if)).toContain("inputs.artifact_paths != ''");
+    },
+  );
+
+  const flutterSetupTemplates = [
+    'flutter_package.yml',
+    'flutter_pub_publish.yml',
+    'license_check.yml',
+  ];
+
+  test.each(flutterSetupTemplates)(
+    '%s passes both Flutter version inputs to flutter-action',
+    (file) => {
+      const doc = loadYaml(path.join(workflowsDir, file));
+      const jobName = Object.keys(doc.jobs)[0];
+      const step = findStep(doc, jobName, 'flutter-action');
+      expect(step).toBeDefined();
+      expect(step.with['flutter-version']).toContain('inputs.flutter_version');
+      expect(step.with['flutter-version-file']).toContain(
+        'inputs.flutter_version_file',
+      );
+    },
+  );
+
+  test('license_check.yml derives is_flutter from both Flutter version inputs', () => {
+    const doc = loadYaml(path.join(workflowsDir, 'license_check.yml'));
+    const isFlutter = String(doc.jobs.build.env.is_flutter);
+    expect(isFlutter).toContain("inputs.flutter_version != ''");
+    expect(isFlutter).toContain("inputs.flutter_version_file != ''");
+  });
+
+  test('flutter_version and flutter_version_file are mutually exclusive in docs', () => {
+    // subosito/flutter-action exits 1 with "Cannot specify both a version and a
+    // version file", so the docs must not promise precedence.
+    for (const file of flutterSetupTemplates) {
+      const doc = loadYaml(path.join(workflowsDir, file));
+      const spec = declaredInputsSpec(doc).flutter_version_file;
+      expect(spec.description).toContain('Mutually exclusive');
+      expect(spec.description).not.toContain('Takes precedence');
+    }
   });
 });

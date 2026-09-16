@@ -33,7 +33,13 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 ### `flutter_version_file`
 
-**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`). This lets you keep a single source of truth for the Flutter version. Takes precedence over `flutter_version` when set.
+**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`), resolved from the repository root rather than `working_directory`. This lets you keep a single source of truth for the Flutter version.
+
+:::caution
+`flutter_version_file` and `flutter_version` are mutually exclusive. Setting both fails the job with `Cannot specify both a version and a version file`.
+
+Version files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are parsed with `yq`, which is not available on Windows runners. Prefer `.fvmrc` or `fvm_config.json` when running on Windows.
+:::
 
 **Default** `""`
 
@@ -48,6 +54,18 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 **Optional** An optional operating system on which to run the workflow.
 
 **Default** `"ubuntu-latest"`
+
+### `dart_sdk`
+
+**Optional** The Dart SDK version used when publishing via the `Setup Dart` action.
+
+**Default** `"stable"`
+
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes the publish job is allowed to run before it is cancelled.
+
+**Default** `5`
 
 ## Example Usage
 

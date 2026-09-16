@@ -48,7 +48,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "The path to a file containing the Flutter version to use (e.g. 'pubspec.yaml' or '.fvmrc'). Takes precedence over flutter_version when set."
+        description: "The path to a file containing the Flutter version to use (e.g. 'pubspec.yaml' or '.fvmrc'), resolved from the repository root rather than working_directory. Mutually exclusive with flutter_version: setting both fails the job. Version files other than .fvmrc and fvm_config.json require yq, which is unavailable on Windows runners."
       format_directories:
         required: false
         type: string
