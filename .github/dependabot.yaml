@@ -1,18 +1,53 @@
 version: 2
 updates:
+  # GitHub Actions used by the reusable workflows.
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/examples/flutter_package"
-    schedule:
-      interval: "daily"
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      github-actions:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Dart example package used to exercise the reusable workflows.
   - package-ecosystem: "pub"
     directory: "/examples/dart_package"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      dart-package:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Flutter example package used to exercise the reusable workflows.
+  - package-ecosystem: "pub"
+    directory: "/examples/flutter_package"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      flutter-package:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Documentation site (Docusaurus).
   - package-ecosystem: "npm"
     directory: "/site"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      site:
+        update-types:
+          - "minor"
+          - "patch"
