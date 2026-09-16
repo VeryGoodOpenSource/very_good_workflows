@@ -1,0 +1,22 @@
+{
+  "name": "very_good_workflows_tests",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Validation tests for the reusable GitHub workflow templates provided by Very Good Workflows.",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^30.5.1",
+    "js-yaml": "^4.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/test"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
+}

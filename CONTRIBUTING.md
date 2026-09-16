@@ -27,6 +27,38 @@ pull request reviewed, the reviewer(s) may ask you to complete additional
 work, tests, or other changes before your pull request can be ultimately
 accepted.
 
+## Testing the Workflow Templates 🧪
+
+The reusable workflow templates under `.github/workflows/` are verified in two
+complementary ways:
+
+- **Structural validation** — a Jest test suite (`test/workflows.test.js`)
+  statically checks every template. It confirms each workflow file is
+  syntactically valid YAML, that every reusable template declares a
+  `workflow_call` trigger with well-formed inputs and secrets, that each
+  template is documented under `site/docs/workflows/` and advertised in the
+  `README.md`, and that every non-publishing template is actually exercised by
+  `ci.yml`. Publishing templates (`dart_pub_publish`, `flutter_pub_publish`,
+  `mason_publish`) push to external registries and cannot run in CI, so they are
+  validated structurally but exempt from the "exercised by CI" guard.
+- **Functional validation** — `ci.yml` invokes each template against the sample
+  packages in `examples/` (Dart, Flutter, and skills), proving the workflows run
+  end-to-end as intended across project types.
+
+Run the structural suite locally with:
+
+```sh
+npm install
+npm test
+```
+
+Both layers run automatically on every pull request via the
+`verify-workflow-templates` job and the per-template verification jobs in
+`ci.yml`. When you add, remove, or rename a template, update
+`EXPECTED_TEMPLATES` in `test/workflows.test.js`, add a matching docs page and
+`README.md` entry, and wire a verification job into `ci.yml` (or add the
+template to `PUBLISH_ONLY_TEMPLATES` if it cannot run in CI).
+
 ## Release Process 🚀
 
 This project uses [release-please-action](https://github.com/googleapis/release-please-action) to automate releases. Versioning

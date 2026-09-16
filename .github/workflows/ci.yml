@@ -7,6 +7,26 @@ on:
       - main
 
 jobs:
+  verify-workflow-templates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v7
+
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 📦 Install Dependencies
+        # --include=dev ensures jest is installed even if NODE_ENV=production.
+        run: npm ci --include=dev
+
+      - name: 🧪 Verify Workflow Templates
+        run: npm test
+
   verify-dart:
     uses: ./.github/workflows/dart_package.yml
     with:
@@ -117,6 +137,7 @@ jobs:
   build:
     needs:
       [
+        verify-workflow-templates,
         verify-dart,
         verify-flutter,
         verify-flutter-windows,
