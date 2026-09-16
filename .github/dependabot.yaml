@@ -44,13 +44,15 @@ updates:
     directory: "/site"
     schedule:
       interval: "weekly"
-      commit-message:
-          prefix: "chore"
-      groups:
-          site:
-              update-types:
-                  - "minor"
-                  - "patch"
+    commit-message:
+      prefix: "chore"
+    groups:
+      site:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Structural validation test suite.
   - package-ecosystem: "npm"
     directory: "/test"
     schedule:
@@ -58,7 +60,7 @@ updates:
     commit-message:
       prefix: "chore"
     groups:
-      site:
+      test:
         update-types:
           - "minor"
           - "patch"

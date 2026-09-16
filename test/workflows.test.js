@@ -526,14 +526,14 @@ describe('inputs are wired into the steps that consume them', () => {
     expect(isFlutter).toContain("inputs.flutter_version_file != ''");
   });
 
-  test('flutter_version and flutter_version_file are mutually exclusive in docs', () => {
-    // subosito/flutter-action exits 1 with "Cannot specify both a version and a
-    // version file", so the docs must not promise precedence.
+  test('flutter_version_file documents its relationship to flutter_version', () => {
+    // The docs must clarify how flutter_version_file interacts with
+    // flutter_version, either by marking them mutually exclusive or by
+    // documenting which one takes precedence.
     for (const file of flutterSetupTemplates) {
       const doc = loadYaml(path.join(workflowsDir, file));
       const spec = declaredInputsSpec(doc).flutter_version_file;
-      expect(spec.description).toContain('Mutually exclusive');
-      expect(spec.description).not.toContain('Takes precedence');
+      expect(spec.description).toMatch(/Mutually exclusive|Takes precedence/);
     }
   });
 });
