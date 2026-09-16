@@ -4,7 +4,7 @@ const jest = require('eslint-plugin-jest');
 
 module.exports = [
   {
-    files: ['test/**/*.js'],
+    files: ['**/*.js'],
     rules: {
       ...js.configs.recommended.rules,
     },

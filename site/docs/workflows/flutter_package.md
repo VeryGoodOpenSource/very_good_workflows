@@ -66,12 +66,12 @@ The Flutter package workflow consists of the following steps:
 
 ### `flutter_version_file`
 
-**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`), resolved from the repository root rather than `working_directory`. This lets you keep a single source of truth for the Flutter version.
+**Optional** Path to a file that holds the Flutter version to use, such as `pubspec.yaml` or `.fvmrc`, resolved from the repository root rather than `working_directory`. This lets you keep a single source of truth for the Flutter version.
 
 :::caution
 `flutter_version_file` and `flutter_version` are mutually exclusive. Setting both fails the job with `Cannot specify both a version and a version file`.
 
-Version files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are parsed with `yq`, which is not available on Windows runners. Prefer `.fvmrc` or `fvm_config.json` when running on Windows.
+Files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are parsed with `yq`, which Windows runners don't provide. On Windows, use `.fvmrc` or `fvm_config.json`.
 :::
 
 **Default** `""`

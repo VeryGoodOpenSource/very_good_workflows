@@ -5,9 +5,9 @@
   "description": "Validation tests for the reusable GitHub workflow templates provided by Very Good Workflows.",
   "scripts": {
     "test": "jest",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint test",
-    "format": "prettier --write test eslint.config.js package.json",
-    "format:check": "prettier --check test eslint.config.js package.json"
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "format": "prettier --write workflows.test.js eslint.config.js package.json",
+    "format:check": "prettier --check workflows.test.js eslint.config.js package.json"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -21,7 +21,7 @@
   "jest": {
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/test"
+      "<rootDir>"
     ]
   },
   "engines": {

@@ -49,7 +49,7 @@ The Mason Publish workflow consists of the following steps:
 
 ### `dart_sdk`
 
-**Optional** The Dart SDK version used when publishing via the `Setup Dart` action.
+**Optional** The Dart SDK version to install with the `Setup Dart` action before publishing.
 
 **Default** `"stable"`
 

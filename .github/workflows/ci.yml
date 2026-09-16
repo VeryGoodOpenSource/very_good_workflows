@@ -10,6 +10,10 @@ jobs:
   verify-workflow-templates:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: test
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v7
@@ -19,7 +23,7 @@ jobs:
         with:
           node-version: 22.x
           cache: npm
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: test/package-lock.json
 
       - name: 📦 Install Dependencies
         run: npm ci

@@ -33,12 +33,12 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 ### `flutter_version_file`
 
-**Optional** The path to a file containing the Flutter version to use (e.g. `pubspec.yaml` or `.fvmrc`), resolved from the repository root rather than `working_directory`. This lets you keep a single source of truth for the Flutter version.
+**Optional** Path to a file that holds the Flutter version to use, such as `pubspec.yaml` or `.fvmrc`, resolved from the repository root rather than `working_directory`. This lets you keep a single source of truth for the Flutter version.
 
 :::caution
 `flutter_version_file` and `flutter_version` are mutually exclusive. Setting both fails the job with `Cannot specify both a version and a version file`.
 
-Version files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are parsed with `yq`, which is not available on Windows runners. Prefer `.fvmrc` or `fvm_config.json` when running on Windows.
+Files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are parsed with `yq`, which Windows runners don't provide. On Windows, use `.fvmrc` or `fvm_config.json`.
 :::
 
 **Default** `""`
@@ -57,7 +57,7 @@ Version files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`)
 
 ### `dart_sdk`
 
-**Optional** The Dart SDK version used when publishing via the `Setup Dart` action.
+**Optional** The Dart SDK version for the `Setup Dart` action. This applies only to automated publishing, when `pub_credentials` isn't set.
 
 **Default** `"stable"`
 

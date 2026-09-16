@@ -6,28 +6,29 @@ on:
       flutter_channel:
         required: false
         type: string
-        default: "stable"
+        default: 'stable'
       flutter_version:
         required: false
         type: string
-        default: ""
+        default: ''
       flutter_version_file:
         required: false
         type: string
-        default: ""
-        description: "The path to a file containing the Flutter version to use (e.g. 'pubspec.yaml' or '.fvmrc'), resolved from the repository root rather than working_directory. Mutually exclusive with flutter_version: setting both fails the job. Version files other than .fvmrc and fvm_config.json require yq, which is unavailable on Windows runners."
+        default: ''
+        description: "Path to a file that holds the Flutter version, such as '.fvmrc'. Mutually exclusive with flutter_version."
       dart_sdk:
         required: false
         type: string
-        default: "stable"
+        default: 'stable'
+        description: 'The Dart SDK version to install before publishing.'
       working_directory:
         required: false
         type: string
-        default: "."
+        default: '.'
       runs_on:
         required: false
         type: string
-        default: "ubuntu-latest"
+        default: 'ubuntu-latest'
       timeout_minutes:
         required: false
         type: number
@@ -62,7 +63,7 @@ jobs:
       - name: 📦 Install Dependencies
         run: flutter pub get
 
-      - name: 🔐 Setup Pub Credentials\
+      - name: 🔐 Setup Pub Credentials
         if: ${{ secrets.pub_credentials != '' }}
         run: |
           mkdir -p $XDG_CONFIG_HOME/dart
