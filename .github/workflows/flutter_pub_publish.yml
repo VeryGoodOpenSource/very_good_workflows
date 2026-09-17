@@ -15,7 +15,12 @@ on:
         required: false
         type: string
         default: ""
-        description: "The path to a file containing the Flutter version to use (e.g. 'pubspec.yaml' or '.fvmrc'). Takes precedence over flutter_version when set."
+        description: "Path to a file that holds the Flutter version, such as '.fvmrc'. Takes precedence over flutter_version when set."
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
+        description: "The Dart SDK version to install before publishing."
       working_directory:
         required: false
         type: string
@@ -58,7 +63,7 @@ jobs:
       - name: 📦 Install Dependencies
         run: flutter pub get
 
-      - name: 🔐 Setup Pub Credentials\
+      - name: 🔐 Setup Pub Credentials
         if: ${{ secrets.pub_credentials != '' }}
         run: |
           mkdir -p $XDG_CONFIG_HOME/dart

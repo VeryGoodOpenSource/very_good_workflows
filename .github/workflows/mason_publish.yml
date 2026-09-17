@@ -7,6 +7,11 @@ on:
         required: false
         type: string
         default: ""
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
+        description: "The Dart SDK version to install before publishing."
       working_directory:
         required: false
         type: string

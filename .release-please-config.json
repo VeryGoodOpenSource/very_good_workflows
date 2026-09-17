@@ -19,6 +19,8 @@
     ".release-please-config.json",
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
-    "examples"
+    "examples",
+    "site",
+    "test"
   ]
 }

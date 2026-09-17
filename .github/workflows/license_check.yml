@@ -27,7 +27,7 @@ on:
         required: false
         type: string
         default: ""
-        description: "The path to a file containing the Flutter version to use (e.g. 'pubspec.yaml' or '.fvmrc'). Takes precedence over flutter_version when set. Setting this treats the package as a Flutter package."
+        description: "Path to a file that holds the Flutter version, such as '.fvmrc'; treats the package as Flutter. Takes precedence over flutter_version when set."
       allowed:
         required: false
         type: string
@@ -75,7 +75,7 @@ jobs:
 
       - name: 🐦 Setup Flutter
         if: env.is_flutter == 'true'
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.23.0
         with:
           cache: true
           channel: ${{inputs.flutter_channel}}

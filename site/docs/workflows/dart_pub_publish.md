@@ -21,7 +21,7 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 ### `dart_sdk`
 
-**Optional** Which Dart SDK version to use. It can be a version (e.g. `3.5.0`) or a channel (e.g. `stable`):
+**Optional** The Dart SDK version to install with the `Setup Dart` action before publishing. Use a version, such as `3.5.0`, or a channel, such as `stable`.
 
 **Default** `"stable"`
 
@@ -36,6 +36,12 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 **Optional** An optional operating system on which to run the workflow.
 
 **Default** `"ubuntu-latest"`
+
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes the publish job is allowed to run before it is cancelled.
+
+**Default** `5`
 
 ## Example Usage
 

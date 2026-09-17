@@ -35,6 +35,18 @@ The Mason Publish workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+### `dart_sdk`
+
+**Optional** The Dart SDK version to install with the `Setup Dart` action before publishing.
+
+**Default** `"stable"`
+
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes the publish job is allowed to run before it is cancelled.
+
+**Default** `5`
+
 ## Secrets
 
 ### `mason_credentials`

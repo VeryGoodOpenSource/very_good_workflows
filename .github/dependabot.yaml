@@ -51,3 +51,16 @@ updates:
         update-types:
           - "minor"
           - "patch"
+
+  # Structural validation test suite.
+  - package-ecosystem: "npm"
+    directory: "/test"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      test:
+        update-types:
+          - "minor"
+          - "patch"
