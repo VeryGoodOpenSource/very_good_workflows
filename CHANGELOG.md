@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.21.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.0...v1.21.1) (2026-09-17)
+
+
+### Miscellaneous Chores
+
+* bump actions/download-artifact from 7 to 8 ([#511](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/511)) ([ba7405a](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ba7405aac33b7d8e733fb049045074a750ed9c7d))
+* bump very_good_cli to 1.5.0 ([#506](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/506)) ([af17d7f](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/af17d7fcfc2c1c2ebb0f0906dc1e1fc989991745)), closes [#505](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/505)
+* update dependabot configuration ([#507](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/507)) ([5b56ffe](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5b56ffe8d79b39e253b522c00ac01cefcad37c46)), closes [#440](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/440)
+
 ## [1.21.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.20.1...v1.21.0) (2026-09-15)
 
 
