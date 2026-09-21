@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.1...v1.22.0) (2026-09-21)
+
+
+### Features
+
+* add timeout_minutes input to package workflows ([#512](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/512)) ([7923125](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/7923125cd505d3db8b0de086c68ca27ecb6e369b))
+
 ## [1.21.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.0...v1.21.1) (2026-09-17)
 
 
