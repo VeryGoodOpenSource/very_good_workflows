@@ -86,6 +86,12 @@ The Dart package workflow consists of the following steps:
 
 **Default** `"ubuntu-latest"`
 
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes to let the job run before GitHub automatically cancels it.
+
+**Default** `360`
+
 ### `setup`
 
 **Optional** A command that should be executed immediately after dependencies are installed. It can also be used to export environment variables for later steps (see [Providing environment variables](#providing-environment-variables)).
@@ -244,6 +250,7 @@ jobs:
       coverage_excludes: '*.g.dart'
       dart_sdk: 'stable'
       platform: 'chrome,vm'
+      timeout_minutes: 10
       working_directory: 'examples/my_dart_package'
     secrets:
       ssh_key: ${{secrets.EXAMPLE_KEY}}
