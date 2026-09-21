@@ -118,6 +118,12 @@ Files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are par
 
 **Default** `"ubuntu-latest"`
 
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes to let the job run before GitHub automatically cancels it.
+
+**Default** `360`
+
 ### `package_get_excludes`
 
 **Optional** List of paths to exclude from `packages get`. Supports `globs` to describe file patterns.
@@ -231,6 +237,7 @@ jobs:
       dart_define: 'dart.vm.product=true FLAVOR=staging'
       flutter_channel: 'stable'
       flutter_version: '3.35.0'
+      timeout_minutes: 10
       working_directory: 'examples/my_flutter_package'
       test_recursion: true
     secrets:
