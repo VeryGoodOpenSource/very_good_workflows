@@ -114,6 +114,8 @@ on:
     secrets:
       ssh_key:
         required: false
+      pub_tokens:
+        required: false
 
 jobs:
   build:
@@ -144,6 +146,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{secrets.ssh_key}}
+
+      - name: 🔑 Set Pub Tokens
+        uses: ./.github/actions/set-pub-tokens
+        with:
+          pub_tokens: ${{secrets.pub_tokens}}
 
       - name: 📦 Install Dependencies
         run: |
