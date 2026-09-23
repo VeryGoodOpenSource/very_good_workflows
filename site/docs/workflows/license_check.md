@@ -98,6 +98,12 @@ The allowed and forbidden options can't be used at the same time. If you want to
 
 **Default** `false`
 
+### `timeout_minutes`
+
+**Optional** The maximum number of minutes to let the job run before GitHub automatically cancels it.
+
+**Default** `360`
+
 ## Secrets
 
 ### `ssh_key`
