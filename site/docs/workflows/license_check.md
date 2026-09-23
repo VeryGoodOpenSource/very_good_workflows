@@ -16,8 +16,9 @@ The License Check workflow consists of the following steps:
 
 1. Setup Dart or Flutter
 2. Set SSH Key (if provided)
-3. Install project dependencies
-4. Check licenses
+3. Set Pub Tokens (if provided)
+4. Install project dependencies
+5. Check licenses
 
 ## Inputs
 
@@ -102,6 +103,31 @@ The allowed and forbidden options can't be used at the same time. If you want to
 ### `ssh_key`
 
 **Optional** An SSH key to use for setting up the credentials for fetching dependencies that are not publicly available.
+
+### `pub_tokens`
+
+**Optional** Authentication tokens for [custom package repositories](https://dart.dev/tools/pub/custom-package-repositories), used to resolve dependencies hosted somewhere other than pub.dev. Provide one entry per line in the form `<hosted-url> <token>`. Each entry is registered with [`dart pub token add`](https://dart.dev/tools/pub/cmd/pub-token) before dependencies are installed, so several repositories can be authenticated at once. The token is read through the recommended `--env-var` flag rather than being written to a configuration file. Lines that do not contain a space fail the workflow. See [Custom package repositories](#custom-package-repositories).
+
+## Custom package repositories
+
+When a package depends on a [custom (private) package repository](https://dart.dev/tools/pub/custom-package-repositories), pass the credentials through the [`pub_tokens`](#pub_tokens) secret. Store the tokens in a repository or organization [secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) with one `<hosted-url> <token>` pair per line:
+
+```
+https://dart-packages.example.com TOKEN_VALUE
+https://another-repo.example.com ANOTHER_TOKEN_VALUE
+```
+
+Then forward that secret to the workflow:
+
+```yaml
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
+    secrets:
+      pub_tokens: ${{secrets.PUB_TOKENS}}
+```
+
+The step only runs when the secret is provided, so packages that depend solely on pub.dev need no extra configuration.
 
 ## Example Usage
 

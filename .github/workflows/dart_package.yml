@@ -101,6 +101,8 @@ on:
     secrets:
       ssh_key:
         required: false
+      pub_tokens:
+        required: false
 
 jobs:
   build:
@@ -127,6 +129,33 @@ jobs:
         uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{secrets.ssh_key}}
+
+      - name: 🔑 Set Pub Tokens
+        env:
+          pub_tokens: ${{secrets.pub_tokens}}
+        if: env.pub_tokens != null
+        shell: bash
+        run: |
+          index=0
+          while IFS= read -r entry || [ -n "$entry" ]; do
+            entry="${entry%$'\r'}"
+            [ -z "$entry" ] && continue
+            url="${entry%% *}"
+            token="${entry#* }"
+            if [ "$url" = "$entry" ]; then
+              echo "::error::Malformed pub_tokens entry; expected each line to be '<hosted-url> <token>'."
+              exit 1
+            fi
+            var="PUB_TOKEN_${index}"
+            echo "::add-mask::$token"
+            {
+              echo "$var<<PUB_TOKEN_EOF"
+              echo "$token"
+              echo "PUB_TOKEN_EOF"
+            } >> "$GITHUB_ENV"
+            dart pub token add "$url" --env-var "$var"
+            index=$((index + 1))
+          done <<< "$pub_tokens"
 
       - name: 📦 Install Dependencies
         run: |
