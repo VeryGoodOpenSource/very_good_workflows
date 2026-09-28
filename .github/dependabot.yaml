@@ -39,6 +39,19 @@ updates:
           - "minor"
           - "patch"
 
+  # Jaspr example site used to exercise the reusable workflows.
+  - package-ecosystem: "pub"
+    directory: "/examples/jaspr_site"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      jaspr-site:
+        update-types:
+          - "minor"
+          - "patch"
+
   # Documentation site (Docusaurus).
   - package-ecosystem: "npm"
     directory: "/site"

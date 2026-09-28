@@ -87,6 +87,14 @@ jobs:
       run_bloc_lint: false
       working_directory: examples/flutter_package
 
+  verify-jaspr:
+    uses: ./.github/workflows/jaspr_site.yml
+    with:
+      dart_sdk: "3.13.2"
+      jaspr_cli_version: "0.23.5"
+      setup: dart --version
+      working_directory: examples/jaspr_site
+
   verify-pana-dart:
     uses: ./.github/workflows/pana.yml
     with:
@@ -114,6 +122,7 @@ jobs:
         dart_package
         deps
         flutter_package
+        jaspr_site
         pana
         semantic_pull_request
         skills_lint
@@ -190,6 +199,7 @@ jobs:
         verify-flutter-version-file,
         verify-flutter-version-file-windows,
         verify-artifacts,
+        verify-jaspr,
         verify-pana-dart,
         verify-pana-flutter,
         verify-skills-lint,

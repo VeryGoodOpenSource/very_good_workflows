@@ -19,6 +19,9 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@
 # A reusable workflow for Flutter packages
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
 
+# A reusable workflow for Jaspr sites
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/jaspr_site.yml@v1
+
 # A reusable workflow for ensuring commits are semantic
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
 
