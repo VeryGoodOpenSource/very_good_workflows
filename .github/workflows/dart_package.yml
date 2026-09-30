@@ -17,6 +17,26 @@ on:
         type: string
         default: ""
         description: "Newline-separated list of globs to upload as a workflow artifact, relative to the repository root (e.g. 'coverage/lcov.info'). Empty disables the upload."
+      cognitive_complexity_diff_base:
+        required: false
+        type: string
+        default: ""
+        description: "Git reference to compare against when computing complexity changes (e.g. 'origin/main'). Empty lets the action auto-detect the base."
+      cognitive_complexity_fail_on_increase:
+        required: false
+        type: boolean
+        default: false
+        description: "Whether to fail the job when cognitive complexity increases relative to cognitive_complexity_diff_base."
+      cognitive_complexity_fail_threshold:
+        required: false
+        type: number
+        default: 15
+        description: "The maximum cognitive complexity score a function may reach before the job fails."
+      cognitive_complexity_targets:
+        required: false
+        type: string
+        default: "lib"
+        description: "Space-separated list of directories or files to scan for cognitive complexity. Resolved from the repository root, not working_directory."
       collect_coverage_from:
         required: false
         type: string
@@ -67,6 +87,10 @@ on:
         required: false
         type: boolean
         default: true
+      run_cognitive_complexity:
+        required: false
+        type: boolean
+        default: false
       run_skipped:
         required: false
         type: boolean
@@ -114,6 +138,10 @@ jobs:
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v7
+        with:
+          # Cognitive complexity comparison needs the full history to resolve the
+          # diff base; a shallow clone is enough for every other step.
+          fetch-depth: ${{inputs.run_cognitive_complexity && '0' || '1'}}
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1.8.1
@@ -148,6 +176,15 @@ jobs:
         run: |
           dart pub global activate bloc_tools
           bloc lint .
+
+      - name: 🧠 Cognitive Complexity
+        if: ${{inputs.run_cognitive_complexity}}
+        uses: kevmoo/analytica.dart/packages/cognitive_complexity@main
+        with:
+          targets: ${{inputs.cognitive_complexity_targets}}
+          fail-threshold: ${{inputs.cognitive_complexity_fail_threshold}}
+          fail-on-increase: ${{inputs.cognitive_complexity_fail_on_increase}}
+          diff-base: ${{inputs.cognitive_complexity_diff_base}}
 
       - name: 🧪 Run Tests
         run: >-
