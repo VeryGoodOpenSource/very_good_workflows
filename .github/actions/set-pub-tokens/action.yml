@@ -1,0 +1,36 @@
+name: Set Pub Tokens
+description: Registers pub tokens from the pub_tokens secret.
+inputs:
+  pub_tokens:
+    description: "Newline-separated list of '<hosted-url> <token>' entries."
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: 🔑 Set Pub Tokens
+      if: ${{ inputs.pub_tokens != '' }}
+      shell: bash
+      env:
+        pub_tokens: ${{ inputs.pub_tokens }}
+      run: |
+        index=0
+        while IFS= read -r entry; do
+          entry="${entry%$'\r'}"
+          [ -z "$entry" ] && continue
+          read -r url token <<< "$entry"
+          [ -z "$url" ] && continue
+          if [ -z "$token" ]; then
+            echo "::error::Malformed pub_tokens entry; expected each line to be '<hosted-url> <token>'."
+            exit 1
+          fi
+          var="PUB_TOKEN_${index}"
+          echo "::add-mask::$token"
+          {
+            echo "$var<<PUB_TOKEN_EOF"
+            echo "$token"
+            echo "PUB_TOKEN_EOF"
+          } >> "$GITHUB_ENV"
+          dart pub token add "$url" --env-var "$var"
+          index=$((index + 1))
+        done <<< "$pub_tokens"
