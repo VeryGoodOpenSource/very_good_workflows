@@ -17,8 +17,9 @@ The Flutter package workflow consists of the following steps:
 5. Format
 6. Analyze
 7. Bloc Lint (if enabled)
-8. Run tests (includes coverage collection and enforcement)
-9. Upload artifacts (if configured)
+8. Cognitive Complexity (if enabled)
+9. Run tests (includes coverage collection and enforcement)
+10. Upload artifacts (if configured)
 
 ## Inputs
 
@@ -148,6 +149,40 @@ Files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are par
 
 **Default** `true`
 
+### `run_cognitive_complexity`
+
+**Optional** Whether to run the [cognitive_complexity](https://pub.dev/packages/cognitive_complexity) audit on the package. See [Cognitive complexity](#cognitive-complexity).
+
+**Default** `false`
+
+### `cognitive_complexity_targets`
+
+**Optional** Space-separated list of directories or files to scan for cognitive complexity.
+
+:::note
+Like [`artifact_paths`](#artifact_paths), these paths are resolved from the **repository root**, not from [`working_directory`](#working_directory). For a package nested in a monorepo, write the prefix out in full (e.g. `packages/my_package/lib`).
+:::
+
+**Default** `"lib"`
+
+### `cognitive_complexity_fail_threshold`
+
+**Optional** The maximum cognitive complexity score a function may reach before the job fails.
+
+**Default** `15`
+
+### `cognitive_complexity_fail_on_increase`
+
+**Optional** Whether to fail the job when cognitive complexity increases relative to [`cognitive_complexity_diff_base`](#cognitive_complexity_diff_base). Requires the full git history, which is fetched automatically when [`run_cognitive_complexity`](#run_cognitive_complexity) is enabled.
+
+**Default** `false`
+
+### `cognitive_complexity_diff_base`
+
+**Optional** Git reference to compare against when computing complexity changes (e.g. `origin/main`). An empty value lets the action auto-detect the base.
+
+**Default** `""`
+
 ### `run_skipped`
 
 **Optional** Run skipped tests instead of skipping them.
@@ -221,6 +256,30 @@ with:
 ```
 
 Exclusions and the rest of the pattern syntax work as described in the [`actions/upload-artifact` documentation](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions).
+
+## Cognitive complexity
+
+Enable [`run_cognitive_complexity`](#run_cognitive_complexity) to audit the package with [`package:cognitive_complexity`](https://pub.dev/packages/cognitive_complexity). The step fails when any function's score exceeds [`cognitive_complexity_fail_threshold`](#cognitive_complexity_fail_threshold), and can additionally block increases relative to a base ref via [`cognitive_complexity_fail_on_increase`](#cognitive_complexity_fail_on_increase) and [`cognitive_complexity_diff_base`](#cognitive_complexity_diff_base).
+
+```yaml
+with:
+  run_cognitive_complexity: true
+  cognitive_complexity_targets: 'lib'
+  cognitive_complexity_fail_threshold: 15
+```
+
+To post the complexity report as a pull request comment, grant the caller workflow `pull-requests: write` permission:
+
+```yaml
+jobs:
+  build:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      run_cognitive_complexity: true
+```
 
 ## Example Usage
 
