@@ -138,10 +138,6 @@ jobs:
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v7
-        with:
-          # Cognitive complexity comparison needs the full history to resolve the
-          # diff base; a shallow clone is enough for every other step.
-          fetch-depth: ${{inputs.run_cognitive_complexity && '0' || '1'}}
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1.8.1

@@ -168,7 +168,7 @@ Like [`artifact_paths`](#artifact_paths), these paths are resolved from the **re
 
 ### `cognitive_complexity_fail_on_increase`
 
-**Optional** Whether to fail the job when cognitive complexity increases relative to [`cognitive_complexity_diff_base`](#cognitive_complexity_diff_base). Requires the full git history, which is fetched automatically when [`run_cognitive_complexity`](#run_cognitive_complexity) is enabled.
+**Optional** Whether to fail the job when cognitive complexity increases relative to [`cognitive_complexity_diff_base`](#cognitive_complexity_diff_base). The action resolves the diff base on its own.
 
 **Default** `false`
 
