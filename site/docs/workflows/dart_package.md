@@ -12,13 +12,14 @@ The Dart package workflow consists of the following steps:
 
 1. Setup Dart
 2. Set SSH Key (if provided)
-3. Install dependencies
-4. Run Setup (if provided)
-5. Format
-6. Analyze
-7. Bloc Lint (if enabled)
-8. Run tests (includes coverage collection and enforcement)
-9. Upload artifacts (if configured)
+3. Set Pub Tokens (if provided)
+4. Install dependencies
+5. Run Setup (if provided)
+6. Format
+7. Analyze
+8. Bloc Lint (if enabled)
+9. Run tests (includes coverage collection and enforcement)
+10. Upload artifacts (if configured)
 
 ## Inputs
 
@@ -162,6 +163,31 @@ The Dart package workflow consists of the following steps:
 ### `ssh_key`
 
 **Optional** An SSH key used to access private repositories when installing dependencies.
+
+### `pub_tokens`
+
+**Optional** Authentication tokens for [custom package repositories](https://dart.dev/tools/pub/custom-package-repositories), used to resolve dependencies hosted somewhere other than pub.dev. Provide one entry per line in the form `<hosted-url> <token>`. Each entry is registered with [`dart pub token add`](https://dart.dev/tools/pub/cmd/pub-token) before dependencies are installed, so several repositories can be authenticated at once. The token is read through the recommended `--env-var` flag rather than being written to a configuration file. Lines that do not contain a space fail the workflow. See [Custom package repositories](#custom-package-repositories).
+
+## Custom package repositories
+
+When a package depends on a [custom (private) package repository](https://dart.dev/tools/pub/custom-package-repositories), pass the credentials through the [`pub_tokens`](#pub_tokens) secret. Store the tokens in a repository or organization [secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) with one `<hosted-url> <token>` pair per line:
+
+```
+https://dart-packages.example.com TOKEN_VALUE
+https://another-repo.example.com ANOTHER_TOKEN_VALUE
+```
+
+Then forward that secret to the workflow:
+
+```yaml
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    secrets:
+      pub_tokens: ${{secrets.PUB_TOKENS}}
+```
+
+The step only runs when the secret is provided, so packages that depend solely on pub.dev need no extra configuration.
 
 ## Uploading artifacts
 
