@@ -76,7 +76,7 @@ on:
       run_bloc_lint:
         required: false
         type: boolean
-        default: true
+        default: false
       run_skipped:
         required: false
         type: boolean
