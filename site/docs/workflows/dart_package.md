@@ -143,7 +143,7 @@ The Dart package workflow consists of the following steps:
 
 **Optional** Whether to run [bloc lint](https://pub.dev/packages/bloc_tools) on the package.
 
-**Default** `true`
+**Default** `false`
 
 ### `run_cognitive_complexity`
 

@@ -148,7 +148,7 @@ Files other than `.fvmrc` and `fvm_config.json` (such as `pubspec.yaml`) are par
 
 **Optional** Whether to run [bloc lint](https://pub.dev/packages/bloc_tools) on the package.
 
-**Default** `true`
+**Default** `false`
 
 ### `run_cognitive_complexity`
 
