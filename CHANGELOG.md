@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.1...v2.0.0) (2026-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* default run_bloc_lint to false ([#526](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/526))
+
+### Features
+
+* add pub_tokens secret for custom package repositories ([#514](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/514)) ([5dd5f3d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5dd5f3d3153524d579abb39efb77a3206d80eecc))
+* add timeout_minutes input to package workflows ([#512](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/512)) ([7923125](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/7923125cd505d3db8b0de086c68ca27ecb6e369b))
+
+
+### Refactors
+
+* default run_bloc_lint to false ([#526](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/526)) ([9a0df93](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9a0df93d69ae52fd9c99f5820a67c0f4bed24aa5)), closes [#525](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/525)
+
 ## [1.21.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.0...v1.21.1) (2026-09-17)
 
 
