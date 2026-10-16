@@ -22,34 +22,34 @@ To get started, add very good workflows to an existing GitHub workflow:
 
 ```yaml
 # A reusable workflow for Dart packages
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v2
 
 # A reusable workflow for Flutter packages
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v2
 
 # A reusable workflow for ensuring commits are semantic
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v2
 
 # A reusable workflow for verifying package scores on pub.dev
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v2
 
 # A reusable workflow for running a spell check
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v2
 
 # A reusable workflow for publishing Flutter packages
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v2
 
 # A reusable workflow for publishing Dart packages
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v2
 
 # A reusable workflow for publishing Mason bricks
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v2
 
 # A reusable workflow to keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v2
 
 # A reusable workflow for linting agent skill directories with skills_lint
-uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/skills_lint.yml@v1
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/skills_lint.yml@v2
 ```
 
 For configuration details, check out our [official docs][workflows_docs].

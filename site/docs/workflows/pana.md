@@ -46,7 +46,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v2
     with:
       min_score: 95
       working_directory: 'examples/my_flutter_package'
