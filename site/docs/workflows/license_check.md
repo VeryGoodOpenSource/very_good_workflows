@@ -128,7 +128,7 @@ Then forward that secret to the workflow:
 ```yaml
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v2
     secrets:
       pub_tokens: ${{secrets.PUB_TOKENS}}
 ```
@@ -158,7 +158,7 @@ on:
 
 jobs:
   license_check:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v2
     with:
       allowed: 'MIT,BSD-3-Clause,BSD-2-Clause,Apache-2.0'
 ```

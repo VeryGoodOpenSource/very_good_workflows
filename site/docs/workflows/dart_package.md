@@ -217,7 +217,7 @@ Then forward that secret to the workflow:
 ```yaml
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v2
     secrets:
       pub_tokens: ${{secrets.PUB_TOKENS}}
 ```
@@ -272,7 +272,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v2
     with:
       run_cognitive_complexity: true
 ```
@@ -296,7 +296,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v2
     with:
       setup: echo "MY_VAR=true" >> $GITHUB_ENV
 ```
@@ -330,7 +330,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v2
     with:
       coverage_excludes: '*.g.dart'
       dart_sdk: 'stable'

@@ -42,7 +42,7 @@ When running this workflow, the `GITHUB_TOKEN` has to have the correct permissio
     build:
       permissions:
         pull-requests: write
-      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v2
   ```
 
   You can read more about this in the [github documentation](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token).
@@ -56,7 +56,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v2
 ```
 
 [commitizen]: https://github.com/commitizen/conventional-commit-types
