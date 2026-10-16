@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.0...v2.0.1) (2026-10-16)
+
+
+### Bug Fixes
+
+* reference set-pub-tokens action remotely ([#527](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/527)) ([8c1b746](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/8c1b746ecafde7d9b00699ccfc2b07ff88324bfb))
+
+
+### Docs
+
+* reference workflows at [@v2](https://github.com/v2) ([#528](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/528)) ([a4f875e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a4f875e7f3138aac36bfbce27cd45aeb29afcc5e))
+
 ## [2.0.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.1...v2.0.0) (2026-10-15)
 
 
