@@ -100,7 +100,10 @@ jobs:
           ssh-private-key: ${{secrets.ssh_key}}
 
       - name: 🔑 Set Pub Tokens
-        uses: ./.github/actions/set-pub-tokens
+        env:
+          pub_tokens: ${{secrets.pub_tokens}}
+        if: env.pub_tokens != ''
+        uses: VeryGoodOpenSource/very_good_workflows/.github/actions/set-pub-tokens@v2
         with:
           pub_tokens: ${{secrets.pub_tokens}}
 
