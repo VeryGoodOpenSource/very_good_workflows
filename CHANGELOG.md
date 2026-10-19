@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.2...v2.0.3) (2026-10-19)
+
+
+### Bug Fixes
+
+* fetch full history when cognitive complexity is enabled ([#535](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/535)) ([92a940e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/92a940e3240682172f3f8b1701332789167448ba))
+
 ## [2.0.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.1...v2.0.2) (2026-10-19)
 
 
