@@ -294,6 +294,8 @@ with:
   cognitive_complexity_fail_threshold: 15
 ```
 
+When enabled, the workflow checks out the full git history so the action can resolve a merge base against the diff base. No extra configuration is required.
+
 To post the complexity report as a pull request comment, grant the caller workflow `pull-requests: write` permission:
 
 ```yaml

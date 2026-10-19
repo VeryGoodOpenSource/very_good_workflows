@@ -140,6 +140,11 @@ jobs:
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v7
+        with:
+          # Cognitive complexity resolves a merge base against the diff base,
+          # which requires full history. Other runs keep the default shallow
+          # clone for speed.
+          fetch-depth: ${{ inputs.run_cognitive_complexity && 0 || 1 }}
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1.8.1
