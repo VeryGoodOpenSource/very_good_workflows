@@ -143,8 +143,9 @@ jobs:
         with:
           # Cognitive complexity resolves a merge base against the diff base,
           # which requires full history. Other runs keep the default shallow
-          # clone for speed.
-          fetch-depth: ${{ inputs.run_cognitive_complexity && 0 || 1 }}
+          # clone for speed. The condition is negated because `0` is falsy in
+          # expressions, so `cond && 0 || 1` would always evaluate to `1`.
+          fetch-depth: ${{ !inputs.run_cognitive_complexity && 1 || 0 }}
 
       - name: 🎯 Setup Dart
         uses: dart-lang/setup-dart@v1.8.1
