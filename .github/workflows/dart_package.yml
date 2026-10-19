@@ -139,13 +139,13 @@ jobs:
 
     steps:
       - name: 📚 Git Checkout
-        if: ${{ !inputs.run_cognitive_complexity }}
+        if: ${{!inputs.run_cognitive_complexity}}
         uses: actions/checkout@v7
 
       # Cognitive complexity resolves a merge base against the diff base,
       # which requires full history.
       - name: 📚 Git Checkout (full history)
-        if: ${{ inputs.run_cognitive_complexity }}
+        if: ${{inputs.run_cognitive_complexity}}
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
