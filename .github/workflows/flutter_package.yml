@@ -150,18 +150,17 @@ jobs:
     runs-on: ${{inputs.runs_on}}
     timeout-minutes: ${{inputs.timeout_minutes}}
 
+    env:
+      # Cognitive complexity resolves a merge base against the diff base,
+      # which requires full history. Other runs keep a shallow clone. Values
+      # are strings because the number `0` is falsy in expressions.
+      FETCH_DEPTH: ${{inputs.run_cognitive_complexity && '0' || '1'}}
+
     steps:
       - name: 📚 Git Checkout
-        if: ${{!inputs.run_cognitive_complexity}}
-        uses: actions/checkout@v7
-
-      # Cognitive complexity resolves a merge base against the diff base,
-      # which requires full history.
-      - name: 📚 Git Checkout (full history)
-        if: ${{inputs.run_cognitive_complexity}}
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          fetch-depth: ${{env.FETCH_DEPTH}}
 
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2.23.0
