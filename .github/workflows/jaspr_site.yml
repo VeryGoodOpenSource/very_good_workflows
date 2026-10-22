@@ -1,0 +1,100 @@
+name: Jaspr Site Workflow
+
+on:
+  workflow_call:
+    inputs:
+      analyze_directories:
+        required: false
+        type: string
+        default: "."
+      build:
+        required: false
+        type: boolean
+        default: true
+        description: "Whether to build the site with the Jaspr CLI."
+      build_args:
+        required: false
+        type: string
+        default: ""
+        description: "Extra arguments passed to `jaspr build` (e.g. '--no-ssr --sitemap-domain https://example.com')."
+      dart_sdk:
+        required: false
+        type: string
+        default: "stable"
+      format_directories:
+        required: false
+        type: string
+        default: "."
+      format_line_length:
+        required: false
+        type: string
+      jaspr_cli_version:
+        required: false
+        type: string
+        default: ""
+        description: "The version of jaspr_cli to activate (e.g. '0.23.5'). Empty installs the latest version."
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      timeout_minutes:
+        required: false
+        type: number
+        default: 360
+        description: "Maximum minutes before GitHub cancels the job."
+      setup:
+        required: false
+        type: string
+        default: ""
+      working_directory:
+        required: false
+        type: string
+        default: "."
+    secrets:
+      ssh_key:
+        required: false
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+
+    runs-on: ${{inputs.runs_on}}
+    timeout-minutes: ${{inputs.timeout_minutes}}
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v7
+
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1.8.1
+        with:
+          sdk: ${{inputs.dart_sdk}}
+
+      - name: 🤫 Set SSH Key
+        env:
+          ssh_key: ${{secrets.ssh_key}}
+        if: env.ssh_key != null
+        uses: webfactory/ssh-agent@v0.10.0
+        with:
+          ssh-private-key: ${{secrets.ssh_key}}
+
+      - name: 📦 Install Dependencies
+        run: dart pub get
+
+      - name: ⚙️ Run Setup
+        if: "${{inputs.setup != ''}}"
+        run: ${{inputs.setup}}
+
+      - name: ✨ Check Formatting
+        run: dart format ${{inputs.format_line_length && format('--line-length {0}', inputs.format_line_length) || ''}} --set-exit-if-changed ${{inputs.format_directories}}
+
+      - name: 🕵️ Analyze
+        run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}
+
+      - name: 🏗️ Build
+        if: ${{inputs.build}}
+        run: |
+          dart pub global activate jaspr_cli ${{inputs.jaspr_cli_version}}
+          jaspr build ${{inputs.build_args}}
