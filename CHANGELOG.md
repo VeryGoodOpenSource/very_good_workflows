@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.3...v2.1.0) (2026-10-22)
+
+
+### Features
+
+* add jaspr site reusable workflow ([#518](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/518)) ([b793dac](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b793dac9cc50fa9533d194dadf5a5e50324e50ea)), closes [#517](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/517)
+
 ## [2.0.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.2...v2.0.3) (2026-10-19)
 
 
