@@ -62,7 +62,7 @@ on:
 
 jobs:
   lint-skills:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/skills_lint.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/skills_lint.yml@v2
     with:
       skills_directories: '.agents/skills .claude/skills'
 ```

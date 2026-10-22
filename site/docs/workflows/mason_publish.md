@@ -70,7 +70,7 @@ on: pull_request
 
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v2
     with:
       mason_version: '0.1.0-dev.50'
       working_directory: 'packages/my_mason_brick'

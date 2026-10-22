@@ -1,5 +1,48 @@
 # Changelog
 
+## [2.0.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.2...v2.0.3) (2026-10-19)
+
+
+### Bug Fixes
+
+* fetch full history when cognitive complexity is enabled ([#535](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/535)) ([92a940e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/92a940e3240682172f3f8b1701332789167448ba))
+
+## [2.0.2](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.1...v2.0.2) (2026-10-19)
+
+
+### Bug Fixes
+
+* use full git history when cognitive complexity is enabled ([#533](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/533)) ([8108908](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/81089081948a5a4967711b76a72330365665139f)), closes [#532](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/532)
+
+## [2.0.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.0...v2.0.1) (2026-10-16)
+
+
+### Bug Fixes
+
+* reference set-pub-tokens action remotely ([#527](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/527)) ([8c1b746](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/8c1b746ecafde7d9b00699ccfc2b07ff88324bfb))
+
+
+### Docs
+
+* reference workflows at [@v2](https://github.com/v2) ([#528](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/528)) ([a4f875e](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a4f875e7f3138aac36bfbce27cd45aeb29afcc5e))
+
+## [2.0.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.1...v2.0.0) (2026-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* default run_bloc_lint to false ([#526](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/526))
+
+### Features
+
+* add pub_tokens secret for custom package repositories ([#514](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/514)) ([5dd5f3d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/5dd5f3d3153524d579abb39efb77a3206d80eecc))
+* add timeout_minutes input to package workflows ([#512](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/512)) ([7923125](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/7923125cd505d3db8b0de086c68ca27ecb6e369b))
+
+
+### Refactors
+
+* default run_bloc_lint to false ([#526](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/526)) ([9a0df93](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/9a0df93d69ae52fd9c99f5820a67c0f4bed24aa5)), closes [#525](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/525)
+
 ## [1.21.1](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v1.21.0...v1.21.1) (2026-09-17)
 
 
