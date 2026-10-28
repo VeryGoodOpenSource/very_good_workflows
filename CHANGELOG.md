@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.3...v2.1.0) (2026-10-28)
+
+
+### Features
+
+* add jaspr site reusable workflow ([#518](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/518)) ([b793dac](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/b793dac9cc50fa9533d194dadf5a5e50324e50ea)), closes [#517](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/517)
+
+
+### Bug Fixes
+
+* **dart_pub_publish:** make pub_credentials optional for OIDC publishing ([#541](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/541)) ([a1493ba](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/a1493bae22f9c5fff3d49d2abf08f2e5cb280f2e))
+* **pub_publish:** avoid secrets context in step conditions ([#542](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/542)) ([633bd65](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/633bd651a3b359be18783368f90d066d44fa0f58))
+
 ## [2.0.3](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.2...v2.0.3) (2026-10-19)
 
 
