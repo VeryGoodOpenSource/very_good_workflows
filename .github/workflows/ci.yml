@@ -122,6 +122,7 @@ jobs:
     with:
       scopes: |
         dart_package
+        dart_pub_publish
         deps
         flutter_package
         jaspr_site
