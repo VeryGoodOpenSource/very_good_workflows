@@ -43,6 +43,12 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 **Default** `5`
 
+### `environment`
+
+**Optional** The [GitHub deployment environment](https://dart.dev/tools/pub/automated-publishing#hardening-security-with-github-deployment-environments) to run the publish job in. Leave empty to run without a deployment environment.
+
+**Default** `""`
+
 ## Example Usage
 
 ```yaml

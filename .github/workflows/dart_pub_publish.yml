@@ -20,13 +20,20 @@ on:
         required: false
         type: number
         default: 5
+      environment:
+        required: false
+        type: string
+        default: ""
+        description: "The GitHub deployment environment to run the publish job in."
     # Deprecated, will be used if passed in but using the "Setup Dart" action is recommended
     secrets:
       pub_credentials:
-        required: true
+        required: false
 
 jobs:
   publish:
+    environment: ${{inputs.environment}}
+
     defaults:
       run:
         working-directory: ${{inputs.working_directory}}
