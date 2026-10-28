@@ -61,10 +61,13 @@ permissions:
 ```yaml
 name: My Dart Pub Publish Workflow
 
-on: pull_request
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
-  build:
+  publish:
     permissions:
       id-token: write
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v2
