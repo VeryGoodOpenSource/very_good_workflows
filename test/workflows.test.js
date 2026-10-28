@@ -295,6 +295,17 @@ describe('workflow templates', () => {
       expect(badSecrets).toEqual([]);
     });
 
+    test('no step condition references the secrets context', () => {
+      // GitHub does not expose `secrets` to `jobs.<id>.steps[*].if`, so such a
+      // workflow fails validation. Map the secret to `env` and check that instead.
+      const offending = Object.entries(doc.jobs || {}).flatMap(([jobId, job]) =>
+        ((job && job.steps) || [])
+          .filter((step) => step && /\bsecrets\./.test(String(step.if ?? '')))
+          .map((step) => `${jobId}: ${step.name}`),
+      );
+      expect(offending).toEqual([]);
+    });
+
     test('is documented on the docs site', () => {
       expect(fs.existsSync(path.join(docsDir, `${base}.md`))).toBe(true);
     });

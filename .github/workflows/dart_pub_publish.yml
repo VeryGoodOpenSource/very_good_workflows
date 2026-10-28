@@ -32,6 +32,9 @@ on:
 
 jobs:
   publish:
+    env:
+      PUB_CREDENTIALS: ${{secrets.pub_credentials}}
+
     environment: ${{inputs.environment}}
 
     defaults:
@@ -55,10 +58,10 @@ jobs:
         run: dart pub get
 
       - name: 🔐 Setup Pub Credentials
-        if: ${{ secrets.pub_credentials != '' }}
+        if: ${{ env.PUB_CREDENTIALS != '' }}
         run: |
           mkdir -p $XDG_CONFIG_HOME/dart
-          echo '${{secrets.pub_credentials}}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
+          echo "$PUB_CREDENTIALS" > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
 
       - name: 🌵 Dry Run
         run: dart pub publish --dry-run
