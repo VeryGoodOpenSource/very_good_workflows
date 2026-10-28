@@ -17,6 +17,13 @@ The Dart Pub Publish workflow consists of the following steps:
 
 This workflow uses the automated publishing of packages to pub.dev which is part of the [Dart documentation](https://dart.dev/tools/pub/automated-publishing). Before using this workflow ensure that you have configured your package on pub.dev correctly to allow the publish process to complete.
 
+Because this is a reusable workflow, it cannot grant itself the permissions required for OIDC publishing. The calling job must grant `id-token: write` so that `dart-lang/setup-dart` can request the OIDC token used to authenticate with pub.dev:
+
+```yaml
+permissions:
+  id-token: write
+```
+
 ## Inputs
 
 ### `dart_sdk`
@@ -43,15 +50,26 @@ This workflow uses the automated publishing of packages to pub.dev which is part
 
 **Default** `5`
 
+### `environment`
+
+**Optional** The [GitHub deployment environment](https://dart.dev/tools/pub/automated-publishing#hardening-security-with-github-deployment-environments) to run the publish job in. Leave empty to run without a deployment environment.
+
+**Default** `""`
+
 ## Example Usage
 
 ```yaml
 name: My Dart Pub Publish Workflow
 
-on: pull_request
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
-  build:
+  publish:
+    permissions:
+      id-token: write
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v2
     with:
       dart_sdk: 'stable'
