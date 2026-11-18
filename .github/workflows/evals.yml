@@ -1,0 +1,271 @@
+name: Evals Workflow
+
+# Runs `claude plugin eval` for a Claude Code plugin. The scope job picks the
+# cases to run (every skill, or only the ones a change touched), and the run job
+# executes them under a cost ceiling, summarizes the report, and uploads it.
+#
+# The run job is deliberately `continue-on-error`, so a failing or regressed eval
+# is advisory and never blocks a merge.
+
+on:
+  workflow_call:
+    inputs:
+      scope:
+        required: false
+        type: string
+        default: "changed-skills"
+        description: "Which cases to run: `changed-skills` (only skills a change touched) or `all-skills` (every skill with eval cases)."
+      runs:
+        required: false
+        type: number
+        default: 1
+        description: "Runs per case per arm. 1 is cheapest; 3 separates a real failure from noise."
+      include_baseline:
+        required: false
+        type: boolean
+        default: false
+        description: "Also run the no-plugin baseline arm (doubles the cost; only needed to re-check that cases discriminate)."
+      max_cost_usd:
+        required: false
+        type: string
+        default: ""
+        description: "Cost ceiling in USD. Leave blank to size it from the scope ($5 for changed skills, $20 for all skills in one arm, $40 in both), multiplied by `runs`."
+      claude_code_version:
+        required: false
+        type: string
+        default: "2.1.270"
+        description: "The `@anthropic-ai/claude-code` version to install."
+      model:
+        required: false
+        type: string
+        default: "claude-sonnet-5"
+        description: "The model that runs the eval cases."
+      judge_model:
+        required: false
+        type: string
+        default: "claude-opus-5"
+        description: "The model that grades the output. Deliberately not the agent model: a model grading its own output scores it generously, so the judge should be sonnet-tier or larger."
+      threshold:
+        required: false
+        type: string
+        default: "0.8"
+        description: "The minimum score a case must reach to pass."
+      allow_tools:
+        required: false
+        type: string
+        default: "Write"
+        description: "Space-separated list of tools the eval run is allowed to use (passed to `--allow-tools`)."
+      working_directory:
+        required: false
+        type: string
+        default: "."
+        description: "The path to the root of the plugin to evaluate."
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+        description: "The operating system on which to run the workflow."
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: false
+        description: "The Anthropic API key the eval run authenticates with. Required for the run job; locally these evals authenticate through the Claude Code session, but CI has none."
+
+concurrency:
+  group: evals-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  scope:
+    name: 🔎 Scope
+    runs-on: ${{inputs.runs_on}}
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+    outputs:
+      tags: ${{ steps.pick.outputs.tags }}
+      run_evals: ${{ steps.pick.outputs.run_evals }}
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: 🧮 Pick the cases to run
+        id: pick
+        env:
+          SCOPE: ${{ inputs.scope }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          all_skills() {
+            [ -d evals ] || return 0
+            find evals -mindepth 3 -maxdepth 3 -name case.yaml -exec dirname {} \; \
+              | sed 's|^evals/||; s|/[^/]*$||' | sort -u
+          }
+
+          if [ "$SCOPE" = "all-skills" ]; then
+            SKILLS=$(all_skills)
+          else
+            BASE="${BEFORE:-}"
+            if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+              BASE=$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)
+            fi
+            HEAD_SHA="${SHA:-HEAD}"
+            CHANGED=$(git diff --name-only "$BASE" "$HEAD_SHA" || true)
+
+            SKILLS=$(
+              {
+                echo "$CHANGED" | { grep -oE '^skills/[^/]+/' || true; } | cut -d/ -f2
+                echo "$CHANGED" | { grep -oE '^evals/[^_][^/]*/' || true; } | cut -d/ -f2
+              } | sort -u | while read -r s; do
+                    if [ -n "$s" ] && compgen -G "evals/$s/*/case.yaml" >/dev/null; then
+                      echo "$s"
+                    fi
+                  done
+            )
+
+            if echo "$CHANGED" | grep -qE '^(evals/_fixture/|skills/shared/|agents/)'; then
+              echo "shared eval input changed — widening to all skills"
+              SKILLS=$(all_skills)
+            fi
+          fi
+
+          if [ -z "$SKILLS" ]; then
+            echo "No skill with eval cases in scope. Nothing to run."
+            echo "run_evals=false" >> "$GITHUB_OUTPUT"
+            echo "tags=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          TAGS=$(echo "$SKILLS" | paste -sd' ' -)
+          COUNT=$(echo "$SKILLS" | wc -l | tr -d ' ')
+
+          echo "run_evals=true" >> "$GITHUB_OUTPUT"
+          echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "### Eval scope"
+            echo
+            echo "\`$COUNT\` skill(s) in scope: $(echo "$SKILLS" | paste -sd', ' -)"
+            echo
+            echo "Tags: \`$TAGS\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  run:
+    name: 🧪 Run evals
+    needs: scope
+    if: needs.scope.outputs.run_evals == 'true'
+    runs-on: ${{inputs.runs_on}}
+    continue-on-error: true
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v7
+
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22.x"
+
+      - name: 📦 Install Claude Code
+        env:
+          CLAUDE_CODE_VERSION: ${{ inputs.claude_code_version }}
+        run: |
+          set -euo pipefail
+          npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
+          claude --version
+
+      - name: 🔑 Check the API key is present
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+            echo "::error::ANTHROPIC_API_KEY is not set. Locally these evals authenticate through the Claude Code session; CI has none, so the secret is required."
+            exit 1
+          fi
+
+      - name: 🧪 Run the scoped evals
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INCLUDE_BASELINE: ${{ inputs.include_baseline }}
+          RUNS: ${{ inputs.runs }}
+          MAX_COST: ${{ inputs.max_cost_usd }}
+          SCOPE: ${{ inputs.scope }}
+          MODEL: ${{ inputs.model }}
+          JUDGE_MODEL: ${{ inputs.judge_model }}
+          THRESHOLD: ${{ inputs.threshold }}
+          ALLOW_TOOLS: ${{ inputs.allow_tools }}
+          TAGS: ${{ needs.scope.outputs.tags }}
+        run: |
+          set -euo pipefail
+          ABLATION=none
+          if [ "$INCLUDE_BASELINE" = "true" ]; then ABLATION=with-without; fi
+
+          if [ -z "$MAX_COST" ]; then
+            if [ "$SCOPE" = "all-skills" ]; then MAX_COST=20; else MAX_COST=5; fi
+            if [ "$ABLATION" = "with-without" ]; then MAX_COST=$(( MAX_COST * 2 )); fi
+            MAX_COST=$(( MAX_COST * RUNS ))
+          fi
+          echo "Cost ceiling: \$$MAX_COST (scope=$SCOPE ablation=$ABLATION runs=$RUNS)"
+
+          set +e
+          claude plugin eval . \
+            --trust-plugin --scaffold --no-publish \
+            --allow-tools $ALLOW_TOOLS \
+            --runs "$RUNS" \
+            --ablation "$ABLATION" \
+            --threshold "$THRESHOLD" \
+            --model "$MODEL" --judge-model "$JUDGE_MODEL" \
+            --max-cost-usd "$MAX_COST" \
+            --output-dir evals/results/ci \
+            -j 4 \
+            --tag $TAGS 2>&1 | tee /tmp/eval.log
+          CODE=${PIPESTATUS[0]}
+          set -e
+          if [ "$CODE" = "2" ] && [ ! -f evals/results/ci/aggregate-result.json ]; then
+            echo "::error::The run was cut short before it produced any results: auth failed, or the cost ceiling was hit before the first case finished."
+            exit 1
+          fi
+
+          test -f evals/results/ci/aggregate-result.json
+
+      - name: 📝 Summarize
+        if: always()
+        run: |
+          set -uo pipefail
+          RESULT=evals/results/ci/aggregate-result.json
+          {
+            echo "### Eval results"
+            echo
+            if [ -f "$RESULT" ] && [ "$(jq -r '.partial' "$RESULT")" = "true" ]; then
+              echo "> **Partial run** (\`$(jq -r '.partialReason' "$RESULT")\`). Scores below are incomplete, so leave them out of any trend."
+              echo
+            fi
+            echo "A run that timed out, hit the turn cap or was rate limited scores 0 with no failing"
+            echo "grader, which reads like a content regression. Check the NOTES column before believing"
+            echo "a red case, and confirm it locally with \`--runs 3\`."
+            echo
+            echo '```text'
+            tail -n 200 /tmp/eval.log 2>/dev/null || echo "(no run output captured)"
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: 📤 Upload the run
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: eval-run
+          path: |
+            ${{inputs.working_directory}}/evals/results/ci/aggregate-result.json
+            ${{inputs.working_directory}}/evals/results/ci/report.html
+          if-no-files-found: ignore
+          retention-days: 14

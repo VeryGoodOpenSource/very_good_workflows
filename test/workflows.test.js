@@ -27,6 +27,7 @@ const VALID_INPUT_TYPES = new Set(['string', 'number', 'boolean']);
 const EXPECTED_TEMPLATES = [
   'dart_package.yml',
   'dart_pub_publish.yml',
+  'evals.yml',
   'flutter_package.yml',
   'flutter_pub_publish.yml',
   'jaspr_site.yml',
@@ -452,13 +453,18 @@ describe('validators reject malformed workflows', () => {
 // reference inside a step's `with:` block is invisible to every assertion above,
 // so the inputs that feed a specific action are pinned to that action here.
 describe('inputs are wired into the steps that consume them', () => {
+  // Templates that expose artifact_name / artifact_paths inputs and wire them
+  // into upload-artifact. evals.yml also uploads an artifact, but with a fixed
+  // name and report path rather than caller-supplied inputs, so it is covered by
+  // the consumer guard below and exempt from the input-wiring assertion.
   const uploadArtifactTemplates = ['dart_package.yml', 'flutter_package.yml'];
+  const uploadArtifactConsumers = [...uploadArtifactTemplates, 'evals.yml'];
 
-  test('uploadArtifactTemplates covers every upload-artifact consumer', () => {
+  test('uploadArtifactConsumers covers every upload-artifact consumer', () => {
     // Without this guard a new template could adopt upload-artifact and never
     // be checked by the wiring assertion below.
     expect(workflowsReferencing('actions/upload-artifact')).toEqual(
-      [...uploadArtifactTemplates].sort(),
+      [...uploadArtifactConsumers].sort(),
     );
   });
 
