@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.1.0...v2.2.0) (2026-11-18)
+
+
+### Features
+
+* **semantic_pull_request:** add runs_on input ([#553](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/553)) ([ffa474d](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/ffa474d22032d8e08506a28f8b661cb06d5e3792))
+
+
+### Miscellaneous Chores
+
+* bump amannn/action-semantic-pull-request from 6.1.1 to 6.1.2 in the github-actions group ([#548](https://github.com/VeryGoodOpenSource/very_good_workflows/issues/548)) ([be97705](https://github.com/VeryGoodOpenSource/very_good_workflows/commit/be97705afc5c0aae317a382df126f049a4bf3663))
+
 ## [2.1.0](https://github.com/VeryGoodOpenSource/very_good_workflows/compare/v2.0.3...v2.1.0) (2026-11-09)
 
 
