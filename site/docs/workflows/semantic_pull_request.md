@@ -24,6 +24,12 @@ The semantic pull request package workflow consists of the following step:
 
 **Optional** Configure which scopes are allowed (e.g. `"dart_package, flutter_package"`).
 
+### `runs_on`
+
+**Optional** The operating system on which to run the workflow.
+
+**Default** `"ubuntu-latest"`
+
 ## GitHub Repository Configuration
 
 ### Squash Merging

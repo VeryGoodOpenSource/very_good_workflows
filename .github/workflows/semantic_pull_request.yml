@@ -9,10 +9,14 @@ on:
       scopes:
         required: false
         type: string
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{inputs.runs_on}}
 
     steps:
       - name: 🤖 Ensure Commit is Semantic
