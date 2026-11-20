@@ -32,9 +32,9 @@
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "globals": "^17.14.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "typescript": "~7.0.2"
   },
   "browserslist": {
