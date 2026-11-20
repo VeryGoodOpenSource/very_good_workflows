@@ -150,7 +150,7 @@ jobs:
           fetch-depth: ${{env.FETCH_DEPTH}}
 
       - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1.8.1
+        uses: dart-lang/setup-dart@v1.8.2
         with:
           sdk: ${{inputs.dart_sdk}}
 
