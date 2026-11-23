@@ -74,7 +74,7 @@ jobs:
 
       - name: 🎯 Setup Dart
         if: ${{ env.PUB_CREDENTIALS == '' }}
-        uses: dart-lang/setup-dart@v1.8.1
+        uses: dart-lang/setup-dart@v1.8.2
         with:
           sdk: ${{inputs.dart_sdk}}
 
