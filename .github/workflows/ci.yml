@@ -51,7 +51,7 @@ jobs:
     uses: ./.github/workflows/flutter_package.yml
     with:
       flutter_channel: stable
-      flutter_version: "3.47.x"
+      flutter_version: "3.50.x"
       setup: flutter doctor --verbose
       run_bloc_lint: true
       working_directory: examples/flutter_package
@@ -64,7 +64,7 @@ jobs:
     uses: ./.github/workflows/flutter_package.yml
     with:
       flutter_channel: stable
-      flutter_version: "3.47.x"
+      flutter_version: "3.50.x"
       runs_on: windows-latest
       run_bloc_lint: false
       dart_define: "FLAVOR=staging API_URL=https://example.com"
@@ -92,7 +92,7 @@ jobs:
   verify-jaspr:
     uses: ./.github/workflows/jaspr_site.yml
     with:
-      dart_sdk: "3.13.2"
+      dart_sdk: "3.14.0"
       jaspr_cli_version: "0.23.5"
       setup: dart --version
       working_directory: examples/jaspr_site
@@ -150,7 +150,7 @@ jobs:
     with:
       working_directory: examples/flutter_package
       flutter_channel: stable
-      flutter_version: "3.47.x"
+      flutter_version: "3.50.x"
       dependency_type: "direct-dev"
       allowed: ""
       forbidden: "unknown"
