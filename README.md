@@ -53,6 +53,9 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml
 
 # A reusable workflow for linting agent skill directories with skills_lint
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/skills_lint.yml@v2
+
+# A reusable workflow for running Claude Code plugin evals
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/evals.yml@v2
 ```
 
 For configuration details, check out our [official docs][workflows_docs].
