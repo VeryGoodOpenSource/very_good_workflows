@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: 🤖 Ensure Commit is Semantic
         if: github.event_name == 'pull_request'
-        uses: amannn/action-semantic-pull-request@v6.1.2
+        uses: amannn/action-semantic-pull-request@v6.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
